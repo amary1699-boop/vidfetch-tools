@@ -21,17 +21,28 @@
 
 <style>
 
+/* =========================================================
+   ROOT
+========================================================= */
+
 :root{
     --primary:#2563eb;
     --primary-dark:#1d4ed8;
     --accent:#06b6d4;
+    --green:#16a34a;
     --text:#0f172a;
     --muted:#64748b;
     --bg:#f1f5f9;
     --card:#ffffff;
     --border:#dbe3ee;
+    --danger:#dc2626;
     --shadow:0 14px 40px rgba(15,23,42,.09);
 }
+
+
+/* =========================================================
+   RESET
+========================================================= */
 
 *{
     box-sizing:border-box;
@@ -50,14 +61,23 @@ body{
     line-height:1.6;
 }
 
+body.modal-open{
+    overflow:hidden;
+}
+
 a{
     color:inherit;
     text-decoration:none;
 }
 
 button,
-input{
+input,
+select{
     font-family:inherit;
+}
+
+button{
+    -webkit-tap-highlight-color:transparent;
 }
 
 .container{
@@ -66,9 +86,9 @@ input{
 }
 
 
-/* =========================
+/* =========================================================
    NAVBAR
-========================= */
+========================================================= */
 
 .navbar{
     background:#fff;
@@ -122,12 +142,12 @@ input{
 }
 
 
-/* =========================
+/* =========================================================
    HERO
-========================= */
+========================================================= */
 
 .hero{
-    padding:85px 0 75px;
+    padding:75px 0 65px;
     background:
         radial-gradient(
             circle at top left,
@@ -142,7 +162,7 @@ input{
 }
 
 .hero-content{
-    max-width:850px;
+    max-width:900px;
     margin:auto;
     text-align:center;
 }
@@ -172,18 +192,18 @@ input{
 
 .hero p{
     max-width:700px;
-    margin:0 auto 35px;
+    margin:0 auto 32px;
     color:var(--muted);
     font-size:18px;
 }
 
 
-/* =========================
+/* =========================================================
    TOOL CARD
-========================= */
+========================================================= */
 
 .tool-card{
-    max-width:850px;
+    max-width:900px;
     margin:0 auto;
     background:#fff;
     padding:25px;
@@ -224,6 +244,7 @@ input{
     font-weight:700;
     cursor:pointer;
     transition:.2s;
+    white-space:nowrap;
 }
 
 .primary-btn:hover{
@@ -239,11 +260,12 @@ input{
     min-height:45px;
     border:1px solid var(--border);
     border-radius:10px;
-    padding:0 18px;
+    padding:0 17px;
     background:#fff;
     cursor:pointer;
     font-weight:600;
     transition:.2s;
+    white-space:nowrap;
 }
 
 .secondary-btn:hover{
@@ -256,10 +278,16 @@ input{
     transform:translateY(0);
 }
 
-.secondary-btn:disabled{
-    opacity:.6;
-    cursor:not-allowed;
-    transform:none;
+.download-main-btn{
+    background:var(--primary);
+    border-color:var(--primary);
+    color:#fff;
+}
+
+.download-main-btn:hover{
+    background:var(--primary-dark);
+    border-color:var(--primary-dark);
+    color:#fff;
 }
 
 .help-text{
@@ -270,9 +298,9 @@ input{
 }
 
 
-/* =========================
+/* =========================================================
    RESULT
-========================= */
+========================================================= */
 
 .result{
     display:none;
@@ -335,9 +363,296 @@ input{
 }
 
 
-/* =========================
+/* =========================================================
+   DOWNLOAD MODAL
+========================================================= */
+
+.download-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(15,23,42,.62);
+    backdrop-filter:blur(4px);
+    -webkit-backdrop-filter:blur(4px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:5000;
+}
+
+.download-overlay.show{
+    display:flex;
+}
+
+.download-modal{
+    width:min(680px,100%);
+    max-height:calc(100vh - 40px);
+    overflow:auto;
+    background:#fff;
+    border-radius:22px;
+    box-shadow:0 25px 70px rgba(0,0,0,.25);
+    animation:modalIn .2s ease;
+}
+
+@keyframes modalIn{
+    from{
+        opacity:0;
+        transform:translateY(12px) scale(.98);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.download-header{
+    padding:22px 24px;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.download-header-left{
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.download-header-icon{
+    width:45px;
+    height:45px;
+    border-radius:12px;
+    background:#eff6ff;
+    color:var(--primary);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+}
+
+.download-header h2{
+    font-size:22px;
+    margin-bottom:2px;
+}
+
+.download-header p{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.close-download{
+    width:40px;
+    height:40px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    background:#fff;
+    cursor:pointer;
+    font-size:22px;
+    line-height:1;
+}
+
+.close-download:hover{
+    background:#f8fafc;
+    border-color:#94a3b8;
+}
+
+.download-body{
+    padding:24px;
+}
+
+.download-video-preview{
+    display:flex;
+    gap:15px;
+    padding:13px;
+    border:1px solid var(--border);
+    border-radius:14px;
+    background:#f8fafc;
+    margin-bottom:20px;
+}
+
+.download-video-preview img{
+    width:135px;
+    height:76px;
+    object-fit:cover;
+    border-radius:9px;
+    flex-shrink:0;
+}
+
+.download-video-info{
+    min-width:0;
+}
+
+.download-video-info strong{
+    display:block;
+    margin-bottom:4px;
+}
+
+.download-video-info span{
+    display:block;
+    color:var(--muted);
+    font-size:13px;
+    word-break:break-all;
+}
+
+
+/* DOWNLOAD TYPE */
+
+.download-type-tabs{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.download-tab{
+    border:1px solid var(--border);
+    background:#fff;
+    border-radius:12px;
+    padding:14px;
+    cursor:pointer;
+    text-align:left;
+    transition:.2s;
+}
+
+.download-tab strong{
+    display:block;
+    font-size:16px;
+    margin-bottom:3px;
+}
+
+.download-tab span{
+    color:var(--muted);
+    font-size:12px;
+}
+
+.download-tab.active{
+    border-color:var(--primary);
+    background:#eff6ff;
+    box-shadow:0 0 0 2px rgba(37,99,235,.08);
+}
+
+.download-tab.active strong{
+    color:var(--primary);
+}
+
+
+/* DOWNLOAD OPTIONS */
+
+.option-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+}
+
+.option-box{
+    border:1px solid var(--border);
+    border-radius:13px;
+    padding:15px;
+    background:#fff;
+}
+
+.option-box label{
+    display:block;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:8px;
+    color:#334155;
+}
+
+.option-select{
+    width:100%;
+    height:45px;
+    border:1px solid #cbd5e1;
+    border-radius:9px;
+    padding:0 11px;
+    background:#fff;
+    outline:none;
+    font-size:14px;
+}
+
+.option-select:focus{
+    border-color:var(--primary);
+    box-shadow:0 0 0 3px rgba(37,99,235,.10);
+}
+
+.size-box{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.size-value{
+    font-size:14px;
+    font-weight:700;
+    color:#475569;
+}
+
+.download-note{
+    margin-top:17px;
+    padding:13px 14px;
+    background:#f8fafc;
+    border:1px solid var(--border);
+    border-radius:11px;
+    color:#64748b;
+    font-size:12px;
+    line-height:1.5;
+}
+
+.download-footer{
+    padding:18px 24px 24px;
+    display:flex;
+    gap:10px;
+    justify-content:flex-end;
+    border-top:1px solid var(--border);
+}
+
+.cancel-btn{
+    min-height:48px;
+    border:1px solid var(--border);
+    background:#fff;
+    border-radius:11px;
+    padding:0 20px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.confirm-download-btn{
+    min-height:48px;
+    border:0;
+    background:var(--primary);
+    color:#fff;
+    border-radius:11px;
+    padding:0 22px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.confirm-download-btn:hover{
+    background:var(--primary-dark);
+}
+
+.backend-message{
+    display:none;
+    margin-top:15px;
+    padding:13px 14px;
+    background:#fff7ed;
+    border:1px solid #fed7aa;
+    color:#9a3412;
+    border-radius:11px;
+    font-size:13px;
+}
+
+.backend-message.show{
+    display:block;
+}
+
+
+/* =========================================================
    SECTIONS
-========================= */
+========================================================= */
 
 .section{
     padding:80px 0;
@@ -363,9 +678,9 @@ input{
 }
 
 
-/* =========================
+/* =========================================================
    FEATURES
-========================= */
+========================================================= */
 
 .features{
     display:grid;
@@ -404,9 +719,9 @@ input{
 }
 
 
-/* =========================
+/* =========================================================
    HOW TO USE
-========================= */
+========================================================= */
 
 .steps{
     display:grid;
@@ -434,9 +749,9 @@ input{
 }
 
 
-/* =========================
+/* =========================================================
    ABOUT
-========================= */
+========================================================= */
 
 .about-box{
     max-width:850px;
@@ -454,9 +769,9 @@ input{
 }
 
 
-/* =========================
+/* =========================================================
    FAQ
-========================= */
+========================================================= */
 
 .faq{
     max-width:850px;
@@ -482,9 +797,9 @@ details p{
 }
 
 
-/* =========================
+/* =========================================================
    FOOTER
-========================= */
+========================================================= */
 
 footer{
     background:#111;
@@ -538,9 +853,9 @@ footer{
 }
 
 
-/* =========================
+/* =========================================================
    BACK TO TOP
-========================= */
+========================================================= */
 
 .top-btn{
     position:fixed;
@@ -563,9 +878,31 @@ footer{
 }
 
 
-/* =========================
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(max-width:900px){
+
+    .result-grid{
+        grid-template-columns:240px 1fr;
+    }
+
+    .features,
+    .steps{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+
+/* =========================================================
    MOBILE
-========================= */
+========================================================= */
 
 @media(max-width:800px){
 
@@ -602,6 +939,12 @@ footer{
         grid-template-columns:1fr;
     }
 
+    .result-grid > div:first-child{
+        max-width:500px;
+        width:100%;
+        margin:auto;
+    }
+
     .features,
     .steps{
         grid-template-columns:1fr;
@@ -628,20 +971,51 @@ footer{
     }
 
     .action-row{
-        flex-direction:column;
+        display:grid;
+        grid-template-columns:1fr 1fr;
     }
 
     .secondary-btn{
         width:100%;
     }
 
+    .download-overlay{
+        padding:10px;
+    }
+
+    .download-modal{
+        border-radius:17px;
+        max-height:calc(100vh - 20px);
+    }
+
+    .download-header{
+        padding:18px;
+    }
+
+    .download-body{
+        padding:18px;
+    }
+
+    .download-footer{
+        padding:15px 18px 18px;
+    }
+
 }
 
 
-@media(max-width:480px){
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media(max-width:520px){
+
+    .container{
+        width:94%;
+    }
 
     .tool-card{
-        padding:18px;
+        padding:17px;
+        border-radius:16px;
     }
 
     .hero h1{
@@ -656,6 +1030,92 @@ footer{
         font-size:30px;
     }
 
+    .action-row{
+        grid-template-columns:1fr;
+    }
+
+    .download-video-preview{
+        align-items:flex-start;
+    }
+
+    .download-video-preview img{
+        width:105px;
+        height:59px;
+    }
+
+    .download-header h2{
+        font-size:19px;
+    }
+
+    .download-header-icon{
+        width:40px;
+        height:40px;
+        font-size:19px;
+    }
+
+    .option-grid{
+        grid-template-columns:1fr;
+    }
+
+    .download-type-tabs{
+        grid-template-columns:1fr;
+    }
+
+    .download-footer{
+        flex-direction:column-reverse;
+    }
+
+    .cancel-btn,
+    .confirm-download-btn{
+        width:100%;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media(max-width:360px){
+
+    .hero h1{
+        font-size:34px;
+    }
+
+    .download-header-left{
+        gap:9px;
+    }
+
+    .download-header{
+        padding:15px;
+    }
+
+    .download-body{
+        padding:15px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    html{
+        scroll-behavior:auto;
+    }
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:.01ms !important;
+    }
+
 }
 
 </style>
@@ -664,6 +1124,10 @@ footer{
 
 <body>
 
+
+<!-- =======================================================
+     NAVBAR
+======================================================= -->
 
 <header class="navbar">
 
@@ -698,6 +1162,10 @@ footer{
 </header>
 
 
+<!-- =======================================================
+     HERO
+======================================================= -->
+
 <section class="hero" id="home">
 
     <div class="container">
@@ -714,8 +1182,8 @@ footer{
 
             <p>
                 Paste a YouTube video URL to preview the video,
-                view its thumbnail and get basic video information
-                in a clean and simple interface.
+                view its thumbnail and explore available video
+                and audio options.
             </p>
 
 
@@ -750,6 +1218,8 @@ footer{
 
                 </div>
 
+
+                <!-- RESULT -->
 
                 <div class="result" id="result">
 
@@ -828,12 +1298,14 @@ footer{
                                 </button>
 
 
+                                <!-- MAIN DOWNLOAD BUTTON -->
+
                                 <button
-                                    class="secondary-btn"
+                                    class="secondary-btn download-main-btn"
                                     id="downloadBtn"
                                     type="button"
                                 >
-                                    ▶ Open Video
+                                    ⬇️ Download
                                 </button>
 
 
@@ -878,6 +1350,299 @@ footer{
 
 </section>
 
+
+<!-- =======================================================
+     DOWNLOAD MODAL
+======================================================= -->
+
+<div
+    class="download-overlay"
+    id="downloadOverlay"
+    aria-hidden="true"
+>
+
+    <div
+        class="download-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="downloadModalTitle"
+    >
+
+        <div class="download-header">
+
+            <div class="download-header-left">
+
+                <div class="download-header-icon">
+                    ⬇
+                </div>
+
+                <div>
+
+                    <h2 id="downloadModalTitle">
+                        Download Options
+                    </h2>
+
+                    <p>
+                        Select your preferred format and quality
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="close-download"
+                id="closeDownloadBtn"
+                type="button"
+                aria-label="Close download options"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="download-body">
+
+            <!-- VIDEO PREVIEW -->
+
+            <div class="download-video-preview">
+
+                <img
+                    id="downloadPreviewImage"
+                    src=""
+                    alt="Video preview"
+                >
+
+                <div class="download-video-info">
+
+                    <strong id="downloadPreviewTitle">
+                        YouTube Video
+                    </strong>
+
+                    <span id="downloadPreviewId">
+                        Video ID: -
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- FORMAT TABS -->
+
+            <div class="download-type-tabs">
+
+                <button
+                    class="download-tab active"
+                    id="videoTab"
+                    type="button"
+                >
+
+                    <strong>
+                        🎬 MP4 Video
+                    </strong>
+
+                    <span>
+                        Choose video quality
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="download-tab"
+                    id="audioTab"
+                    type="button"
+                >
+
+                    <strong>
+                        🎵 MP3 Audio
+                    </strong>
+
+                    <span>
+                        Choose audio quality
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <!-- VIDEO OPTIONS -->
+
+            <div
+                id="videoOptions"
+                class="option-grid"
+            >
+
+                <div class="option-box">
+
+                    <label for="videoQuality">
+                        Video Quality
+                    </label>
+
+                    <select
+                        id="videoQuality"
+                        class="option-select"
+                    >
+
+                        <option value="360p">
+                            360p
+                        </option>
+
+                        <option value="480p">
+                            480p
+                        </option>
+
+                        <option value="720p">
+                            720p HD
+                        </option>
+
+                        <option value="1080p">
+                            1080p Full HD
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="option-box">
+
+                    <label>
+                        File Size
+                    </label>
+
+                    <div class="size-box">
+
+                        <span
+                            class="size-value"
+                            id="videoSize"
+                        >
+                            Available after server analysis
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- AUDIO OPTIONS -->
+
+            <div
+                id="audioOptions"
+                class="option-grid"
+                style="display:none;"
+            >
+
+                <div class="option-box">
+
+                    <label for="audioQuality">
+                        Audio Quality
+                    </label>
+
+                    <select
+                        id="audioQuality"
+                        class="option-select"
+                    >
+
+                        <option value="128">
+                            128 kbps
+                        </option>
+
+                        <option value="192">
+                            192 kbps
+                        </option>
+
+                        <option value="320">
+                            320 kbps
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="option-box">
+
+                    <label>
+                        File Size
+                    </label>
+
+                    <div class="size-box">
+
+                        <span
+                            class="size-value"
+                            id="audioSize"
+                        >
+                            Available after server analysis
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="download-note">
+
+                ℹ️ File size and final download availability
+                will be provided by the authorized download
+                service/backend when it is connected.
+
+            </div>
+
+
+            <div
+                class="backend-message"
+                id="backendMessage"
+            >
+
+                The professional download interface is ready.
+                Actual MP3/MP4 file generation requires an
+                authorized backend/API. This GitHub Pages
+                frontend does not falsely generate or download
+                a file.
+
+            </div>
+
+        </div>
+
+
+        <div class="download-footer">
+
+            <button
+                class="cancel-btn"
+                id="cancelDownloadBtn"
+                type="button"
+            >
+                Cancel
+            </button>
+
+
+            <button
+                class="confirm-download-btn"
+                id="confirmDownloadBtn"
+                type="button"
+            >
+                ⬇ Continue
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     FEATURES
+======================================================= -->
 
 <section class="section white">
 
@@ -959,6 +1724,10 @@ footer{
 </section>
 
 
+<!-- =======================================================
+     HOW IT WORKS
+======================================================= -->
+
 <section class="section" id="how">
 
     <div class="container">
@@ -1021,12 +1790,12 @@ footer{
                 </div>
 
                 <h3>
-                    View Information
+                    Choose Options
                 </h3>
 
                 <p>
-                    View the detected video ID, thumbnail and
-                    available actions.
+                    Preview the detected video and select the
+                    required download format and quality.
                 </p>
 
             </div>
@@ -1037,6 +1806,10 @@ footer{
 
 </section>
 
+
+<!-- =======================================================
+     ABOUT
+======================================================= -->
 
 <section class="section white" id="about">
 
@@ -1108,6 +1881,10 @@ footer{
 </section>
 
 
+<!-- =======================================================
+     FAQ
+======================================================= -->
+
 <section class="section" id="faq">
 
     <div class="container">
@@ -1173,6 +1950,22 @@ footer{
             <details>
 
                 <summary>
+                    What download options are available?
+                </summary>
+
+                <p>
+                    The interface supports MP4 video and MP3 audio
+                    selection, including quality options. Actual
+                    file availability and size require an authorized
+                    backend/download service.
+                </p>
+
+            </details>
+
+
+            <details>
+
+                <summary>
                     Can every YouTube video be downloaded?
                 </summary>
 
@@ -1191,6 +1984,10 @@ footer{
 
 </section>
 
+
+<!-- =======================================================
+     CONTACT
+======================================================= -->
 
 <section class="section" id="contact">
 
@@ -1271,6 +2068,10 @@ footer{
 
 </section>
 
+
+<!-- =======================================================
+     PRIVACY
+======================================================= -->
 
 <section class="section white" id="privacy">
 
@@ -1399,6 +2200,10 @@ footer{
 </section>
 
 
+<!-- =======================================================
+     TERMS
+======================================================= -->
+
 <section class="section" id="terms">
 
     <div class="container">
@@ -1516,6 +2321,10 @@ footer{
 </section>
 
 
+<!-- =======================================================
+     FOOTER
+======================================================= -->
+
 <footer>
 
     <div class="container">
@@ -1588,6 +2397,10 @@ footer{
 </footer>
 
 
+<!-- =======================================================
+     BACK TO TOP
+======================================================= -->
+
 <button
     class="top-btn"
     id="topBtn"
@@ -1600,65 +2413,155 @@ footer{
 
 <script>
 
-/* =========================
+/* =========================================================
    ELEMENTS
-========================= */
+========================================================= */
 
-const menuBtn = document.getElementById("menuBtn");
-const navLinks = document.getElementById("navLinks");
-const urlInput = document.getElementById("urlInput");
-const analyzeBtn = document.getElementById("analyzeBtn");
-const result = document.getElementById("result");
-const thumbnail = document.getElementById("thumbnail");
-const videoIdElement = document.getElementById("videoId");
-const videoTitle = document.getElementById("videoTitle");
-const copyBtn = document.getElementById("copyBtn");
-const thumbnailBtn = document.getElementById("thumbnailBtn");
-const downloadBtn = document.getElementById("downloadBtn");
-const watchBtn = document.getElementById("watchBtn");
-const shareBtn = document.getElementById("shareBtn");
-const statusBox = document.getElementById("status");
-const topBtn = document.getElementById("topBtn");
+const menuBtn =
+    document.getElementById("menuBtn");
+
+const navLinks =
+    document.getElementById("navLinks");
+
+const urlInput =
+    document.getElementById("urlInput");
+
+const analyzeBtn =
+    document.getElementById("analyzeBtn");
+
+const result =
+    document.getElementById("result");
+
+const thumbnail =
+    document.getElementById("thumbnail");
+
+const videoIdElement =
+    document.getElementById("videoId");
+
+const videoTitle =
+    document.getElementById("videoTitle");
+
+const copyBtn =
+    document.getElementById("copyBtn");
+
+const thumbnailBtn =
+    document.getElementById("thumbnailBtn");
+
+const downloadBtn =
+    document.getElementById("downloadBtn");
+
+const watchBtn =
+    document.getElementById("watchBtn");
+
+const shareBtn =
+    document.getElementById("shareBtn");
+
+const statusBox =
+    document.getElementById("status");
+
+const topBtn =
+    document.getElementById("topBtn");
 
 
-/* =========================
+/* DOWNLOAD ELEMENTS */
+
+const downloadOverlay =
+    document.getElementById("downloadOverlay");
+
+const closeDownloadBtn =
+    document.getElementById("closeDownloadBtn");
+
+const cancelDownloadBtn =
+    document.getElementById("cancelDownloadBtn");
+
+const confirmDownloadBtn =
+    document.getElementById("confirmDownloadBtn");
+
+const videoTab =
+    document.getElementById("videoTab");
+
+const audioTab =
+    document.getElementById("audioTab");
+
+const videoOptions =
+    document.getElementById("videoOptions");
+
+const audioOptions =
+    document.getElementById("audioOptions");
+
+const videoQuality =
+    document.getElementById("videoQuality");
+
+const audioQuality =
+    document.getElementById("audioQuality");
+
+const videoSize =
+    document.getElementById("videoSize");
+
+const audioSize =
+    document.getElementById("audioSize");
+
+const downloadPreviewImage =
+    document.getElementById("downloadPreviewImage");
+
+const downloadPreviewTitle =
+    document.getElementById("downloadPreviewTitle");
+
+const downloadPreviewId =
+    document.getElementById("downloadPreviewId");
+
+const backendMessage =
+    document.getElementById("backendMessage");
+
+
+let selectedDownloadType = "video";
+
+
+/* =========================================================
    MOBILE MENU
-========================= */
+========================================================= */
 
-menuBtn.addEventListener("click", function(){
+menuBtn.addEventListener(
+    "click",
+    function(){
 
-    navLinks.classList.toggle("open");
+        navLinks.classList.toggle("open");
 
-    const isOpen =
-        navLinks.classList.contains("open");
+        const isOpen =
+            navLinks.classList.contains("open");
 
-    menuBtn.setAttribute(
-        "aria-label",
-        isOpen ? "Close menu" : "Open menu"
+        menuBtn.setAttribute(
+            "aria-label",
+            isOpen ? "Close menu" : "Open menu"
+        );
+
+    }
+);
+
+
+document.querySelectorAll(".nav-links a")
+.forEach(function(link){
+
+    link.addEventListener(
+        "click",
+        function(){
+
+            navLinks.classList.remove("open");
+
+            menuBtn.setAttribute(
+                "aria-label",
+                "Open menu"
+            );
+
+        }
     );
 
 });
 
 
-document.querySelectorAll(".nav-links a").forEach(function(link){
-
-    link.addEventListener("click", function(){
-
-        navLinks.classList.remove("open");
-
-        menuBtn.setAttribute(
-            "aria-label",
-            "Open menu"
-        );
-
-    });
-
-});
-
-
-/* =========================
+/* =========================================================
    YOUTUBE ID EXTRACTOR
-========================= */
+========================================================= */
 
 function getYouTubeVideoId(url){
 
@@ -1675,6 +2578,8 @@ function getYouTubeVideoId(url){
             parsed.hostname.toLowerCase();
 
 
+        /* youtu.be */
+
         if(
             hostname === "youtu.be" ||
             hostname.endsWith(".youtu.be")
@@ -1688,11 +2593,15 @@ function getYouTubeVideoId(url){
             if(
                 /^[a-zA-Z0-9_-]{6,20}$/.test(id)
             ){
+
                 return id;
+
             }
 
         }
 
+
+        /* youtube.com */
 
         if(
             hostname === "youtube.com" ||
@@ -1709,7 +2618,9 @@ function getYouTubeVideoId(url){
                 watchId &&
                 /^[a-zA-Z0-9_-]{6,20}$/.test(watchId)
             ){
+
                 return watchId;
+
             }
 
 
@@ -1739,7 +2650,9 @@ function getYouTubeVideoId(url){
                 if(
                     /^[a-zA-Z0-9_-]{6,20}$/.test(id)
                 ){
+
                     return id;
+
                 }
 
             }
@@ -1757,22 +2670,25 @@ function getYouTubeVideoId(url){
 }
 
 
-/* =========================
+/* =========================================================
    STATUS
-========================= */
+========================================================= */
 
 function showStatus(message){
 
-    statusBox.textContent = message;
+    statusBox.textContent =
+        message;
 
-    statusBox.classList.add("show");
+    statusBox.classList.add(
+        "show"
+    );
 
 }
 
 
-/* =========================
+/* =========================================================
    ANALYZE
-========================= */
+========================================================= */
 
 function analyzeVideo(){
 
@@ -1782,7 +2698,8 @@ function analyzeVideo(){
 
     if(!url){
 
-        result.style.display = "none";
+        result.style.display =
+            "none";
 
         showStatus(
             "Please paste a YouTube video URL."
@@ -1801,7 +2718,8 @@ function analyzeVideo(){
 
     if(!videoId){
 
-        result.style.display = "none";
+        result.style.display =
+            "none";
 
         showStatus(
             "Invalid YouTube URL. Please check the URL and try again."
@@ -1842,11 +2760,15 @@ function analyzeVideo(){
             if(
                 this.dataset.fallbackUsed === "true"
             ){
+
                 return;
+
             }
+
 
             this.dataset.fallbackUsed =
                 "true";
+
 
             this.src =
                 "https://img.youtube.com/vi/" +
@@ -1865,26 +2787,24 @@ function analyzeVideo(){
     );
 
 
-    /* FIX:
-       Bring result into visible area
-       instead of keeping it below screen.
-    */
+    setTimeout(
+        function(){
 
-    setTimeout(function(){
+            result.scrollIntoView({
+                behavior:"smooth",
+                block:"center"
+            });
 
-        result.scrollIntoView({
-            behavior:"smooth",
-            block:"center"
-        });
-
-    },100);
+        },
+        100
+    );
 
 }
 
 
-/* =========================
+/* =========================================================
    ANALYZE BUTTON
-========================= */
+========================================================= */
 
 analyzeBtn.addEventListener(
     "click",
@@ -1892,9 +2812,9 @@ analyzeBtn.addEventListener(
 );
 
 
-/* =========================
+/* =========================================================
    ENTER KEY
-========================= */
+========================================================= */
 
 urlInput.addEventListener(
     "keydown",
@@ -1912,9 +2832,9 @@ urlInput.addEventListener(
 );
 
 
-/* =========================
+/* =========================================================
    COPY URL
-========================= */
+========================================================= */
 
 copyBtn.addEventListener(
     "click",
@@ -1942,12 +2862,16 @@ copyBtn.addEventListener(
                 window.isSecureContext
             ){
 
-                await navigator.clipboard.writeText(url);
+                await navigator.clipboard.writeText(
+                    url
+                );
 
             }else{
 
                 const temporaryInput =
-                    document.createElement("textarea");
+                    document.createElement(
+                        "textarea"
+                    );
 
                 temporaryInput.value =
                     url;
@@ -1966,7 +2890,9 @@ copyBtn.addEventListener(
 
                 temporaryInput.select();
 
-                document.execCommand("copy");
+                document.execCommand(
+                    "copy"
+                );
 
                 temporaryInput.remove();
 
@@ -1989,9 +2915,9 @@ copyBtn.addEventListener(
 );
 
 
-/* =========================
+/* =========================================================
    DOWNLOAD THUMBNAIL
-========================= */
+========================================================= */
 
 thumbnailBtn.addEventListener(
     "click",
@@ -2021,16 +2947,6 @@ thumbnailBtn.addEventListener(
             "/hqdefault.jpg";
 
 
-        /*
-           YouTube's thumbnail server can prevent a
-           GitHub Pages website from forcing a direct
-           cross-origin download.
-
-           Therefore we open the original thumbnail
-           in a new tab. The user can then use
-           Save image as / Download.
-        */
-
         const newTab =
             window.open(
                 imageUrl,
@@ -2057,55 +2973,289 @@ thumbnailBtn.addEventListener(
 );
 
 
-/* =========================
-   OPEN VIDEO
-========================= */
+/* =========================================================
+   OPEN DOWNLOAD MODAL
+========================================================= */
+
+function openDownloadModal(){
+
+    const currentVideoId =
+        videoIdElement.textContent.trim();
+
+
+    if(
+        !currentVideoId ||
+        currentVideoId === "-"
+    ){
+
+        showStatus(
+            "Analyze a valid YouTube URL first."
+        );
+
+        return;
+
+    }
+
+
+    downloadPreviewImage.src =
+        "https://img.youtube.com/vi/" +
+        currentVideoId +
+        "/hqdefault.jpg";
+
+
+    downloadPreviewTitle.textContent =
+        videoTitle.textContent ||
+        "YouTube Video";
+
+
+    downloadPreviewId.textContent =
+        "Video ID: " +
+        currentVideoId;
+
+
+    backendMessage.classList.remove(
+        "show"
+    );
+
+
+    downloadOverlay.classList.add(
+        "show"
+    );
+
+    downloadOverlay.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    document.body.classList.add(
+        "modal-open"
+    );
+
+}
+
+
+/* =========================================================
+   CLOSE DOWNLOAD MODAL
+========================================================= */
+
+function closeDownloadModal(){
+
+    downloadOverlay.classList.remove(
+        "show"
+    );
+
+    downloadOverlay.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    document.body.classList.remove(
+        "modal-open"
+    );
+
+}
+
+
+/* =========================================================
+   DOWNLOAD BUTTON
+========================================================= */
 
 downloadBtn.addEventListener(
     "click",
-    function(){
+    openDownloadModal
+);
 
-        const videoId =
-            videoIdElement.textContent.trim();
 
+closeDownloadBtn.addEventListener(
+    "click",
+    closeDownloadModal
+);
+
+
+cancelDownloadBtn.addEventListener(
+    "click",
+    closeDownloadModal
+);
+
+
+/* =========================================================
+   CLICK OUTSIDE MODAL
+========================================================= */
+
+downloadOverlay.addEventListener(
+    "click",
+    function(event){
 
         if(
-            !videoId ||
-            videoId === "-"
+            event.target === downloadOverlay
         ){
 
-            showStatus(
-                "Analyze a valid YouTube URL first."
-            );
-
-            return;
+            closeDownloadModal();
 
         }
 
-
-        const youtubeUrl =
-            "https://www.youtube.com/watch?v=" +
-            encodeURIComponent(videoId);
+    }
+);
 
 
-        const newTab =
-            window.open(
-                youtubeUrl,
-                "_blank",
-                "noopener,noreferrer"
-            );
+/* =========================================================
+   ESCAPE KEY
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key === "Escape" &&
+            downloadOverlay.classList.contains("show")
+        ){
+
+            closeDownloadModal();
+
+        }
+
+    }
+);
 
 
-        if(newTab){
+/* =========================================================
+   VIDEO TAB
+========================================================= */
+
+videoTab.addEventListener(
+    "click",
+    function(){
+
+        selectedDownloadType =
+            "video";
+
+
+        videoTab.classList.add(
+            "active"
+        );
+
+        audioTab.classList.remove(
+            "active"
+        );
+
+
+        videoOptions.style.display =
+            "grid";
+
+        audioOptions.style.display =
+            "none";
+
+
+        backendMessage.classList.remove(
+            "show"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   AUDIO TAB
+========================================================= */
+
+audioTab.addEventListener(
+    "click",
+    function(){
+
+        selectedDownloadType =
+            "audio";
+
+
+        audioTab.classList.add(
+            "active"
+        );
+
+        videoTab.classList.remove(
+            "active"
+        );
+
+
+        audioOptions.style.display =
+            "grid";
+
+        videoOptions.style.display =
+            "none";
+
+
+        backendMessage.classList.remove(
+            "show"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   VIDEO QUALITY
+========================================================= */
+
+videoQuality.addEventListener(
+    "change",
+    function(){
+
+        videoSize.textContent =
+            "Available after server analysis";
+
+    }
+);
+
+
+/* =========================================================
+   AUDIO QUALITY
+========================================================= */
+
+audioQuality.addEventListener(
+    "change",
+    function(){
+
+        audioSize.textContent =
+            "Available after server analysis";
+
+    }
+);
+
+
+/* =========================================================
+   CONTINUE DOWNLOAD
+========================================================= */
+
+confirmDownloadBtn.addEventListener(
+    "click",
+    function(){
+
+        /*
+           IMPORTANT:
+           No fake download is performed here.
+
+           GitHub Pages frontend cannot safely provide
+           arbitrary YouTube MP3/MP4 downloading by itself.
+        */
+
+        backendMessage.classList.add(
+            "show"
+        );
+
+
+        if(selectedDownloadType === "video"){
 
             showStatus(
-                "Video opened on YouTube."
+                "MP4 " +
+                videoQuality.value +
+                " selected. Connect the authorized download backend to generate the file."
             );
 
         }else{
 
             showStatus(
-                "Please allow pop-ups for VidFetch Tools."
+                "MP3 " +
+                audioQuality.value +
+                " kbps selected. Connect the authorized download backend to generate the file."
             );
 
         }
@@ -2114,21 +3264,21 @@ downloadBtn.addEventListener(
 );
 
 
-/* =========================
+/* =========================================================
    WATCH ON YOUTUBE
-========================= */
+========================================================= */
 
 watchBtn.addEventListener(
     "click",
     function(){
 
-        const videoId =
+        const currentVideoId =
             videoIdElement.textContent.trim();
 
 
         if(
-            !videoId ||
-            videoId === "-"
+            !currentVideoId ||
+            currentVideoId === "-"
         ){
 
             showStatus(
@@ -2142,7 +3292,9 @@ watchBtn.addEventListener(
 
         const youtubeUrl =
             "https://www.youtube.com/watch?v=" +
-            encodeURIComponent(videoId);
+            encodeURIComponent(
+                currentVideoId
+            );
 
 
         const newTab =
@@ -2165,9 +3317,9 @@ watchBtn.addEventListener(
 );
 
 
-/* =========================
+/* =========================================================
    SHARE
-========================= */
+========================================================= */
 
 shareBtn.addEventListener(
     "click",
@@ -2188,12 +3340,9 @@ shareBtn.addEventListener(
         }
 
 
-        /*
-           Mobile / supported browsers
-        */
-
         if(
-            typeof navigator.share === "function"
+            typeof navigator.share ===
+            "function"
         ){
 
             try{
@@ -2238,12 +3387,6 @@ shareBtn.addEventListener(
         }
 
 
-        /*
-           Desktop fallback:
-           create a temporary share window
-           with common sharing options.
-        */
-
         const encodedUrl =
             encodeURIComponent(url);
 
@@ -2266,16 +3409,41 @@ shareBtn.addEventListener(
         }
 
 
+        const safeUrl =
+            url
+            .replace(/&/g,"&amp;")
+            .replace(/</g,"&lt;")
+            .replace(/>/g,"&gt;")
+            .replace(/"/g,"&quot;")
+            .replace(/'/g,"&#039;");
+
+
         shareWindow.document.write(`
+
             <!DOCTYPE html>
+
             <html>
+
             <head>
-                <title>Share - VidFetch Tools</title>
+
+                <title>
+                    Share - VidFetch Tools
+                </title>
+
+                <meta
+                    name="viewport"
+                    content="width=device-width,initial-scale=1"
+                >
 
                 <style>
+
+                    *{
+                        box-sizing:border-box;
+                    }
+
                     body{
                         font-family:Arial,sans-serif;
-                        padding:30px;
+                        padding:20px;
                         text-align:center;
                         background:#f1f5f9;
                         color:#0f172a;
@@ -2323,7 +3491,9 @@ shareBtn.addEventListener(
                         border-color:#2563eb;
                         color:#2563eb;
                     }
+
                 </style>
+
             </head>
 
             <body>
@@ -2335,12 +3505,13 @@ shareBtn.addEventListener(
                     </h2>
 
                     <div class="url">
-                        ${url.replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+                        ${safeUrl}
                     </div>
 
                     <a
                         href="https://wa.me/?text=${encodedUrl}"
                         target="_blank"
+                        rel="noopener noreferrer"
                     >
                         Share on WhatsApp
                     </a>
@@ -2348,6 +3519,7 @@ shareBtn.addEventListener(
                     <a
                         href="https://t.me/share/url?url=${encodedUrl}"
                         target="_blank"
+                        rel="noopener noreferrer"
                     >
                         Share on Telegram
                     </a>
@@ -2373,6 +3545,7 @@ shareBtn.addEventListener(
 
                         const text =
                             ${JSON.stringify(url)};
+
 
                         if(
                             navigator.clipboard &&
@@ -2409,7 +3582,9 @@ shareBtn.addEventListener(
                 <\/script>
 
             </body>
+
             </html>
+
         `);
 
 
@@ -2424,21 +3599,27 @@ shareBtn.addEventListener(
 );
 
 
-/* =========================
+/* =========================================================
    BACK TO TOP
-========================= */
+========================================================= */
 
 window.addEventListener(
     "scroll",
     function(){
 
-        if(window.scrollY > 400){
+        if(
+            window.scrollY > 400
+        ){
 
-            topBtn.classList.add("show");
+            topBtn.classList.add(
+                "show"
+            );
 
         }else{
 
-            topBtn.classList.remove("show");
+            topBtn.classList.remove(
+                "show"
+            );
 
         }
 
@@ -2462,31 +3643,35 @@ topBtn.addEventListener(
 );
 
 
-/* =========================
+/* =========================================================
    YEAR
-========================= */
+========================================================= */
 
-document.getElementById("year").textContent =
+document.getElementById(
+    "year"
+).textContent =
     new Date().getFullYear();
 
 
-/* =========================
+/* =========================================================
    CLEAR STATUS ON INPUT
-========================= */
+========================================================= */
 
 urlInput.addEventListener(
     "input",
     function(){
 
-        statusBox.classList.remove("show");
+        statusBox.classList.remove(
+            "show"
+        );
 
     }
 );
 
 
-/* =========================
+/* =========================================================
    CLOSE MOBILE MENU
-========================= */
+========================================================= */
 
 document.addEventListener(
     "click",
@@ -2497,7 +3682,9 @@ document.addEventListener(
             !menuBtn.contains(event.target)
         ){
 
-            navLinks.classList.remove("open");
+            navLinks.classList.remove(
+                "open"
+            );
 
             menuBtn.setAttribute(
                 "aria-label",
