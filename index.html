@@ -7,10 +7,10 @@
       content="width=device-width, initial-scale=1.0">
 
 <meta name="description"
-      content="VidFetch Tools - Fast and simple online YouTube video tools. Analyze URLs, preview thumbnails, copy links and more.">
+      content="VidFetch Tools - Simple online video utility tools for URL analysis and authorized video conversion.">
 
 <meta name="keywords"
-      content="YouTube tools, video tools, thumbnail downloader, YouTube URL analyzer">
+      content="video tools, YouTube URL analyzer, MP4 converter, M4A converter, video utility">
 
 <meta name="author"
       content="Amar Kumar Yadav">
@@ -18,7 +18,7 @@
 <meta name="robots"
       content="index, follow">
 
-<title>VidFetch Tools - YouTube Video Tools Online</title>
+<title>VidFetch Tools - Online Video Tools</title>
 
 <style>
 
@@ -31,6 +31,7 @@
     --primary-dark:#1d4ed8;
     --accent:#06b6d4;
     --green:#16a34a;
+    --green-dark:#15803d;
 
     --text:#0f172a;
     --muted:#64748b;
@@ -41,6 +42,7 @@
     --border:#dbe3ee;
 
     --danger:#dc2626;
+    --warning:#92400e;
 
     --shadow:
         0 14px 40px rgba(15,23,42,.09);
@@ -86,6 +88,11 @@ button{
     cursor:pointer;
 }
 
+button:disabled{
+    cursor:not-allowed;
+    opacity:.65;
+}
+
 a{
     color:inherit;
     text-decoration:none;
@@ -97,7 +104,7 @@ a{
 ========================================================= */
 
 .container{
-    width:min(1180px, calc(100% - 32px));
+    width:min(1180px,calc(100% - 32px));
     margin:auto;
 }
 
@@ -131,9 +138,7 @@ a{
 .logo{
     font-size:23px;
     font-weight:800;
-
     color:var(--primary);
-
     white-space:nowrap;
 }
 
@@ -151,7 +156,6 @@ a{
     color:#334155;
     font-size:15px;
     font-weight:600;
-
     transition:.2s;
 }
 
@@ -221,7 +225,7 @@ a{
 }
 
 .hero h1{
-    font-size:clamp(34px, 6vw, 60px);
+    font-size:clamp(34px,6vw,60px);
     line-height:1.08;
 
     letter-spacing:-1.8px;
@@ -244,7 +248,7 @@ a{
 
 
 /* =========================================================
-   MAIN TOOL CARD
+   TOOL SECTION
 ========================================================= */
 
 .tool-section{
@@ -272,6 +276,28 @@ a{
 .tool-description{
     color:var(--muted);
     margin-bottom:22px;
+}
+
+
+/* =========================================================
+   TOOL DIVIDER
+========================================================= */
+
+.tool-divider{
+    height:1px;
+    background:var(--border);
+    margin:30px 0;
+}
+
+.tool-heading{
+    font-size:20px;
+    margin-bottom:7px;
+}
+
+.tool-subheading{
+    color:var(--muted);
+    font-size:14px;
+    margin-bottom:18px;
 }
 
 
@@ -328,6 +354,7 @@ a{
 .secondary-btn,
 .green-btn,
 .danger-btn{
+
     min-height:54px;
 
     border-radius:12px;
@@ -352,14 +379,12 @@ a{
 
 .primary-btn:hover{
     background:var(--primary-dark);
-
     transform:translateY(-1px);
 }
 
 .secondary-btn{
     background:#fff;
     color:#334155;
-
     border-color:var(--border);
 }
 
@@ -374,7 +399,7 @@ a{
 }
 
 .green-btn:hover{
-    background:#15803d;
+    background:var(--green-dark);
 }
 
 .danger-btn{
@@ -390,6 +415,11 @@ a{
 .paste-url-btn{
     min-width:125px;
 }
+
+
+/* =========================================================
+   HELP TEXT
+========================================================= */
 
 .help-text{
     color:var(--muted);
@@ -424,6 +454,24 @@ a{
     display:block;
 }
 
+.status.success{
+    background:#f0fdf4;
+    color:#166534;
+    border-color:#bbf7d0;
+}
+
+.status.error{
+    background:#fef2f2;
+    color:#991b1b;
+    border-color:#fecaca;
+}
+
+.status.warning{
+    background:#fffbeb;
+    color:#92400e;
+    border-color:#fde68a;
+}
+
 
 /* =========================================================
    RESULT
@@ -447,7 +495,7 @@ a{
     display:grid;
 
     grid-template-columns:
-        minmax(260px, 380px)
+        minmax(260px,380px)
         minmax(0,1fr);
 
     gap:28px;
@@ -478,11 +526,8 @@ a{
 
 .video-info h3{
     font-size:24px;
-
     line-height:1.3;
-
     margin-bottom:12px;
-
     overflow-wrap:anywhere;
 }
 
@@ -521,6 +566,381 @@ a{
 
 
 /* =========================================================
+   UPLOAD BOX
+========================================================= */
+
+.upload-box{
+
+    border:2px dashed #bfdbfe;
+
+    background:#f8fbff;
+
+    border-radius:16px;
+
+    padding:24px;
+
+    text-align:center;
+
+    transition:.2s;
+}
+
+.upload-box.dragover{
+    border-color:var(--primary);
+
+    background:#eff6ff;
+}
+
+.upload-icon{
+    font-size:38px;
+    margin-bottom:8px;
+}
+
+.upload-box h3{
+    font-size:19px;
+    margin-bottom:5px;
+}
+
+.upload-box p{
+    color:var(--muted);
+    font-size:14px;
+    margin-bottom:16px;
+}
+
+.file-input{
+    display:none;
+}
+
+.file-select-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    min-height:48px;
+
+    padding:0 20px;
+
+    border-radius:11px;
+
+    background:var(--primary);
+
+    color:white;
+
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+.file-select-btn:hover{
+    background:var(--primary-dark);
+}
+
+.selected-file{
+    display:none;
+
+    margin-top:17px;
+
+    padding:13px;
+
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    text-align:left;
+}
+
+.selected-file.show{
+    display:block;
+}
+
+.selected-file-name{
+    font-weight:800;
+    overflow-wrap:anywhere;
+}
+
+.selected-file-size{
+    color:var(--muted);
+    font-size:13px;
+    margin-top:3px;
+}
+
+
+/* =========================================================
+   CONVERTER OPTIONS
+========================================================= */
+
+.converter-options{
+    display:none;
+    margin-top:22px;
+}
+
+.converter-options.show{
+    display:block;
+}
+
+.converter-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:18px;
+}
+
+.converter-card{
+    border:1px solid var(--border);
+
+    border-radius:15px;
+
+    padding:18px;
+
+    background:white;
+}
+
+.converter-card h4{
+    font-size:16px;
+    margin-bottom:5px;
+}
+
+.converter-card p{
+    color:var(--muted);
+    font-size:13px;
+    margin-bottom:14px;
+}
+
+.format-buttons{
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:8px;
+}
+
+.format-choice{
+    min-height:46px;
+
+    border:1px solid var(--border);
+
+    background:#fff;
+
+    border-radius:10px;
+
+    font-weight:800;
+
+    color:#475569;
+}
+
+.format-choice.active{
+    border-color:var(--primary);
+
+    background:#eff6ff;
+
+    color:var(--primary);
+}
+
+.quality-title{
+    font-size:13px;
+
+    font-weight:800;
+
+    margin-top:16px;
+
+    margin-bottom:8px;
+}
+
+.quality-select{
+    width:100%;
+
+    min-height:46px;
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    padding:0 12px;
+
+    background:white;
+
+    outline:none;
+}
+
+.quality-select:focus{
+    border-color:var(--primary);
+}
+
+.audio-note{
+    padding:11px;
+
+    border-radius:10px;
+
+    background:#f8fafc;
+
+    border:1px solid var(--border);
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    margin-top:14px;
+}
+
+.convert-btn{
+    width:100%;
+
+    margin-top:18px;
+
+    min-height:52px;
+}
+
+
+/* =========================================================
+   CONVERSION STATUS
+========================================================= */
+
+.conversion-status{
+    display:none;
+
+    margin-top:18px;
+
+    padding:17px;
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    background:#f8fafc;
+}
+
+.conversion-status.show{
+    display:block;
+}
+
+.progress-title{
+    font-weight:800;
+    margin-bottom:5px;
+}
+
+.progress-text{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.progress-line{
+    height:8px;
+
+    background:#e2e8f0;
+
+    border-radius:999px;
+
+    overflow:hidden;
+
+    margin-top:13px;
+}
+
+.progress-bar{
+    height:100%;
+
+    width:0%;
+
+    background:var(--primary);
+
+    border-radius:999px;
+
+    transition:width .3s ease;
+}
+
+.progress-bar.indeterminate{
+    width:40%;
+
+    animation:
+        progressMove 1.3s infinite ease-in-out;
+}
+
+@keyframes progressMove{
+
+    0%{
+        transform:translateX(-120%);
+    }
+
+    100%{
+        transform:translateX(280%);
+    }
+
+}
+
+
+/* =========================================================
+   DOWNLOAD RESULT
+========================================================= */
+
+.download-result{
+
+    display:none;
+
+    margin-top:18px;
+
+    padding:18px;
+
+    border:1px solid #bbf7d0;
+
+    border-radius:14px;
+
+    background:#f0fdf4;
+}
+
+.download-result.show{
+    display:block;
+}
+
+.download-result h3{
+    color:#166534;
+
+    font-size:17px;
+
+    margin-bottom:5px;
+}
+
+.download-result p{
+    color:#166534;
+
+    font-size:13px;
+
+    margin-bottom:14px;
+}
+
+.download-result-actions{
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+}
+
+
+/* =========================================================
+   AUTHORIZED USE NOTICE
+========================================================= */
+
+.use-notice{
+
+    margin-top:17px;
+
+    padding:13px 15px;
+
+    border-radius:12px;
+
+    background:#fffbeb;
+
+    border:1px solid #fde68a;
+
+    color:#92400e;
+
+    font-size:12px;
+}
+
+
+/* =========================================================
    SECTION COMMON
 ========================================================= */
 
@@ -530,19 +950,14 @@ a{
 
 .section-title{
     text-align:center;
-
     font-size:34px;
-
     margin-bottom:12px;
 }
 
 .section-subtitle{
     text-align:center;
-
     max-width:680px;
-
     margin:0 auto 38px;
-
     color:var(--muted);
 }
 
@@ -645,7 +1060,6 @@ a{
 
 .step p{
     color:var(--muted);
-
     font-size:14px;
 }
 
@@ -674,7 +1088,6 @@ a{
 
 .about-card p{
     color:var(--muted);
-
     margin-top:12px;
 }
 
@@ -735,7 +1148,7 @@ a{
 
 
 /* =========================================================
-   CONTACT / INFO
+   INFO
 ========================================================= */
 
 .info-card{
@@ -757,339 +1170,6 @@ a{
 .info-card p{
     color:var(--muted);
     margin-bottom:8px;
-}
-
-
-/* =========================================================
-   DOWNLOAD MODAL
-========================================================= */
-
-.modal-overlay{
-    position:fixed;
-
-    inset:0;
-
-    z-index:3000;
-
-    display:none;
-
-    align-items:center;
-    justify-content:center;
-
-    padding:18px;
-
-    background:
-        rgba(15,23,42,.65);
-
-    backdrop-filter:blur(5px);
-}
-
-.modal-overlay.show{
-    display:flex;
-}
-
-.download-modal{
-    width:min(680px,100%);
-
-    max-height:
-        min(90vh,820px);
-
-    overflow:auto;
-
-    background:white;
-
-    border-radius:20px;
-
-    box-shadow:
-        0 30px 80px rgba(0,0,0,.25);
-
-    border:1px solid var(--border);
-}
-
-.modal-header{
-    position:sticky;
-
-    top:0;
-
-    z-index:2;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:15px;
-
-    padding:20px 22px;
-
-    background:white;
-
-    border-bottom:1px solid var(--border);
-}
-
-.modal-header h2{
-    font-size:22px;
-}
-
-.close-modal{
-    width:40px;
-    height:40px;
-
-    border-radius:10px;
-
-    border:1px solid var(--border);
-
-    background:white;
-
-    font-size:20px;
-}
-
-.close-modal:hover{
-    background:#f8fafc;
-}
-
-.modal-body{
-    padding:22px;
-}
-
-.download-preview{
-    display:flex;
-
-    gap:14px;
-
-    align-items:center;
-
-    padding:14px;
-
-    border:1px solid var(--border);
-
-    background:#f8fafc;
-
-    border-radius:14px;
-
-    margin-bottom:20px;
-}
-
-.download-preview img{
-    width:120px;
-    height:68px;
-
-    object-fit:cover;
-
-    border-radius:9px;
-
-    flex-shrink:0;
-}
-
-.download-preview h3{
-    font-size:16px;
-
-    line-height:1.35;
-
-    margin-bottom:4px;
-}
-
-.download-preview p{
-    color:var(--muted);
-
-    font-size:12px;
-
-    word-break:break-all;
-}
-
-
-/* =========================================================
-   FORMAT TABS
-========================================================= */
-
-.format-tabs{
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:8px;
-
-    margin-bottom:20px;
-
-    padding:5px;
-
-    background:#f1f5f9;
-
-    border-radius:12px;
-}
-
-.format-tab{
-    min-height:46px;
-
-    border:0;
-
-    border-radius:9px;
-
-    background:transparent;
-
-    font-weight:800;
-
-    color:#64748b;
-}
-
-.format-tab.active{
-    background:white;
-
-    color:var(--primary);
-
-    box-shadow:
-        0 2px 8px rgba(15,23,42,.08);
-}
-
-
-/* =========================================================
-   DOWNLOAD OPTIONS
-========================================================= */
-
-.download-panel{
-    display:none;
-}
-
-.download-panel.active{
-    display:block;
-}
-
-.option-title{
-    font-size:14px;
-
-    font-weight:800;
-
-    margin-bottom:9px;
-}
-
-.quality-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(2,minmax(0,1fr));
-
-    gap:10px;
-
-    margin-bottom:18px;
-}
-
-.quality-option{
-    position:relative;
-}
-
-.quality-option input{
-    position:absolute;
-
-    opacity:0;
-
-    pointer-events:none;
-}
-
-.quality-option label{
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:10px;
-
-    min-height:58px;
-
-    padding:12px 14px;
-
-    border:1px solid var(--border);
-
-    border-radius:12px;
-
-    background:white;
-
-    cursor:pointer;
-
-    transition:.2s;
-}
-
-.quality-option label:hover{
-    border-color:#93c5fd;
-
-    background:#f8fbff;
-}
-
-.quality-option input:checked + label{
-    border-color:var(--primary);
-
-    background:#eff6ff;
-
-    box-shadow:
-        0 0 0 2px rgba(37,99,235,.08);
-}
-
-.quality-main{
-    font-weight:800;
-}
-
-.quality-sub{
-    color:var(--muted);
-
-    font-size:12px;
-}
-
-.size-box{
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:15px;
-
-    padding:14px;
-
-    margin-bottom:18px;
-
-    border:1px dashed #cbd5e1;
-
-    background:#f8fafc;
-
-    border-radius:12px;
-}
-
-.size-label{
-    font-weight:700;
-}
-
-.size-value{
-    color:var(--muted);
-
-    font-size:13px;
-
-    text-align:right;
-}
-
-.backend-message{
-    padding:14px;
-
-    border-radius:12px;
-
-    background:#fffbeb;
-
-    border:1px solid #fde68a;
-
-    color:#92400e;
-
-    font-size:13px;
-
-    margin-bottom:18px;
-}
-
-.modal-actions{
-    display:grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap:10px;
 }
 
 
@@ -1119,25 +1199,21 @@ a{
 .footer h3,
 .footer h4{
     color:white;
-
     margin-bottom:12px;
 }
 
 .footer p{
     color:#94a3b8;
-
     font-size:14px;
 }
 
 .footer-links{
     display:grid;
-
     gap:8px;
 }
 
 .footer-links a{
     color:#94a3b8;
-
     font-size:14px;
 }
 
@@ -1159,7 +1235,7 @@ a{
 
 
 /* =========================================================
-   BACK TO TOP
+   BACK TOP
 ========================================================= */
 
 .back-top{
@@ -1195,7 +1271,7 @@ a{
 
 
 /* =========================================================
-   RESPONSIVE - TABLET
+   RESPONSIVE TABLET
 ========================================================= */
 
 @media(max-width:900px){
@@ -1218,11 +1294,16 @@ a{
         grid-template-columns:
             1fr 1fr;
     }
+
+    .converter-grid{
+        grid-template-columns:1fr;
+    }
+
 }
 
 
 /* =========================================================
-   RESPONSIVE - MOBILE
+   RESPONSIVE MOBILE
 ========================================================= */
 
 @media(max-width:700px){
@@ -1298,9 +1379,7 @@ a{
 
     .url-row{
         display:flex;
-
         flex-direction:column;
-
         gap:10px;
     }
 
@@ -1308,10 +1387,6 @@ a{
     .paste-url-btn,
     .url-row .primary-btn{
         width:100%;
-    }
-
-    .result-grid{
-        grid-template-columns:1fr;
     }
 
     .action-grid{
@@ -1340,36 +1415,16 @@ a{
         grid-template-columns:1fr;
     }
 
-    .download-preview{
-        align-items:flex-start;
+    .upload-box{
+        padding:20px 15px;
     }
 
-    .download-preview img{
-        width:100px;
-        height:57px;
+    .download-result-actions{
+        flex-direction:column;
     }
 
-    .quality-grid{
-        grid-template-columns:1fr;
-    }
-
-    .modal-overlay{
-        padding:10px;
-    }
-
-    .download-modal{
-        max-height:94vh;
-
-        border-radius:16px;
-    }
-
-    .modal-header,
-    .modal-body{
-        padding:16px;
-    }
-
-    .modal-actions{
-        grid-template-columns:1fr;
+    .download-result-actions button{
+        width:100%;
     }
 
 }
@@ -1389,17 +1444,6 @@ a{
         padding:15px;
     }
 
-    .download-preview{
-        flex-direction:column;
-    }
-
-    .download-preview img{
-        width:100%;
-        height:auto;
-
-        aspect-ratio:16/9;
-    }
-
 }
 
 
@@ -1410,9 +1454,9 @@ a{
 button:focus-visible,
 a:focus-visible,
 input:focus-visible,
+select:focus-visible,
 summary:focus-visible{
     outline:3px solid rgba(37,99,235,.3);
-
     outline-offset:2px;
 }
 
@@ -1429,1257 +1473,1103 @@ summary:focus-visible{
 
 <!-- =======================================================
      NAVBAR
-======================================================== -->
+======================================================= -->
 
 <header class="navbar">
 
-    <div class="container nav-inner">
+<div class="container nav-inner">
 
-        <a href="#home"
-           class="logo"
-           aria-label="VidFetch Tools Home">
+<a href="#home"
+   class="logo"
+   aria-label="VidFetch Tools Home">
 
-            VidFetch <span>Tools</span>
+VidFetch <span>Tools</span>
 
-        </a>
+</a>
 
+<button
+    class="menu-btn"
+    id="menuBtn"
+    type="button"
+    aria-label="Open navigation"
+    aria-expanded="false">
 
-        <button
-            class="menu-btn"
-            id="menuBtn"
-            type="button"
-            aria-label="Open navigation"
-            aria-expanded="false"
-        >
-            ☰
-        </button>
+☰
 
+</button>
 
-        <nav
-            class="nav-links"
-            id="navLinks"
-            aria-label="Main navigation"
-        >
+<nav
+    class="nav-links"
+    id="navLinks"
+    aria-label="Main navigation">
 
-            <a href="#home">Home</a>
+<a href="#home">Home</a>
+<a href="#tools">Tools</a>
+<a href="#how-it-works">How It Works</a>
+<a href="#about">About</a>
+<a href="#faq">FAQ</a>
+<a href="#contact">Contact</a>
 
-            <a href="#tools">Tools</a>
+</nav>
 
-            <a href="#how-it-works">How It Works</a>
-
-            <a href="#about">About</a>
-
-            <a href="#faq">FAQ</a>
-
-            <a href="#contact">Contact</a>
-
-        </nav>
-
-    </div>
+</div>
 
 </header>
 
 
-
 <!-- =======================================================
      HERO
-======================================================== -->
+======================================================= -->
 
 <main id="home">
 
 <section class="hero">
 
-    <div class="container hero-content">
+<div class="container hero-content">
 
-        <div class="badge">
-            ⚡ Fast &amp; Simple Online Video Tools
-        </div>
+<div class="badge">
+⚡ Fast &amp; Simple Online Video Tools
+</div>
 
-        <h1>
-            Powerful
-            <span>YouTube Tools</span>
-            Online
-        </h1>
+<h1>
+Powerful
+<span>Video Tools</span>
+Online
+</h1>
 
-        <p>
-            Analyze YouTube video URLs, preview thumbnails,
-            copy video links and access useful video tools
-            from one simple interface.
-        </p>
-
-    </div>
-
-</section>
-
-
-
-<!-- =======================================================
-     MAIN TOOL
-======================================================== -->
-
-<section
-    class="tool-section"
-    id="tools"
->
-
-<div class="container">
-
-    <div class="tool-card">
-
-        <h2>
-            YouTube Video Analyzer
-        </h2>
-
-        <p class="tool-description">
-            Paste a YouTube video URL below to analyze
-            and preview the video.
-        </p>
-
-
-        <!-- URL INPUT -->
-
-        <div class="url-row">
-
-            <input
-                type="text"
-                id="urlInput"
-                class="url-input"
-                placeholder="Paste YouTube video URL here..."
-                autocomplete="off"
-                aria-label="YouTube video URL"
-            >
-
-
-            <button
-                class="secondary-btn paste-url-btn"
-                id="pasteBtn"
-                type="button"
-            >
-                📋 Paste URL
-            </button>
-
-
-            <button
-                class="primary-btn"
-                id="analyzeBtn"
-                type="button"
-            >
-                🔍 Analyze
-            </button>
-
-        </div>
-
-
-        <div class="help-text">
-            Supported links: youtube.com/watch, youtu.be,
-            YouTube Shorts, Embed and Live URLs.
-        </div>
-
-
-        <!-- STATUS -->
-
-        <div
-            class="status"
-            id="status"
-            role="status"
-            aria-live="polite"
-        ></div>
-
-
-        <!-- RESULT -->
-
-        <div
-            class="result"
-            id="result"
-        >
-
-            <div class="result-grid">
-
-
-                <!-- THUMBNAIL -->
-
-                <div class="thumbnail-wrap">
-
-                    <img
-                        id="thumbnail"
-                        src=""
-                        alt="YouTube video thumbnail"
-                    >
-
-                </div>
-
-
-                <!-- VIDEO INFO -->
-
-                <div class="video-info">
-
-                    <h3 id="videoTitle">
-                        YouTube Video
-                    </h3>
-
-                    <div
-                        class="video-id"
-                        id="videoId"
-                    >
-                        Video ID
-                    </div>
-
-
-                    <div class="action-grid">
-
-                        <button
-                            class="secondary-btn"
-                            id="copyBtn"
-                            type="button"
-                        >
-                            📋 Copy URL
-                        </button>
-
-
-                        <button
-                            class="secondary-btn"
-                            id="thumbnailBtn"
-                            type="button"
-                        >
-                            🖼️ Download Thumbnail
-                        </button>
-
-
-                        <button
-                            class="green-btn"
-                            id="downloadBtn"
-                            type="button"
-                        >
-                            ⬇️ Download
-                        </button>
-
-
-                        <button
-                            class="primary-btn"
-                            id="watchBtn"
-                            type="button"
-                        >
-                            ▶ Watch on YouTube
-                        </button>
-
-
-                        <button
-                            class="secondary-btn"
-                            id="shareBtn"
-                            type="button"
-                        >
-                            ↗ Share
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
+<p>
+Analyze supported YouTube URLs, preview thumbnails,
+and convert your own authorized video files to MP4
+or M4A from one simple interface.
+</p>
 
 </div>
 
 </section>
 
 
+<!-- =======================================================
+     MAIN TOOLS
+======================================================= -->
+
+<section
+    class="tool-section"
+    id="tools">
+
+<div class="container">
+
+<div class="tool-card">
+
+<h2>
+VidFetch Video Tools
+</h2>
+
+<p class="tool-description">
+Use the YouTube analyzer for URL information, or upload
+a video file you are authorized to process for actual
+MP4/M4A conversion.
+</p>
+
+
+<!-- =====================================================
+     YOUTUBE ANALYZER
+===================================================== -->
+
+<h3 class="tool-heading">
+🔗 YouTube Video Analyzer
+</h3>
+
+<p class="tool-subheading">
+Paste a YouTube URL to preview the available thumbnail
+and extract the video ID.
+</p>
+
+
+<div class="url-row">
+
+<input
+    type="text"
+    id="urlInput"
+    class="url-input"
+    placeholder="Paste YouTube video URL here..."
+    autocomplete="off"
+    aria-label="YouTube video URL">
+
+<button
+    class="secondary-btn paste-url-btn"
+    id="pasteBtn"
+    type="button">
+
+📋 Paste URL
+
+</button>
+
+<button
+    class="primary-btn"
+    id="analyzeBtn"
+    type="button">
+
+🔍 Analyze
+
+</button>
+
+</div>
+
+
+<div class="help-text">
+Supported links: youtube.com/watch, youtu.be,
+YouTube Shorts, Embed and Live URLs.
+</div>
+
+
+<div
+    class="status"
+    id="status"
+    role="status"
+    aria-live="polite">
+</div>
+
+
+<!-- RESULT -->
+
+<div
+    class="result"
+    id="result">
+
+<div class="result-grid">
+
+<div class="thumbnail-wrap">
+
+<img
+    id="thumbnail"
+    src=""
+    alt="YouTube video thumbnail">
+
+</div>
+
+
+<div class="video-info">
+
+<h3 id="videoTitle">
+YouTube Video
+</h3>
+
+<div
+    class="video-id"
+    id="videoId">
+
+Video ID
+
+</div>
+
+
+<div class="action-grid">
+
+<button
+    class="secondary-btn"
+    id="copyBtn"
+    type="button">
+
+📋 Copy URL
+
+</button>
+
+
+<button
+    class="secondary-btn"
+    id="thumbnailBtn"
+    type="button">
+
+🖼️ Thumbnail
+
+</button>
+
+
+<button
+    class="primary-btn"
+    id="watchBtn"
+    type="button">
+
+▶ Watch on YouTube
+
+</button>
+
+
+<button
+    class="secondary-btn"
+    id="shareBtn"
+    type="button">
+
+↗ Share
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="tool-divider"></div>
+
+
+<!-- =====================================================
+     UPLOAD CONVERTER
+===================================================== -->
+
+<h3 class="tool-heading">
+🎬 Video Converter
+</h3>
+
+<p class="tool-subheading">
+Upload your own video/audio file and convert it to MP4
+or M4A.
+</p>
+
+
+<div
+    class="upload-box"
+    id="uploadBox">
+
+<div class="upload-icon">
+📁
+</div>
+
+<h3>
+Upload your file
+</h3>
+
+<p>
+Maximum input size: 100 MB.
+Use a file you are authorized to process.
+</p>
+
+
+<input
+    type="file"
+    id="fileInput"
+    class="file-input"
+    accept="video/*,audio/*">
+
+
+<label
+    for="fileInput"
+    class="file-select-btn">
+
+Choose Video / Audio
+
+</label>
+
+
+<div
+    class="selected-file"
+    id="selectedFile">
+
+<div
+    class="selected-file-name"
+    id="selectedFileName">
+</div>
+
+<div
+    class="selected-file-size"
+    id="selectedFileSize">
+</div>
+
+</div>
+
+</div>
+
+
+<!-- CONVERTER OPTIONS -->
+
+<div
+    class="converter-options"
+    id="converterOptions">
+
+
+<div class="converter-grid">
+
+
+<!-- MP4 -->
+
+<div class="converter-card">
+
+<h4>
+🎬 MP4 Video
+</h4>
+
+<p>
+Convert your uploaded video to H.264/AAC MP4.
+</p>
+
+
+<div class="format-buttons">
+
+<button
+    class="format-choice active"
+    id="mp4FormatBtn"
+    type="button">
+
+MP4
+
+</button>
+
+<button
+    class="format-choice"
+    id="m4aFormatBtn"
+    type="button">
+
+M4A
+
+</button>
+
+</div>
+
+
+<div
+    id="videoQualityBox">
+
+<div class="quality-title">
+Video Quality
+</div>
+
+<select
+    id="qualitySelect"
+    class="quality-select">
+
+<option value="360p">
+360p
+</option>
+
+<option value="480p">
+480p
+</option>
+
+<option value="720p" selected>
+720p HD
+</option>
+
+<option value="1080p">
+1080p Full HD
+</option>
+
+</select>
+
+</div>
+
+
+<div
+    class="audio-note"
+    id="mp4Note">
+
+Quality uses scale-down behavior, so a smaller source
+will not be artificially enlarged.
+</div>
+
+<button
+    class="green-btn convert-btn"
+    id="convertBtn"
+    type="button">
+
+⬇️ Convert &amp; Download
+
+</button>
+
+</div>
+
+
+<!-- M4A -->
+
+<div class="converter-card">
+
+<h4>
+🎵 M4A Audio
+</h4>
+
+<p>
+Extract the audio track as AAC M4A.
+</p>
+
+
+<div class="audio-note">
+
+Cloudflare's current Media Transformations audio
+output is M4A/AAC. MP3 is not generated here.
+
+</div>
+
+
+<button
+    class="secondary-btn convert-m4a-btn"
+    id="convertM4ABtn"
+    type="button">
+
+🎵 Convert to M4A
+
+</button>
+
+</div>
+
+
+</div>
+
+
+<div class="use-notice">
+
+⚠️ Only upload content that you own or are authorized
+to process, and use the service in accordance with
+applicable laws and platform/provider terms.
+
+</div>
+
+
+<!-- CONVERSION STATUS -->
+
+<div
+    class="conversion-status"
+    id="conversionStatus">
+
+<div
+    class="progress-title"
+    id="progressTitle">
+
+Preparing...
+
+</div>
+
+<div
+    class="progress-text"
+    id="progressText">
+
+Please wait.
+
+</div>
+
+<div class="progress-line">
+
+<div
+    class="progress-bar"
+    id="progressBar">
+</div>
+
+</div>
+
+</div>
+
+
+<!-- DOWNLOAD RESULT -->
+
+<div
+    class="download-result"
+    id="downloadResult">
+
+<h3>
+✅ Conversion completed
+</h3>
+
+<p id="downloadResultText">
+Your converted file is ready.
+</p>
+
+<div class="download-result-actions">
+
+<button
+    class="green-btn"
+    id="saveFileBtn"
+    type="button">
+
+⬇️ Download File
+
+</button>
+
+<button
+    class="secondary-btn"
+    id="newFileBtn"
+    type="button">
+
+🔄 Convert Another File
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
 
 <!-- =======================================================
      FEATURES
-======================================================== -->
+======================================================= -->
 
 <section class="section">
 
 <div class="container">
 
-    <h2 class="section-title">
-        Useful Video Tools
-    </h2>
+<h2 class="section-title">
+Useful Video Tools
+</h2>
 
-    <p class="section-subtitle">
-        Simple tools designed for a clean and easy
-        video utility experience.
-    </p>
-
-
-    <div class="features-grid">
+<p class="section-subtitle">
+Simple tools designed for a clean and easy video utility
+experience.
+</p>
 
 
-        <div class="feature-card">
-
-            <div class="feature-icon">
-                🔗
-            </div>
-
-            <h3>
-                URL Analyzer
-            </h3>
-
-            <p>
-                Detect supported YouTube video URLs
-                and extract the video ID.
-            </p>
-
-        </div>
+<div class="features-grid">
 
 
-        <div class="feature-card">
+<div class="feature-card">
 
-            <div class="feature-icon">
-                🖼️
-            </div>
+<div class="feature-icon">
+🔗
+</div>
 
-            <h3>
-                Thumbnail Preview
-            </h3>
+<h3>
+URL Analyzer
+</h3>
 
-            <p>
-                Preview the available YouTube
-                thumbnail directly in the tool.
-            </p>
+<p>
+Detect supported YouTube URLs and extract their
+video ID.
+</p>
 
-        </div>
+</div>
 
 
-        <div class="feature-card">
+<div class="feature-card">
 
-            <div class="feature-icon">
-                📱
-            </div>
+<div class="feature-icon">
+🎬
+</div>
 
-            <h3>
-                Responsive Design
-            </h3>
+<h3>
+Video Converter
+</h3>
 
-            <p>
-                Works with a responsive layout across
-                desktop, tablet and mobile screens.
-            </p>
+<p>
+Convert an authorized uploaded video into MP4 or
+M4A using the connected conversion backend.
+</p>
 
-        </div>
+</div>
 
-    </div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+📱
+</div>
+
+<h3>
+Responsive Design
+</h3>
+
+<p>
+Works across desktop, tablet and mobile screen sizes.
+</p>
+
+</div>
+
+</div>
 
 </div>
 
 </section>
-
 
 
 <!-- =======================================================
      HOW IT WORKS
-======================================================== -->
+======================================================= -->
 
 <section
     class="section"
-    id="how-it-works"
->
+    id="how-it-works">
 
 <div class="container">
 
-    <h2 class="section-title">
-        How It Works
-    </h2>
+<h2 class="section-title">
+How It Works
+</h2>
 
-    <p class="section-subtitle">
-        Three simple steps to use VidFetch Tools.
-    </p>
-
-
-    <div class="steps">
+<p class="section-subtitle">
+Use the analyzer or the file converter in a few simple
+steps.
+</p>
 
 
-        <div class="step">
-
-            <div class="step-number">
-                1
-            </div>
-
-            <h3>
-                Paste URL
-            </h3>
-
-            <p>
-                Paste a supported YouTube video URL
-                into the input box.
-            </p>
-
-        </div>
+<div class="steps">
 
 
-        <div class="step">
+<div class="step">
 
-            <div class="step-number">
-                2
-            </div>
+<div class="step-number">
+1
+</div>
 
-            <h3>
-                Analyze
-            </h3>
+<h3>
+Choose a Tool
+</h3>
 
-            <p>
-                Click Analyze to detect the video
-                and display its preview.
-            </p>
+<p>
+Paste a supported YouTube URL or choose a video/audio
+file from your device.
+</p>
 
-        </div>
+</div>
 
 
-        <div class="step">
+<div class="step">
 
-            <div class="step-number">
-                3
-            </div>
+<div class="step-number">
+2
+</div>
 
-            <h3>
-                Choose Tool
-            </h3>
+<h3>
+Select Options
+</h3>
 
-            <p>
-                Copy, share, watch, preview the
-                thumbnail or open the download options.
-            </p>
+<p>
+For conversion, select MP4 quality or M4A audio output.
+</p>
 
-        </div>
+</div>
 
-    </div>
+
+<div class="step">
+
+<div class="step-number">
+3
+</div>
+
+<h3>
+Download
+</h3>
+
+<p>
+After successful server processing, download the actual
+converted file.
+</p>
+
+</div>
+
+</div>
 
 </div>
 
 </section>
-
 
 
 <!-- =======================================================
      ABOUT
-======================================================== -->
+======================================================= -->
 
 <section
     class="section"
-    id="about"
->
+    id="about">
 
 <div class="container">
 
-    <h2 class="section-title">
-        About VidFetch Tools
-    </h2>
+<h2 class="section-title">
+About VidFetch Tools
+</h2>
 
-    <div class="about-card">
+<div class="about-card">
 
-        <p>
-            VidFetch Tools is designed to provide a
-            simple, clean and responsive interface for
-            useful online video utilities.
-        </p>
+<p>
+VidFetch Tools is designed to provide a simple, clean
+and responsive interface for useful online video
+utilities.
+</p>
 
-        <p>
-            The website focuses on easy URL analysis,
-            video preview and convenient utility features.
-        </p>
+<p>
+The website provides YouTube URL analysis and an
+authorized file conversion workflow using a connected
+backend.
+</p>
 
-        <div class="owner">
-            Owner: Amar Kumar Yadav
-        </div>
+<div class="owner">
+Owner: Amar Kumar Yadav
+</div>
 
-    </div>
+</div>
 
 </div>
 
 </section>
-
 
 
 <!-- =======================================================
      FAQ
-======================================================== -->
+======================================================= -->
 
 <section
     class="section"
-    id="faq"
->
+    id="faq">
 
 <div class="container">
 
-    <h2 class="section-title">
-        Frequently Asked Questions
-    </h2>
+<h2 class="section-title">
+Frequently Asked Questions
+</h2>
 
-    <p class="section-subtitle">
-        Common questions about VidFetch Tools.
-    </p>
-
-
-    <div class="faq-list">
+<p class="section-subtitle">
+Common questions about VidFetch Tools.
+</p>
 
 
-        <details class="faq-item">
-
-            <summary>
-                What YouTube URLs are supported?
-            </summary>
-
-            <p>
-                The analyzer supports standard YouTube
-                watch links, youtu.be links, Shorts,
-                Embed and Live URLs.
-            </p>
-
-        </details>
+<div class="faq-list">
 
 
-        <details class="faq-item">
+<details class="faq-item">
 
-            <summary>
-                Is the website mobile friendly?
-            </summary>
+<summary>
+What YouTube URLs are supported?
+</summary>
 
-            <p>
-                Yes. The interface is responsive and
-                adapts to desktop, tablet and mobile
-                screen sizes.
-            </p>
+<p>
+The analyzer supports standard YouTube watch links,
+youtu.be links, Shorts, Embed and Live URLs.
+</p>
 
-        </details>
-
-
-        <details class="faq-item">
-
-            <summary>
-                Can I preview a video thumbnail?
-            </summary>
-
-            <p>
-                Yes. After analyzing a supported URL,
-                the available thumbnail preview is shown.
-            </p>
-
-        </details>
+</details>
 
 
-        <details class="faq-item">
+<details class="faq-item">
 
-            <summary>
-                Why does the download option show
-                server analysis?
-            </summary>
+<summary>
+Can VidFetch convert an uploaded video?
+</summary>
 
-            <p>
-                The current GitHub Pages frontend does
-                not generate or download video/audio files.
-                A compatible authorized backend or service
-                is required for actual file generation.
-            </p>
+<p>
+Yes. The connected backend can process an uploaded
+file and return an actual MP4 or M4A file, subject to
+the backend's supported input limits and formats.
+</p>
 
-        </details>
+</details>
 
 
-        <details class="faq-item">
+<details class="faq-item">
 
-            <summary>
-                Are file sizes real?
-            </summary>
+<summary>
+What is the maximum upload size?
+</summary>
 
-            <p>
-                File sizes are not fabricated. Until a
-                compatible backend analyzes the selected
-                format and quality, the size is shown as
-                unavailable.
-            </p>
+<p>
+The current conversion workflow is designed around
+files below 100 MB and supported processing limits.
+</p>
 
-        </details>
+</details>
 
-    </div>
+
+<details class="faq-item">
+
+<summary>
+Does the converter create MP3?
+</summary>
+
+<p>
+No. The current Cloudflare Media Transformations
+workflow used by VidFetch produces M4A/AAC for audio.
+MP3 requires a separate compatible conversion service.
+</p>
+
+</details>
+
+
+<details class="faq-item">
+
+<summary>
+Can I enter a YouTube URL and directly download its MP4?
+</summary>
+
+<p>
+The current backend does not fetch arbitrary YouTube
+media from a URL. The actual converter works with an
+uploaded file. Use only content you are authorized to
+download or process.
+</p>
+
+</details>
+
+
+<details class="faq-item">
+
+<summary>
+Are file sizes real?
+</summary>
+
+<p>
+Yes. The converted file size shown by the website comes
+from the actual returned file rather than a fabricated
+estimate.
+</p>
+
+</details>
+
+
+<details class="faq-item">
+
+<summary>
+Is the website mobile friendly?
+</summary>
+
+<p>
+Yes. The interface is responsive for desktop, tablet and
+mobile screens.
+</p>
+
+</details>
+
+</div>
 
 </div>
 
 </section>
-
 
 
 <!-- =======================================================
      CONTACT
-======================================================== -->
+======================================================= -->
 
 <section
     class="section"
-    id="contact"
->
+    id="contact">
 
 <div class="container">
 
-    <h2 class="section-title">
-        Contact
-    </h2>
+<h2 class="section-title">
+Contact
+</h2>
 
-    <div class="info-card">
+<div class="info-card">
 
-        <p>
-            For website feedback, suggestions or
-            technical questions, please use the contact
-            method you provide on your website.
-        </p>
+<p>
+For website feedback, suggestions or technical questions,
+please use the contact method you provide on your website.
+</p>
 
-        <p>
-            VidFetch Tools is continuously being improved
-            with new utility features.
-        </p>
+<p>
+VidFetch Tools is continuously being improved with new
+utility features.
+</p>
 
-    </div>
+</div>
 
 </div>
 
 </section>
-
 
 
 <!-- =======================================================
      PRIVACY
-======================================================== -->
+======================================================= -->
 
 <section
     class="section"
-    id="privacy"
->
+    id="privacy">
 
 <div class="container">
 
-    <h2 class="section-title">
-        Privacy Policy
-    </h2>
+<h2 class="section-title">
+Privacy Policy
+</h2>
 
-    <div class="info-card">
+<div class="info-card">
 
-        <p>
-            VidFetch Tools is designed to minimize
-            unnecessary data collection.
-        </p>
+<p>
+VidFetch Tools is designed to minimize unnecessary data
+collection.
+</p>
 
-        <p>
-            URL analysis performed by the current frontend
-            is handled in the browser. Any future backend
-            services should clearly disclose their own
-            data handling practices.
-        </p>
+<p>
+Uploaded files are sent to the connected conversion
+backend only when the user starts a conversion. Users
+should review the backend/provider's applicable data
+handling practices.
+</p>
 
-    </div>
+</div>
 
 </div>
 
 </section>
-
 
 
 <!-- =======================================================
      TERMS
-======================================================== -->
+======================================================= -->
 
 <section
     class="section"
-    id="terms"
->
+    id="terms">
 
 <div class="container">
 
-    <h2 class="section-title">
-        Terms of Use
-    </h2>
+<h2 class="section-title">
+Terms of Use
+</h2>
 
-    <div class="info-card">
+<div class="info-card">
 
-        <p>
-            Use VidFetch Tools only for lawful purposes
-            and only with content you have permission
-            to access, use or download.
-        </p>
+<p>
+Use VidFetch Tools only for lawful purposes and only
+with content you have permission to access, use or
+process.
+</p>
 
-        <p>
-            Users are responsible for complying with
-            applicable laws and the terms of the
-            platforms whose content they access.
-        </p>
+<p>
+Users are responsible for complying with applicable
+laws and the terms of the platforms whose content
+they access.
+</p>
 
-    </div>
+</div>
 
 </div>
 
 </section>
 
-
 </main>
-
-
-
-<!-- =======================================================
-     DOWNLOAD MODAL
-======================================================== -->
-
-<div
-    class="modal-overlay"
-    id="downloadOverlay"
-    aria-hidden="true"
->
-
-    <div
-        class="download-modal"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="downloadModalTitle"
-    >
-
-
-        <!-- HEADER -->
-
-        <div class="modal-header">
-
-            <h2 id="downloadModalTitle">
-                Download Options
-            </h2>
-
-            <button
-                class="close-modal"
-                id="closeDownloadBtn"
-                type="button"
-                aria-label="Close download options"
-            >
-                ✕
-            </button>
-
-        </div>
-
-
-        <!-- BODY -->
-
-        <div class="modal-body">
-
-
-            <!-- PREVIEW -->
-
-            <div class="download-preview">
-
-                <img
-                    id="downloadPreviewImage"
-                    src=""
-                    alt="Video preview"
-                >
-
-                <div>
-
-                    <h3 id="downloadPreviewTitle">
-                        YouTube Video
-                    </h3>
-
-                    <p id="downloadPreviewId">
-                        Video ID
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- FORMAT TABS -->
-
-            <div
-                class="format-tabs"
-                role="tablist"
-                aria-label="Download format"
-            >
-
-                <button
-                    class="format-tab active"
-                    id="videoTab"
-                    type="button"
-                    role="tab"
-                    aria-selected="true"
-                >
-                    🎬 MP4 Video
-                </button>
-
-                <button
-                    class="format-tab"
-                    id="audioTab"
-                    type="button"
-                    role="tab"
-                    aria-selected="false"
-                >
-                    🎵 MP3 Audio
-                </button>
-
-            </div>
-
-
-            <!-- =================================================
-                 VIDEO PANEL
-            ================================================== -->
-
-            <div
-                class="download-panel active"
-                id="videoOptions"
-            >
-
-                <div class="option-title">
-                    Select Video Quality
-                </div>
-
-
-                <div class="quality-grid">
-
-
-                    <div class="quality-option">
-
-                        <input
-                            type="radio"
-                            name="videoQuality"
-                            id="video360"
-                            value="360p"
-                        >
-
-                        <label for="video360">
-
-                            <span>
-                                <span class="quality-main">
-                                    360p
-                                </span>
-
-                                <br>
-
-                                <span class="quality-sub">
-                                    Standard
-                                </span>
-                            </span>
-
-                            <span>
-                                📱
-                            </span>
-
-                        </label>
-
-                    </div>
-
-
-                    <div class="quality-option">
-
-                        <input
-                            type="radio"
-                            name="videoQuality"
-                            id="video480"
-                            value="480p"
-                        >
-
-                        <label for="video480">
-
-                            <span>
-                                <span class="quality-main">
-                                    480p
-                                </span>
-
-                                <br>
-
-                                <span class="quality-sub">
-                                    SD
-                                </span>
-                            </span>
-
-                            <span>
-                                ▶
-                            </span>
-
-                        </label>
-
-                    </div>
-
-
-                    <div class="quality-option">
-
-                        <input
-                            type="radio"
-                            name="videoQuality"
-                            id="video720"
-                            value="720p"
-                            checked
-                        >
-
-                        <label for="video720">
-
-                            <span>
-                                <span class="quality-main">
-                                    720p HD
-                                </span>
-
-                                <br>
-
-                                <span class="quality-sub">
-                                    HD
-                                </span>
-                            </span>
-
-                            <span>
-                                ⭐
-                            </span>
-
-                        </label>
-
-                    </div>
-
-
-                    <div class="quality-option">
-
-                        <input
-                            type="radio"
-                            name="videoQuality"
-                            id="video1080"
-                            value="1080p"
-                        >
-
-                        <label for="video1080">
-
-                            <span>
-                                <span class="quality-main">
-                                    1080p Full HD
-                                </span>
-
-                                <br>
-
-                                <span class="quality-sub">
-                                    Full HD
-                                </span>
-                            </span>
-
-                            <span>
-                                💎
-                            </span>
-
-                        </label>
-
-                    </div>
-
-                </div>
-
-
-                <div class="size-box">
-
-                    <span class="size-label">
-                        Estimated file size
-                    </span>
-
-                    <span
-                        class="size-value"
-                        id="videoSize"
-                    >
-                        Available after server analysis
-                    </span>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- =================================================
-                 AUDIO PANEL
-            ================================================== -->
-
-            <div
-                class="download-panel"
-                id="audioOptions"
-            >
-
-                <div class="option-title">
-                    Select Audio Quality
-                </div>
-
-
-                <div class="quality-grid">
-
-
-                    <div class="quality-option">
-
-                        <input
-                            type="radio"
-                            name="audioQuality"
-                            id="audio128"
-                            value="128 kbps"
-                        >
-
-                        <label for="audio128">
-
-                            <span>
-
-                                <span class="quality-main">
-                                    128 kbps
-                                </span>
-
-                                <br>
-
-                                <span class="quality-sub">
-                                    Standard
-                                </span>
-
-                            </span>
-
-                            <span>
-                                🎧
-                            </span>
-
-                        </label>
-
-                    </div>
-
-
-                    <div class="quality-option">
-
-                        <input
-                            type="radio"
-                            name="audioQuality"
-                            id="audio192"
-                            value="192 kbps"
-                            checked
-                        >
-
-                        <label for="audio192">
-
-                            <span>
-
-                                <span class="quality-main">
-                                    192 kbps
-                                </span>
-
-                                <br>
-
-                                <span class="quality-sub">
-                                    High Quality
-                                </span>
-
-                            </span>
-
-                            <span>
-                                ⭐
-                            </span>
-
-                        </label>
-
-                    </div>
-
-
-                    <div class="quality-option">
-
-                        <input
-                            type="radio"
-                            name="audioQuality"
-                            id="audio320"
-                            value="320 kbps"
-                        >
-
-                        <label for="audio320">
-
-                            <span>
-
-                                <span class="quality-main">
-                                    320 kbps
-                                </span>
-
-                                <br>
-
-                                <span class="quality-sub">
-                                    Highest
-                                </span>
-
-                            </span>
-
-                            <span>
-                                💎
-                            </span>
-
-                        </label>
-
-                    </div>
-
-                </div>
-
-
-                <div class="size-box">
-
-                    <span class="size-label">
-                        Estimated file size
-                    </span>
-
-                    <span
-                        class="size-value"
-                        id="audioSize"
-                    >
-                        Available after server analysis
-                    </span>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- BACKEND MESSAGE -->
-
-            <div
-                class="backend-message"
-                id="backendMessage"
-            >
-                ℹ️ The download interface is ready.
-                Actual MP3/MP4 file generation requires
-                a compatible authorized backend/service.
-                This frontend does not fake file sizes or
-                pretend that a file has been generated.
-            </div>
-
-
-            <!-- MODAL ACTIONS -->
-
-            <div class="modal-actions">
-
-                <button
-                    class="secondary-btn"
-                    id="cancelDownloadBtn"
-                    type="button"
-                >
-                    Cancel
-                </button>
-
-                <button
-                    class="green-btn"
-                    id="confirmDownloadBtn"
-                    type="button"
-                >
-                    ⬇️ Continue
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
 
 
 <!-- =======================================================
      BACK TO TOP
-======================================================== -->
+======================================================= -->
 
 <button
     class="back-top"
     id="backTop"
     type="button"
-    aria-label="Back to top"
->
-    ↑
-</button>
+    aria-label="Back to top">
 
+↑
+
+</button>
 
 
 <!-- =======================================================
      FOOTER
-======================================================== -->
+======================================================= -->
 
 <footer class="footer">
 
 <div class="container">
 
-
-    <div class="footer-grid">
-
-
-        <div>
-
-            <h3>
-                VidFetch Tools
-            </h3>
-
-            <p>
-                Simple and responsive online video
-                utility tools.
-            </p>
-
-        </div>
+<div class="footer-grid">
 
 
-        <div>
+<div>
 
-            <h4>
-                Quick Links
-            </h4>
+<h3>
+VidFetch Tools
+</h3>
 
-            <div class="footer-links">
+<p>
+Simple and responsive online video utility tools.
+</p>
 
-                <a href="#home">
-                    Home
-                </a>
-
-                <a href="#tools">
-                    Tools
-                </a>
-
-                <a href="#how-it-works">
-                    How It Works
-                </a>
-
-                <a href="#faq">
-                    FAQ
-                </a>
-
-            </div>
-
-        </div>
+</div>
 
 
-        <div>
+<div>
 
-            <h4>
-                Information
-            </h4>
+<h4>
+Quick Links
+</h4>
 
-            <div class="footer-links">
+<div class="footer-links">
 
-                <a href="#about">
-                    About
-                </a>
+<a href="#home">
+Home
+</a>
 
-                <a href="#privacy">
-                    Privacy Policy
-                </a>
+<a href="#tools">
+Tools
+</a>
 
-                <a href="#terms">
-                    Terms of Use
-                </a>
+<a href="#how-it-works">
+How It Works
+</a>
 
-                <a href="#contact">
-                    Contact
-                </a>
+<a href="#faq">
+FAQ
+</a>
 
-            </div>
+</div>
 
-        </div>
-
-    </div>
+</div>
 
 
-    <div class="copyright">
+<div>
 
-        © <span id="year"></span>
-        VidFetch Tools.
-        All rights reserved.
+<h4>
+Information
+</h4>
 
-    </div>
+<div class="footer-links">
+
+<a href="#about">
+About
+</a>
+
+<a href="#privacy">
+Privacy Policy
+</a>
+
+<a href="#terms">
+Terms of Use
+</a>
+
+<a href="#contact">
+Contact
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="copyright">
+
+© <span id="year"></span>
+VidFetch Tools.
+All rights reserved.
+
+</div>
 
 </div>
 
 </footer>
 
 
-
 <script>
+
+/* =========================================================
+   CONFIGURATION
+========================================================= */
+
+const API_BASE =
+    "https://vidfetch-api.amary1699.workers.dev";
+
+
+const MAX_FILE_SIZE =
+    100 * 1024 * 1024;
+
 
 /* =========================================================
    ELEMENTS
@@ -2715,9 +2605,6 @@ const copyBtn =
 const thumbnailBtn =
     document.getElementById("thumbnailBtn");
 
-const downloadBtn =
-    document.getElementById("downloadBtn");
-
 const watchBtn =
     document.getElementById("watchBtn");
 
@@ -2725,16 +2612,98 @@ const shareBtn =
     document.getElementById("shareBtn");
 
 
-/* =========================================================
-   NAVIGATION
-========================================================= */
-
 const menuBtn =
     document.getElementById("menuBtn");
 
 const navLinks =
     document.getElementById("navLinks");
 
+
+/* Upload */
+
+const uploadBox =
+    document.getElementById("uploadBox");
+
+const fileInput =
+    document.getElementById("fileInput");
+
+const selectedFile =
+    document.getElementById("selectedFile");
+
+const selectedFileName =
+    document.getElementById("selectedFileName");
+
+const selectedFileSize =
+    document.getElementById("selectedFileSize");
+
+const converterOptions =
+    document.getElementById("converterOptions");
+
+const mp4FormatBtn =
+    document.getElementById("mp4FormatBtn");
+
+const m4aFormatBtn =
+    document.getElementById("m4aFormatBtn");
+
+const qualitySelect =
+    document.getElementById("qualitySelect");
+
+const videoQualityBox =
+    document.getElementById("videoQualityBox");
+
+const mp4Note =
+    document.getElementById("mp4Note");
+
+const convertBtn =
+    document.getElementById("convertBtn");
+
+const convertM4ABtn =
+    document.getElementById("convertM4ABtn");
+
+const conversionStatus =
+    document.getElementById("conversionStatus");
+
+const progressTitle =
+    document.getElementById("progressTitle");
+
+const progressText =
+    document.getElementById("progressText");
+
+const progressBar =
+    document.getElementById("progressBar");
+
+const downloadResult =
+    document.getElementById("downloadResult");
+
+const downloadResultText =
+    document.getElementById("downloadResultText");
+
+const saveFileBtn =
+    document.getElementById("saveFileBtn");
+
+const newFileBtn =
+    document.getElementById("newFileBtn");
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let currentVideoId = null;
+let currentVideoUrl = null;
+
+let selectedFileObject = null;
+
+let selectedFormat = "mp4";
+
+let convertedBlob = null;
+
+let convertedFilename = "";
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
 menuBtn.addEventListener(
     "click",
@@ -2799,18 +2768,34 @@ navLinks.querySelectorAll("a").forEach(
    STATUS
 ========================================================= */
 
-function showStatus(message){
+function showStatus(
+    message,
+    type = ""
+){
 
     statusBox.textContent =
         message;
 
-    statusBox.classList.add("show");
+    statusBox.className =
+        "status show";
+
+    if(type){
+        statusBox.classList.add(type);
+    }
+
+}
+
+
+function clearStatus(){
+
+    statusBox.className =
+        "status";
 
 }
 
 
 /* =========================================================
-   YOUTUBE VIDEO ID
+   YOUTUBE ID
 ========================================================= */
 
 function getYouTubeVideoId(url){
@@ -2826,8 +2811,6 @@ function getYouTubeVideoId(url){
                 .replace(/^www\./,"");
 
 
-        /* youtube.com/watch?v= */
-
         if(
             host === "youtube.com" ||
             host === "m.youtube.com"
@@ -2837,9 +2820,7 @@ function getYouTubeVideoId(url){
                 parsed.searchParams.get("v");
 
             if(videoParam){
-
                 return videoParam;
-
             }
 
 
@@ -2865,8 +2846,6 @@ function getYouTubeVideoId(url){
         }
 
 
-        /* youtu.be/VIDEO_ID */
-
         if(host === "youtu.be"){
 
             const parts =
@@ -2875,9 +2854,7 @@ function getYouTubeVideoId(url){
                     .filter(Boolean);
 
             if(parts.length){
-
                 return parts[0];
-
             }
 
         }
@@ -2895,12 +2872,8 @@ function getYouTubeVideoId(url){
 
 
 /* =========================================================
-   ANALYZE VIDEO
+   ANALYZE YOUTUBE
 ========================================================= */
-
-let currentVideoId = null;
-let currentVideoUrl = null;
-
 
 function analyzeVideo(){
 
@@ -2913,7 +2886,8 @@ function analyzeVideo(){
         result.classList.remove("show");
 
         showStatus(
-            "Please enter or paste a YouTube video URL."
+            "Please enter or paste a YouTube video URL.",
+            "warning"
         );
 
         urlInput.focus();
@@ -2932,7 +2906,8 @@ function analyzeVideo(){
         result.classList.remove("show");
 
         showStatus(
-            "Invalid or unsupported YouTube URL. Please check the URL and try again."
+            "Invalid or unsupported YouTube URL.",
+            "error"
         );
 
         urlInput.focus();
@@ -2942,11 +2917,13 @@ function analyzeVideo(){
     }
 
 
-    currentVideoId = id;
+    currentVideoId =
+        id;
 
 
     currentVideoUrl =
-        "https://www.youtube.com/watch?v=" + id;
+        "https://www.youtube.com/watch?v=" +
+        id;
 
 
     const imageUrl =
@@ -2982,11 +2959,9 @@ function analyzeVideo(){
 
 
     showStatus(
-        "Video URL analyzed successfully."
+        "YouTube video URL analyzed successfully.",
+        "success"
     );
-
-
-    updateDownloadPreview();
 
 
     setTimeout(
@@ -3004,19 +2979,11 @@ function analyzeVideo(){
 }
 
 
-/* =========================================================
-   ANALYZE CLICK
-========================================================= */
-
 analyzeBtn.addEventListener(
     "click",
     analyzeVideo
 );
 
-
-/* =========================================================
-   ENTER KEY
-========================================================= */
 
 urlInput.addEventListener(
     "keydown",
@@ -3034,8 +3001,14 @@ urlInput.addEventListener(
 );
 
 
+urlInput.addEventListener(
+    "input",
+    clearStatus
+);
+
+
 /* =========================================================
-   PASTE BUTTON
+   PASTE
 ========================================================= */
 
 pasteBtn.addEventListener(
@@ -3056,10 +3029,9 @@ pasteBtn.addEventListener(
                 if(!text.trim()){
 
                     showStatus(
-                        "Clipboard is empty. Please copy a YouTube URL first."
+                        "Clipboard is empty.",
+                        "warning"
                     );
-
-                    urlInput.focus();
 
                     return;
 
@@ -3070,22 +3042,13 @@ pasteBtn.addEventListener(
                     text.trim();
 
 
-                urlInput.focus();
-
-
-                showStatus(
-                    "YouTube URL pasted successfully."
-                );
-
-
-                /* Automatically analyze */
-
                 analyzeVideo();
 
             }else{
 
                 showStatus(
-                    "Automatic paste is not available. Please click the URL box and press Ctrl + V."
+                    "Press Ctrl + V inside the URL box.",
+                    "warning"
                 );
 
                 urlInput.focus();
@@ -3095,7 +3058,8 @@ pasteBtn.addEventListener(
         }catch(error){
 
             showStatus(
-                "Clipboard access was blocked. Please press Ctrl + V to paste the URL."
+                "Clipboard access was blocked. Press Ctrl + V to paste.",
+                "warning"
             );
 
             urlInput.focus();
@@ -3107,7 +3071,7 @@ pasteBtn.addEventListener(
 
 
 /* =========================================================
-   COPY URL
+   COPY
 ========================================================= */
 
 copyBtn.addEventListener(
@@ -3117,7 +3081,8 @@ copyBtn.addEventListener(
         if(!currentVideoId){
 
             showStatus(
-                "Please analyze a YouTube URL first."
+                "Please analyze a YouTube URL first.",
+                "warning"
             );
 
             return;
@@ -3125,57 +3090,23 @@ copyBtn.addEventListener(
         }
 
 
-        const text =
-            currentVideoUrl;
-
-
         try{
 
-            await navigator.clipboard.writeText(text);
+            await navigator.clipboard.writeText(
+                currentVideoUrl
+            );
 
             showStatus(
-                "YouTube URL copied to clipboard."
+                "YouTube URL copied to clipboard.",
+                "success"
             );
 
         }catch(error){
 
-            const textarea =
-                document.createElement("textarea");
-
-            textarea.value =
-                text;
-
-            textarea.style.position =
-                "fixed";
-
-            textarea.style.left =
-                "-9999px";
-
-            document.body.appendChild(
-                textarea
+            showStatus(
+                "Could not copy the URL automatically.",
+                "error"
             );
-
-            textarea.select();
-
-            try{
-
-                document.execCommand(
-                    "copy"
-                );
-
-                showStatus(
-                    "YouTube URL copied to clipboard."
-                );
-
-            }catch(copyError){
-
-                showStatus(
-                    "Could not copy automatically. Please copy the URL manually."
-                );
-
-            }
-
-            textarea.remove();
 
         }
 
@@ -3194,7 +3125,8 @@ thumbnailBtn.addEventListener(
         if(!currentVideoId){
 
             showStatus(
-                "Please analyze a YouTube URL first."
+                "Please analyze a YouTube URL first.",
+                "warning"
             );
 
             return;
@@ -3216,7 +3148,8 @@ thumbnailBtn.addEventListener(
 
 
         showStatus(
-            "Thumbnail opened in a new tab. You can save it from the browser."
+            "Thumbnail opened in a new tab.",
+            "success"
         );
 
     }
@@ -3224,7 +3157,7 @@ thumbnailBtn.addEventListener(
 
 
 /* =========================================================
-   WATCH ON YOUTUBE
+   WATCH
 ========================================================= */
 
 watchBtn.addEventListener(
@@ -3234,7 +3167,8 @@ watchBtn.addEventListener(
         if(!currentVideoId){
 
             showStatus(
-                "Please analyze a YouTube URL first."
+                "Please analyze a YouTube URL first.",
+                "warning"
             );
 
             return;
@@ -3263,7 +3197,8 @@ shareBtn.addEventListener(
         if(!currentVideoId){
 
             showStatus(
-                "Please analyze a YouTube URL first."
+                "Please analyze a YouTube URL first.",
+                "warning"
             );
 
             return;
@@ -3273,21 +3208,16 @@ shareBtn.addEventListener(
 
         const shareData = {
 
-            title:
-                "YouTube Video",
+            title:"YouTube Video",
 
-            text:
-                "Check this YouTube video",
+            text:"Check this YouTube video",
 
-            url:
-                currentVideoUrl
+            url:currentVideoUrl
 
         };
 
 
-        if(
-            navigator.share
-        ){
+        if(navigator.share){
 
             try{
 
@@ -3296,12 +3226,13 @@ shareBtn.addEventListener(
                 );
 
                 showStatus(
-                    "Share menu opened."
+                    "Share menu opened.",
+                    "success"
                 );
 
             }catch(error){
 
-                /* User cancelled share */
+                /* cancelled */
 
             }
 
@@ -3317,13 +3248,15 @@ shareBtn.addEventListener(
             );
 
             showStatus(
-                "Sharing is not available here. Video URL copied instead."
+                "Video URL copied to clipboard.",
+                "success"
             );
 
         }catch(error){
 
             showStatus(
-                "Sharing is not available in this browser."
+                "Sharing is not available in this browser.",
+                "warning"
             );
 
         }
@@ -3333,114 +3266,76 @@ shareBtn.addEventListener(
 
 
 /* =========================================================
-   DOWNLOAD MODAL ELEMENTS
+   FILE SIZE
 ========================================================= */
 
-const downloadOverlay =
-    document.getElementById(
-        "downloadOverlay"
-    );
+function formatBytes(bytes){
 
-const closeDownloadBtn =
-    document.getElementById(
-        "closeDownloadBtn"
-    );
-
-const cancelDownloadBtn =
-    document.getElementById(
-        "cancelDownloadBtn"
-    );
-
-const confirmDownloadBtn =
-    document.getElementById(
-        "confirmDownloadBtn"
-    );
-
-const videoTab =
-    document.getElementById(
-        "videoTab"
-    );
-
-const audioTab =
-    document.getElementById(
-        "audioTab"
-    );
-
-const videoOptions =
-    document.getElementById(
-        "videoOptions"
-    );
-
-const audioOptions =
-    document.getElementById(
-        "audioOptions"
-    );
-
-const downloadPreviewImage =
-    document.getElementById(
-        "downloadPreviewImage"
-    );
-
-const downloadPreviewTitle =
-    document.getElementById(
-        "downloadPreviewTitle"
-    );
-
-const downloadPreviewId =
-    document.getElementById(
-        "downloadPreviewId"
-    );
-
-const backendMessage =
-    document.getElementById(
-        "backendMessage"
-    );
-
-
-let lastFocusedElement = null;
-
-
-/* =========================================================
-   UPDATE DOWNLOAD PREVIEW
-========================================================= */
-
-function updateDownloadPreview(){
-
-    if(!currentVideoId){
-
-        return;
-
+    if(!Number.isFinite(bytes) || bytes < 0){
+        return "Unknown size";
     }
 
 
-    downloadPreviewImage.src =
-        "https://img.youtube.com/vi/" +
-        encodeURIComponent(currentVideoId) +
-        "/hqdefault.jpg";
+    if(bytes === 0){
+        return "0 Bytes";
+    }
 
 
-    downloadPreviewTitle.textContent =
-        videoTitle.textContent ||
-        "YouTube Video";
+    const units = [
+        "Bytes",
+        "KB",
+        "MB",
+        "GB"
+    ];
 
 
-    downloadPreviewId.textContent =
-        "Video ID: " +
-        currentVideoId;
+    const index =
+        Math.floor(
+            Math.log(bytes) /
+            Math.log(1024)
+        );
+
+
+    const value =
+        bytes /
+        Math.pow(1024,index);
+
+
+    return (
+        value.toFixed(
+            index === 0 ? 0 : 2
+        ) +
+        " " +
+        units[index]
+    );
 
 }
 
 
 /* =========================================================
-   OPEN DOWNLOAD MODAL
+   FILE SELECT
 ========================================================= */
 
-function openDownloadModal(){
+function handleSelectedFile(file){
 
-    if(!currentVideoId){
+    convertedBlob = null;
+    convertedFilename = "";
 
-        showStatus(
-            "Please analyze a YouTube URL before opening download options."
+    downloadResult.classList.remove(
+        "show"
+    );
+
+
+    if(!file){
+
+        selectedFileObject = null;
+
+        converterOptions.classList.remove(
+            "show"
+        );
+
+        selectedFile.classList.remove(
+            "show"
         );
 
         return;
@@ -3448,67 +3343,562 @@ function openDownloadModal(){
     }
 
 
-    updateDownloadPreview();
+    if(file.size >= MAX_FILE_SIZE){
+
+        selectedFileObject = null;
+
+        selectedFile.classList.remove(
+            "show"
+        );
+
+        converterOptions.classList.remove(
+            "show"
+        );
+
+        showStatus(
+            "File is too large. Please select a file smaller than 100 MB.",
+            "error"
+        );
+
+        fileInput.value = "";
+
+        return;
+
+    }
 
 
-    lastFocusedElement =
-        document.activeElement;
+    selectedFileObject =
+        file;
 
 
-    downloadOverlay.classList.add(
+    selectedFileName.textContent =
+        file.name;
+
+
+    selectedFileSize.textContent =
+        formatBytes(file.size) +
+        " • " +
+        (file.type || "Unknown file type");
+
+
+    selectedFile.classList.add(
         "show"
     );
 
 
-    downloadOverlay.setAttribute(
-        "aria-hidden",
-        "false"
+    converterOptions.classList.add(
+        "show"
     );
 
 
-    document.body.style.overflow =
-        "hidden";
-
-
-    setTimeout(
-        function(){
-
-            closeDownloadBtn.focus();
-
-        },
-        50
+    showStatus(
+        "File selected successfully. Choose the output format.",
+        "success"
     );
 
 }
 
 
+fileInput.addEventListener(
+    "change",
+    function(){
+
+        const file =
+            fileInput.files &&
+            fileInput.files[0];
+
+        handleSelectedFile(file);
+
+    }
+);
+
+
 /* =========================================================
-   CLOSE DOWNLOAD MODAL
+   DRAG & DROP
 ========================================================= */
 
-function closeDownloadModal(){
+[
+    "dragenter",
+    "dragover"
+].forEach(
+    function(eventName){
 
-    downloadOverlay.classList.remove(
+        uploadBox.addEventListener(
+            eventName,
+            function(event){
+
+                event.preventDefault();
+
+                uploadBox.classList.add(
+                    "dragover"
+                );
+
+            }
+        );
+
+    }
+);
+
+
+[
+    "dragleave",
+    "drop"
+].forEach(
+    function(eventName){
+
+        uploadBox.addEventListener(
+            eventName,
+            function(event){
+
+                event.preventDefault();
+
+                uploadBox.classList.remove(
+                    "dragover"
+                );
+
+            }
+        );
+
+    }
+);
+
+
+uploadBox.addEventListener(
+    "drop",
+    function(event){
+
+        const files =
+            event.dataTransfer.files;
+
+
+        if(files && files.length){
+
+            handleSelectedFile(
+                files[0]
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   FORMAT SELECTION
+========================================================= */
+
+function selectMP4(){
+
+    selectedFormat =
+        "mp4";
+
+
+    mp4FormatBtn.classList.add(
+        "active"
+    );
+
+    m4aFormatBtn.classList.remove(
+        "active"
+    );
+
+
+    videoQualityBox.style.display =
+        "block";
+
+
+    mp4Note.textContent =
+        "Quality uses scale-down behavior, so a smaller source will not be artificially enlarged.";
+
+}
+
+
+function selectM4A(){
+
+    selectedFormat =
+        "m4a";
+
+
+    m4aFormatBtn.classList.add(
+        "active"
+    );
+
+    mp4FormatBtn.classList.remove(
+        "active"
+    );
+
+
+    videoQualityBox.style.display =
+        "none";
+
+
+    mp4Note.textContent =
+        "M4A output uses AAC audio.";
+
+}
+
+
+mp4FormatBtn.addEventListener(
+    "click",
+    selectMP4
+);
+
+
+m4aFormatBtn.addEventListener(
+    "click",
+    selectM4A
+);
+
+
+/* =========================================================
+   PROGRESS UI
+========================================================= */
+
+function startConversionStatus(){
+
+    conversionStatus.classList.add(
         "show"
     );
 
 
-    downloadOverlay.setAttribute(
-        "aria-hidden",
-        "true"
+    progressBar.classList.add(
+        "indeterminate"
     );
 
 
-    document.body.style.overflow =
-        "";
+    progressBar.style.width =
+        "40%";
+
+}
+
+
+function updateConversionStatus(
+    title,
+    text
+){
+
+    progressTitle.textContent =
+        title;
+
+    progressText.textContent =
+        text;
+
+}
+
+
+function finishConversionStatus(){
+
+    progressBar.classList.remove(
+        "indeterminate"
+    );
+
+    progressBar.style.width =
+        "100%";
+
+}
+
+
+/* =========================================================
+   ERROR PARSER
+========================================================= */
+
+async function getErrorMessage(
+    response
+){
+
+    try{
+
+        const contentType =
+            response.headers.get(
+                "Content-Type"
+            ) || "";
+
+
+        if(
+            contentType.includes(
+                "application/json"
+            )
+        ){
+
+            const data =
+                await response.json();
+
+
+            return (
+                data.error ||
+                "Conversion failed."
+            );
+
+        }
+
+
+        const text =
+            await response.text();
+
+
+        return (
+            text ||
+            "Conversion failed."
+        );
+
+    }catch(error){
+
+        return "Conversion failed.";
+
+    }
+
+}
+
+
+/* =========================================================
+   CONVERT FILE
+========================================================= */
+
+async function convertFile(
+    format
+){
+
+    if(!selectedFileObject){
+
+        showStatus(
+            "Please choose a video or audio file first.",
+            "warning"
+        );
+
+        return;
+
+    }
 
 
     if(
-        lastFocusedElement &&
-        typeof lastFocusedElement.focus === "function"
+        selectedFileObject.size >=
+        MAX_FILE_SIZE
     ){
 
-        lastFocusedElement.focus();
+        showStatus(
+            "File must be smaller than 100 MB.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    selectedFormat =
+        format;
+
+
+    const quality =
+        qualitySelect.value;
+
+
+    const endpoint =
+        API_BASE +
+        "/convert?format=" +
+        encodeURIComponent(format) +
+        (
+            format === "mp4"
+                ? "&quality=" +
+                  encodeURIComponent(quality)
+                : ""
+        );
+
+
+    convertedBlob = null;
+    convertedFilename = "";
+
+
+    downloadResult.classList.remove(
+        "show"
+    );
+
+
+    convertBtn.disabled =
+        true;
+
+    convertM4ABtn.disabled =
+        true;
+
+
+    startConversionStatus();
+
+
+    updateConversionStatus(
+        "Uploading file...",
+        "Sending your selected file to the conversion server."
+    );
+
+
+    try{
+
+        /*
+         * Fetch does not expose ordinary upload
+         * percentage progress in this implementation.
+         * Therefore the progress indicator is intentionally
+         * indeterminate instead of showing a fake percentage.
+         */
+
+        const response =
+            await fetch(
+                endpoint,
+                {
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            selectedFileObject.type ||
+                            "application/octet-stream"
+                    },
+
+                    body:
+                        selectedFileObject
+                }
+            );
+
+
+        updateConversionStatus(
+            "Converting...",
+            "The server is processing your file. Please wait."
+        );
+
+
+        if(!response.ok){
+
+            const errorMessage =
+                await getErrorMessage(
+                    response
+                );
+
+            throw new Error(
+                errorMessage
+            );
+
+        }
+
+
+        updateConversionStatus(
+            "Preparing download...",
+            "The converted file is being prepared."
+        );
+
+
+        const blob =
+            await response.blob();
+
+
+        if(
+            !blob ||
+            !blob.size
+        ){
+
+            throw new Error(
+                "The server returned an empty file."
+            );
+
+        }
+
+
+        convertedBlob =
+            blob;
+
+
+        const disposition =
+            response.headers.get(
+                "Content-Disposition"
+            ) || "";
+
+
+        let filename =
+            "";
+
+
+        const filenameMatch =
+            disposition.match(
+                /filename="([^"]+)"/i
+            );
+
+
+        if(filenameMatch){
+
+            filename =
+                filenameMatch[1];
+
+        }
+
+
+        if(!filename){
+
+            filename =
+                format === "mp4"
+                    ? "vidfetch-" +
+                      quality +
+                      ".mp4"
+                    : "vidfetch-audio.m4a";
+
+        }
+
+
+        convertedFilename =
+            filename;
+
+
+        finishConversionStatus();
+
+
+        downloadResultText.textContent =
+            "File: " +
+            filename +
+            " • Size: " +
+            formatBytes(blob.size);
+
+
+        downloadResult.classList.add(
+            "show"
+        );
+
+
+        showStatus(
+            "Conversion completed successfully. Your actual file is ready.",
+            "success"
+        );
+
+
+        updateConversionStatus(
+            "Conversion completed",
+            "The server returned the converted file successfully."
+        );
+
+
+    }catch(error){
+
+        convertedBlob = null;
+
+        convertedFilename = "";
+
+
+        finishConversionStatus();
+
+
+        updateConversionStatus(
+            "Conversion failed",
+            error.message ||
+            "Could not convert the file."
+        );
+
+
+        showStatus(
+            error.message ||
+            "Could not connect to the conversion server.",
+            "error"
+        );
+
+    }finally{
+
+        convertBtn.disabled =
+            false;
+
+        convertM4ABtn.disabled =
+            false;
 
     }
 
@@ -3516,217 +3906,46 @@ function closeDownloadModal(){
 
 
 /* =========================================================
-   DOWNLOAD BUTTON
+   MP4 BUTTON
 ========================================================= */
 
-downloadBtn.addEventListener(
-    "click",
-    openDownloadModal
-);
-
-
-/* =========================================================
-   CLOSE BUTTONS
-========================================================= */
-
-closeDownloadBtn.addEventListener(
-    "click",
-    closeDownloadModal
-);
-
-
-cancelDownloadBtn.addEventListener(
-    "click",
-    closeDownloadModal
-);
-
-
-/* =========================================================
-   BACKDROP CLICK
-========================================================= */
-
-downloadOverlay.addEventListener(
-    "click",
-    function(event){
-
-        if(
-            event.target ===
-            downloadOverlay
-        ){
-
-            closeDownloadModal();
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   ESCAPE KEY
-========================================================= */
-
-document.addEventListener(
-    "keydown",
-    function(event){
-
-        if(
-            event.key === "Escape" &&
-            downloadOverlay.classList.contains("show")
-        ){
-
-            closeDownloadModal();
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   FORMAT TABS
-========================================================= */
-
-videoTab.addEventListener(
+convertBtn.addEventListener(
     "click",
     function(){
 
-        videoTab.classList.add(
-            "active"
-        );
-
-        audioTab.classList.remove(
-            "active"
-        );
-
-
-        videoTab.setAttribute(
-            "aria-selected",
-            "true"
-        );
-
-        audioTab.setAttribute(
-            "aria-selected",
-            "false"
-        );
-
-
-        videoOptions.classList.add(
-            "active"
-        );
-
-        audioOptions.classList.remove(
-            "active"
-        );
-
-
-        backendMessage.textContent =
-            "ℹ️ MP4 video options are ready. Actual file generation and accurate file size require a compatible authorized backend/service.";
-
-    }
-);
-
-
-audioTab.addEventListener(
-    "click",
-    function(){
-
-        audioTab.classList.add(
-            "active"
-        );
-
-        videoTab.classList.remove(
-            "active"
-        );
-
-
-        audioTab.setAttribute(
-            "aria-selected",
-            "true"
-        );
-
-        videoTab.setAttribute(
-            "aria-selected",
-            "false"
-        );
-
-
-        audioOptions.classList.add(
-            "active"
-        );
-
-        videoOptions.classList.remove(
-            "active"
-        );
-
-
-        backendMessage.textContent =
-            "ℹ️ MP3 audio options are ready. Actual file generation and accurate file size require a compatible authorized backend/service.";
+        convertFile("mp4");
 
     }
 );
 
 
 /* =========================================================
-   QUALITY SELECTION
+   M4A BUTTON
 ========================================================= */
 
-document.querySelectorAll(
-    'input[name="videoQuality"]'
-).forEach(
-    function(input){
+convertM4ABtn.addEventListener(
+    "click",
+    function(){
 
-        input.addEventListener(
-            "change",
-            function(){
-
-                document.getElementById(
-                    "videoSize"
-                ).textContent =
-                    "Available after server analysis";
-
-            }
-        );
-
-    }
-);
-
-
-document.querySelectorAll(
-    'input[name="audioQuality"]'
-).forEach(
-    function(input){
-
-        input.addEventListener(
-            "change",
-            function(){
-
-                document.getElementById(
-                    "audioSize"
-                ).textContent =
-                    "Available after server analysis";
-
-            }
-        );
+        convertFile("m4a");
 
     }
 );
 
 
 /* =========================================================
-   CONTINUE DOWNLOAD
+   DOWNLOAD ACTUAL FILE
 ========================================================= */
 
-confirmDownloadBtn.addEventListener(
+saveFileBtn.addEventListener(
     "click",
     function(){
 
-        if(!currentVideoId){
-
-            closeDownloadModal();
+        if(!convertedBlob){
 
             showStatus(
-                "Please analyze a YouTube URL first."
+                "No converted file is available.",
+                "warning"
             );
 
             return;
@@ -3734,49 +3953,103 @@ confirmDownloadBtn.addEventListener(
         }
 
 
-        let selectedFormat =
-            "MP4";
-
-        let selectedQuality =
-            document.querySelector(
-                'input[name="videoQuality"]:checked'
+        const objectUrl =
+            URL.createObjectURL(
+                convertedBlob
             );
 
 
-        if(
-            audioOptions.classList.contains("active")
-        ){
+        const link =
+            document.createElement("a");
 
-            selectedFormat =
-                "MP3";
 
-            selectedQuality =
-                document.querySelector(
-                    'input[name="audioQuality"]:checked'
+        link.href =
+            objectUrl;
+
+
+        link.download =
+            convertedFilename ||
+            "vidfetch-file";
+
+
+        document.body.appendChild(
+            link
+        );
+
+
+        link.click();
+
+
+        link.remove();
+
+
+        setTimeout(
+            function(){
+
+                URL.revokeObjectURL(
+                    objectUrl
                 );
 
-        }
+            },
+            1000
+        );
 
-
-        const quality =
-            selectedQuality
-                ? selectedQuality.value
-                : "Default";
-
-
-        backendMessage.textContent =
-            "ℹ️ Selected " +
-            selectedFormat +
-            " • " +
-            quality +
-            ". A compatible authorized backend/service is required to generate the actual file.";
 
         showStatus(
-            selectedFormat +
-            " " +
-            quality +
-            " selected. Backend connection is required for actual file generation."
+            "Download started.",
+            "success"
         );
+
+    }
+);
+
+
+/* =========================================================
+   NEW FILE
+========================================================= */
+
+newFileBtn.addEventListener(
+    "click",
+    function(){
+
+        fileInput.value =
+            "";
+
+        selectedFileObject =
+            null;
+
+        selectedFile.classList.remove(
+            "show"
+        );
+
+        converterOptions.classList.remove(
+            "show"
+        );
+
+        conversionStatus.classList.remove(
+            "show"
+        );
+
+        downloadResult.classList.remove(
+            "show"
+        );
+
+        convertedBlob =
+            null;
+
+        convertedFilename =
+            "";
+
+        showStatus(
+            "Ready for another file.",
+            "success"
+        );
+
+
+        uploadBox.scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+        });
 
     }
 );
@@ -3828,44 +4101,13 @@ backTop.addEventListener(
 
 
 /* =========================================================
-   CLEAR STATUS ON INPUT
-========================================================= */
-
-urlInput.addEventListener(
-    "input",
-    function(){
-
-        statusBox.classList.remove(
-            "show"
-        );
-
-    }
-);
-
-
-/* =========================================================
-   CURRENT YEAR
+   YEAR
 ========================================================= */
 
 document.getElementById(
     "year"
 ).textContent =
     new Date().getFullYear();
-
-
-/* =========================================================
-   IMAGE PREVIEW FALLBACK
-========================================================= */
-
-thumbnail.addEventListener(
-    "load",
-    function(){
-
-        thumbnail.style.display =
-            "block";
-
-    }
-);
 
 
 /* =========================================================
@@ -3876,9 +4118,16 @@ result.classList.remove(
     "show"
 );
 
-downloadOverlay.setAttribute(
-    "aria-hidden",
-    "true"
+converterOptions.classList.remove(
+    "show"
+);
+
+downloadResult.classList.remove(
+    "show"
+);
+
+conversionStatus.classList.remove(
+    "show"
 );
 
 </script>
