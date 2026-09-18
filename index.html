@@ -31,7 +31,7 @@ html{
 
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:#f7f8fc;
+  background:#f7f9fc;
   color:#1f2937;
   line-height:1.6;
 }
@@ -42,7 +42,8 @@ a{
 }
 
 button,
-input{
+input,
+select{
   font-family:inherit;
 }
 
@@ -73,7 +74,7 @@ input{
 .logo{
   font-size:25px;
   font-weight:800;
-  color:#e53232;
+  color:#2563eb;
 }
 
 .logo span{
@@ -93,13 +94,14 @@ input{
 }
 
 .nav-links a:hover{
-  color:#e53232;
+  color:#2563eb;
 }
 
 .menu-btn{
   display:none;
   border:0;
-  background:#f3f4f6;
+  background:#eff6ff;
+  color:#2563eb;
   font-size:23px;
   width:42px;
   height:42px;
@@ -110,7 +112,7 @@ input{
 /* ================= HERO ================= */
 
 .hero{
-  background:linear-gradient(135deg,#fff,#fff5f5);
+  background:linear-gradient(135deg,#fff,#eff6ff);
   padding:80px 20px 70px;
   text-align:center;
 }
@@ -123,7 +125,7 @@ input{
 }
 
 .hero h1 span{
-  color:#e53232;
+  color:#2563eb;
 }
 
 .hero p{
@@ -135,7 +137,7 @@ input{
 
 .hero-btn{
   display:inline-block;
-  background:#e53232;
+  background:#2563eb;
   color:#fff;
   padding:14px 28px;
   border-radius:10px;
@@ -144,7 +146,7 @@ input{
 }
 
 .hero-btn:hover{
-  background:#c92323;
+  background:#1d4ed8;
   transform:translateY(-2px);
 }
 
@@ -159,7 +161,7 @@ input{
   border-radius:20px;
   padding:35px;
   box-shadow:0 10px 35px rgba(0,0,0,.08);
-  border:1px solid #eceef2;
+  border:1px solid #e5e7eb;
 }
 
 .tool-card h2{
@@ -192,12 +194,12 @@ input{
 }
 
 .url-input:focus{
-  border-color:#e53232;
+  border-color:#2563eb;
 }
 
 .action-main{
   border:0;
-  background:#e53232;
+  background:#2563eb;
   color:white;
   padding:0 24px;
   border-radius:10px;
@@ -208,7 +210,7 @@ input{
 }
 
 .action-main:hover{
-  background:#c92323;
+  background:#1d4ed8;
 }
 
 .paste-btn{
@@ -222,7 +224,8 @@ input{
 }
 
 .paste-btn:hover{
-  background:#f3f4f6;
+  background:#eff6ff;
+  border-color:#bfdbfe;
 }
 
 .help-text{
@@ -308,8 +311,8 @@ input{
 
 .video-id{
   display:inline-block;
-  background:#f3f4f6;
-  color:#6b7280;
+  background:#eff6ff;
+  color:#2563eb;
   padding:6px 10px;
   border-radius:7px;
   font-size:13px;
@@ -346,12 +349,12 @@ input{
 }
 
 .primary-btn{
-  background:#e53232;
+  background:#2563eb;
   color:#fff;
 }
 
 .primary-btn:hover{
-  background:#c92323;
+  background:#1d4ed8;
 }
 
 .secondary-btn{
@@ -373,10 +376,123 @@ input{
 .notice{
   margin-top:18px;
   padding:13px;
-  background:#fff7ed;
-  color:#9a3412;
-  border:1px solid #fed7aa;
+  background:#eff6ff;
+  color:#1e40af;
+  border:1px solid #bfdbfe;
   border-radius:9px;
+  font-size:13px;
+}
+
+/* ================= VIDEO DOWNLOAD ================= */
+
+.download-box{
+  margin-top:30px;
+  padding:25px;
+  background:#f8fbff;
+  border:1px solid #bfdbfe;
+  border-radius:16px;
+}
+
+.download-box h3{
+  color:#1e3a8a;
+  font-size:21px;
+  margin-bottom:7px;
+}
+
+.download-description{
+  color:#6b7280;
+  font-size:14px;
+  margin-bottom:18px;
+}
+
+.download-row{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 180px 190px;
+  gap:10px;
+  align-items:stretch;
+}
+
+.file-input{
+  width:100%;
+  border:2px solid #dbeafe;
+  background:#fff;
+  border-radius:10px;
+  padding:12px;
+  font-size:14px;
+  color:#374151;
+}
+
+.quality-select{
+  width:100%;
+  border:2px solid #dbeafe;
+  background:#fff;
+  border-radius:10px;
+  padding:12px;
+  font-size:15px;
+  color:#374151;
+  outline:none;
+  cursor:pointer;
+}
+
+.quality-select:focus{
+  border-color:#2563eb;
+}
+
+.download-btn{
+  border:0;
+  background:#2563eb;
+  color:#fff;
+  border-radius:10px;
+  font-weight:700;
+  font-size:15px;
+  cursor:pointer;
+  padding:12px 15px;
+  transition:.2s;
+}
+
+.download-btn:hover{
+  background:#1d4ed8;
+}
+
+.download-btn:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+.download-note{
+  margin-top:12px;
+  color:#64748b;
+  font-size:12px;
+}
+
+.download-progress{
+  display:none;
+  margin-top:15px;
+}
+
+.download-progress.show{
+  display:block;
+}
+
+.progress-track{
+  width:100%;
+  height:9px;
+  background:#dbeafe;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progress-bar{
+  width:0%;
+  height:100%;
+  background:#2563eb;
+  border-radius:20px;
+  transition:width .2s;
+}
+
+.progress-text{
+  margin-top:7px;
+  color:#64748b;
   font-size:13px;
 }
 
@@ -450,7 +566,7 @@ input{
   width:45px;
   height:45px;
   border-radius:50%;
-  background:#e53232;
+  background:#2563eb;
   color:#fff;
   display:flex;
   align-items:center;
@@ -588,7 +704,7 @@ footer{
   height:45px;
   border:0;
   border-radius:50%;
-  background:#e53232;
+  background:#2563eb;
   color:#fff;
   font-size:20px;
   cursor:pointer;
@@ -602,6 +718,14 @@ footer{
 }
 
 /* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+  .download-row{
+    grid-template-columns:1fr;
+  }
+
+}
 
 @media(max-width:800px){
 
@@ -670,6 +794,10 @@ footer{
 
   .action-grid{
     grid-template-columns:1fr;
+  }
+
+  .download-box{
+    padding:18px;
   }
 
   .section{
@@ -861,6 +989,87 @@ footer{
               permission or the platform/provider allows it.
             </div>
 
+          </div>
+
+        </div>
+
+
+        <!-- ================= VIDEO DOWNLOAD ================= -->
+
+        <div class="download-box">
+
+          <h3>
+            ⬇️ Download Video
+          </h3>
+
+          <p class="download-description">
+            Download an authorized video file in MP4 format
+            at your selected quality.
+          </p>
+
+          <div class="download-row">
+
+            <input
+              type="file"
+              id="videoFile"
+              class="file-input"
+              accept="video/*">
+
+            <select
+              id="qualitySelect"
+              class="quality-select">
+
+              <option value="360p">
+                360p
+              </option>
+
+              <option value="480p">
+                480p
+              </option>
+
+              <option value="720p" selected>
+                720p
+              </option>
+
+              <option value="1080p">
+                1080p
+              </option>
+
+            </select>
+
+            <button
+              type="button"
+              id="downloadVideoBtn"
+              class="download-btn">
+              ⬇️ Download MP4
+            </button>
+
+          </div>
+
+
+          <div class="download-progress" id="downloadProgress">
+
+            <div class="progress-track">
+
+              <div
+                class="progress-bar"
+                id="progressBar">
+              </div>
+
+            </div>
+
+            <div
+              class="progress-text"
+              id="progressText">
+              Preparing video...
+            </div>
+
+          </div>
+
+
+          <div class="download-note">
+            Supported qualities: 360p, 480p, 720p and 1080p.
+            The selected file must be a video you own or are authorized to process.
           </div>
 
         </div>
@@ -1317,6 +1526,33 @@ const navLinks =
 
 const backTop =
   document.getElementById("backTop");
+
+
+/* ================= DOWNLOAD ELEMENTS ================= */
+
+const videoFile =
+  document.getElementById("videoFile");
+
+const qualitySelect =
+  document.getElementById("qualitySelect");
+
+const downloadVideoBtn =
+  document.getElementById("downloadVideoBtn");
+
+const downloadProgress =
+  document.getElementById("downloadProgress");
+
+const progressBar =
+  document.getElementById("progressBar");
+
+const progressText =
+  document.getElementById("progressText");
+
+
+/* ================= WORKER ================= */
+
+const WORKER_URL =
+  "https://vidfetch-api.amary1699.workers.dev";
 
 
 let currentVideoId = null;
@@ -1881,10 +2117,6 @@ thumbnailBtn.addEventListener(
 
     }catch(error){
 
-      /*
-        Browser CORS fallback
-      */
-
       window.open(
         imageUrl,
         "_blank",
@@ -2037,10 +2269,6 @@ shareBtn.addEventListener(
 
       }catch(error){
 
-        /*
-          User cancelled share.
-        */
-
       }
 
       return;
@@ -2069,6 +2297,297 @@ shareBtn.addEventListener(
       showStatus(
         "Sharing is not available in this browser.",
         "warning"
+      );
+
+    }
+
+  }
+);
+
+
+/* ================= VIDEO FILE DOWNLOAD ================= */
+
+downloadVideoBtn.addEventListener(
+  "click",
+  async function(){
+
+    const file =
+      videoFile.files[0];
+
+
+    if(!file){
+
+      showStatus(
+        "Please select an authorized video file first.",
+        "warning"
+      );
+
+      videoFile.focus();
+
+      return;
+
+    }
+
+
+    if(!file.type.startsWith("video/")){
+
+      showStatus(
+        "Please select a valid video file.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    const quality =
+      qualitySelect.value;
+
+
+    if(
+      ![
+        "360p",
+        "480p",
+        "720p",
+        "1080p"
+      ].includes(quality)
+    ){
+
+      showStatus(
+        "Please select a valid video quality.",
+        "warning"
+      );
+
+      return;
+
+    }
+
+
+    /*
+      UI
+    */
+
+    downloadVideoBtn.disabled =
+      true;
+
+    downloadVideoBtn.textContent =
+      "⏳ Processing...";
+
+    downloadProgress.classList.add(
+      "show"
+    );
+
+    progressBar.style.width =
+      "10%";
+
+    progressText.textContent =
+      "Uploading video to processing service...";
+
+
+    try{
+
+      /*
+        Send video to Cloudflare Worker
+      */
+
+      const endpoint =
+        WORKER_URL +
+        "/convert?format=mp4&quality=" +
+        encodeURIComponent(quality);
+
+
+      progressBar.style.width =
+        "25%";
+
+
+      const response =
+        await fetch(
+          endpoint,
+          {
+            method:"POST",
+            headers:{
+              "Content-Type":
+                file.type || "video/mp4"
+            },
+            body:file
+          }
+        );
+
+
+      progressBar.style.width =
+        "55%";
+
+
+      if(!response.ok){
+
+        let errorMessage =
+          "Video conversion failed.";
+
+
+        try{
+
+          const data =
+            await response.json();
+
+
+          if(data && data.error){
+
+            errorMessage =
+              data.error;
+
+          }
+
+        }catch(error){
+
+        }
+
+
+        throw new Error(
+          errorMessage
+        );
+
+      }
+
+
+      progressText.textContent =
+        "Preparing MP4 download...";
+
+
+      const blob =
+        await response.blob();
+
+
+      progressBar.style.width =
+        "85%";
+
+
+      if(!blob || blob.size === 0){
+
+        throw new Error(
+          "The server returned an empty video file."
+        );
+
+      }
+
+
+      /*
+        Create download URL
+      */
+
+      const objectUrl =
+        URL.createObjectURL(blob);
+
+
+      const link =
+        document.createElement("a");
+
+
+      link.href =
+        objectUrl;
+
+
+      link.download =
+        "vidfetch-" +
+        quality +
+        ".mp4";
+
+
+      document.body.appendChild(
+        link
+      );
+
+
+      link.click();
+
+
+      link.remove();
+
+
+      /*
+        Clean object URL
+      */
+
+      setTimeout(
+        function(){
+
+          URL.revokeObjectURL(
+            objectUrl
+          );
+
+        },
+        3000
+      );
+
+
+      progressBar.style.width =
+        "100%";
+
+
+      progressText.textContent =
+        "Download started successfully.";
+
+
+      showStatus(
+        "MP4 video download started successfully.",
+        "success"
+      );
+
+
+    }catch(error){
+
+      console.error(
+        "Video download error:",
+        error
+      );
+
+
+      progressBar.style.width =
+        "0%";
+
+
+      progressText.textContent =
+        "Download failed.";
+
+
+      showStatus(
+        error?.message ||
+        "Video processing failed. Please try again.",
+        "error"
+      );
+
+
+    }finally{
+
+      downloadVideoBtn.disabled =
+        false;
+
+
+      downloadVideoBtn.textContent =
+        "⬇️ Download MP4";
+
+    }
+
+  }
+);
+
+
+/* ================= FILE CHANGE ================= */
+
+videoFile.addEventListener(
+  "change",
+  function(){
+
+    if(videoFile.files.length){
+
+      const file =
+        videoFile.files[0];
+
+
+      showStatus(
+        "Video file selected: " +
+        file.name,
+        "success"
       );
 
     }
