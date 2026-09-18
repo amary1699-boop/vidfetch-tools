@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>VidFetch Tools - YouTube Video Tools Online</title>
-<meta name="description" content="VidFetch Tools is a fast and simple online YouTube video utility website for previewing videos, viewing thumbnails and video information.">
+
+<meta name="description" content="VidFetch Tools is a fast and simple online video utility website for analyzing YouTube URLs, previewing thumbnails and viewing basic video information.">
+
 <meta name="keywords" content="YouTube tools, video preview, YouTube thumbnail, video information, online video tools">
-<meta name="author" content="VidFetch Tools">
+
+<meta name="author" content="Amar Kumar Yadav">
+
+<meta name="robots" content="index, follow">
 
 <meta property="og:title" content="VidFetch Tools - Online Video Tools">
 <meta property="og:description" content="Simple and fast online video utility tools.">
 <meta property="og:type" content="website">
 
 <style>
+
 :root{
     --primary:#2563eb;
     --primary-dark:#1d4ed8;
@@ -48,12 +55,20 @@ a{
     text-decoration:none;
 }
 
+button,
+input{
+    font-family:inherit;
+}
+
 .container{
     width:min(1120px,92%);
     margin:auto;
 }
 
-/* NAVBAR */
+
+/* =========================
+   NAVBAR
+========================= */
 
 .navbar{
     background:#fff;
@@ -106,13 +121,24 @@ a{
     cursor:pointer;
 }
 
-/* HERO */
+
+/* =========================
+   HERO
+========================= */
 
 .hero{
     padding:85px 0 75px;
     background:
-        radial-gradient(circle at top left,rgba(37,99,235,.12),transparent 35%),
-        linear-gradient(180deg,#fff 0%,#f7f8fc 100%);
+        radial-gradient(
+            circle at top left,
+            rgba(37,99,235,.12),
+            transparent 35%
+        ),
+        linear-gradient(
+            180deg,
+            #fff 0%,
+            #f7f8fc 100%
+        );
 }
 
 .hero-content{
@@ -151,7 +177,10 @@ a{
     font-size:18px;
 }
 
-/* TOOL BOX */
+
+/* =========================
+   TOOL CARD
+========================= */
 
 .tool-card{
     max-width:850px;
@@ -202,19 +231,35 @@ a{
     transform:translateY(-1px);
 }
 
+.primary-btn:active{
+    transform:translateY(0);
+}
+
 .secondary-btn{
-    height:45px;
+    min-height:45px;
     border:1px solid var(--border);
     border-radius:10px;
     padding:0 18px;
     background:#fff;
     cursor:pointer;
     font-weight:600;
+    transition:.2s;
 }
 
 .secondary-btn:hover{
     border-color:var(--primary);
     color:var(--primary);
+    transform:translateY(-1px);
+}
+
+.secondary-btn:active{
+    transform:translateY(0);
+}
+
+.secondary-btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+    transform:none;
 }
 
 .help-text{
@@ -224,7 +269,10 @@ a{
     text-align:left;
 }
 
-/* RESULT */
+
+/* =========================
+   RESULT
+========================= */
 
 .result{
     display:none;
@@ -246,6 +294,7 @@ a{
     object-fit:cover;
     border-radius:12px;
     background:#eee;
+    display:block;
 }
 
 .video-info h3{
@@ -284,7 +333,10 @@ a{
     display:block;
 }
 
-/* SECTIONS */
+
+/* =========================
+   SECTIONS
+========================= */
 
 .section{
     padding:80px 0;
@@ -309,7 +361,10 @@ a{
     color:#666;
 }
 
-/* FEATURES */
+
+/* =========================
+   FEATURES
+========================= */
 
 .features{
     display:grid;
@@ -347,7 +402,10 @@ a{
     font-size:15px;
 }
 
-/* HOW TO USE */
+
+/* =========================
+   HOW TO USE
+========================= */
 
 .steps{
     display:grid;
@@ -374,7 +432,10 @@ a{
     font-weight:800;
 }
 
-/* ABOUT */
+
+/* =========================
+   ABOUT
+========================= */
 
 .about-box{
     max-width:850px;
@@ -391,7 +452,10 @@ a{
     margin-bottom:15px;
 }
 
-/* FAQ */
+
+/* =========================
+   FAQ
+========================= */
 
 .faq{
     max-width:850px;
@@ -416,7 +480,10 @@ details p{
     margin-top:12px;
 }
 
-/* FOOTER */
+
+/* =========================
+   FOOTER
+========================= */
 
 footer{
     background:#111;
@@ -469,7 +536,10 @@ footer{
     font-size:13px;
 }
 
-/* TO TOP */
+
+/* =========================
+   BACK TO TOP
+========================= */
 
 .top-btn{
     position:fixed;
@@ -491,7 +561,10 @@ footer{
     display:block;
 }
 
-/* MOBILE */
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:800px){
 
@@ -505,6 +578,7 @@ footer{
         padding:20px;
         flex-direction:column;
         border-bottom:1px solid var(--border);
+        box-shadow:0 10px 20px rgba(0,0,0,.06);
     }
 
     .nav-links.open{
@@ -547,37 +621,100 @@ footer{
     .section{
         padding:60px 0;
     }
+
+    .about-box{
+        padding:25px;
+    }
+
+    .action-row{
+        flex-direction:column;
+    }
+
+    .secondary-btn{
+        width:100%;
+    }
+
 }
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media(max-width:480px){
+
+    .tool-card{
+        padding:18px;
+    }
+
+    .hero h1{
+        font-size:38px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    .section-title h2{
+        font-size:30px;
+    }
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
-<!-- NAVBAR -->
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
 <header class="navbar">
+
     <div class="container nav-inner">
 
-        <a href="#" class="logo">
+        <a href="#home" class="logo">
             VidFetch <span>Tools</span>
         </a>
 
-        <button class="menu-btn" id="menuBtn" aria-label="Menu">
+        <button
+            class="menu-btn"
+            id="menuBtn"
+            aria-label="Open menu"
+            type="button"
+        >
             ☰
         </button>
 
         <nav class="nav-links" id="navLinks">
+
             <a href="#home">Home</a>
+
             <a href="#tools">Tools</a>
+
             <a href="#how">How It Works</a>
+
             <a href="#about">About</a>
+
             <a href="#faq">FAQ</a>
+
+            <a href="#contact">Contact</a>
+
         </nav>
 
     </div>
+
 </header>
 
 
-<!-- HERO -->
+<!-- =========================
+     HERO
+========================= -->
+
 <section class="hero" id="home">
 
     <div class="container">
@@ -598,6 +735,7 @@ footer{
                 in a clean and simple interface.
             </p>
 
+
             <div class="tool-card" id="tools">
 
                 <div class="url-row">
@@ -608,32 +746,43 @@ footer{
                         class="url-input"
                         placeholder="Paste YouTube video URL here..."
                         autocomplete="off"
+                        aria-label="YouTube video URL"
                     >
 
                     <button
                         class="primary-btn"
                         id="analyzeBtn"
+                        type="button"
                     >
                         Analyze
                     </button>
 
                 </div>
 
+
                 <div class="help-text">
-                    Example: https://www.youtube.com/watch?v=XXXXXXXXXXX
+
+                    Example:
+                    https://www.youtube.com/watch?v=XXXXXXXXXXX
+
                 </div>
+
 
                 <div class="result" id="result">
 
                     <div class="result-grid">
 
+
                         <div>
+
                             <img
                                 id="thumbnail"
                                 class="thumbnail"
                                 alt="YouTube video thumbnail"
                             >
+
                         </div>
+
 
                         <div class="video-info">
 
@@ -641,61 +790,100 @@ footer{
                                 YouTube Video
                             </h3>
 
-                            <div class="info-line">
-                                <span class="info-label">Video ID:</span>
-                                <span id="videoId">-</span>
-                            </div>
 
                             <div class="info-line">
-                                <span class="info-label">Platform:</span>
+
+                                <span class="info-label">
+                                    Video ID:
+                                </span>
+
+                                <span id="videoId">
+                                    -
+                                </span>
+
+                            </div>
+
+
+                            <div class="info-line">
+
+                                <span class="info-label">
+                                    Platform:
+                                </span>
+
                                 YouTube
+
                             </div>
 
+
                             <div class="info-line">
-                                <span class="info-label">Status:</span>
+
+                                <span class="info-label">
+                                    Status:
+                                </span>
+
                                 URL detected successfully
+
                             </div>
+
 
                             <div class="action-row">
+
 
                                 <button
                                     class="secondary-btn"
                                     id="copyBtn"
+                                    type="button"
                                 >
                                     📋 Copy URL
                                 </button>
+
+
                                 <button
-    class="secondary-btn"
-    id="thumbnailBtn"
->
-    🖼️ Download Thumbnail
-</button>
-    <button
-    class="secondary-btn"
-    id="downloadBtn"
->
-    ⬇ Download
-</button>
+                                    class="secondary-btn"
+                                    id="thumbnailBtn"
+                                    type="button"
+                                >
+                                    🖼️ Download Thumbnail
+                                </button>
+
+
+                                <button
+                                    class="secondary-btn"
+                                    id="downloadBtn"
+                                    type="button"
+                                >
+                                    ▶ Open Video
+                                </button>
+
+
                                 <button
                                     class="secondary-btn"
                                     id="watchBtn"
+                                    type="button"
                                 >
                                     ▶ Watch on YouTube
                                 </button>
 
+
                                 <button
                                     class="secondary-btn"
                                     id="shareBtn"
+                                    type="button"
                                 >
                                     ↗ Share
                                 </button>
 
+
                             </div>
+
 
                             <div
                                 class="status"
                                 id="status"
+                                role="status"
+                                aria-live="polite"
                             ></div>
+
 
                         </div>
 
@@ -712,14 +900,19 @@ footer{
 </section>
 
 
-<!-- FEATURES -->
+<!-- =========================
+     FEATURES
+========================= -->
+
 <section class="section white">
 
     <div class="container">
 
         <div class="section-title">
 
-            <h2>Useful Video Tools</h2>
+            <h2>
+                Useful Video Tools
+            </h2>
 
             <p>
                 Simple tools designed to make common video tasks
@@ -728,13 +921,19 @@ footer{
 
         </div>
 
+
         <div class="features">
+
 
             <div class="feature-card">
 
-                <div class="feature-icon">🔗</div>
+                <div class="feature-icon">
+                    🔗
+                </div>
 
-                <h3>URL Analyzer</h3>
+                <h3>
+                    URL Analyzer
+                </h3>
 
                 <p>
                     Detect a valid YouTube video URL and extract
@@ -746,9 +945,13 @@ footer{
 
             <div class="feature-card">
 
-                <div class="feature-icon">🖼️</div>
+                <div class="feature-icon">
+                    🖼️
+                </div>
 
-                <h3>Thumbnail Preview</h3>
+                <h3>
+                    Thumbnail Preview
+                </h3>
 
                 <p>
                     Preview the available YouTube thumbnail
@@ -760,9 +963,13 @@ footer{
 
             <div class="feature-card">
 
-                <div class="feature-icon">▶️</div>
+                <div class="feature-icon">
+                    ▶️
+                </div>
 
-                <h3>Video Preview</h3>
+                <h3>
+                    Video Preview
+                </h3>
 
                 <p>
                     Quickly open the detected video on YouTube
@@ -771,6 +978,7 @@ footer{
 
             </div>
 
+
         </div>
 
     </div>
@@ -778,14 +986,19 @@ footer{
 </section>
 
 
-<!-- HOW IT WORKS -->
+<!-- =========================
+     HOW IT WORKS
+========================= -->
+
 <section class="section" id="how">
 
     <div class="container">
 
         <div class="section-title">
 
-            <h2>How It Works</h2>
+            <h2>
+                How It Works
+            </h2>
 
             <p>
                 Using VidFetch Tools is simple.
@@ -793,13 +1006,19 @@ footer{
 
         </div>
 
+
         <div class="steps">
+
 
             <div class="step">
 
-                <div class="step-number">1</div>
+                <div class="step-number">
+                    1
+                </div>
 
-                <h3>Copy URL</h3>
+                <h3>
+                    Copy URL
+                </h3>
 
                 <p>
                     Copy the YouTube video URL from your browser
@@ -811,9 +1030,13 @@ footer{
 
             <div class="step">
 
-                <div class="step-number">2</div>
+                <div class="step-number">
+                    2
+                </div>
 
-                <h3>Paste URL</h3>
+                <h3>
+                    Paste URL
+                </h3>
 
                 <p>
                     Paste the URL into the input box and click
@@ -825,9 +1048,13 @@ footer{
 
             <div class="step">
 
-                <div class="step-number">3</div>
+                <div class="step-number">
+                    3
+                </div>
 
-                <h3>View Information</h3>
+                <h3>
+                    View Information
+                </h3>
 
                 <p>
                     View the detected video ID, thumbnail and
@@ -836,6 +1063,7 @@ footer{
 
             </div>
 
+
         </div>
 
     </div>
@@ -843,15 +1071,26 @@ footer{
 </section>
 
 
-<!-- ABOUT -->
+<!-- =========================
+     ABOUT
+========================= -->
+
 <section class="section white" id="about">
 
     <div class="container">
 
         <div class="section-title">
-            <h2>About VidFetch Tools</h2>
-            <p>Simple, fast and user-friendly online video utility tools.</p>
+
+            <h2>
+                About VidFetch Tools
+            </h2>
+
+            <p>
+                Simple, fast and user-friendly online video utility tools.
+            </p>
+
         </div>
+
 
         <div class="about-box">
 
@@ -859,11 +1098,13 @@ footer{
                 Welcome to VidFetch Tools
             </h3>
 
+
             <p>
                 VidFetch Tools is an online utility platform created
                 to provide simple and convenient tools for working
                 with video URLs and related information.
             </p>
+
 
             <p>
                 Our goal is to build useful, fast and easy-to-use
@@ -871,20 +1112,25 @@ footer{
                 on computers, tablets and mobile devices.
             </p>
 
+
             <p>
                 We aim to keep the website simple, transparent and
                 easy to understand for everyone.
             </p>
+
 
             <div style="
                 margin-top:25px;
                 padding:20px;
                 background:#f8f8f8;
                 border-radius:12px;
-                border-left:4px solid #e53232;
+                border-left:4px solid #2563eb;
             ">
 
-                <strong>Website Owner</strong>
+                <strong>
+                    Website Owner
+                </strong>
+
 
                 <div style="
                     font-size:20px;
@@ -903,14 +1149,19 @@ footer{
 </section>
 
 
-<!-- FAQ -->
+<!-- =========================
+     FAQ
+========================= -->
+
 <section class="section" id="faq">
 
     <div class="container">
 
         <div class="section-title">
 
-            <h2>Frequently Asked Questions</h2>
+            <h2>
+                Frequently Asked Questions
+            </h2>
 
             <p>
                 Common questions about VidFetch Tools.
@@ -918,42 +1169,68 @@ footer{
 
         </div>
 
+
         <div class="faq">
 
+
             <details>
-                <summary>What is VidFetch Tools?</summary>
+
+                <summary>
+                    What is VidFetch Tools?
+                </summary>
+
                 <p>
                     VidFetch Tools is an online video utility website
                     for analyzing supported video URLs and displaying
                     related information.
                 </p>
+
             </details>
 
+
             <details>
-                <summary>Is VidFetch Tools free?</summary>
+
+                <summary>
+                    Is VidFetch Tools free?
+                </summary>
+
                 <p>
                     The basic website interface and available utility
                     features are designed to be free to use.
                 </p>
+
             </details>
 
+
             <details>
-                <summary>Can I use it on mobile?</summary>
+
+                <summary>
+                    Can I use it on mobile?
+                </summary>
+
                 <p>
                     Yes. The website is responsive and designed to
                     work on phones, tablets and computers.
                 </p>
+
             </details>
 
+
             <details>
-                <summary>Can every YouTube video be downloaded?</summary>
+
+                <summary>
+                    Can every YouTube video be downloaded?
+                </summary>
+
                 <p>
                     Availability of downloading depends on the rights
                     and permissions applicable to the content and the
                     platform's rules. VidFetch Tools does not bypass
                     access controls or content restrictions.
                 </p>
+
             </details>
+
 
         </div>
 
@@ -961,18 +1238,28 @@ footer{
 
 </section>
 
-<!-- CONTACT -->
+
+<!-- =========================
+     CONTACT
+========================= -->
+
 <section class="section" id="contact">
 
     <div class="container">
 
         <div class="section-title">
-            <h2>Contact Us</h2>
+
+            <h2>
+                Contact Us
+            </h2>
+
             <p>
                 Have a question, suggestion or feedback?
                 We would be happy to hear from you.
             </p>
+
         </div>
+
 
         <div class="about-box">
 
@@ -980,10 +1267,12 @@ footer{
                 Get in Touch
             </h3>
 
+
             <p>
                 If you have any questions, suggestions or feedback
                 about VidFetch Tools, you can contact us.
             </p>
+
 
             <div style="
                 margin-top:22px;
@@ -992,22 +1281,41 @@ footer{
                 border-radius:12px;
             ">
 
-                <p style="margin-bottom:8px;">
-                    <strong>Website:</strong>
-                    VidFetch Tools
-                </p>
 
                 <p style="margin-bottom:8px;">
-                    <strong>Owner:</strong>
-                    Amar Kumar Yadav
+
+                    <strong>
+                        Website:
+                    </strong>
+
+                    VidFetch Tools
+
                 </p>
+
+
+                <p style="margin-bottom:8px;">
+
+                    <strong>
+                        Owner:
+                    </strong>
+
+                    Amar Kumar Yadav
+
+                </p>
+
 
                 <p style="margin-bottom:0;">
-                    <strong>Email:</strong>
+
+                    <strong>
+                        Email:
+                    </strong>
+
                     <span style="color:#666;">
                         Email address will be added soon.
                     </span>
+
                 </p>
+
 
             </div>
 
@@ -1016,28 +1324,47 @@ footer{
     </div>
 
 </section>
-<!-- PRIVACY POLICY -->
+
+
+<!-- =========================
+     PRIVACY POLICY
+========================= -->
+
 <section class="section white" id="privacy">
 
     <div class="container">
 
         <div class="section-title">
-            <h2>Privacy Policy</h2>
+
+            <h2>
+                Privacy Policy
+            </h2>
+
             <p>
                 Information about how VidFetch Tools handles visitor information.
             </p>
+
         </div>
+
 
         <div class="about-box">
 
-            <h3>1. Introduction</h3>
+
+            <h3>
+                1. Introduction
+            </h3>
+
             <p>
                 VidFetch Tools respects your privacy. This Privacy Policy
                 explains the general way this website handles information
                 when you use our online tools.
             </p>
 
-            <h3 style="margin-top:25px;">2. Information We Collect</h3>
+
+            <h3 style="margin-top:25px;">
+                2. Information We Collect
+            </h3>
+
             <p>
                 VidFetch Tools does not require you to create an account
                 to use the basic website features.
@@ -1048,14 +1375,22 @@ footer{
                 by your browser to provide the requested functionality.
             </p>
 
-            <h3 style="margin-top:25px;">3. YouTube URLs</h3>
+
+            <h3 style="margin-top:25px;">
+                3. YouTube URLs
+            </h3>
+
             <p>
                 When you enter a YouTube URL, the website may process
                 the URL locally in your browser to identify the video
                 ID and display available information such as a thumbnail.
             </p>
 
-            <h3 style="margin-top:25px;">4. Cookies</h3>
+
+            <h3 style="margin-top:25px;">
+                4. Cookies
+            </h3>
+
             <p>
                 VidFetch Tools does not intentionally use cookies for
                 the basic functionality of this website. Third-party
@@ -1064,32 +1399,49 @@ footer{
                 according to their respective policies.
             </p>
 
-            <h3 style="margin-top:25px;">5. Third-Party Services</h3>
+
+            <h3 style="margin-top:25px;">
+                5. Third-Party Services
+            </h3>
+
             <p>
                 This website may use third-party services or resources
                 to provide certain features. Such services may have
                 their own privacy policies and terms.
             </p>
 
-            <h3 style="margin-top:25px;">6. Children's Privacy</h3>
+
+            <h3 style="margin-top:25px;">
+                6. Children's Privacy
+            </h3>
+
             <p>
                 VidFetch Tools is not intentionally designed to collect
                 personal information from children.
             </p>
 
-            <h3 style="margin-top:25px;">7. Changes to This Policy</h3>
+
+            <h3 style="margin-top:25px;">
+                7. Changes to This Policy
+            </h3>
+
             <p>
                 We may update this Privacy Policy when website features
                 or services change. Any updated version will be published
                 on this page.
             </p>
 
-            <h3 style="margin-top:25px;">8. Contact</h3>
+
+            <h3 style="margin-top:25px;">
+                8. Contact
+            </h3>
+
             <p>
                 If you have questions about this Privacy Policy, please
                 contact VidFetch Tools through the contact information
                 provided on the website.
             </p>
+
 
             <p style="
                 margin-top:30px;
@@ -1099,40 +1451,64 @@ footer{
                 Last updated: September 2026
             </p>
 
+
         </div>
 
     </div>
 
 </section>
-<!-- TERMS OF USE -->
+
+
+<!-- =========================
+     TERMS OF USE
+========================= -->
+
 <section class="section" id="terms">
 
     <div class="container">
 
         <div class="section-title">
-            <h2>Terms of Use</h2>
+
+            <h2>
+                Terms of Use
+            </h2>
+
             <p>
                 Please read these terms before using VidFetch Tools.
             </p>
+
         </div>
+
 
         <div class="about-box">
 
-            <h3>1. Acceptance of Terms</h3>
+
+            <h3>
+                1. Acceptance of Terms
+            </h3>
+
             <p>
                 By accessing and using VidFetch Tools, you agree to
                 use the website responsibly and in accordance with
                 applicable laws and platform rules.
             </p>
 
-            <h3 style="margin-top:25px;">2. Website Usage</h3>
+
+            <h3 style="margin-top:25px;">
+                2. Website Usage
+            </h3>
+
             <p>
                 VidFetch Tools is provided as an online utility service.
                 You agree not to misuse the website, attempt to disrupt
                 its operation, or use it for unlawful activities.
             </p>
 
-            <h3 style="margin-top:25px;">3. Content and Copyright</h3>
+
+            <h3 style="margin-top:25px;">
+                3. Content and Copyright
+            </h3>
+
             <p>
                 Users are responsible for ensuring that they have the
                 necessary rights, permission or authorization to access,
@@ -1145,7 +1521,11 @@ footer{
                 or other intellectual-property rights.
             </p>
 
-            <h3 style="margin-top:25px;">4. Third-Party Platforms</h3>
+
+            <h3 style="margin-top:25px;">
+                4. Third-Party Platforms
+            </h3>
+
             <p>
                 VidFetch Tools may work with or reference third-party
                 platforms. Those platforms have their own terms,
@@ -1153,25 +1533,38 @@ footer{
                 follow the applicable rules of those platforms.
             </p>
 
-            <h3 style="margin-top:25px;">5. No Guarantee</h3>
+
+            <h3 style="margin-top:25px;">
+                5. No Guarantee
+            </h3>
+
             <p>
                 We aim to keep the website available and functional,
                 but we do not guarantee that every feature will always
                 be available, uninterrupted or error-free.
             </p>
 
-            <h3 style="margin-top:25px;">6. Changes to the Website</h3>
+
+            <h3 style="margin-top:25px;">
+                6. Changes to the Website
+            </h3>
+
             <p>
                 We may modify, add or remove website features at any
                 time as the service develops.
             </p>
 
-            <h3 style="margin-top:25px;">7. Contact</h3>
+
+            <h3 style="margin-top:25px;">
+                7. Contact
+            </h3>
+
             <p>
                 If you have questions regarding these Terms of Use,
                 please contact VidFetch Tools through the contact
                 information provided on the website.
             </p>
+
 
             <p style="
                 margin-top:30px;
@@ -1181,17 +1574,24 @@ footer{
                 Last updated: September 2026
             </p>
 
+
         </div>
 
     </div>
 
-</section>  
-<!-- FOOTER -->
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer>
 
     <div class="container">
 
         <div class="footer-grid">
+
 
             <div class="footer-brand">
 
@@ -1209,32 +1609,65 @@ footer{
 
             <div class="footer-col">
 
-                <h4>Quick Links</h4>
+                <h4>
+                    Quick Links
+                </h4>
 
-                <a href="#home">Home</a>
-                <a href="#tools">Tools</a>
-                <a href="#how">How It Works</a>
-                <a href="#about">About Us</a>
-                <a href="#faq">FAQ</a>
-                <a href="#faq">FAQ</a>
+                <a href="#home">
+                    Home
+                </a>
+
+                <a href="#tools">
+                    Tools
+                </a>
+
+                <a href="#how">
+                    How It Works
+                </a>
+
+                <a href="#about">
+                    About Us
+                </a>
+
+                <a href="#faq">
+                    FAQ
+                </a>
+
+                <a href="#contact">
+                    Contact
+                </a>
+
             </div>
 
 
             <div class="footer-col">
 
-                <h4>Information</h4>
+                <h4>
+                    Information
+                </h4>
 
-                <a href="#privacy">Privacy Policy</a>
-                <a href="#terms">Terms of Use</a>
-                <a href="#contact">Contact Us</a>
+                <a href="#privacy">
+                    Privacy Policy
+                </a>
+
+                <a href="#terms">
+                    Terms of Use
+                </a>
+
+                <a href="#contact">
+                    Contact Us
+                </a>
+
             </div>
+
 
         </div>
 
 
         <div class="copyright">
 
-            © <span id="year"></span> VidFetch Tools.
+            © <span id="year"></span>
+            VidFetch Tools.
             All rights reserved.
 
         </div>
@@ -1244,10 +1677,15 @@ footer{
 </footer>
 
 
+<!-- =========================
+     BACK TO TOP
+========================= -->
+
 <button
     class="top-btn"
     id="topBtn"
     aria-label="Back to top"
+    type="button"
 >
     ↑
 </button>
@@ -1255,49 +1693,102 @@ footer{
 
 <script>
 
-/* =========================
-   MOBILE MENU
-========================= */
-
-const menuBtn = document.getElementById("menuBtn");
-const navLinks = document.getElementById("navLinks");
-
-menuBtn.addEventListener("click", function(){
-
-    navLinks.classList.toggle("open");
-
-});
-
-
-document.querySelectorAll(".nav-links a").forEach(function(link){
-
-    link.addEventListener("click", function(){
-
-        navLinks.classList.remove("open");
-
-    });
-
-});
-
 
 /* =========================
    ELEMENTS
 ========================= */
 
-const urlInput = document.getElementById("urlInput");
-const analyzeBtn = document.getElementById("analyzeBtn");
+const menuBtn =
+    document.getElementById("menuBtn");
 
-const result = document.getElementById("result");
-const thumbnail = document.getElementById("thumbnail");
+const navLinks =
+    document.getElementById("navLinks");
 
-const videoIdElement = document.getElementById("videoId");
-const videoTitle = document.getElementById("videoTitle");
+const urlInput =
+    document.getElementById("urlInput");
 
-const copyBtn = document.getElementById("copyBtn");
-const watchBtn = document.getElementById("watchBtn");
-const shareBtn = document.getElementById("shareBtn");
+const analyzeBtn =
+    document.getElementById("analyzeBtn");
 
-const statusBox = document.getElementById("status");
+const result =
+    document.getElementById("result");
+
+const thumbnail =
+    document.getElementById("thumbnail");
+
+const videoIdElement =
+    document.getElementById("videoId");
+
+const videoTitle =
+    document.getElementById("videoTitle");
+
+const copyBtn =
+    document.getElementById("copyBtn");
+
+const thumbnailBtn =
+    document.getElementById("thumbnailBtn");
+
+const downloadBtn =
+    document.getElementById("downloadBtn");
+
+const watchBtn =
+    document.getElementById("watchBtn");
+
+const shareBtn =
+    document.getElementById("shareBtn");
+
+const statusBox =
+    document.getElementById("status");
+
+const topBtn =
+    document.getElementById("topBtn");
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+menuBtn.addEventListener(
+    "click",
+    function(){
+
+        navLinks.classList.toggle("open");
+
+        const isOpen =
+            navLinks.classList.contains("open");
+
+        menuBtn.setAttribute(
+            "aria-label",
+            isOpen
+                ? "Close menu"
+                : "Open menu"
+        );
+
+    }
+);
+
+
+document.querySelectorAll(
+    ".nav-links a"
+).forEach(
+    function(link){
+
+        link.addEventListener(
+            "click",
+            function(){
+
+                navLinks.classList.remove("open");
+
+                menuBtn.setAttribute(
+                    "aria-label",
+                    "Open menu"
+                );
+
+            }
+        );
+
+    }
+);
 
 
 /* =========================
@@ -1312,25 +1803,37 @@ function getYouTubeVideoId(url){
 
     try{
 
-        const parsed = new URL(url.trim());
+        const parsed =
+            new URL(url.trim());
 
-        const hostname = parsed.hostname.toLowerCase();
+        const hostname =
+            parsed.hostname.toLowerCase();
+
+
+        /* YOUTU.BE */
 
         if(
             hostname === "youtu.be" ||
             hostname.endsWith(".youtu.be")
         ){
 
-            const id = parsed.pathname
+            const id =
+                parsed.pathname
                 .replace(/^\/+/,"")
                 .split("/")[0];
 
-            if(/^[a-zA-Z0-9_-]{6,20}$/.test(id)){
+            if(
+                /^[a-zA-Z0-9_-]{6,20}$/.test(id)
+            ){
+
                 return id;
+
             }
 
         }
 
+
+        /* YOUTUBE.COM */
 
         if(
             hostname === "youtube.com" ||
@@ -1339,19 +1842,25 @@ function getYouTubeVideoId(url){
             hostname.endsWith(".youtube.com")
         ){
 
-            const watchId = parsed.searchParams.get("v");
+            const watchId =
+                parsed.searchParams.get("v");
+
 
             if(
                 watchId &&
                 /^[a-zA-Z0-9_-]{6,20}$/.test(watchId)
             ){
+
                 return watchId;
+
             }
 
 
-            const pathParts = parsed.pathname
+            const pathParts =
+                parsed.pathname
                 .split("/")
                 .filter(Boolean);
+
 
             const supportedPaths = [
                 "shorts",
@@ -1359,15 +1868,23 @@ function getYouTubeVideoId(url){
                 "live"
             ];
 
+
             if(
                 pathParts.length >= 2 &&
-                supportedPaths.includes(pathParts[0])
+                supportedPaths.includes(
+                    pathParts[0].toLowerCase()
+                )
             ){
 
-                const id = pathParts[1];
+                const id =
+                    pathParts[1];
 
-                if(/^[a-zA-Z0-9_-]{6,20}$/.test(id)){
+                if(
+                    /^[a-zA-Z0-9_-]{6,20}$/.test(id)
+                ){
+
                     return id;
+
                 }
 
             }
@@ -1381,17 +1898,22 @@ function getYouTubeVideoId(url){
     }
 
     return null;
+
 }
 
 
 /* =========================
-   STATUS MESSAGE
+   STATUS
 ========================= */
 
 function showStatus(message){
 
-    statusBox.textContent = message;
-    statusBox.classList.add("show");
+    statusBox.textContent =
+        message;
+
+    statusBox.classList.add(
+        "show"
+    );
 
 }
 
@@ -1402,24 +1924,32 @@ function showStatus(message){
 
 function analyzeVideo(){
 
-    const url = urlInput.value.trim();
+    const url =
+        urlInput.value.trim();
+
 
     if(!url){
 
-        result.style.display = "none";
+        result.style.display =
+            "none";
 
-        showStatus("Please paste a YouTube video URL.");
+        showStatus(
+            "Please paste a YouTube video URL."
+        );
 
         return;
 
     }
 
 
-    const videoId = getYouTubeVideoId(url);
+    const videoId =
+        getYouTubeVideoId(url);
+
 
     if(!videoId){
 
-        result.style.display = "none";
+        result.style.display =
+            "none";
 
         showStatus(
             "Invalid YouTube URL. Please check the URL and try again."
@@ -1430,30 +1960,66 @@ function analyzeVideo(){
     }
 
 
-    result.style.display = "block";
+    result.style.display =
+        "block";
 
-    videoIdElement.textContent = videoId;
 
-    videoTitle.textContent = "YouTube Video";
+    videoIdElement.textContent =
+        videoId;
 
-    thumbnail.src =
+
+    videoTitle.textContent =
+        "YouTube Video";
+
+
+    const thumbnailUrl =
         "https://img.youtube.com/vi/" +
         videoId +
         "/hqdefault.jpg";
 
-    thumbnail.onerror = function(){
 
-        this.src =
-            "https://img.youtube.com/vi/" +
-            videoId +
-            "/0.jpg";
+    thumbnail.src =
+        thumbnailUrl;
 
-    };
+
+    thumbnail.onerror =
+        function(){
+
+            if(
+                this.dataset.fallbackUsed === "true"
+            ){
+                return;
+            }
+
+            this.dataset.fallbackUsed =
+                "true";
+
+            this.src =
+                "https://img.youtube.com/vi/" +
+                videoId +
+                "/0.jpg";
+
+        };
+
+
+    thumbnail.onload =
+        function(){
+
+            this.dataset.fallbackUsed =
+                "false";
+
+        };
 
 
     showStatus(
         "YouTube video URL detected successfully."
     );
+
+
+    result.scrollIntoView({
+        behavior:"smooth",
+        block:"nearest"
+    });
 
 }
 
@@ -1476,7 +2042,9 @@ urlInput.addEventListener(
     "keydown",
     function(event){
 
-        if(event.key === "Enter"){
+        if(
+            event.key === "Enter"
+        ){
 
             event.preventDefault();
 
@@ -1496,28 +2064,247 @@ copyBtn.addEventListener(
     "click",
     async function(){
 
-        const url = urlInput.value.trim();
+        const url =
+            urlInput.value.trim();
+
 
         if(!url){
-            showStatus("There is no URL to copy.");
+
+            showStatus(
+                "There is no URL to copy."
+            );
+
             return;
+
         }
+
 
         try{
 
-            await navigator.clipboard.writeText(url);
+            if(
+                navigator.clipboard &&
+                window.isSecureContext
+            ){
 
-            showStatus("URL copied successfully.");
+                await navigator.clipboard
+                    .writeText(url);
+
+            }else{
+
+                const temporaryInput =
+                    document.createElement("textarea");
+
+                temporaryInput.value =
+                    url;
+
+                temporaryInput.style.position =
+                    "fixed";
+
+                temporaryInput.style.opacity =
+                    "0";
+
+                document.body.appendChild(
+                    temporaryInput
+                );
+
+                temporaryInput.select();
+
+                document.execCommand(
+                    "copy"
+                );
+
+                temporaryInput.remove();
+
+            }
+
+
+            showStatus(
+                "URL copied successfully."
+            );
 
         }catch(error){
 
-            urlInput.select();
-
-            document.execCommand("copy");
-
-            showStatus("URL copied successfully.");
+            showStatus(
+                "Unable to copy the URL. Please copy it manually."
+            );
 
         }
+
+    }
+);
+
+
+/* =========================
+   DOWNLOAD THUMBNAIL
+========================= */
+
+thumbnailBtn.addEventListener(
+    "click",
+    async function(){
+
+        const videoId =
+            videoIdElement.textContent.trim();
+
+
+        if(
+            !videoId ||
+            videoId === "-"
+        ){
+
+            showStatus(
+                "Analyze a valid YouTube URL first."
+            );
+
+            return;
+
+        }
+
+
+        const imageUrl =
+            "https://img.youtube.com/vi/" +
+            videoId +
+            "/hqdefault.jpg";
+
+
+        thumbnailBtn.disabled =
+            true;
+
+
+        try{
+
+            const response =
+                await fetch(imageUrl);
+
+
+            if(!response.ok){
+
+                throw new Error(
+                    "Thumbnail unavailable"
+                );
+
+            }
+
+
+            const blob =
+                await response.blob();
+
+
+            const blobUrl =
+                URL.createObjectURL(blob);
+
+
+            const link =
+                document.createElement("a");
+
+
+            link.href =
+                blobUrl;
+
+
+            link.download =
+                "vidfetch-thumbnail-" +
+                videoId +
+                ".jpg";
+
+
+            document.body.appendChild(
+                link
+            );
+
+
+            link.click();
+
+
+            link.remove();
+
+
+            setTimeout(
+                function(){
+
+                    URL.revokeObjectURL(
+                        blobUrl
+                    );
+
+                },
+                1000
+            );
+
+
+            showStatus(
+                "Thumbnail download started."
+            );
+
+
+        }catch(error){
+
+            /*
+             If browser blocks cross-origin
+             download, open the image instead.
+            */
+
+            window.open(
+                imageUrl,
+                "_blank",
+                "noopener,noreferrer"
+            );
+
+
+            showStatus(
+                "Thumbnail opened in a new tab. You can save it from there."
+            );
+
+        }finally{
+
+            thumbnailBtn.disabled =
+                false;
+
+        }
+
+    }
+);
+
+
+/* =========================
+   OPEN VIDEO
+========================= */
+
+downloadBtn.addEventListener(
+    "click",
+    function(){
+
+        const videoId =
+            videoIdElement.textContent.trim();
+
+
+        if(
+            !videoId ||
+            videoId === "-"
+        ){
+
+            showStatus(
+                "Analyze a valid YouTube URL first."
+            );
+
+            return;
+
+        }
+
+
+        const youtubeUrl =
+            "https://www.youtube.com/watch?v=" +
+            encodeURIComponent(videoId);
+
+
+        window.open(
+            youtubeUrl,
+            "_blank",
+            "noopener,noreferrer"
+        );
+
+
+        showStatus(
+            "Video opened on YouTube."
+        );
 
     }
 );
@@ -1534,14 +2321,28 @@ watchBtn.addEventListener(
         const videoId =
             videoIdElement.textContent.trim();
 
-        if(!videoId || videoId === "-"){
-            showStatus("Analyze a valid URL first.");
+
+        if(
+            !videoId ||
+            videoId === "-"
+        ){
+
+            showStatus(
+                "Analyze a valid URL first."
+            );
+
             return;
+
         }
 
-        window.open(
+
+        const youtubeUrl =
             "https://www.youtube.com/watch?v=" +
-            encodeURIComponent(videoId),
+            encodeURIComponent(videoId);
+
+
+        window.open(
+            youtubeUrl,
             "_blank",
             "noopener,noreferrer"
         );
@@ -1558,11 +2359,18 @@ shareBtn.addEventListener(
     "click",
     async function(){
 
-        const url = urlInput.value.trim();
+        const url =
+            urlInput.value.trim();
+
 
         if(!url){
-            showStatus("There is no URL to share.");
+
+            showStatus(
+                "There is no URL to share."
+            );
+
             return;
+
         }
 
 
@@ -1573,15 +2381,29 @@ shareBtn.addEventListener(
             try{
 
                 await navigator.share({
-                    title:"VidFetch Tools",
-                    text:"YouTube video",
-                    url:url
+
+                    title:
+                        "VidFetch Tools",
+
+                    text:
+                        "YouTube video",
+
+                    url:
+                        url
+
                 });
 
             }catch(error){
 
-                if(error.name !== "AbortError"){
-                    showStatus("Sharing was not completed.");
+                if(
+                    error.name !==
+                    "AbortError"
+                ){
+
+                    showStatus(
+                        "Sharing was not completed."
+                    );
+
                 }
 
             }
@@ -1590,11 +2412,25 @@ shareBtn.addEventListener(
 
             try{
 
-                await navigator.clipboard.writeText(url);
+                if(
+                    navigator.clipboard &&
+                    window.isSecureContext
+                ){
 
-                showStatus(
-                    "Sharing is not supported here. URL copied instead."
-                );
+                    await navigator.clipboard
+                        .writeText(url);
+
+                    showStatus(
+                        "Sharing is not supported here. URL copied instead."
+                    );
+
+                }else{
+
+                    showStatus(
+                        "Sharing is not supported in this browser."
+                    );
+
+                }
 
             }catch(error){
 
@@ -1614,20 +2450,23 @@ shareBtn.addEventListener(
    BACK TO TOP
 ========================= */
 
-const topBtn =
-    document.getElementById("topBtn");
-
 window.addEventListener(
     "scroll",
     function(){
 
-        if(window.scrollY > 400){
+        if(
+            window.scrollY > 400
+        ){
 
-            topBtn.classList.add("show");
+            topBtn.classList.add(
+                "show"
+            );
 
         }else{
 
-            topBtn.classList.remove("show");
+            topBtn.classList.remove(
+                "show"
+            );
 
         }
 
@@ -1640,8 +2479,11 @@ topBtn.addEventListener(
     function(){
 
         window.scrollTo({
+
             top:0,
+
             behavior:"smooth"
+
         });
 
     }
@@ -1652,7 +2494,9 @@ topBtn.addEventListener(
    YEAR
 ========================= */
 
-document.getElementById("year").textContent =
+document.getElementById(
+    "year"
+).textContent =
     new Date().getFullYear();
 
 
@@ -1664,7 +2508,38 @@ urlInput.addEventListener(
     "input",
     function(){
 
-        statusBox.classList.remove("show");
+        statusBox.classList.remove(
+            "show"
+        );
+
+    }
+);
+
+
+/* =========================
+   CLOSE MOBILE MENU
+   WHEN CLICKING OUTSIDE
+========================= */
+
+document.addEventListener(
+    "click",
+    function(event){
+
+        if(
+            !navLinks.contains(event.target) &&
+            !menuBtn.contains(event.target)
+        ){
+
+            navLinks.classList.remove(
+                "open"
+            );
+
+            menuBtn.setAttribute(
+                "aria-label",
+                "Open menu"
+            );
+
+        }
 
     }
 );
