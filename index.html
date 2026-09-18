@@ -4,2129 +4,498 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="description"
-      content="VidFetch Tools - Simple YouTube video information and authorized download tools.">
-
-<meta name="keywords"
-      content="YouTube video tools, YouTube thumbnail downloader, video downloader">
-
-<meta name="author"
-      content="Amar Kumar Yadav">
-
-<meta name="robots"
-      content="index, follow">
-
-<title>VidFetch Tools - YouTube Video Tools</title>
+<title>VidFetch - Video Downloader</title>
 
 <style>
 *{
   box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html{
-  scroll-behavior:smooth;
 }
 
 body{
+  margin:0;
   font-family:Arial,Helvetica,sans-serif;
-  background:#f7f9fc;
-  color:#1f2937;
-  line-height:1.6;
+  background:#f5f7fb;
+  color:#111827;
 }
 
-a{
-  text-decoration:none;
-  color:inherit;
-}
-
-button,
-input{
-  font-family:inherit;
-}
-
-.container{
-  width:min(1150px,92%);
-  margin:auto;
-}
-
-/* ================= NAVBAR ================= */
-
-.navbar{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:#fff;
+header{
+  background:#ffffff;
   border-bottom:1px solid #e5e7eb;
-  box-shadow:0 2px 10px rgba(0,0,0,.05);
-}
-
-.nav-inner{
-  min-height:70px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
+  padding:18px 20px;
 }
 
 .logo{
-  font-size:25px;
-  font-weight:800;
-  color:#2563eb;
-}
-
-.logo span{
-  color:#111827;
-}
-
-.nav-links{
-  display:flex;
-  align-items:center;
-  gap:25px;
-}
-
-.nav-links a{
-  font-weight:600;
-  color:#374151;
-  transition:.2s;
-}
-
-.nav-links a:hover{
-  color:#2563eb;
-}
-
-.menu-btn{
-  display:none;
-  border:0;
-  background:#eff6ff;
-  color:#2563eb;
-  font-size:23px;
-  width:42px;
-  height:42px;
-  border-radius:10px;
-  cursor:pointer;
-}
-
-/* ================= HERO ================= */
-
-.hero{
-  background:linear-gradient(135deg,#fff,#eff6ff);
-  padding:80px 20px 70px;
-  text-align:center;
-}
-
-.hero h1{
-  font-size:clamp(34px,6vw,58px);
-  line-height:1.1;
-  margin-bottom:18px;
-  color:#111827;
-}
-
-.hero h1 span{
-  color:#2563eb;
-}
-
-.hero p{
-  max-width:720px;
-  margin:0 auto 30px;
-  color:#6b7280;
-  font-size:18px;
-}
-
-.hero-btn{
-  display:inline-block;
-  background:#2563eb;
-  color:#fff;
-  padding:14px 28px;
-  border-radius:10px;
+  max-width:900px;
+  margin:auto;
+  font-size:24px;
   font-weight:700;
-  transition:.2s;
+  color:#2563eb;
 }
 
-.hero-btn:hover{
-  background:#1d4ed8;
-  transform:translateY(-2px);
+main{
+  max-width:760px;
+  margin:70px auto;
+  padding:20px;
 }
 
-/* ================= TOOL ================= */
-
-.tool-section{
-  padding:65px 0;
+.card{
+  background:#ffffff;
+  border-radius:16px;
+  padding:30px;
+  box-shadow:0 8px 30px rgba(0,0,0,.08);
 }
 
-.tool-card{
-  background:#fff;
-  border-radius:20px;
-  padding:35px;
-  box-shadow:0 10px 35px rgba(0,0,0,.08);
-  border:1px solid #e5e7eb;
-}
-
-.tool-card h2{
+h1{
+  margin:0 0 10px;
   text-align:center;
-  font-size:30px;
-  margin-bottom:8px;
-  color:#111827;
+  font-size:32px;
 }
 
-.tool-description{
+.subtitle{
   text-align:center;
   color:#6b7280;
-  margin-bottom:25px;
+  margin-bottom:30px;
 }
 
-.url-row{
+.input-row{
   display:flex;
   gap:10px;
 }
 
-.url-input{
+#videoUrl{
   flex:1;
   min-width:0;
-  border:2px solid #e5e7eb;
+  height:50px;
+  padding:0 15px;
+  border:1px solid #d1d5db;
   border-radius:10px;
-  padding:15px;
   font-size:16px;
   outline:none;
-  transition:.2s;
 }
 
-.url-input:focus{
+#videoUrl:focus{
   border-color:#2563eb;
 }
 
-.paste-btn{
-  border:1px solid #d1d5db;
-  background:#f9fafb;
-  color:#374151;
-  padding:0 18px;
+#getVideoBtn{
+  height:50px;
+  padding:0 22px;
+  border:0;
   border-radius:10px;
+  background:#2563eb;
+  color:white;
+  font-size:16px;
   font-weight:600;
   cursor:pointer;
 }
 
-.paste-btn:hover{
-  background:#eff6ff;
-  border-color:#bfdbfe;
-}
-
-.action-main{
-  border:0;
-  background:#2563eb;
-  color:#fff;
-  padding:0 24px;
-  border-radius:10px;
-  font-weight:700;
-  cursor:pointer;
-  font-size:16px;
-  transition:.2s;
-}
-
-.action-main:hover{
+#getVideoBtn:hover{
   background:#1d4ed8;
 }
 
-.action-main:disabled{
-  opacity:.65;
-  cursor:not-allowed;
-}
-
-.help-text{
-  margin-top:12px;
-  font-size:14px;
+#status{
+  margin-top:18px;
+  text-align:center;
   color:#6b7280;
 }
 
-.status{
-  margin-top:18px;
-  padding:12px 15px;
-  border-radius:10px;
-  display:none;
-  font-size:14px;
-}
-
-.status.show{
-  display:block;
-}
-
-.status.success{
-  background:#ecfdf5;
-  color:#047857;
-  border:1px solid #a7f3d0;
-}
-
-.status.warning{
-  background:#fffbeb;
-  color:#b45309;
-  border:1px solid #fde68a;
-}
-
-.status.error{
-  background:#fef2f2;
-  color:#b91c1c;
-  border:1px solid #fecaca;
-}
-
-/* ================= RESULT ================= */
-
-.result{
+#result{
   display:none;
   margin-top:30px;
-  border-top:1px solid #e5e7eb;
-  padding-top:30px;
 }
 
-.result.show{
-  display:block;
-}
-
-.result-grid{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-  gap:30px;
-  align-items:center;
-}
-
-.thumbnail-wrap{
-  background:#f3f4f6;
-  border-radius:15px;
-  overflow:hidden;
-  aspect-ratio:16/9;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.thumbnail-wrap img{
+.thumbnail{
   width:100%;
-  height:100%;
+  max-height:400px;
   object-fit:cover;
+  border-radius:12px;
   display:block;
 }
 
-.video-info h3{
-  font-size:25px;
-  line-height:1.3;
-  margin-bottom:12px;
-  color:#111827;
-  word-break:break-word;
+#videoTitle{
+  font-size:20px;
+  font-weight:700;
+  margin:18px 0;
+  line-height:1.4;
 }
 
-.video-id{
-  display:inline-block;
-  background:#eff6ff;
-  color:#2563eb;
-  padding:6px 10px;
-  border-radius:7px;
-  font-size:13px;
-  margin-bottom:20px;
+.quality-title{
+  font-size:17px;
+  font-weight:700;
+  margin:20px 0 12px;
 }
 
-.action-grid{
+#qualities{
   display:grid;
-  grid-template-columns:1fr 1fr;
   gap:10px;
 }
 
-.action-grid button{
+.quality-btn{
+  width:100%;
   min-height:48px;
-  border-radius:9px;
-  cursor:pointer;
-  font-weight:700;
-  font-size:14px;
-  border:0;
-  transition:.2s;
-}
-
-.action-grid button:hover{
-  transform:translateY(-1px);
-}
-
-.green-btn{
-  background:#16a34a;
-  color:#fff;
-}
-
-.green-btn:hover{
-  background:#15803d;
-}
-
-.primary-btn{
-  background:#2563eb;
-  color:#fff;
-}
-
-.primary-btn:hover{
-  background:#1d4ed8;
-}
-
-.secondary-btn{
-  background:#f3f4f6;
-  color:#374151;
-  border:1px solid #d1d5db !important;
-}
-
-.secondary-btn:hover{
-  background:#e5e7eb;
-}
-
-.notice{
-  margin-top:18px;
-  padding:13px;
-  background:#eff6ff;
-  color:#1e40af;
-  border:1px solid #bfdbfe;
-  border-radius:9px;
-  font-size:13px;
-}
-
-/* ================= QUALITY AREA ================= */
-
-.download-box{
-  margin-top:30px;
-  padding:25px;
-  background:#f8fbff;
-  border:1px solid #bfdbfe;
-  border-radius:16px;
-}
-
-.download-box h3{
-  color:#1e3a8a;
-  font-size:21px;
-  margin-bottom:7px;
-}
-
-.download-description{
-  color:#6b7280;
-  font-size:14px;
-  margin-bottom:18px;
-}
-
-.quality-list{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
-}
-
-.quality-card{
+  border:1px solid #d1d5db;
+  border-radius:10px;
   background:#fff;
-  border:1px solid #dbeafe;
-  border-radius:12px;
-  padding:16px;
-  text-align:center;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 16px;
+  font-size:15px;
+}
+
+.quality-btn:hover{
+  border-color:#2563eb;
+  background:#eff6ff;
 }
 
 .quality-name{
-  font-size:20px;
-  font-weight:800;
-  color:#1e3a8a;
-  margin-bottom:5px;
-}
-
-.quality-type{
-  font-size:12px;
-  color:#64748b;
-  margin-bottom:12px;
-}
-
-.quality-download{
-  width:100%;
-  border:0;
-  background:#2563eb;
-  color:#fff;
-  border-radius:8px;
-  padding:11px 8px;
   font-weight:700;
-  cursor:pointer;
 }
 
-.quality-download:hover{
-  background:#1d4ed8;
+.download-text{
+  color:#2563eb;
+  font-weight:600;
 }
 
-.quality-download:disabled{
-  opacity:.6;
-  cursor:not-allowed;
+.error{
+  color:#dc2626 !important;
 }
 
-.no-download{
-  padding:15px;
-  background:#fff;
-  border:1px dashed #93c5fd;
-  border-radius:10px;
-  color:#475569;
-  font-size:14px;
+.success{
+  color:#16a34a !important;
 }
 
-/* ================= FEATURES ================= */
+@media(max-width:650px){
 
-.section{
-  padding:65px 0;
-}
-
-.section-title{
-  text-align:center;
-  margin-bottom:35px;
-}
-
-.section-title h2{
-  font-size:32px;
-  color:#111827;
-  margin-bottom:8px;
-}
-
-.section-title p{
-  color:#6b7280;
-}
-
-.feature-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-
-.feature-card{
-  background:#fff;
-  padding:28px;
-  border-radius:16px;
-  border:1px solid #e5e7eb;
-  text-align:center;
-}
-
-.feature-icon{
-  font-size:36px;
-  margin-bottom:12px;
-}
-
-.feature-card h3{
-  margin-bottom:8px;
-  color:#111827;
-}
-
-.feature-card p{
-  color:#6b7280;
-  font-size:15px;
-}
-
-/* ================= HOW ================= */
-
-.steps{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-
-.step{
-  background:#fff;
-  padding:28px;
-  border-radius:16px;
-  border:1px solid #e5e7eb;
-  text-align:center;
-}
-
-.step-number{
-  width:45px;
-  height:45px;
-  border-radius:50%;
-  background:#2563eb;
-  color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin:0 auto 15px;
-  font-weight:800;
-  font-size:18px;
-}
-
-.step h3{
-  margin-bottom:8px;
-}
-
-.step p{
-  color:#6b7280;
-}
-
-/* ================= ABOUT ================= */
-
-.about{
-  background:#fff;
-  border-top:1px solid #e5e7eb;
-  border-bottom:1px solid #e5e7eb;
-}
-
-.about-box{
-  max-width:800px;
-  margin:auto;
-  text-align:center;
-}
-
-.about-box p{
-  color:#6b7280;
-  margin-top:12px;
-}
-
-/* ================= FAQ ================= */
-
-.faq-list{
-  max-width:850px;
-  margin:auto;
-}
-
-.faq{
-  background:#fff;
-  border:1px solid #e5e7eb;
-  border-radius:12px;
-  padding:20px;
-  margin-bottom:12px;
-}
-
-.faq h3{
-  font-size:17px;
-  margin-bottom:7px;
-  color:#111827;
-}
-
-.faq p{
-  color:#6b7280;
-  font-size:15px;
-}
-
-/* ================= CONTACT ================= */
-
-.contact-box{
-  background:#fff;
-  max-width:800px;
-  margin:auto;
-  padding:35px;
-  border-radius:18px;
-  border:1px solid #e5e7eb;
-  text-align:center;
-}
-
-.contact-box p{
-  color:#6b7280;
-}
-
-/* ================= FOOTER ================= */
-
-footer{
-  background:#111827;
-  color:#d1d5db;
-  padding:40px 20px 25px;
-  margin-top:20px;
-}
-
-.footer-inner{
-  display:flex;
-  justify-content:space-between;
-  gap:30px;
-  flex-wrap:wrap;
-}
-
-.footer-brand{
-  max-width:400px;
-}
-
-.footer-brand h3{
-  color:#fff;
-  margin-bottom:8px;
-}
-
-.footer-brand p{
-  font-size:14px;
-  color:#9ca3af;
-}
-
-.footer-links{
-  display:flex;
-  gap:20px;
-  flex-wrap:wrap;
-}
-
-.footer-links a:hover{
-  color:#fff;
-}
-
-.copyright{
-  text-align:center;
-  border-top:1px solid #374151;
-  margin-top:25px;
-  padding-top:20px;
-  color:#9ca3af;
-  font-size:14px;
-}
-
-/* ================= BACK TOP ================= */
-
-.back-top{
-  position:fixed;
-  right:20px;
-  bottom:20px;
-  width:45px;
-  height:45px;
-  border:0;
-  border-radius:50%;
-  background:#2563eb;
-  color:#fff;
-  font-size:20px;
-  cursor:pointer;
-  display:none;
-  z-index:900;
-  box-shadow:0 5px 20px rgba(0,0,0,.2);
-}
-
-.back-top.show{
-  display:block;
-}
-
-/* ================= MOBILE ================= */
-
-@media(max-width:900px){
-
-  .quality-list{
-    grid-template-columns:1fr 1fr;
+  main{
+    margin:35px auto;
+    padding:14px;
   }
 
-}
-
-@media(max-width:800px){
-
-  .menu-btn{
-    display:block;
-  }
-
-  .nav-links{
-    display:none;
-    position:absolute;
-    left:0;
-    right:0;
-    top:70px;
-    background:#fff;
+  .card{
     padding:20px;
-    border-bottom:1px solid #e5e7eb;
-    flex-direction:column;
-    align-items:flex-start;
   }
 
-  .nav-links.open{
-    display:flex;
+  h1{
+    font-size:26px;
   }
 
-  .url-row{
+  .input-row{
     flex-direction:column;
   }
 
-  .url-input{
+  #getVideoBtn{
     width:100%;
   }
-
-  .paste-btn,
-  .action-main{
-    height:50px;
-    width:100%;
-  }
-
-  .result-grid{
-    grid-template-columns:1fr;
-  }
-
-  .feature-grid,
-  .steps{
-    grid-template-columns:1fr;
-  }
-
-}
-
-@media(max-width:520px){
-
-  .hero{
-    padding:55px 15px;
-  }
-
-  .hero p{
-    font-size:16px;
-  }
-
-  .tool-card{
-    padding:22px 16px;
-  }
-
-  .tool-card h2{
-    font-size:25px;
-  }
-
-  .action-grid{
-    grid-template-columns:1fr;
-  }
-
-  .quality-list{
-    grid-template-columns:1fr;
-  }
-
-  .download-box{
-    padding:18px;
-  }
-
-  .section{
-    padding:50px 0;
-  }
-
-  .section-title h2{
-    font-size:27px;
-  }
-
-  .footer-inner{
-    flex-direction:column;
-  }
-
 }
 </style>
 </head>
 
 <body>
 
-<header class="navbar">
-
-  <div class="container nav-inner">
-
-    <a href="#home" class="logo">
-      VidFetch <span>Tools</span>
-    </a>
-
-    <button
-      class="menu-btn"
-      id="menuBtn"
-      aria-label="Open menu">
-      ☰
-    </button>
-
-    <nav class="nav-links" id="navLinks">
-      <a href="#home">Home</a>
-      <a href="#tools">YouTube Tools</a>
-      <a href="#features">Features</a>
-      <a href="#how">How It Works</a>
-      <a href="#about">About</a>
-      <a href="#faq">FAQ</a>
-    </nav>
-
-  </div>
-
+<header>
+  <div class="logo">VidFetch</div>
 </header>
 
-<main id="home">
+<main>
 
-<section class="hero">
+  <div class="card">
 
-  <div class="container">
+    <h1>Video Downloader</h1>
 
-    <h1>
-      Simple <span>YouTube</span><br>
-      Video Tools
-    </h1>
+    <div class="subtitle">
+      Download authorized video files
+    </div>
 
-    <p>
-      Paste a YouTube video link, get video information,
-      view the thumbnail and access available authorized
-      download options.
-    </p>
+    <div class="input-row">
 
-    <a href="#tools" class="hero-btn">
-      Get Started
-    </a>
+      <input
+        id="videoUrl"
+        type="url"
+        placeholder="Paste video URL"
+        autocomplete="off"
+      >
 
-  </div>
+      <button id="getVideoBtn">
+        Get Video
+      </button>
 
-</section>
+    </div>
 
-<section class="tool-section" id="tools">
+    <div id="status"></div>
 
-  <div class="container">
+    <div id="result">
 
-    <div class="tool-card">
+      <img
+        id="videoThumbnail"
+        class="thumbnail"
+        alt="Video thumbnail"
+      >
 
-      <h2>YouTube Video Downloader</h2>
+      <div id="videoTitle"></div>
 
-      <p class="tool-description">
-        Paste a YouTube video link below and click Get Video.
-      </p>
-
-      <div class="url-row">
-
-        <input
-          type="text"
-          id="urlInput"
-          class="url-input"
-          placeholder="Paste YouTube video URL here..."
-          autocomplete="off">
-
-        <button
-          type="button"
-          id="pasteBtn"
-          class="paste-btn">
-          📋 Paste
-        </button>
-
-        <button
-          type="button"
-          id="analyzeBtn"
-          class="action-main">
-          🎬 Get Video
-        </button>
-
+      <div class="quality-title">
+        Available Quality
       </div>
 
-      <div class="help-text">
-        Supported: YouTube watch, youtu.be, Shorts, Embed and Live URLs.
-      </div>
-
-      <div class="status" id="status"></div>
-
-      <div class="result" id="result">
-
-        <div class="result-grid">
-
-          <div class="thumbnail-wrap">
-
-            <img
-              id="thumbnail"
-              src=""
-              alt="YouTube video thumbnail">
-
-          </div>
-
-          <div class="video-info">
-
-            <h3 id="videoTitle">
-              YouTube Video
-            </h3>
-
-            <div
-              class="video-id"
-              id="videoId">
-              Video ID
-            </div>
-
-            <div class="action-grid">
-
-              <button
-                class="green-btn"
-                id="thumbnailBtn">
-                🖼️ Download Thumbnail
-              </button>
-
-              <button
-                class="primary-btn"
-                id="watchBtn">
-                ▶ Watch Video
-              </button>
-
-              <button
-                class="secondary-btn"
-                id="copyBtn">
-                📋 Copy URL
-              </button>
-
-              <button
-                class="secondary-btn"
-                id="shareBtn">
-                ↗ Share
-              </button>
-
-            </div>
-
-            <div class="notice">
-              ⚠️ Download or use content only when you have
-              permission or the platform/provider allows it.
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="download-box">
-
-          <h3>
-            ⬇️ Available Download Qualities
-          </h3>
-
-          <p class="download-description">
-            Available qualities will appear here when the
-            authorized media provider supplies downloadable files.
-          </p>
-
-          <div
-            class="quality-list"
-            id="qualityList">
-
-            <div class="no-download">
-              Get the video first. Available download options
-              will be shown here.
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
+      <div id="qualities"></div>
 
     </div>
 
   </div>
-
-</section>
-
-<section class="section" id="features">
-
-  <div class="container">
-
-    <div class="section-title">
-
-      <h2>Features</h2>
-
-      <p>
-        Simple tools designed for quick YouTube video access.
-      </p>
-
-    </div>
-
-    <div class="feature-grid">
-
-      <div class="feature-card">
-
-        <div class="feature-icon">🎬</div>
-
-        <h3>Get Video</h3>
-
-        <p>
-          Paste a YouTube link and retrieve basic video information.
-        </p>
-
-      </div>
-
-      <div class="feature-card">
-
-        <div class="feature-icon">🖼️</div>
-
-        <h3>Thumbnail</h3>
-
-        <p>
-          View and download the available YouTube thumbnail.
-        </p>
-
-      </div>
-
-      <div class="feature-card">
-
-        <div class="feature-icon">⬇️</div>
-
-        <h3>Quality Options</h3>
-
-        <p>
-          Display available authorized video quality options.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<section class="section" id="how">
-
-  <div class="container">
-
-    <div class="section-title">
-
-      <h2>How It Works</h2>
-
-      <p>
-        Get video information in three simple steps.
-      </p>
-
-    </div>
-
-    <div class="steps">
-
-      <div class="step">
-
-        <div class="step-number">1</div>
-
-        <h3>Paste Link</h3>
-
-        <p>
-          Copy a YouTube video link and paste it into the box.
-        </p>
-
-      </div>
-
-      <div class="step">
-
-        <div class="step-number">2</div>
-
-        <h3>Get Video</h3>
-
-        <p>
-          Click Get Video to load the video information.
-        </p>
-
-      </div>
-
-      <div class="step">
-
-        <div class="step-number">3</div>
-
-        <h3>Download</h3>
-
-        <p>
-          Select an available authorized quality when provided.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<section class="section about" id="about">
-
-  <div class="container">
-
-    <div class="section-title">
-
-      <h2>About VidFetch Tools</h2>
-
-    </div>
-
-    <div class="about-box">
-
-      <p>
-        VidFetch Tools is a simple web utility project
-        created to make common YouTube video information
-        tasks easier.
-      </p>
-
-      <p>
-        The website focuses on a clean, fast and
-        mobile-friendly experience.
-      </p>
-
-      <p>
-        <strong>Owner:</strong> Amar Kumar Yadav
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-<section class="section" id="faq">
-
-  <div class="container">
-
-    <div class="section-title">
-
-      <h2>Frequently Asked Questions</h2>
-
-    </div>
-
-    <div class="faq-list">
-
-      <div class="faq">
-
-        <h3>
-          Which YouTube links are supported?
-        </h3>
-
-        <p>
-          Standard YouTube watch links, youtu.be links,
-          Shorts, Embed and Live links are supported.
-        </p>
-
-      </div>
-
-      <div class="faq">
-
-        <h3>
-          Can I download the thumbnail?
-        </h3>
-
-        <p>
-          Yes. After getting the video, click Download Thumbnail.
-        </p>
-
-      </div>
-
-      <div class="faq">
-
-        <h3>
-          Can I watch the video?
-        </h3>
-
-        <p>
-          Yes. Click Watch Video to open the video on YouTube.
-        </p>
-
-      </div>
-
-      <div class="faq">
-
-        <h3>
-          Is VidFetch Tools free?
-        </h3>
-
-        <p>
-          The website is designed as a free web utility.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<section class="section" id="contact">
-
-  <div class="container">
-
-    <div class="contact-box">
-
-      <h2>Contact</h2>
-
-      <p>
-        For website feedback or suggestions,
-        please use the contact method provided
-        by the website owner.
-      </p>
-
-      <p style="margin-top:10px;">
-        VidFetch Tools — Amar Kumar Yadav
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-<section class="section" id="privacy">
-
-  <div class="container">
-
-    <div class="section-title">
-
-      <h2>Privacy</h2>
-
-    </div>
-
-    <div class="about-box">
-
-      <p>
-        VidFetch Tools is designed to minimize unnecessary
-        collection of personal information. Users should
-        avoid entering private or sensitive information
-        into the website.
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-<section class="section" id="terms">
-
-  <div class="container">
-
-    <div class="section-title">
-
-      <h2>Terms of Use</h2>
-
-    </div>
-
-    <div class="about-box">
-
-      <p>
-        Users are responsible for ensuring that their use
-        of downloaded or accessed content complies with
-        applicable laws, copyright rules and the terms
-        of the relevant platform.
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
 
 </main>
 
-<button
-  class="back-top"
-  id="backTop"
-  aria-label="Back to top">
-  ↑
-</button>
-
-<footer>
-
-  <div class="container">
-
-    <div class="footer-inner">
-
-      <div class="footer-brand">
-
-        <h3>VidFetch Tools</h3>
-
-        <p>
-          Simple YouTube video tools for a clean
-          and easy web experience.
-        </p>
-
-      </div>
-
-      <div class="footer-links">
-
-        <a href="#home">Home</a>
-        <a href="#tools">Tools</a>
-        <a href="#about">About</a>
-        <a href="#faq">FAQ</a>
-        <a href="#privacy">Privacy</a>
-        <a href="#terms">Terms</a>
-
-      </div>
-
-    </div>
-
-    <div class="copyright">
-
-      © <span id="year"></span>
-      VidFetch Tools. All rights reserved.
-      Created by Amar Kumar Yadav.
-
-    </div>
-
-  </div>
-
-</footer>
-
 <script>
 
-/* ================= ELEMENTS ================= */
+const API_URL =
+  "https://vidfetch-api.amary1699.workers.dev";
 
-const urlInput =
-  document.getElementById("urlInput");
+const videoUrlInput =
+  document.getElementById("videoUrl");
 
-const pasteBtn =
-  document.getElementById("pasteBtn");
-
-const analyzeBtn =
-  document.getElementById("analyzeBtn");
-
-const result =
-  document.getElementById("result");
-
-const thumbnail =
-  document.getElementById("thumbnail");
-
-const videoTitle =
-  document.getElementById("videoTitle");
-
-const videoIdElement =
-  document.getElementById("videoId");
+const getVideoBtn =
+  document.getElementById("getVideoBtn");
 
 const statusBox =
   document.getElementById("status");
 
-const thumbnailBtn =
-  document.getElementById("thumbnailBtn");
+const resultBox =
+  document.getElementById("result");
 
-const watchBtn =
-  document.getElementById("watchBtn");
+const thumbnail =
+  document.getElementById("videoThumbnail");
 
-const copyBtn =
-  document.getElementById("copyBtn");
+const videoTitle =
+  document.getElementById("videoTitle");
 
-const shareBtn =
-  document.getElementById("shareBtn");
-
-const qualityList =
-  document.getElementById("qualityList");
-
-const menuBtn =
-  document.getElementById("menuBtn");
-
-const navLinks =
-  document.getElementById("navLinks");
-
-const backTop =
-  document.getElementById("backTop");
+const qualitiesBox =
+  document.getElementById("qualities");
 
 
-/* ================= STATE ================= */
-
-let currentVideoId = null;
-
-let currentVideoUrl = null;
-
-
-/* ================= STATUS ================= */
-
-function showStatus(message,type){
+function setStatus(message, type = ""){
 
   statusBox.textContent = message;
 
-  statusBox.className =
-    "status show " + type;
+  statusBox.className = type;
 
 }
 
 
-function clearStatus(){
+function resetResult(){
 
-  statusBox.className = "status";
+  resultBox.style.display = "none";
 
-  statusBox.textContent = "";
+  thumbnail.removeAttribute("src");
+
+  videoTitle.textContent = "";
+
+  qualitiesBox.innerHTML = "";
 
 }
 
 
-/* ================= YOUTUBE ID ================= */
+function createQualityButton(format){
 
-function getYouTubeVideoId(value){
+  const button =
+    document.createElement("button");
 
-  try{
+  button.className = "quality-btn";
 
-    let input = value.trim();
+  const quality =
+    document.createElement("span");
 
-    if(!input){
-      return null;
+  quality.className = "quality-name";
+
+  quality.textContent =
+    format.quality || "Video";
+
+  const download =
+    document.createElement("span");
+
+  download.className = "download-text";
+
+  download.textContent = "Download";
+
+  button.appendChild(quality);
+
+  button.appendChild(download);
+
+  button.addEventListener("click", () => {
+
+    if(!format.url){
+
+      setStatus(
+        "Download URL is not available.",
+        "error"
+      );
+
+      return;
     }
 
-    if(
-      /^[A-Za-z0-9_-]{11}$/.test(input)
-    ){
+    const a =
+      document.createElement("a");
 
-      return input;
+    a.href = format.url;
 
-    }
+    a.download =
+      format.filename ||
+      "video";
 
-    if(
-      !/^https?:\/\//i.test(input)
-    ){
+    a.target = "_blank";
 
-      input =
-        "https://" + input;
+    a.rel = "noopener";
 
-    }
+    document.body.appendChild(a);
 
-    const parsed =
-      new URL(input);
+    a.click();
 
-    const host =
-      parsed.hostname
-      .toLowerCase()
-      .replace(/^www\./,"");
+    a.remove();
 
-    if(
-      host === "youtube.com" ||
-      host === "m.youtube.com"
-    ){
+  });
 
-      const videoParam =
-        parsed.searchParams.get("v");
+  qualitiesBox.appendChild(button);
 
-      if(
-        videoParam &&
-        /^[A-Za-z0-9_-]{11}$/.test(videoParam)
-      ){
+}
 
-        return videoParam;
 
-      }
+async function getVideo(){
 
-      const parts =
-        parsed.pathname
-        .split("/")
-        .filter(Boolean);
+  const url =
+    videoUrlInput.value.trim();
 
-      if(
-        parts.length >= 2 &&
-        (
-          parts[0] === "shorts" ||
-          parts[0] === "embed" ||
-          parts[0] === "live"
-        )
-      ){
+  resetResult();
 
-        const id =
-          parts[1];
+  if(!url){
 
-        if(
-          /^[A-Za-z0-9_-]{11}$/.test(id)
-        ){
+    setStatus(
+      "Please enter a video URL.",
+      "error"
+    );
 
-          return id;
-
-        }
-
-      }
-
-    }
-
-    if(host === "youtu.be"){
-
-      const parts =
-        parsed.pathname
-        .split("/")
-        .filter(Boolean);
-
-      if(parts.length){
-
-        const id =
-          parts[0];
-
-        if(
-          /^[A-Za-z0-9_-]{11}$/.test(id)
-        ){
-
-          return id;
-
-        }
-
-      }
-
-    }
-
-    return null;
-
-  }catch(error){
-
-    return null;
-
+    return;
   }
 
-}
+  getVideoBtn.disabled = true;
 
+  getVideoBtn.textContent =
+    "Loading...";
 
-/* ================= TITLE ================= */
-
-async function getVideoTitle(videoId){
+  setStatus("Getting video information...");
 
   try{
 
-    const oembedUrl =
-      "https://www.youtube.com/oembed" +
-      "?url=" +
-      encodeURIComponent(
-        "https://www.youtube.com/watch?v=" +
-        videoId
-      ) +
-      "&format=json";
-
     const response =
-      await fetch(oembedUrl);
-
-    if(!response.ok){
-
-      return "YouTube Video";
-
-    }
+      await fetch(
+        API_URL +
+        "/analyze?url=" +
+        encodeURIComponent(url)
+      );
 
     const data =
       await response.json();
 
-    return (
-      data.title ||
-      "YouTube Video"
+    if(!response.ok || !data.success){
+
+      throw new Error(
+        data.error ||
+        "Unable to get video information."
+      );
+
+    }
+
+    if(!data.title){
+
+      throw new Error(
+        "Video title was not returned."
+      );
+
+    }
+
+    videoTitle.textContent =
+      data.title;
+
+    if(data.thumbnail){
+
+      thumbnail.src =
+        data.thumbnail;
+
+      thumbnail.style.display =
+        "block";
+
+    }else{
+
+      thumbnail.style.display =
+        "none";
+
+    }
+
+    const formats =
+      Array.isArray(data.formats)
+        ? data.formats
+        : [];
+
+    if(formats.length === 0){
+
+      throw new Error(
+        "No authorized downloadable formats are available."
+      );
+
+    }
+
+    formats.forEach(
+      createQualityButton
+    );
+
+    resultBox.style.display =
+      "block";
+
+    setStatus(
+      "Video information loaded.",
+      "success"
     );
 
   }catch(error){
 
-    return "YouTube Video";
+    console.error(error);
 
-  }
-
-}
-
-
-/* ================= RESET QUALITY ================= */
-
-function resetQualityList(){
-
-  qualityList.innerHTML = "";
-
-  const message =
-    document.createElement("div");
-
-  message.className =
-    "no-download";
-
-  message.textContent =
-    "Available download options will appear here when an authorized media provider supplies downloadable files.";
-
-  qualityList.appendChild(message);
-
-}
-
-
-/* ================= GET VIDEO ================= */
-
-async function analyzeVideo(){
-
-  const raw =
-    urlInput.value.trim();
-
-  if(!raw){
-
-    result.classList.remove("show");
-
-    showStatus(
-      "Please paste a YouTube video URL.",
-      "warning"
-    );
-
-    urlInput.focus();
-
-    return;
-
-  }
-
-  const id =
-    getYouTubeVideoId(raw);
-
-  if(!id){
-
-    result.classList.remove("show");
-
-    showStatus(
-      "Invalid or unsupported YouTube URL.",
+    setStatus(
+      error.message ||
+      "Something went wrong.",
       "error"
     );
 
-    urlInput.focus();
+  }finally{
 
-    return;
+    getVideoBtn.disabled = false;
 
-  }
-
-  currentVideoId =
-    id;
-
-  currentVideoUrl =
-    "https://www.youtube.com/watch?v=" +
-    id;
-
-  analyzeBtn.disabled =
-    true;
-
-  analyzeBtn.textContent =
-    "⏳ Loading...";
-
-  resetQualityList();
-
-  const maxThumbnail =
-    "https://img.youtube.com/vi/" +
-    encodeURIComponent(id) +
-    "/maxresdefault.jpg";
-
-  const highThumbnail =
-    "https://img.youtube.com/vi/" +
-    encodeURIComponent(id) +
-    "/hqdefault.jpg";
-
-  thumbnail.onerror =
-    function(){
-
-      thumbnail.onerror = null;
-
-      thumbnail.src =
-        highThumbnail;
-
-    };
-
-  thumbnail.src =
-    maxThumbnail;
-
-  videoTitle.textContent =
-    "Loading video title...";
-
-  videoIdElement.textContent =
-    "Video ID: " + id;
-
-  result.classList.add("show");
-
-  showStatus(
-    "YouTube video found. Loading information...",
-    "success"
-  );
-
-  const title =
-    await getVideoTitle(id);
-
-  if(currentVideoId !== id){
-
-    return;
+    getVideoBtn.textContent =
+      "Get Video";
 
   }
-
-  videoTitle.textContent =
-    title;
-
-  showStatus(
-    "Video loaded successfully.",
-    "success"
-  );
-
-  analyzeBtn.disabled =
-    false;
-
-  analyzeBtn.textContent =
-    "🎬 Get Video";
-
-  setTimeout(
-    function(){
-
-      result.scrollIntoView({
-        behavior:"smooth",
-        block:"start"
-      });
-
-    },
-    100
-  );
 
 }
 
 
-/* ================= GET VIDEO BUTTON ================= */
-
-analyzeBtn.addEventListener(
+getVideoBtn.addEventListener(
   "click",
-  analyzeVideo
+  getVideo
 );
 
 
-/* ================= ENTER ================= */
-
-urlInput.addEventListener(
+videoUrlInput.addEventListener(
   "keydown",
-  function(event){
+  event => {
 
     if(event.key === "Enter"){
 
-      event.preventDefault();
-
-      analyzeVideo();
+      getVideo();
 
     }
 
   }
 );
-
-
-/* ================= INPUT ================= */
-
-urlInput.addEventListener(
-  "input",
-  clearStatus
-);
-
-
-/* ================= PASTE ================= */
-
-pasteBtn.addEventListener(
-  "click",
-  async function(){
-
-    try{
-
-      if(
-        navigator.clipboard &&
-        window.isSecureContext
-      ){
-
-        const text =
-          await navigator.clipboard.readText();
-
-        if(!text.trim()){
-
-          showStatus(
-            "Clipboard is empty.",
-            "warning"
-          );
-
-          return;
-
-        }
-
-        urlInput.value =
-          text.trim();
-
-        analyzeVideo();
-
-      }else{
-
-        showStatus(
-          "Press Ctrl + V inside the URL box.",
-          "warning"
-        );
-
-        urlInput.focus();
-
-      }
-
-    }catch(error){
-
-      showStatus(
-        "Clipboard permission was blocked. Press Ctrl + V to paste.",
-        "warning"
-      );
-
-      urlInput.focus();
-
-    }
-
-  }
-);
-
-
-/* ================= THUMBNAIL ================= */
-
-thumbnailBtn.addEventListener(
-  "click",
-  async function(){
-
-    if(!currentVideoId){
-
-      showStatus(
-        "Please get a YouTube video first.",
-        "warning"
-      );
-
-      return;
-
-    }
-
-    const imageUrl =
-      "https://img.youtube.com/vi/" +
-      encodeURIComponent(currentVideoId) +
-      "/hqdefault.jpg";
-
-    thumbnailBtn.disabled =
-      true;
-
-    thumbnailBtn.textContent =
-      "⏳ Preparing...";
-
-    try{
-
-      const response =
-        await fetch(imageUrl);
-
-      if(!response.ok){
-
-        throw new Error(
-          "Thumbnail could not be downloaded."
-        );
-
-      }
-
-      const blob =
-        await response.blob();
-
-      const objectUrl =
-        URL.createObjectURL(blob);
-
-      const link =
-        document.createElement("a");
-
-      link.href =
-        objectUrl;
-
-      link.download =
-        "youtube-thumbnail-" +
-        currentVideoId +
-        ".jpg";
-
-      document.body.appendChild(link);
-
-      link.click();
-
-      link.remove();
-
-      setTimeout(
-        function(){
-
-          URL.revokeObjectURL(
-            objectUrl
-          );
-
-        },
-        1000
-      );
-
-      showStatus(
-        "Thumbnail download started.",
-        "success"
-      );
-
-    }catch(error){
-
-      window.open(
-        imageUrl,
-        "_blank",
-        "noopener,noreferrer"
-      );
-
-      showStatus(
-        "Thumbnail opened in a new tab. Use Save Image if automatic download is blocked.",
-        "warning"
-      );
-
-    }finally{
-
-      thumbnailBtn.disabled =
-        false;
-
-      thumbnailBtn.textContent =
-        "🖼️ Download Thumbnail";
-
-    }
-
-  }
-);
-
-
-/* ================= WATCH ================= */
-
-watchBtn.addEventListener(
-  "click",
-  function(){
-
-    if(!currentVideoId){
-
-      showStatus(
-        "Please get a YouTube video first.",
-        "warning"
-      );
-
-      return;
-
-    }
-
-    window.open(
-      currentVideoUrl,
-      "_blank",
-      "noopener,noreferrer"
-    );
-
-  }
-);
-
-
-/* ================= COPY ================= */
-
-copyBtn.addEventListener(
-  "click",
-  async function(){
-
-    if(!currentVideoId){
-
-      showStatus(
-        "Please get a YouTube video first.",
-        "warning"
-      );
-
-      return;
-
-    }
-
-    try{
-
-      await navigator.clipboard.writeText(
-        currentVideoUrl
-      );
-
-      showStatus(
-        "YouTube URL copied successfully.",
-        "success"
-      );
-
-    }catch(error){
-
-      showStatus(
-        "Could not copy automatically.",
-        "error"
-      );
-
-    }
-
-  }
-);
-
-
-/* ================= SHARE ================= */
-
-shareBtn.addEventListener(
-  "click",
-  async function(){
-
-    if(!currentVideoId){
-
-      showStatus(
-        "Please get a YouTube video first.",
-        "warning"
-      );
-
-      return;
-
-    }
-
-    const shareData = {
-
-      title:
-        videoTitle.textContent ||
-        "YouTube Video",
-
-      text:
-        "Check this YouTube video",
-
-      url:
-        currentVideoUrl
-
-    };
-
-    if(navigator.share){
-
-      try{
-
-        await navigator.share(
-          shareData
-        );
-
-        showStatus(
-          "Share menu opened.",
-          "success"
-        );
-
-      }catch(error){
-
-      }
-
-      return;
-
-    }
-
-    try{
-
-      await navigator.clipboard.writeText(
-        currentVideoUrl
-      );
-
-      showStatus(
-        "Video URL copied to clipboard.",
-        "success"
-      );
-
-    }catch(error){
-
-      showStatus(
-        "Sharing is not available in this browser.",
-        "warning"
-      );
-
-    }
-
-  }
-);
-
-
-/* ================= MOBILE MENU ================= */
-
-menuBtn.addEventListener(
-  "click",
-  function(){
-
-    navLinks.classList.toggle(
-      "open"
-    );
-
-  }
-);
-
-navLinks.querySelectorAll("a").forEach(
-  function(link){
-
-    link.addEventListener(
-      "click",
-      function(){
-
-        navLinks.classList.remove(
-          "open"
-        );
-
-      }
-    );
-
-  }
-);
-
-
-/* ================= BACK TOP ================= */
-
-window.addEventListener(
-  "scroll",
-  function(){
-
-    if(window.scrollY > 500){
-
-      backTop.classList.add(
-        "show"
-      );
-
-    }else{
-
-      backTop.classList.remove(
-        "show"
-      );
-
-    }
-
-  }
-);
-
-backTop.addEventListener(
-  "click",
-  function(){
-
-    window.scrollTo({
-      top:0,
-      behavior:"smooth"
-    });
-
-  }
-);
-
-
-/* ================= YEAR ================= */
-
-document.getElementById(
-  "year"
-).textContent =
-  new Date().getFullYear();
-
-
-/* ================= INITIAL ================= */
-
-resetQualityList();
 
 </script>
 
