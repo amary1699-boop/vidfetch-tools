@@ -19,42 +19,42 @@ body{
 }
 
 header{
-  background:#ffffff;
+  background:#fff;
   border-bottom:1px solid #e5e7eb;
   padding:18px 20px;
 }
 
 .logo{
-  max-width:900px;
+  max-width:850px;
   margin:auto;
-  font-size:24px;
+  font-size:25px;
   font-weight:700;
   color:#2563eb;
 }
 
 main{
   max-width:760px;
-  margin:70px auto;
+  margin:65px auto;
   padding:20px;
 }
 
 .card{
-  background:#ffffff;
+  background:#fff;
   border-radius:16px;
   padding:30px;
   box-shadow:0 8px 30px rgba(0,0,0,.08);
 }
 
 h1{
-  margin:0 0 10px;
   text-align:center;
+  margin:0 0 10px;
   font-size:32px;
 }
 
 .subtitle{
   text-align:center;
   color:#6b7280;
-  margin-bottom:30px;
+  margin-bottom:28px;
 }
 
 .input-row{
@@ -64,7 +64,6 @@ h1{
 
 #videoUrl{
   flex:1;
-  min-width:0;
   height:50px;
   padding:0 15px;
   border:1px solid #d1d5db;
@@ -83,20 +82,29 @@ h1{
   border:0;
   border-radius:10px;
   background:#2563eb;
-  color:white;
+  color:#fff;
   font-size:16px;
   font-weight:600;
   cursor:pointer;
 }
 
-#getVideoBtn:hover{
-  background:#1d4ed8;
+#getVideoBtn:disabled{
+  opacity:.6;
+  cursor:not-allowed;
 }
 
 #status{
-  margin-top:18px;
   text-align:center;
-  color:#6b7280;
+  margin-top:18px;
+  min-height:20px;
+}
+
+.error{
+  color:#dc2626;
+}
+
+.success{
+  color:#16a34a;
 }
 
 #result{
@@ -104,25 +112,25 @@ h1{
   margin-top:30px;
 }
 
-.thumbnail{
+#videoThumbnail{
   width:100%;
+  border-radius:12px;
+  display:none;
   max-height:400px;
   object-fit:cover;
-  border-radius:12px;
-  display:block;
 }
 
 #videoTitle{
   font-size:20px;
   font-weight:700;
-  margin:18px 0;
   line-height:1.4;
+  margin:18px 0;
 }
 
 .quality-title{
   font-size:17px;
   font-weight:700;
-  margin:20px 0 12px;
+  margin-bottom:12px;
 }
 
 #qualities{
@@ -132,15 +140,15 @@ h1{
 
 .quality-btn{
   width:100%;
-  min-height:48px;
+  min-height:52px;
+  padding:0 16px;
   border:1px solid #d1d5db;
   border-radius:10px;
   background:#fff;
-  cursor:pointer;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 16px;
+  cursor:pointer;
   font-size:15px;
 }
 
@@ -153,17 +161,9 @@ h1{
   font-weight:700;
 }
 
-.download-text{
+.download-label{
   color:#2563eb;
   font-weight:600;
-}
-
-.error{
-  color:#dc2626 !important;
-}
-
-.success{
-  color:#16a34a !important;
 }
 
 @media(max-width:650px){
@@ -178,7 +178,7 @@ h1{
   }
 
   h1{
-    font-size:26px;
+    font-size:27px;
   }
 
   .input-row{
@@ -229,7 +229,6 @@ h1{
 
       <img
         id="videoThumbnail"
-        class="thumbnail"
         alt="Video thumbnail"
       >
 
@@ -249,10 +248,10 @@ h1{
 
 <script>
 
-const API_URL =
+const API =
   "https://vidfetch-api.amary1699.workers.dev";
 
-const videoUrlInput =
+const videoUrl =
   document.getElementById("videoUrl");
 
 const getVideoBtn =
@@ -261,115 +260,127 @@ const getVideoBtn =
 const statusBox =
   document.getElementById("status");
 
-const resultBox =
+const result =
   document.getElementById("result");
 
 const thumbnail =
   document.getElementById("videoThumbnail");
 
-const videoTitle =
+const title =
   document.getElementById("videoTitle");
 
-const qualitiesBox =
+const qualities =
   document.getElementById("qualities");
 
 
-function setStatus(message, type = ""){
+function status(message,type=""){
 
-  statusBox.textContent = message;
+  statusBox.textContent =
+    message;
 
-  statusBox.className = type;
-
-}
-
-
-function resetResult(){
-
-  resultBox.style.display = "none";
-
-  thumbnail.removeAttribute("src");
-
-  videoTitle.textContent = "";
-
-  qualitiesBox.innerHTML = "";
+  statusBox.className =
+    type;
 
 }
 
 
-function createQualityButton(format){
+function clearResult(){
+
+  result.style.display =
+    "none";
+
+  thumbnail.style.display =
+    "none";
+
+  thumbnail.removeAttribute(
+    "src"
+  );
+
+  title.textContent =
+    "";
+
+  qualities.innerHTML =
+    "";
+
+}
+
+
+function addQuality(format){
 
   const button =
     document.createElement("button");
 
-  button.className = "quality-btn";
+  button.className =
+    "quality-btn";
 
-  const quality =
+  const name =
     document.createElement("span");
 
-  quality.className = "quality-name";
+  name.className =
+    "quality-name";
 
-  quality.textContent =
-    format.quality || "Video";
+  name.textContent =
+    format.quality;
 
   const download =
     document.createElement("span");
 
-  download.className = "download-text";
+  download.className =
+    "download-label";
 
-  download.textContent = "Download";
+  download.textContent =
+    "Download";
 
-  button.appendChild(quality);
+  button.appendChild(name);
 
   button.appendChild(download);
 
-  button.addEventListener("click", () => {
+  button.onclick =
+    function(){
 
-    if(!format.url){
+      if(!format.url){
 
-      setStatus(
-        "Download URL is not available.",
-        "error"
-      );
+        status(
+          "Download URL unavailable.",
+          "error"
+        );
 
-      return;
-    }
+        return;
+      }
 
-    const a =
-      document.createElement("a");
+      /*
+       * Use our Worker download endpoint.
+       */
 
-    a.href = format.url;
+      const downloadUrl =
+        API +
+        "/download?quality=" +
+        encodeURIComponent(
+          format.quality
+        );
 
-    a.download =
-      format.filename ||
-      "video";
+      window.location.href =
+        downloadUrl;
 
-    a.target = "_blank";
+    };
 
-    a.rel = "noopener";
-
-    document.body.appendChild(a);
-
-    a.click();
-
-    a.remove();
-
-  });
-
-  qualitiesBox.appendChild(button);
+  qualities.appendChild(
+    button
+  );
 
 }
 
 
-async function getVideo(){
+async function analyze(){
 
-  const url =
-    videoUrlInput.value.trim();
+  const input =
+    videoUrl.value.trim();
 
-  resetResult();
+  clearResult();
 
-  if(!url){
+  if(!input){
 
-    setStatus(
+    status(
       "Please enter a video URL.",
       "error"
     );
@@ -377,44 +388,43 @@ async function getVideo(){
     return;
   }
 
-  getVideoBtn.disabled = true;
+  getVideoBtn.disabled =
+    true;
 
   getVideoBtn.textContent =
     "Loading...";
 
-  setStatus("Getting video information...");
+  status(
+    "Getting video information..."
+  );
 
   try{
 
     const response =
       await fetch(
-        API_URL +
+        API +
         "/analyze?url=" +
-        encodeURIComponent(url)
+        encodeURIComponent(input)
       );
 
     const data =
       await response.json();
 
-    if(!response.ok || !data.success){
+    if(
+      !response.ok ||
+      !data.success
+    ){
 
       throw new Error(
         data.error ||
-        "Unable to get video information."
+        "Unable to get video."
       );
 
     }
 
-    if(!data.title){
-
-      throw new Error(
-        "Video title was not returned."
-      );
-
-    }
-
-    videoTitle.textContent =
-      data.title;
+    title.textContent =
+      data.title ||
+      "Video";
 
     if(data.thumbnail){
 
@@ -424,35 +434,30 @@ async function getVideo(){
       thumbnail.style.display =
         "block";
 
-    }else{
-
-      thumbnail.style.display =
-        "none";
-
     }
 
-    const formats =
-      Array.isArray(data.formats)
-        ? data.formats
-        : [];
-
-    if(formats.length === 0){
+    if(
+      !Array.isArray(
+        data.formats
+      ) ||
+      data.formats.length === 0
+    ){
 
       throw new Error(
-        "No authorized downloadable formats are available."
+        "No downloadable quality available."
       );
 
     }
 
-    formats.forEach(
-      createQualityButton
+    data.formats.forEach(
+      addQuality
     );
 
-    resultBox.style.display =
+    result.style.display =
       "block";
 
-    setStatus(
-      "Video information loaded.",
+    status(
+      "Video ready.",
       "success"
     );
 
@@ -460,7 +465,7 @@ async function getVideo(){
 
     console.error(error);
 
-    setStatus(
+    status(
       error.message ||
       "Something went wrong.",
       "error"
@@ -468,7 +473,8 @@ async function getVideo(){
 
   }finally{
 
-    getVideoBtn.disabled = false;
+    getVideoBtn.disabled =
+      false;
 
     getVideoBtn.textContent =
       "Get Video";
@@ -480,17 +486,17 @@ async function getVideo(){
 
 getVideoBtn.addEventListener(
   "click",
-  getVideo
+  analyze
 );
 
 
-videoUrlInput.addEventListener(
+videoUrl.addEventListener(
   "keydown",
-  event => {
+  function(event){
 
     if(event.key === "Enter"){
 
-      getVideo();
+      analyze();
 
     }
 
