@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <meta name="description"
-      content="VidFetch Tools - Simple YouTube video analyzer and thumbnail downloader.">
+      content="VidFetch Tools - Simple YouTube video information and authorized download tools.">
 
 <meta name="keywords"
-      content="YouTube thumbnail downloader, YouTube video analyzer, YouTube tools">
+      content="YouTube video tools, YouTube thumbnail downloader, video downloader">
 
 <meta name="author"
       content="Amar Kumar Yadav">
@@ -42,8 +42,7 @@ a{
 }
 
 button,
-input,
-select{
+input{
   font-family:inherit;
 }
 
@@ -58,7 +57,7 @@ select{
   position:sticky;
   top:0;
   z-index:1000;
-  background:#ffffff;
+  background:#fff;
   border-bottom:1px solid #e5e7eb;
   box-shadow:0 2px 10px rgba(0,0,0,.05);
 }
@@ -150,7 +149,7 @@ select{
   transform:translateY(-2px);
 }
 
-/* ================= TOOL SECTION ================= */
+/* ================= TOOL ================= */
 
 .tool-section{
   padding:65px 0;
@@ -197,22 +196,6 @@ select{
   border-color:#2563eb;
 }
 
-.action-main{
-  border:0;
-  background:#2563eb;
-  color:white;
-  padding:0 24px;
-  border-radius:10px;
-  font-weight:700;
-  cursor:pointer;
-  font-size:16px;
-  transition:.2s;
-}
-
-.action-main:hover{
-  background:#1d4ed8;
-}
-
 .paste-btn{
   border:1px solid #d1d5db;
   background:#f9fafb;
@@ -226,6 +209,27 @@ select{
 .paste-btn:hover{
   background:#eff6ff;
   border-color:#bfdbfe;
+}
+
+.action-main{
+  border:0;
+  background:#2563eb;
+  color:#fff;
+  padding:0 24px;
+  border-radius:10px;
+  font-weight:700;
+  cursor:pointer;
+  font-size:16px;
+  transition:.2s;
+}
+
+.action-main:hover{
+  background:#1d4ed8;
+}
+
+.action-main:disabled{
+  opacity:.65;
+  cursor:not-allowed;
 }
 
 .help-text{
@@ -367,12 +371,6 @@ select{
   background:#e5e7eb;
 }
 
-.action-grid button:disabled{
-  opacity:.6;
-  cursor:not-allowed;
-  transform:none;
-}
-
 .notice{
   margin-top:18px;
   padding:13px;
@@ -383,7 +381,7 @@ select{
   font-size:13px;
 }
 
-/* ================= VIDEO DOWNLOAD ================= */
+/* ================= QUALITY AREA ================= */
 
 .download-box{
   margin-top:30px;
@@ -405,95 +403,60 @@ select{
   margin-bottom:18px;
 }
 
-.download-row{
+.quality-list{
   display:grid;
-  grid-template-columns:minmax(0,1fr) 180px 190px;
-  gap:10px;
-  align-items:stretch;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
 }
 
-.file-input{
-  width:100%;
-  border:2px solid #dbeafe;
+.quality-card{
   background:#fff;
-  border-radius:10px;
-  padding:12px;
-  font-size:14px;
-  color:#374151;
+  border:1px solid #dbeafe;
+  border-radius:12px;
+  padding:16px;
+  text-align:center;
 }
 
-.quality-select{
+.quality-name{
+  font-size:20px;
+  font-weight:800;
+  color:#1e3a8a;
+  margin-bottom:5px;
+}
+
+.quality-type{
+  font-size:12px;
+  color:#64748b;
+  margin-bottom:12px;
+}
+
+.quality-download{
   width:100%;
-  border:2px solid #dbeafe;
-  background:#fff;
-  border-radius:10px;
-  padding:12px;
-  font-size:15px;
-  color:#374151;
-  outline:none;
-  cursor:pointer;
-}
-
-.quality-select:focus{
-  border-color:#2563eb;
-}
-
-.download-btn{
   border:0;
   background:#2563eb;
   color:#fff;
-  border-radius:10px;
+  border-radius:8px;
+  padding:11px 8px;
   font-weight:700;
-  font-size:15px;
   cursor:pointer;
-  padding:12px 15px;
-  transition:.2s;
 }
 
-.download-btn:hover{
+.quality-download:hover{
   background:#1d4ed8;
 }
 
-.download-btn:disabled{
+.quality-download:disabled{
   opacity:.6;
   cursor:not-allowed;
 }
 
-.download-note{
-  margin-top:12px;
-  color:#64748b;
-  font-size:12px;
-}
-
-.download-progress{
-  display:none;
-  margin-top:15px;
-}
-
-.download-progress.show{
-  display:block;
-}
-
-.progress-track{
-  width:100%;
-  height:9px;
-  background:#dbeafe;
-  border-radius:20px;
-  overflow:hidden;
-}
-
-.progress-bar{
-  width:0%;
-  height:100%;
-  background:#2563eb;
-  border-radius:20px;
-  transition:width .2s;
-}
-
-.progress-text{
-  margin-top:7px;
-  color:#64748b;
-  font-size:13px;
+.no-download{
+  padding:15px;
+  background:#fff;
+  border:1px dashed #93c5fd;
+  border-radius:10px;
+  color:#475569;
+  font-size:14px;
 }
 
 /* ================= FEATURES ================= */
@@ -546,7 +509,7 @@ select{
   font-size:15px;
 }
 
-/* ================= HOW IT WORKS ================= */
+/* ================= HOW ================= */
 
 .steps{
   display:grid;
@@ -721,8 +684,8 @@ footer{
 
 @media(max-width:900px){
 
-  .download-row{
-    grid-template-columns:1fr;
+  .quality-list{
+    grid-template-columns:1fr 1fr;
   }
 
 }
@@ -772,6 +735,7 @@ footer{
   .steps{
     grid-template-columns:1fr;
   }
+
 }
 
 @media(max-width:520px){
@@ -796,6 +760,10 @@ footer{
     grid-template-columns:1fr;
   }
 
+  .quality-list{
+    grid-template-columns:1fr;
+  }
+
   .download-box{
     padding:18px;
   }
@@ -811,13 +779,12 @@ footer{
   .footer-inner{
     flex-direction:column;
   }
+
 }
 </style>
 </head>
 
 <body>
-
-<!-- ================= NAVBAR ================= -->
 
 <header class="navbar">
 
@@ -847,10 +814,7 @@ footer{
 
 </header>
 
-
 <main id="home">
-
-<!-- ================= HERO ================= -->
 
 <section class="hero">
 
@@ -862,8 +826,9 @@ footer{
     </h1>
 
     <p>
-      Paste a YouTube video link, get the video information,
-      view the thumbnail and quickly access useful video tools.
+      Paste a YouTube video link, get video information,
+      view the thumbnail and access available authorized
+      download options.
     </p>
 
     <a href="#tools" class="hero-btn">
@@ -874,16 +839,13 @@ footer{
 
 </section>
 
-
-<!-- ================= TOOL ================= -->
-
 <section class="tool-section" id="tools">
 
   <div class="container">
 
     <div class="tool-card">
 
-      <h2>YouTube Video Tools</h2>
+      <h2>YouTube Video Downloader</h2>
 
       <p class="tool-description">
         Paste a YouTube video link below and click Get Video.
@@ -918,17 +880,9 @@ footer{
         Supported: YouTube watch, youtu.be, Shorts, Embed and Live URLs.
       </div>
 
-      <div
-        class="status"
-        id="status">
-      </div>
+      <div class="status" id="status"></div>
 
-
-      <!-- RESULT -->
-
-      <div
-        class="result"
-        id="result">
+      <div class="result" id="result">
 
         <div class="result-grid">
 
@@ -941,7 +895,6 @@ footer{
 
           </div>
 
-
           <div class="video-info">
 
             <h3 id="videoTitle">
@@ -953,7 +906,6 @@ footer{
               id="videoId">
               Video ID
             </div>
-
 
             <div class="action-grid">
 
@@ -983,7 +935,6 @@ footer{
 
             </div>
 
-
             <div class="notice">
               ⚠️ Download or use content only when you have
               permission or the platform/provider allows it.
@@ -993,83 +944,26 @@ footer{
 
         </div>
 
-
-        <!-- ================= VIDEO DOWNLOAD ================= -->
-
         <div class="download-box">
 
           <h3>
-            ⬇️ Download Video
+            ⬇️ Available Download Qualities
           </h3>
 
           <p class="download-description">
-            Download an authorized video file in MP4 format
-            at your selected quality.
+            Available qualities will appear here when the
+            authorized media provider supplies downloadable files.
           </p>
 
-          <div class="download-row">
+          <div
+            class="quality-list"
+            id="qualityList">
 
-            <input
-              type="file"
-              id="videoFile"
-              class="file-input"
-              accept="video/*">
-
-            <select
-              id="qualitySelect"
-              class="quality-select">
-
-              <option value="360p">
-                360p
-              </option>
-
-              <option value="480p">
-                480p
-              </option>
-
-              <option value="720p" selected>
-                720p
-              </option>
-
-              <option value="1080p">
-                1080p
-              </option>
-
-            </select>
-
-            <button
-              type="button"
-              id="downloadVideoBtn"
-              class="download-btn">
-              ⬇️ Download MP4
-            </button>
-
-          </div>
-
-
-          <div class="download-progress" id="downloadProgress">
-
-            <div class="progress-track">
-
-              <div
-                class="progress-bar"
-                id="progressBar">
-              </div>
-
+            <div class="no-download">
+              Get the video first. Available download options
+              will be shown here.
             </div>
 
-            <div
-              class="progress-text"
-              id="progressText">
-              Preparing video...
-            </div>
-
-          </div>
-
-
-          <div class="download-note">
-            Supported qualities: 360p, 480p, 720p and 1080p.
-            The selected file must be a video you own or are authorized to process.
           </div>
 
         </div>
@@ -1081,9 +975,6 @@ footer{
   </div>
 
 </section>
-
-
-<!-- ================= FEATURES ================= -->
 
 <section class="section" id="features">
 
@@ -1099,7 +990,6 @@ footer{
 
     </div>
 
-
     <div class="feature-grid">
 
       <div class="feature-card">
@@ -1109,12 +999,10 @@ footer{
         <h3>Get Video</h3>
 
         <p>
-          Paste a YouTube link and quickly retrieve
-          basic video information.
+          Paste a YouTube link and retrieve basic video information.
         </p>
 
       </div>
-
 
       <div class="feature-card">
 
@@ -1123,21 +1011,19 @@ footer{
         <h3>Thumbnail</h3>
 
         <p>
-          View and download the available YouTube
-          video thumbnail.
+          View and download the available YouTube thumbnail.
         </p>
 
       </div>
 
-
       <div class="feature-card">
 
-        <div class="feature-icon">📱</div>
+        <div class="feature-icon">⬇️</div>
 
-        <h3>Responsive</h3>
+        <h3>Quality Options</h3>
 
         <p>
-          Works on desktop, tablet and mobile devices.
+          Display available authorized video quality options.
         </p>
 
       </div>
@@ -1147,9 +1033,6 @@ footer{
   </div>
 
 </section>
-
-
-<!-- ================= HOW ================= -->
 
 <section class="section" id="how">
 
@@ -1165,52 +1048,40 @@ footer{
 
     </div>
 
-
     <div class="steps">
 
       <div class="step">
 
-        <div class="step-number">
-          1
-        </div>
+        <div class="step-number">1</div>
 
         <h3>Paste Link</h3>
 
         <p>
-          Copy a YouTube video link and paste it
-          into the box.
+          Copy a YouTube video link and paste it into the box.
         </p>
 
       </div>
 
-
       <div class="step">
 
-        <div class="step-number">
-          2
-        </div>
+        <div class="step-number">2</div>
 
         <h3>Get Video</h3>
 
         <p>
-          Click the Get Video button to analyze
-          the YouTube link.
+          Click Get Video to load the video information.
         </p>
 
       </div>
 
-
       <div class="step">
 
-        <div class="step-number">
-          3
-        </div>
+        <div class="step-number">3</div>
 
-        <h3>Use Tools</h3>
+        <h3>Download</h3>
 
         <p>
-          View the title and thumbnail, download the
-          thumbnail or watch the video.
+          Select an available authorized quality when provided.
         </p>
 
       </div>
@@ -1220,9 +1091,6 @@ footer{
   </div>
 
 </section>
-
-
-<!-- ================= ABOUT ================= -->
 
 <section class="section about" id="about">
 
@@ -1257,9 +1125,6 @@ footer{
 
 </section>
 
-
-<!-- ================= FAQ ================= -->
-
 <section class="section" id="faq">
 
   <div class="container">
@@ -1269,7 +1134,6 @@ footer{
       <h2>Frequently Asked Questions</h2>
 
     </div>
-
 
     <div class="faq-list">
 
@@ -1286,7 +1150,6 @@ footer{
 
       </div>
 
-
       <div class="faq">
 
         <h3>
@@ -1294,12 +1157,10 @@ footer{
         </h3>
 
         <p>
-          Yes. After getting the video, click
-          Download Thumbnail.
+          Yes. After getting the video, click Download Thumbnail.
         </p>
 
       </div>
-
 
       <div class="faq">
 
@@ -1308,12 +1169,10 @@ footer{
         </h3>
 
         <p>
-          Yes. Click Watch Video to open the video
-          on YouTube.
+          Yes. Click Watch Video to open the video on YouTube.
         </p>
 
       </div>
-
 
       <div class="faq">
 
@@ -1332,9 +1191,6 @@ footer{
   </div>
 
 </section>
-
-
-<!-- ================= CONTACT ================= -->
 
 <section class="section" id="contact">
 
@@ -1360,9 +1216,6 @@ footer{
 
 </section>
 
-
-<!-- ================= PRIVACY ================= -->
-
 <section class="section" id="privacy">
 
   <div class="container">
@@ -1387,9 +1240,6 @@ footer{
   </div>
 
 </section>
-
-
-<!-- ================= TERMS ================= -->
 
 <section class="section" id="terms">
 
@@ -1418,18 +1268,12 @@ footer{
 
 </main>
 
-
-<!-- ================= BACK TOP ================= -->
-
 <button
   class="back-top"
   id="backTop"
   aria-label="Back to top">
   ↑
 </button>
-
-
-<!-- ================= FOOTER ================= -->
 
 <footer>
 
@@ -1439,9 +1283,7 @@ footer{
 
       <div class="footer-brand">
 
-        <h3>
-          VidFetch Tools
-        </h3>
+        <h3>VidFetch Tools</h3>
 
         <p>
           Simple YouTube video tools for a clean
@@ -1449,7 +1291,6 @@ footer{
         </p>
 
       </div>
-
 
       <div class="footer-links">
 
@@ -1464,7 +1305,6 @@ footer{
 
     </div>
 
-
     <div class="copyright">
 
       © <span id="year"></span>
@@ -1476,7 +1316,6 @@ footer{
   </div>
 
 </footer>
-
 
 <script>
 
@@ -1518,6 +1357,9 @@ const copyBtn =
 const shareBtn =
   document.getElementById("shareBtn");
 
+const qualityList =
+  document.getElementById("qualityList");
+
 const menuBtn =
   document.getElementById("menuBtn");
 
@@ -1528,34 +1370,10 @@ const backTop =
   document.getElementById("backTop");
 
 
-/* ================= DOWNLOAD ELEMENTS ================= */
-
-const videoFile =
-  document.getElementById("videoFile");
-
-const qualitySelect =
-  document.getElementById("qualitySelect");
-
-const downloadVideoBtn =
-  document.getElementById("downloadVideoBtn");
-
-const downloadProgress =
-  document.getElementById("downloadProgress");
-
-const progressBar =
-  document.getElementById("progressBar");
-
-const progressText =
-  document.getElementById("progressText");
-
-
-/* ================= WORKER ================= */
-
-const WORKER_URL =
-  "https://vidfetch-api.amary1699.workers.dev";
-
+/* ================= STATE ================= */
 
 let currentVideoId = null;
+
 let currentVideoUrl = null;
 
 
@@ -1567,6 +1385,7 @@ function showStatus(message,type){
 
   statusBox.className =
     "status show " + type;
+
 }
 
 
@@ -1575,6 +1394,7 @@ function clearStatus(){
   statusBox.className = "status";
 
   statusBox.textContent = "";
+
 }
 
 
@@ -1590,21 +1410,13 @@ function getYouTubeVideoId(value){
       return null;
     }
 
-
-    /*
-      Direct 11-character YouTube video ID
-    */
-
     if(
       /^[A-Za-z0-9_-]{11}$/.test(input)
     ){
+
       return input;
+
     }
-
-
-    /*
-      Add protocol if missing
-    */
 
     if(
       !/^https?:\/\//i.test(input)
@@ -1615,20 +1427,13 @@ function getYouTubeVideoId(value){
 
     }
 
-
     const parsed =
       new URL(input);
-
 
     const host =
       parsed.hostname
       .toLowerCase()
       .replace(/^www\./,"");
-
-
-    /*
-      Standard YouTube watch URL
-    */
 
     if(
       host === "youtube.com" ||
@@ -1637,7 +1442,6 @@ function getYouTubeVideoId(value){
 
       const videoParam =
         parsed.searchParams.get("v");
-
 
       if(
         videoParam &&
@@ -1648,16 +1452,10 @@ function getYouTubeVideoId(value){
 
       }
 
-
-      /*
-        Shorts / Embed / Live
-      */
-
       const parts =
         parsed.pathname
         .split("/")
         .filter(Boolean);
-
 
       if(
         parts.length >= 2 &&
@@ -1683,20 +1481,12 @@ function getYouTubeVideoId(value){
 
     }
 
-
-    /*
-      youtu.be
-    */
-
-    if(
-      host === "youtu.be"
-    ){
+    if(host === "youtu.be"){
 
       const parts =
         parsed.pathname
         .split("/")
         .filter(Boolean);
-
 
       if(parts.length){
 
@@ -1715,7 +1505,6 @@ function getYouTubeVideoId(value){
 
     }
 
-
     return null;
 
   }catch(error){
@@ -1727,7 +1516,7 @@ function getYouTubeVideoId(value){
 }
 
 
-/* ================= VIDEO TITLE ================= */
+/* ================= TITLE ================= */
 
 async function getVideoTitle(videoId){
 
@@ -1742,10 +1531,8 @@ async function getVideoTitle(videoId){
       ) +
       "&format=json";
 
-
     const response =
       await fetch(oembedUrl);
-
 
     if(!response.ok){
 
@@ -1753,10 +1540,8 @@ async function getVideoTitle(videoId){
 
     }
 
-
     const data =
       await response.json();
-
 
     return (
       data.title ||
@@ -1772,13 +1557,32 @@ async function getVideoTitle(videoId){
 }
 
 
+/* ================= RESET QUALITY ================= */
+
+function resetQualityList(){
+
+  qualityList.innerHTML = "";
+
+  const message =
+    document.createElement("div");
+
+  message.className =
+    "no-download";
+
+  message.textContent =
+    "Available download options will appear here when an authorized media provider supplies downloadable files.";
+
+  qualityList.appendChild(message);
+
+}
+
+
 /* ================= GET VIDEO ================= */
 
 async function analyzeVideo(){
 
   const raw =
     urlInput.value.trim();
-
 
   if(!raw){
 
@@ -1795,10 +1599,8 @@ async function analyzeVideo(){
 
   }
 
-
   const id =
     getYouTubeVideoId(raw);
-
 
   if(!id){
 
@@ -1815,82 +1617,59 @@ async function analyzeVideo(){
 
   }
 
-
   currentVideoId =
     id;
-
 
   currentVideoUrl =
     "https://www.youtube.com/watch?v=" +
     id;
 
+  analyzeBtn.disabled =
+    true;
 
-  /*
-    Thumbnail
-  */
+  analyzeBtn.textContent =
+    "⏳ Loading...";
+
+  resetQualityList();
 
   const maxThumbnail =
     "https://img.youtube.com/vi/" +
     encodeURIComponent(id) +
     "/maxresdefault.jpg";
 
-
   const highThumbnail =
     "https://img.youtube.com/vi/" +
     encodeURIComponent(id) +
     "/hqdefault.jpg";
 
-
-  thumbnail.src =
-    maxThumbnail;
-
-
   thumbnail.onerror =
     function(){
 
-      thumbnail.onerror =
-        function(){
-
-          thumbnail.src =
-            highThumbnail;
-
-        };
-
+      thumbnail.onerror = null;
 
       thumbnail.src =
         highThumbnail;
 
     };
 
-
-  /*
-    Loading title
-  */
+  thumbnail.src =
+    maxThumbnail;
 
   videoTitle.textContent =
     "Loading video title...";
 
-
   videoIdElement.textContent =
     "Video ID: " + id;
 
-
   result.classList.add("show");
 
-
   showStatus(
-    "YouTube video found. Loading video information...",
+    "YouTube video found. Loading information...",
     "success"
   );
 
-
-  /*
-    Get title
-  */
-
   const title =
     await getVideoTitle(id);
-
 
   if(currentVideoId !== id){
 
@@ -1898,16 +1677,19 @@ async function analyzeVideo(){
 
   }
 
-
   videoTitle.textContent =
     title;
-
 
   showStatus(
     "Video loaded successfully.",
     "success"
   );
 
+  analyzeBtn.disabled =
+    false;
+
+  analyzeBtn.textContent =
+    "🎬 Get Video";
 
   setTimeout(
     function(){
@@ -1932,7 +1714,7 @@ analyzeBtn.addEventListener(
 );
 
 
-/* ================= ENTER KEY ================= */
+/* ================= ENTER ================= */
 
 urlInput.addEventListener(
   "keydown",
@@ -1974,7 +1756,6 @@ pasteBtn.addEventListener(
         const text =
           await navigator.clipboard.readText();
 
-
         if(!text.trim()){
 
           showStatus(
@@ -1986,10 +1767,8 @@ pasteBtn.addEventListener(
 
         }
 
-
         urlInput.value =
           text.trim();
-
 
         analyzeVideo();
 
@@ -2019,7 +1798,7 @@ pasteBtn.addEventListener(
 );
 
 
-/* ================= THUMBNAIL DOWNLOAD ================= */
+/* ================= THUMBNAIL ================= */
 
 thumbnailBtn.addEventListener(
   "click",
@@ -2036,26 +1815,21 @@ thumbnailBtn.addEventListener(
 
     }
 
-
     const imageUrl =
       "https://img.youtube.com/vi/" +
       encodeURIComponent(currentVideoId) +
       "/hqdefault.jpg";
 
-
     thumbnailBtn.disabled =
       true;
 
-
     thumbnailBtn.textContent =
       "⏳ Preparing...";
-
 
     try{
 
       const response =
         await fetch(imageUrl);
-
 
       if(!response.ok){
 
@@ -2065,37 +1839,28 @@ thumbnailBtn.addEventListener(
 
       }
 
-
       const blob =
         await response.blob();
-
 
       const objectUrl =
         URL.createObjectURL(blob);
 
-
       const link =
         document.createElement("a");
 
-
       link.href =
         objectUrl;
-
 
       link.download =
         "youtube-thumbnail-" +
         currentVideoId +
         ".jpg";
 
-
       document.body.appendChild(link);
-
 
       link.click();
 
-
       link.remove();
-
 
       setTimeout(
         function(){
@@ -2108,12 +1873,10 @@ thumbnailBtn.addEventListener(
         1000
       );
 
-
       showStatus(
         "Thumbnail download started.",
         "success"
       );
-
 
     }catch(error){
 
@@ -2123,18 +1886,15 @@ thumbnailBtn.addEventListener(
         "noopener,noreferrer"
       );
 
-
       showStatus(
         "Thumbnail opened in a new tab. Use Save Image if automatic download is blocked.",
         "warning"
       );
 
-
     }finally{
 
       thumbnailBtn.disabled =
         false;
-
 
       thumbnailBtn.textContent =
         "🖼️ Download Thumbnail";
@@ -2145,7 +1905,7 @@ thumbnailBtn.addEventListener(
 );
 
 
-/* ================= WATCH VIDEO ================= */
+/* ================= WATCH ================= */
 
 watchBtn.addEventListener(
   "click",
@@ -2162,7 +1922,6 @@ watchBtn.addEventListener(
 
     }
 
-
     window.open(
       currentVideoUrl,
       "_blank",
@@ -2173,7 +1932,7 @@ watchBtn.addEventListener(
 );
 
 
-/* ================= COPY URL ================= */
+/* ================= COPY ================= */
 
 copyBtn.addEventListener(
   "click",
@@ -2190,19 +1949,16 @@ copyBtn.addEventListener(
 
     }
 
-
     try{
 
       await navigator.clipboard.writeText(
         currentVideoUrl
       );
 
-
       showStatus(
         "YouTube URL copied successfully.",
         "success"
       );
-
 
     }catch(error){
 
@@ -2234,7 +1990,6 @@ shareBtn.addEventListener(
 
     }
 
-
     const shareData = {
 
       title:
@@ -2248,11 +2003,6 @@ shareBtn.addEventListener(
         currentVideoUrl
 
     };
-
-
-    /*
-      Mobile/browser native share
-    */
 
     if(navigator.share){
 
@@ -2275,17 +2025,11 @@ shareBtn.addEventListener(
 
     }
 
-
-    /*
-      Desktop fallback
-    */
-
     try{
 
       await navigator.clipboard.writeText(
         currentVideoUrl
       );
-
 
       showStatus(
         "Video URL copied to clipboard.",
@@ -2297,297 +2041,6 @@ shareBtn.addEventListener(
       showStatus(
         "Sharing is not available in this browser.",
         "warning"
-      );
-
-    }
-
-  }
-);
-
-
-/* ================= VIDEO FILE DOWNLOAD ================= */
-
-downloadVideoBtn.addEventListener(
-  "click",
-  async function(){
-
-    const file =
-      videoFile.files[0];
-
-
-    if(!file){
-
-      showStatus(
-        "Please select an authorized video file first.",
-        "warning"
-      );
-
-      videoFile.focus();
-
-      return;
-
-    }
-
-
-    if(!file.type.startsWith("video/")){
-
-      showStatus(
-        "Please select a valid video file.",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    const quality =
-      qualitySelect.value;
-
-
-    if(
-      ![
-        "360p",
-        "480p",
-        "720p",
-        "1080p"
-      ].includes(quality)
-    ){
-
-      showStatus(
-        "Please select a valid video quality.",
-        "warning"
-      );
-
-      return;
-
-    }
-
-
-    /*
-      UI
-    */
-
-    downloadVideoBtn.disabled =
-      true;
-
-    downloadVideoBtn.textContent =
-      "⏳ Processing...";
-
-    downloadProgress.classList.add(
-      "show"
-    );
-
-    progressBar.style.width =
-      "10%";
-
-    progressText.textContent =
-      "Uploading video to processing service...";
-
-
-    try{
-
-      /*
-        Send video to Cloudflare Worker
-      */
-
-      const endpoint =
-        WORKER_URL +
-        "/convert?format=mp4&quality=" +
-        encodeURIComponent(quality);
-
-
-      progressBar.style.width =
-        "25%";
-
-
-      const response =
-        await fetch(
-          endpoint,
-          {
-            method:"POST",
-            headers:{
-              "Content-Type":
-                file.type || "video/mp4"
-            },
-            body:file
-          }
-        );
-
-
-      progressBar.style.width =
-        "55%";
-
-
-      if(!response.ok){
-
-        let errorMessage =
-          "Video conversion failed.";
-
-
-        try{
-
-          const data =
-            await response.json();
-
-
-          if(data && data.error){
-
-            errorMessage =
-              data.error;
-
-          }
-
-        }catch(error){
-
-        }
-
-
-        throw new Error(
-          errorMessage
-        );
-
-      }
-
-
-      progressText.textContent =
-        "Preparing MP4 download...";
-
-
-      const blob =
-        await response.blob();
-
-
-      progressBar.style.width =
-        "85%";
-
-
-      if(!blob || blob.size === 0){
-
-        throw new Error(
-          "The server returned an empty video file."
-        );
-
-      }
-
-
-      /*
-        Create download URL
-      */
-
-      const objectUrl =
-        URL.createObjectURL(blob);
-
-
-      const link =
-        document.createElement("a");
-
-
-      link.href =
-        objectUrl;
-
-
-      link.download =
-        "vidfetch-" +
-        quality +
-        ".mp4";
-
-
-      document.body.appendChild(
-        link
-      );
-
-
-      link.click();
-
-
-      link.remove();
-
-
-      /*
-        Clean object URL
-      */
-
-      setTimeout(
-        function(){
-
-          URL.revokeObjectURL(
-            objectUrl
-          );
-
-        },
-        3000
-      );
-
-
-      progressBar.style.width =
-        "100%";
-
-
-      progressText.textContent =
-        "Download started successfully.";
-
-
-      showStatus(
-        "MP4 video download started successfully.",
-        "success"
-      );
-
-
-    }catch(error){
-
-      console.error(
-        "Video download error:",
-        error
-      );
-
-
-      progressBar.style.width =
-        "0%";
-
-
-      progressText.textContent =
-        "Download failed.";
-
-
-      showStatus(
-        error?.message ||
-        "Video processing failed. Please try again.",
-        "error"
-      );
-
-
-    }finally{
-
-      downloadVideoBtn.disabled =
-        false;
-
-
-      downloadVideoBtn.textContent =
-        "⬇️ Download MP4";
-
-    }
-
-  }
-);
-
-
-/* ================= FILE CHANGE ================= */
-
-videoFile.addEventListener(
-  "change",
-  function(){
-
-    if(videoFile.files.length){
-
-      const file =
-        videoFile.files[0];
-
-
-      showStatus(
-        "Video file selected: " +
-        file.name,
-        "success"
       );
 
     }
@@ -2609,11 +2062,6 @@ menuBtn.addEventListener(
   }
 );
 
-
-/*
-  Close mobile menu after clicking a link
-*/
-
 navLinks.querySelectorAll("a").forEach(
   function(link){
 
@@ -2632,7 +2080,7 @@ navLinks.querySelectorAll("a").forEach(
 );
 
 
-/* ================= BACK TO TOP ================= */
+/* ================= BACK TOP ================= */
 
 window.addEventListener(
   "scroll",
@@ -2655,7 +2103,6 @@ window.addEventListener(
   }
 );
 
-
 backTop.addEventListener(
   "click",
   function(){
@@ -2675,6 +2122,11 @@ document.getElementById(
   "year"
 ).textContent =
   new Date().getFullYear();
+
+
+/* ================= INITIAL ================= */
+
+resetQualityList();
 
 </script>
 
