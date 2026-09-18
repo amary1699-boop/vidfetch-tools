@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <meta name="description"
       content="VidFetch Tools - Simple YouTube video analyzer and thumbnail downloader.">
 
 <meta name="keywords"
-      content="YouTube thumbnail downloader, YouTube video analyzer, video thumbnail">
+      content="YouTube thumbnail downloader, YouTube video analyzer, YouTube tools">
 
 <meta name="author"
       content="Amar Kumar Yadav">
@@ -20,2902 +19,2143 @@
 <title>VidFetch Tools - YouTube Video Tools</title>
 
 <style>
-
-/* =========================================================
-   ROOT
-========================================================= */
-
-:root{
-    --primary:#2563eb;
-    --primary-dark:#1d4ed8;
-    --green:#16a34a;
-    --green-dark:#15803d;
-
-    --text:#0f172a;
-    --muted:#64748b;
-
-    --bg:#f1f5f9;
-    --card:#ffffff;
-
-    --border:#dbe3ee;
-
-    --danger:#dc2626;
-
-    --shadow:
-        0 14px 40px rgba(15,23,42,.09);
-
-    --radius:18px;
-}
-
-
-/* =========================================================
-   RESET
-========================================================= */
-
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 html{
-    scroll-behavior:smooth;
+  scroll-behavior:smooth;
 }
 
 body{
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f7f8fc;
+  color:#1f2937;
+  line-height:1.6;
+}
 
-    background:var(--bg);
-    color:var(--text);
-
-    line-height:1.6;
-
-    overflow-x:hidden;
+a{
+  text-decoration:none;
+  color:inherit;
 }
 
 button,
 input{
-    font:inherit;
+  font-family:inherit;
 }
-
-button{
-    cursor:pointer;
-}
-
-button:disabled{
-    cursor:not-allowed;
-    opacity:.65;
-}
-
-a{
-    color:inherit;
-    text-decoration:none;
-}
-
-
-/* =========================================================
-   CONTAINER
-========================================================= */
 
 .container{
-    width:min(1180px,calc(100% - 32px));
-    margin:auto;
+  width:min(1150px,92%);
+  margin:auto;
 }
 
-
-/* =========================================================
-   NAVBAR
-========================================================= */
+/* ================= NAVBAR ================= */
 
 .navbar{
-    position:sticky;
-    top:0;
-    z-index:1000;
-
-    background:rgba(255,255,255,.97);
-
-    border-bottom:1px solid var(--border);
-
-    backdrop-filter:blur(12px);
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:#ffffff;
+  border-bottom:1px solid #e5e7eb;
+  box-shadow:0 2px 10px rgba(0,0,0,.05);
 }
 
 .nav-inner{
-    min-height:72px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    gap:20px;
+  min-height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
 }
 
 .logo{
-    font-size:23px;
-    font-weight:800;
-    color:var(--primary);
-
-    white-space:nowrap;
+  font-size:25px;
+  font-weight:800;
+  color:#e53232;
 }
 
 .logo span{
-    color:var(--text);
+  color:#111827;
 }
 
 .nav-links{
-    display:flex;
-    align-items:center;
-    gap:24px;
+  display:flex;
+  align-items:center;
+  gap:25px;
 }
 
 .nav-links a{
-    color:#334155;
-    font-size:15px;
-    font-weight:600;
-
-    transition:.2s;
+  font-weight:600;
+  color:#374151;
+  transition:.2s;
 }
 
 .nav-links a:hover{
-    color:var(--primary);
+  color:#e53232;
 }
 
 .menu-btn{
-    display:none;
-
-    width:44px;
-    height:44px;
-
-    border:1px solid var(--border);
-
-    background:white;
-
-    border-radius:10px;
-
-    font-size:22px;
+  display:none;
+  border:0;
+  background:#f3f4f6;
+  font-size:23px;
+  width:42px;
+  height:42px;
+  border-radius:10px;
+  cursor:pointer;
 }
 
-
-/* =========================================================
-   HERO
-========================================================= */
+/* ================= HERO ================= */
 
 .hero{
-    padding:82px 0 58px;
-
-    background:
-        radial-gradient(
-            circle at top left,
-            rgba(37,99,235,.12),
-            transparent 35%
-        ),
-        linear-gradient(
-            180deg,
-            #ffffff 0%,
-            #f8fafc 100%
-        );
-}
-
-.hero-content{
-    text-align:center;
-
-    max-width:850px;
-
-    margin:auto;
-}
-
-.badge{
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:7px;
-
-    padding:8px 14px;
-
-    border-radius:999px;
-
-    background:#eff6ff;
-
-    color:var(--primary);
-
-    font-size:13px;
-
-    font-weight:700;
-
-    border:1px solid #dbeafe;
-
-    margin-bottom:20px;
+  background:linear-gradient(135deg,#fff,#fff5f5);
+  padding:80px 20px 70px;
+  text-align:center;
 }
 
 .hero h1{
-    font-size:clamp(34px,6vw,60px);
-
-    line-height:1.08;
-
-    letter-spacing:-1.8px;
-
-    margin-bottom:20px;
+  font-size:clamp(34px,6vw,58px);
+  line-height:1.1;
+  margin-bottom:18px;
+  color:#111827;
 }
 
 .hero h1 span{
-    color:var(--primary);
+  color:#e53232;
 }
 
 .hero p{
-    color:var(--muted);
-
-    max-width:720px;
-
-    margin:auto;
-
-    font-size:17px;
+  max-width:720px;
+  margin:0 auto 30px;
+  color:#6b7280;
+  font-size:18px;
 }
 
+.hero-btn{
+  display:inline-block;
+  background:#e53232;
+  color:#fff;
+  padding:14px 28px;
+  border-radius:10px;
+  font-weight:700;
+  transition:.2s;
+}
 
-/* =========================================================
-   TOOL SECTION
-========================================================= */
+.hero-btn:hover{
+  background:#c92323;
+  transform:translateY(-2px);
+}
+
+/* ================= TOOL SECTION ================= */
 
 .tool-section{
-    margin-top:-10px;
-
-    padding-bottom:70px;
+  padding:65px 0;
 }
 
 .tool-card{
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    border-radius:var(--radius);
-
-    box-shadow:var(--shadow);
-
-    padding:30px;
+  background:#fff;
+  border-radius:20px;
+  padding:35px;
+  box-shadow:0 10px 35px rgba(0,0,0,.08);
+  border:1px solid #eceef2;
 }
 
 .tool-card h2{
-    font-size:26px;
-
-    margin-bottom:8px;
+  text-align:center;
+  font-size:30px;
+  margin-bottom:8px;
+  color:#111827;
 }
 
 .tool-description{
-    color:var(--muted);
-
-    margin-bottom:24px;
+  text-align:center;
+  color:#6b7280;
+  margin-bottom:25px;
 }
 
-
-/* =========================================================
-   URL INPUT
-========================================================= */
-
 .url-row{
-    display:grid;
-
-    grid-template-columns:
-        minmax(0,1fr)
-        auto
-        auto;
-
-    gap:10px;
-
-    align-items:stretch;
+  display:flex;
+  gap:10px;
 }
 
 .url-input{
-    width:100%;
-
-    min-height:54px;
-
-    border:1px solid var(--border);
-
-    border-radius:12px;
-
-    padding:0 16px;
-
-    outline:none;
-
-    color:var(--text);
-
-    background:white;
-
-    transition:.2s;
+  flex:1;
+  min-width:0;
+  border:2px solid #e5e7eb;
+  border-radius:10px;
+  padding:15px;
+  font-size:16px;
+  outline:none;
+  transition:.2s;
 }
 
 .url-input:focus{
-    border-color:var(--primary);
-
-    box-shadow:
-        0 0 0 4px rgba(37,99,235,.10);
+  border-color:#e53232;
 }
 
-
-/* =========================================================
-   BUTTONS
-========================================================= */
-
-.primary-btn,
-.secondary-btn,
-.green-btn{
-
-    min-height:54px;
-
-    border-radius:12px;
-
-    padding:0 18px;
-
-    border:1px solid transparent;
-
-    font-weight:700;
-
-    transition:.2s;
+.action-main{
+  border:0;
+  background:#e53232;
+  color:white;
+  padding:0 24px;
+  border-radius:10px;
+  font-weight:700;
+  cursor:pointer;
+  font-size:16px;
+  transition:.2s;
 }
 
-.primary-btn{
-    background:var(--primary);
-
-    color:white;
-}
-
-.primary-btn:hover{
-    background:var(--primary-dark);
-
-    transform:translateY(-1px);
-}
-
-.secondary-btn{
-    background:white;
-
-    color:#334155;
-
-    border-color:var(--border);
-}
-
-.secondary-btn:hover{
-    border-color:#94a3b8;
-
-    background:#f8fafc;
-}
-
-.green-btn{
-    background:var(--green);
-
-    color:white;
-}
-
-.green-btn:hover{
-    background:var(--green-dark);
-
-    transform:translateY(-1px);
+.action-main:hover{
+  background:#c92323;
 }
 
 .paste-btn{
-    min-width:120px;
+  border:1px solid #d1d5db;
+  background:#f9fafb;
+  color:#374151;
+  padding:0 18px;
+  border-radius:10px;
+  font-weight:600;
+  cursor:pointer;
 }
 
-
-/* =========================================================
-   HELP
-========================================================= */
+.paste-btn:hover{
+  background:#f3f4f6;
+}
 
 .help-text{
-    color:var(--muted);
-
-    font-size:13px;
-
-    margin-top:10px;
+  margin-top:12px;
+  font-size:14px;
+  color:#6b7280;
 }
 
-
-/* =========================================================
-   STATUS
-========================================================= */
-
 .status{
-    display:none;
-
-    margin-top:18px;
-
-    padding:13px 15px;
-
-    border-radius:12px;
-
-    background:#eff6ff;
-
-    color:#1e40af;
-
-    border:1px solid #bfdbfe;
-
-    font-size:14px;
+  margin-top:18px;
+  padding:12px 15px;
+  border-radius:10px;
+  display:none;
+  font-size:14px;
 }
 
 .status.show{
-    display:block;
+  display:block;
 }
 
 .status.success{
-    background:#f0fdf4;
-
-    color:#166534;
-
-    border-color:#bbf7d0;
-}
-
-.status.error{
-    background:#fef2f2;
-
-    color:#991b1b;
-
-    border-color:#fecaca;
+  background:#ecfdf5;
+  color:#047857;
+  border:1px solid #a7f3d0;
 }
 
 .status.warning{
-    background:#fffbeb;
-
-    color:#92400e;
-
-    border-color:#fde68a;
+  background:#fffbeb;
+  color:#b45309;
+  border:1px solid #fde68a;
 }
 
+.status.error{
+  background:#fef2f2;
+  color:#b91c1c;
+  border:1px solid #fecaca;
+}
 
-/* =========================================================
-   RESULT
-========================================================= */
+/* ================= RESULT ================= */
 
 .result{
-    display:none;
-
-    margin-top:28px;
-
-    padding-top:28px;
-
-    border-top:1px solid var(--border);
+  display:none;
+  margin-top:30px;
+  border-top:1px solid #e5e7eb;
+  padding-top:30px;
 }
 
 .result.show{
-    display:block;
+  display:block;
 }
 
 .result-grid{
-    display:grid;
-
-    grid-template-columns:
-        minmax(260px,420px)
-        minmax(0,1fr);
-
-    gap:30px;
-
-    align-items:start;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:30px;
+  align-items:center;
 }
 
-
-/* =========================================================
-   THUMBNAIL
-========================================================= */
-
 .thumbnail-wrap{
-    overflow:hidden;
-
-    border-radius:14px;
-
-    border:1px solid var(--border);
-
-    background:#e2e8f0;
-
-    aspect-ratio:16/9;
-
-    box-shadow:
-        0 8px 24px rgba(15,23,42,.06);
+  background:#f3f4f6;
+  border-radius:15px;
+  overflow:hidden;
+  aspect-ratio:16/9;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 .thumbnail-wrap img{
-    width:100%;
-
-    height:100%;
-
-    object-fit:cover;
-
-    display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
 }
 
-
-/* =========================================================
-   VIDEO INFO
-========================================================= */
-
 .video-info h3{
-    font-size:25px;
-
-    line-height:1.3;
-
-    margin-bottom:14px;
-
-    overflow-wrap:anywhere;
+  font-size:25px;
+  line-height:1.3;
+  margin-bottom:12px;
+  color:#111827;
+  word-break:break-word;
 }
 
 .video-id{
-    display:inline-block;
-
-    padding:7px 11px;
-
-    background:#f1f5f9;
-
-    border:1px solid var(--border);
-
-    border-radius:8px;
-
-    color:#475569;
-
-    font-size:13px;
-
-    margin-bottom:20px;
-
-    word-break:break-all;
+  display:inline-block;
+  background:#f3f4f6;
+  color:#6b7280;
+  padding:6px 10px;
+  border-radius:7px;
+  font-size:13px;
+  margin-bottom:20px;
 }
 
-
-/* =========================================================
-   ACTIONS
-========================================================= */
-
 .action-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(2,minmax(0,1fr));
-
-    gap:10px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
 }
 
 .action-grid button{
-    width:100%;
+  min-height:48px;
+  border-radius:9px;
+  cursor:pointer;
+  font-weight:700;
+  font-size:14px;
+  border:0;
+  transition:.2s;
 }
 
+.action-grid button:hover{
+  transform:translateY(-1px);
+}
 
-/* =========================================================
-   NOTICE
-========================================================= */
+.green-btn{
+  background:#16a34a;
+  color:#fff;
+}
+
+.green-btn:hover{
+  background:#15803d;
+}
+
+.primary-btn{
+  background:#e53232;
+  color:#fff;
+}
+
+.primary-btn:hover{
+  background:#c92323;
+}
+
+.secondary-btn{
+  background:#f3f4f6;
+  color:#374151;
+  border:1px solid #d1d5db !important;
+}
+
+.secondary-btn:hover{
+  background:#e5e7eb;
+}
+
+.action-grid button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+  transform:none;
+}
 
 .notice{
-    margin-top:20px;
-
-    padding:13px 15px;
-
-    border-radius:12px;
-
-    background:#fffbeb;
-
-    border:1px solid #fde68a;
-
-    color:#92400e;
-
-    font-size:12px;
+  margin-top:18px;
+  padding:13px;
+  background:#fff7ed;
+  color:#9a3412;
+  border:1px solid #fed7aa;
+  border-radius:9px;
+  font-size:13px;
 }
 
-
-/* =========================================================
-   FEATURES
-========================================================= */
+/* ================= FEATURES ================= */
 
 .section{
-    padding:72px 0;
+  padding:65px 0;
 }
 
 .section-title{
-    text-align:center;
-
-    font-size:34px;
-
-    margin-bottom:12px;
+  text-align:center;
+  margin-bottom:35px;
 }
 
-.section-subtitle{
-    text-align:center;
-
-    max-width:680px;
-
-    margin:0 auto 38px;
-
-    color:var(--muted);
+.section-title h2{
+  font-size:32px;
+  color:#111827;
+  margin-bottom:8px;
 }
 
-.features-grid{
-    display:grid;
+.section-title p{
+  color:#6b7280;
+}
 
-    grid-template-columns:
-        repeat(3,minmax(0,1fr));
-
-    gap:20px;
+.feature-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
 }
 
 .feature-card{
-    background:white;
-
-    border:1px solid var(--border);
-
-    border-radius:16px;
-
-    padding:24px;
-
-    box-shadow:
-        0 8px 24px rgba(15,23,42,.05);
+  background:#fff;
+  padding:28px;
+  border-radius:16px;
+  border:1px solid #e5e7eb;
+  text-align:center;
 }
 
 .feature-icon{
-    width:48px;
-
-    height:48px;
-
-    display:grid;
-
-    place-items:center;
-
-    background:#eff6ff;
-
-    color:var(--primary);
-
-    border-radius:12px;
-
-    font-size:23px;
-
-    margin-bottom:16px;
+  font-size:36px;
+  margin-bottom:12px;
 }
 
 .feature-card h3{
-    margin-bottom:7px;
+  margin-bottom:8px;
+  color:#111827;
 }
 
 .feature-card p{
-    color:var(--muted);
-
-    font-size:14px;
+  color:#6b7280;
+  font-size:15px;
 }
 
-
-/* =========================================================
-   HOW IT WORKS
-========================================================= */
+/* ================= HOW IT WORKS ================= */
 
 .steps{
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,minmax(0,1fr));
-
-    gap:20px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
 }
 
 .step{
-    background:white;
-
-    border:1px solid var(--border);
-
-    border-radius:16px;
-
-    padding:25px;
-
-    text-align:center;
+  background:#fff;
+  padding:28px;
+  border-radius:16px;
+  border:1px solid #e5e7eb;
+  text-align:center;
 }
 
 .step-number{
-    width:46px;
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  background:#e53232;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 15px;
+  font-weight:800;
+  font-size:18px;
+}
 
-    height:46px;
-
-    display:grid;
-
-    place-items:center;
-
-    margin:0 auto 15px;
-
-    border-radius:50%;
-
-    background:var(--primary);
-
-    color:white;
-
-    font-weight:800;
+.step h3{
+  margin-bottom:8px;
 }
 
 .step p{
-    color:var(--muted);
-
-    font-size:14px;
+  color:#6b7280;
 }
 
+/* ================= ABOUT ================= */
 
-/* =========================================================
-   ABOUT / INFO
-========================================================= */
-
-.about-card,
-.info-card{
-    background:white;
-
-    border:1px solid var(--border);
-
-    border-radius:18px;
-
-    padding:32px;
-
-    box-shadow:var(--shadow);
-
-    max-width:850px;
-
-    margin:auto;
-
-    text-align:center;
+.about{
+  background:#fff;
+  border-top:1px solid #e5e7eb;
+  border-bottom:1px solid #e5e7eb;
 }
 
-.about-card p,
-.info-card p{
-    color:var(--muted);
-
-    margin-top:10px;
+.about-box{
+  max-width:800px;
+  margin:auto;
+  text-align:center;
 }
 
-.owner{
-    margin-top:20px;
-
-    font-weight:800;
-
-    color:var(--primary);
+.about-box p{
+  color:#6b7280;
+  margin-top:12px;
 }
 
-
-/* =========================================================
-   FAQ
-========================================================= */
+/* ================= FAQ ================= */
 
 .faq-list{
-    max-width:850px;
-
-    margin:auto;
-
-    display:grid;
-
-    gap:12px;
+  max-width:850px;
+  margin:auto;
 }
 
-.faq-item{
-    background:white;
-
-    border:1px solid var(--border);
-
-    border-radius:14px;
-
-    overflow:hidden;
+.faq{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  padding:20px;
+  margin-bottom:12px;
 }
 
-.faq-item summary{
-    cursor:pointer;
-
-    padding:18px 20px;
-
-    font-weight:700;
-
-    list-style:none;
+.faq h3{
+  font-size:17px;
+  margin-bottom:7px;
+  color:#111827;
 }
 
-.faq-item summary::-webkit-details-marker{
-    display:none;
+.faq p{
+  color:#6b7280;
+  font-size:15px;
 }
 
-.faq-item p{
-    padding:0 20px 18px;
+/* ================= CONTACT ================= */
 
-    color:var(--muted);
-
-    font-size:14px;
+.contact-box{
+  background:#fff;
+  max-width:800px;
+  margin:auto;
+  padding:35px;
+  border-radius:18px;
+  border:1px solid #e5e7eb;
+  text-align:center;
 }
 
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-.footer{
-    background:#0f172a;
-
-    color:#cbd5e1;
-
-    padding:48px 0 25px;
+.contact-box p{
+  color:#6b7280;
 }
 
-.footer-grid{
-    display:grid;
+/* ================= FOOTER ================= */
 
-    grid-template-columns:
-        1.5fr 1fr 1fr;
-
-    gap:35px;
-
-    margin-bottom:35px;
+footer{
+  background:#111827;
+  color:#d1d5db;
+  padding:40px 20px 25px;
+  margin-top:20px;
 }
 
-.footer h3,
-.footer h4{
-    color:white;
-
-    margin-bottom:12px;
+.footer-inner{
+  display:flex;
+  justify-content:space-between;
+  gap:30px;
+  flex-wrap:wrap;
 }
 
-.footer p{
-    color:#94a3b8;
+.footer-brand{
+  max-width:400px;
+}
 
-    font-size:14px;
+.footer-brand h3{
+  color:#fff;
+  margin-bottom:8px;
+}
+
+.footer-brand p{
+  font-size:14px;
+  color:#9ca3af;
 }
 
 .footer-links{
-    display:grid;
-
-    gap:8px;
-}
-
-.footer-links a{
-    color:#94a3b8;
-
-    font-size:14px;
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
 }
 
 .footer-links a:hover{
-    color:white;
+  color:#fff;
 }
 
 .copyright{
-    border-top:1px solid rgba(255,255,255,.1);
-
-    padding-top:20px;
-
-    text-align:center;
-
-    color:#94a3b8;
-
-    font-size:13px;
+  text-align:center;
+  border-top:1px solid #374151;
+  margin-top:25px;
+  padding-top:20px;
+  color:#9ca3af;
+  font-size:14px;
 }
 
-
-/* =========================================================
-   BACK TOP
-========================================================= */
+/* ================= BACK TOP ================= */
 
 .back-top{
-    position:fixed;
-
-    right:20px;
-
-    bottom:20px;
-
-    z-index:1500;
-
-    width:46px;
-
-    height:46px;
-
-    border:0;
-
-    border-radius:50%;
-
-    background:var(--primary);
-
-    color:white;
-
-    font-size:20px;
-
-    box-shadow:
-        0 10px 25px rgba(37,99,235,.3);
-
-    display:none;
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  width:45px;
+  height:45px;
+  border:0;
+  border-radius:50%;
+  background:#e53232;
+  color:#fff;
+  font-size:20px;
+  cursor:pointer;
+  display:none;
+  z-index:900;
+  box-shadow:0 5px 20px rgba(0,0,0,.2);
 }
 
 .back-top.show{
+  display:block;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:800px){
+
+  .menu-btn{
     display:block;
+  }
+
+  .nav-links{
+    display:none;
+    position:absolute;
+    left:0;
+    right:0;
+    top:70px;
+    background:#fff;
+    padding:20px;
+    border-bottom:1px solid #e5e7eb;
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .nav-links.open{
+    display:flex;
+  }
+
+  .url-row{
+    flex-direction:column;
+  }
+
+  .url-input{
+    width:100%;
+  }
+
+  .paste-btn,
+  .action-main{
+    height:50px;
+    width:100%;
+  }
+
+  .result-grid{
+    grid-template-columns:1fr;
+  }
+
+  .feature-grid,
+  .steps{
+    grid-template-columns:1fr;
+  }
 }
 
+@media(max-width:520px){
 
-/* =========================================================
-   RESPONSIVE
-========================================================= */
+  .hero{
+    padding:55px 15px;
+  }
 
-@media(max-width:900px){
+  .hero p{
+    font-size:16px;
+  }
 
-    .result-grid{
-        grid-template-columns:1fr;
-    }
+  .tool-card{
+    padding:22px 16px;
+  }
 
-    .features-grid,
-    .steps{
-        grid-template-columns:
-            repeat(2,minmax(0,1fr));
-    }
+  .tool-card h2{
+    font-size:25px;
+  }
 
-    .footer-grid{
-        grid-template-columns:
-            1fr 1fr;
-    }
+  .action-grid{
+    grid-template-columns:1fr;
+  }
 
+  .section{
+    padding:50px 0;
+  }
+
+  .section-title h2{
+    font-size:27px;
+  }
+
+  .footer-inner{
+    flex-direction:column;
+  }
 }
-
-
-@media(max-width:700px){
-
-    .container{
-        width:min(100% - 22px,1180px);
-    }
-
-    .nav-inner{
-        min-height:64px;
-    }
-
-    .menu-btn{
-        display:block;
-    }
-
-    .nav-links{
-        position:absolute;
-
-        left:11px;
-        right:11px;
-
-        top:70px;
-
-        display:none;
-
-        flex-direction:column;
-
-        align-items:stretch;
-
-        gap:0;
-
-        background:white;
-
-        border:1px solid var(--border);
-
-        border-radius:14px;
-
-        box-shadow:var(--shadow);
-
-        overflow:hidden;
-    }
-
-    .nav-links.show{
-        display:flex;
-    }
-
-    .nav-links a{
-        padding:13px 16px;
-
-        border-bottom:1px solid #eef2f7;
-    }
-
-    .nav-links a:last-child{
-        border-bottom:0;
-    }
-
-    .hero{
-        padding:58px 0 45px;
-    }
-
-    .hero h1{
-        font-size:39px;
-    }
-
-    .hero p{
-        font-size:15px;
-    }
-
-    .tool-card{
-        padding:19px;
-    }
-
-    .url-row{
-        display:flex;
-
-        flex-direction:column;
-
-        gap:10px;
-    }
-
-    .url-input,
-    .paste-btn,
-    .url-row .primary-btn{
-        width:100%;
-    }
-
-    .action-grid{
-        grid-template-columns:1fr;
-    }
-
-    .features-grid,
-    .steps{
-        grid-template-columns:1fr;
-    }
-
-    .section{
-        padding:55px 0;
-    }
-
-    .section-title{
-        font-size:29px;
-    }
-
-    .about-card,
-    .info-card{
-        padding:22px;
-    }
-
-    .footer-grid{
-        grid-template-columns:1fr;
-    }
-
-}
-
-
-@media(max-width:400px){
-
-    .hero h1{
-        font-size:34px;
-    }
-
-    .tool-card{
-        padding:15px;
-    }
-
-}
-
-
-/* =========================================================
-   ACCESSIBILITY
-========================================================= */
-
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-summary:focus-visible{
-
-    outline:3px solid rgba(37,99,235,.3);
-
-    outline-offset:2px;
-}
-
 </style>
 </head>
 
-
 <body>
 
-
-<!-- =======================================================
-     NAVBAR
-======================================================= -->
+<!-- ================= NAVBAR ================= -->
 
 <header class="navbar">
 
-<div class="container nav-inner">
+  <div class="container nav-inner">
 
-<a href="#home"
-   class="logo"
-   aria-label="VidFetch Tools Home">
+    <a href="#home" class="logo">
+      VidFetch <span>Tools</span>
+    </a>
 
-VidFetch <span>Tools</span>
+    <button
+      class="menu-btn"
+      id="menuBtn"
+      aria-label="Open menu">
+      ☰
+    </button>
 
-</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#tools">YouTube Tools</a>
+      <a href="#features">Features</a>
+      <a href="#how">How It Works</a>
+      <a href="#about">About</a>
+      <a href="#faq">FAQ</a>
+    </nav>
 
-
-<button
-    class="menu-btn"
-    id="menuBtn"
-    type="button"
-    aria-label="Open navigation"
-    aria-expanded="false">
-
-☰
-
-</button>
-
-
-<nav
-    class="nav-links"
-    id="navLinks"
-    aria-label="Main navigation">
-
-<a href="#home">Home</a>
-
-<a href="#tools">Tools</a>
-
-<a href="#how-it-works">How It Works</a>
-
-<a href="#about">About</a>
-
-<a href="#faq">FAQ</a>
-
-<a href="#contact">Contact</a>
-
-</nav>
-
-</div>
+  </div>
 
 </header>
 
 
-<!-- =======================================================
-     HERO
-======================================================= -->
-
 <main id="home">
+
+<!-- ================= HERO ================= -->
 
 <section class="hero">
 
-<div class="container hero-content">
+  <div class="container">
 
-<div class="badge">
-⚡ Simple &amp; Fast YouTube Tools
-</div>
+    <h1>
+      Simple <span>YouTube</span><br>
+      Video Tools
+    </h1>
 
+    <p>
+      Paste a YouTube video link, get the video information,
+      view the thumbnail and quickly access useful video tools.
+    </p>
 
-<h1>
+    <a href="#tools" class="hero-btn">
+      Get Started
+    </a>
 
-YouTube
-<span>Video Tools</span>
-
-</h1>
-
-
-<p>
-
-Paste a YouTube video link, analyze the video,
-preview its thumbnail and download the thumbnail
-in a simple interface.
-
-</p>
-
-</div>
+  </div>
 
 </section>
 
 
-<!-- =======================================================
-     MAIN TOOL
-======================================================= -->
+<!-- ================= TOOL ================= -->
 
-<section
-    class="tool-section"
-    id="tools">
+<section class="tool-section" id="tools">
 
-<div class="container">
+  <div class="container">
 
-<div class="tool-card">
+    <div class="tool-card">
 
-<h2>
-YouTube Video Downloader Tools
-</h2>
+      <h2>YouTube Video Tools</h2>
 
+      <p class="tool-description">
+        Paste a YouTube video link below and click Get Video.
+      </p>
 
-<p class="tool-description">
+      <div class="url-row">
 
-Paste a YouTube video link below to get the video
-information and thumbnail.
+        <input
+          type="text"
+          id="urlInput"
+          class="url-input"
+          placeholder="Paste YouTube video URL here..."
+          autocomplete="off">
 
-</p>
+        <button
+          type="button"
+          id="pasteBtn"
+          class="paste-btn">
+          📋 Paste
+        </button>
 
+        <button
+          type="button"
+          id="analyzeBtn"
+          class="action-main">
+          🎬 Get Video
+        </button>
 
-<div class="url-row">
+      </div>
 
+      <div class="help-text">
+        Supported: YouTube watch, youtu.be, Shorts, Embed and Live URLs.
+      </div>
 
-<input
-    type="text"
-    id="urlInput"
-    class="url-input"
-    placeholder="Paste YouTube video URL here..."
-    autocomplete="off"
-    aria-label="YouTube video URL">
+      <div
+        class="status"
+        id="status">
+      </div>
 
 
-<button
-    class="secondary-btn paste-btn"
-    id="pasteBtn"
-    type="button">
+      <!-- RESULT -->
 
-📋 Paste
+      <div
+        class="result"
+        id="result">
 
-</button>
+        <div class="result-grid">
 
+          <div class="thumbnail-wrap">
 
-<button
-    class="primary-btn"
-    id="analyzeBtn"
-    type="button">
+            <img
+              id="thumbnail"
+              src=""
+              alt="YouTube video thumbnail">
 
-🔍 Analyze
+          </div>
 
-</button>
 
+          <div class="video-info">
 
-</div>
+            <h3 id="videoTitle">
+              YouTube Video
+            </h3>
 
+            <div
+              class="video-id"
+              id="videoId">
+              Video ID
+            </div>
 
-<div class="help-text">
 
-Supported:
-youtube.com/watch, youtu.be, Shorts, Embed and Live URLs.
+            <div class="action-grid">
 
-</div>
+              <button
+                class="green-btn"
+                id="thumbnailBtn">
+                🖼️ Download Thumbnail
+              </button>
 
+              <button
+                class="primary-btn"
+                id="watchBtn">
+                ▶ Watch Video
+              </button>
 
-<div
-    class="status"
-    id="status"
-    role="status"
-    aria-live="polite">
-</div>
+              <button
+                class="secondary-btn"
+                id="copyBtn">
+                📋 Copy URL
+              </button>
 
+              <button
+                class="secondary-btn"
+                id="shareBtn">
+                ↗ Share
+              </button>
 
-<!-- =====================================================
-     RESULT
-===================================================== -->
+            </div>
 
-<div
-    class="result"
-    id="result">
 
+            <div class="notice">
+              ⚠️ Download or use content only when you have
+              permission or the platform/provider allows it.
+            </div>
 
-<div class="result-grid">
+          </div>
 
+        </div>
 
-<div class="thumbnail-wrap">
+      </div>
 
-<img
-    id="thumbnail"
-    src=""
-    alt="YouTube video thumbnail">
+    </div>
 
-</div>
-
-
-<div class="video-info">
-
-
-<h3 id="videoTitle">
-YouTube Video
-</h3>
-
-
-<div
-    class="video-id"
-    id="videoId">
-
-Video ID
-
-</div>
-
-
-<div class="action-grid">
-
-
-<button
-    class="green-btn"
-    id="thumbnailBtn"
-    type="button">
-
-🖼️ Download Thumbnail
-
-</button>
-
-
-<button
-    class="primary-btn"
-    id="watchBtn"
-    type="button">
-
-▶ Watch Video
-
-</button>
-
-
-<button
-    class="secondary-btn"
-    id="copyBtn"
-    type="button">
-
-📋 Copy URL
-
-</button>
-
-
-<button
-    class="secondary-btn"
-    id="shareBtn"
-    type="button">
-
-↗ Share
-
-</button>
-
-
-</div>
-
-
-<div class="notice">
-
-⚠️ Use downloaded content only where you have permission
-or where the platform/provider allows it.
-
-</div>
-
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
 
-<!-- =======================================================
-     FEATURES
-======================================================= -->
+<!-- ================= FEATURES ================= -->
 
-<section class="section">
+<section class="section" id="features">
 
-<div class="container">
+  <div class="container">
 
+    <div class="section-title">
 
-<h2 class="section-title">
-Simple YouTube Tools
-</h2>
+      <h2>Features</h2>
 
+      <p>
+        Simple tools designed for quick YouTube video access.
+      </p>
 
-<p class="section-subtitle">
-
-Everything you need for basic YouTube URL analysis
-and thumbnail access.
-
-</p>
+    </div>
 
 
-<div class="features-grid">
+    <div class="feature-grid">
+
+      <div class="feature-card">
+
+        <div class="feature-icon">🎬</div>
+
+        <h3>Get Video</h3>
+
+        <p>
+          Paste a YouTube link and quickly retrieve
+          basic video information.
+        </p>
+
+      </div>
 
 
-<div class="feature-card">
+      <div class="feature-card">
 
-<div class="feature-icon">
-🔗
-</div>
+        <div class="feature-icon">🖼️</div>
 
-<h3>
-YouTube URL Analyzer
-</h3>
+        <h3>Thumbnail</h3>
 
-<p>
+        <p>
+          View and download the available YouTube
+          video thumbnail.
+        </p>
 
-Detect supported YouTube URLs and extract the
-video ID.
-
-</p>
-
-</div>
+      </div>
 
 
-<div class="feature-card">
+      <div class="feature-card">
 
-<div class="feature-icon">
-🖼️
-</div>
+        <div class="feature-icon">📱</div>
 
-<h3>
-Thumbnail Download
-</h3>
+        <h3>Responsive</h3>
 
-<p>
+        <p>
+          Works on desktop, tablet and mobile devices.
+        </p>
 
-Preview the YouTube thumbnail and download the
-available thumbnail image.
+      </div>
 
-</p>
+    </div>
 
-</div>
-
-
-<div class="feature-card">
-
-<div class="feature-icon">
-📱
-</div>
-
-<h3>
-Mobile Friendly
-</h3>
-
-<p>
-
-The website works on desktop, tablet and mobile
-devices.
-
-</p>
-
-</div>
-
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
 
-<!-- =======================================================
-     HOW IT WORKS
-======================================================= -->
+<!-- ================= HOW ================= -->
 
-<section
-    class="section"
-    id="how-it-works">
+<section class="section" id="how">
 
-<div class="container">
+  <div class="container">
 
+    <div class="section-title">
 
-<h2 class="section-title">
-How It Works
-</h2>
+      <h2>How It Works</h2>
 
+      <p>
+        Get video information in three simple steps.
+      </p>
 
-<p class="section-subtitle">
-
-Use VidFetch Tools in three simple steps.
-
-</p>
+    </div>
 
 
-<div class="steps">
+    <div class="steps">
+
+      <div class="step">
+
+        <div class="step-number">
+          1
+        </div>
+
+        <h3>Paste Link</h3>
+
+        <p>
+          Copy a YouTube video link and paste it
+          into the box.
+        </p>
+
+      </div>
 
 
-<div class="step">
+      <div class="step">
 
-<div class="step-number">
-1
-</div>
+        <div class="step-number">
+          2
+        </div>
 
-<h3>
-Paste Link
-</h3>
+        <h3>Get Video</h3>
 
-<p>
+        <p>
+          Click the Get Video button to analyze
+          the YouTube link.
+        </p>
 
-Paste your YouTube video URL into the input box.
-
-</p>
-
-</div>
+      </div>
 
 
-<div class="step">
+      <div class="step">
 
-<div class="step-number">
-2
-</div>
+        <div class="step-number">
+          3
+        </div>
 
-<h3>
-Analyze
-</h3>
+        <h3>Use Tools</h3>
 
-<p>
+        <p>
+          View the title and thumbnail, download the
+          thumbnail or watch the video.
+        </p>
 
-Click Analyze to detect the YouTube video ID
-and load its thumbnail.
+      </div>
 
-</p>
+    </div>
 
-</div>
-
-
-<div class="step">
-
-<div class="step-number">
-3
-</div>
-
-<h3>
-Download
-</h3>
-
-<p>
-
-Download the available thumbnail or open the
-video on YouTube.
-
-</p>
-
-</div>
-
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
 
-<!-- =======================================================
-     ABOUT
-======================================================= -->
+<!-- ================= ABOUT ================= -->
 
-<section
-    class="section"
-    id="about">
+<section class="section about" id="about">
 
-<div class="container">
+  <div class="container">
 
+    <div class="section-title">
 
-<h2 class="section-title">
-About VidFetch Tools
-</h2>
+      <h2>About VidFetch Tools</h2>
 
+    </div>
 
-<div class="about-card">
+    <div class="about-box">
 
+      <p>
+        VidFetch Tools is a simple web utility project
+        created to make common YouTube video information
+        tasks easier.
+      </p>
 
-<p>
+      <p>
+        The website focuses on a clean, fast and
+        mobile-friendly experience.
+      </p>
 
-VidFetch Tools is a simple online utility website
-created to make common YouTube URL tasks easier.
+      <p>
+        <strong>Owner:</strong> Amar Kumar Yadav
+      </p>
 
-</p>
+    </div>
 
-
-<p>
-
-The current version focuses on YouTube URL analysis,
-video information and thumbnail downloading.
-
-</p>
-
-
-<div class="owner">
-
-Owner: Amar Kumar Yadav
-
-</div>
-
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
 
-<!-- =======================================================
-     FAQ
-======================================================= -->
+<!-- ================= FAQ ================= -->
 
-<section
-    class="section"
-    id="faq">
+<section class="section" id="faq">
 
-<div class="container">
+  <div class="container">
 
+    <div class="section-title">
 
-<h2 class="section-title">
-Frequently Asked Questions
-</h2>
+      <h2>Frequently Asked Questions</h2>
+
+    </div>
 
 
-<p class="section-subtitle">
+    <div class="faq-list">
 
-Common questions about VidFetch Tools.
+      <div class="faq">
 
-</p>
+        <h3>
+          Which YouTube links are supported?
+        </h3>
 
+        <p>
+          Standard YouTube watch links, youtu.be links,
+          Shorts, Embed and Live links are supported.
+        </p>
 
-<div class="faq-list">
-
-
-<details class="faq-item">
-
-<summary>
-Which YouTube links are supported?
-</summary>
-
-<p>
-
-Standard YouTube watch links, youtu.be links,
-Shorts, Embed and Live URLs are supported.
-
-</p>
-
-</details>
+      </div>
 
 
-<details class="faq-item">
+      <div class="faq">
 
-<summary>
-Can I download the thumbnail?
-</summary>
+        <h3>
+          Can I download the thumbnail?
+        </h3>
 
-<p>
+        <p>
+          Yes. After getting the video, click
+          Download Thumbnail.
+        </p>
 
-Yes. After analyzing a supported YouTube URL,
-click Download Thumbnail.
-
-</p>
-
-</details>
+      </div>
 
 
-<details class="faq-item">
+      <div class="faq">
 
-<summary>
-Does Analyze download the video?
-</summary>
+        <h3>
+          Can I watch the video?
+        </h3>
 
-<p>
+        <p>
+          Yes. Click Watch Video to open the video
+          on YouTube.
+        </p>
 
-No. Analyze only identifies the YouTube video and
-loads its available thumbnail information.
-
-</p>
-
-</details>
+      </div>
 
 
-<details class="faq-item">
+      <div class="faq">
 
-<summary>
-Can I watch the video from VidFetch?
-</summary>
+        <h3>
+          Is VidFetch Tools free?
+        </h3>
 
-<p>
+        <p>
+          The website is designed as a free web utility.
+        </p>
 
-Yes. Click Watch Video after analyzing the URL.
-The video will open on YouTube.
+      </div>
 
-</p>
+    </div>
 
-</details>
-
-
-<details class="faq-item">
-
-<summary>
-Is VidFetch mobile friendly?
-</summary>
-
-<p>
-
-Yes. The interface is responsive for desktop,
-tablet and mobile devices.
-
-</p>
-
-</details>
-
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
 
-<!-- =======================================================
-     CONTACT
-======================================================= -->
+<!-- ================= CONTACT ================= -->
 
-<section
-    class="section"
-    id="contact">
+<section class="section" id="contact">
 
-<div class="container">
+  <div class="container">
 
+    <div class="contact-box">
 
-<h2 class="section-title">
-Contact
-</h2>
+      <h2>Contact</h2>
 
+      <p>
+        For website feedback or suggestions,
+        please use the contact method provided
+        by the website owner.
+      </p>
 
-<div class="info-card">
+      <p style="margin-top:10px;">
+        VidFetch Tools — Amar Kumar Yadav
+      </p>
 
-<p>
+    </div>
 
-For website feedback, suggestions or technical
-questions, please use the contact method provided
-on the website.
-
-</p>
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
 
-<!-- =======================================================
-     PRIVACY
-======================================================= -->
+<!-- ================= PRIVACY ================= -->
 
-<section
-    class="section"
-    id="privacy">
+<section class="section" id="privacy">
 
-<div class="container">
+  <div class="container">
 
+    <div class="section-title">
 
-<h2 class="section-title">
-Privacy Policy
-</h2>
+      <h2>Privacy</h2>
 
+    </div>
 
-<div class="info-card">
+    <div class="about-box">
 
-<p>
+      <p>
+        VidFetch Tools is designed to minimize unnecessary
+        collection of personal information. Users should
+        avoid entering private or sensitive information
+        into the website.
+      </p>
 
-VidFetch Tools does not require users to create an
-account for the basic URL analyzer.
+    </div>
 
-</p>
-
-
-<p>
-
-The website processes the URL entered by the user
-in the browser to identify the YouTube video.
-
-</p>
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
 
-<!-- =======================================================
-     TERMS
-======================================================= -->
+<!-- ================= TERMS ================= -->
 
-<section
-    class="section"
-    id="terms">
+<section class="section" id="terms">
 
-<div class="container">
+  <div class="container">
 
+    <div class="section-title">
 
-<h2 class="section-title">
-Terms of Use
-</h2>
+      <h2>Terms of Use</h2>
 
+    </div>
 
-<div class="info-card">
+    <div class="about-box">
 
-<p>
+      <p>
+        Users are responsible for ensuring that their use
+        of downloaded or accessed content complies with
+        applicable laws, copyright rules and the terms
+        of the relevant platform.
+      </p>
 
-Use VidFetch Tools only for lawful purposes and
-respect the rights of content owners.
+    </div>
 
-</p>
-
-
-<p>
-
-Users are responsible for complying with applicable
-laws and the terms of the platforms they use.
-
-</p>
-
-</div>
-
-</div>
+  </div>
 
 </section>
-
 
 </main>
 
 
-<!-- =======================================================
-     BACK TO TOP
-======================================================= -->
+<!-- ================= BACK TOP ================= -->
 
 <button
-    class="back-top"
-    id="backTop"
-    type="button"
-    aria-label="Back to top">
-
-↑
-
+  class="back-top"
+  id="backTop"
+  aria-label="Back to top">
+  ↑
 </button>
 
 
-<!-- =======================================================
-     FOOTER
-======================================================= -->
+<!-- ================= FOOTER ================= -->
 
-<footer class="footer">
+<footer>
 
-<div class="container">
+  <div class="container">
 
+    <div class="footer-inner">
 
-<div class="footer-grid">
+      <div class="footer-brand">
 
+        <h3>
+          VidFetch Tools
+        </h3>
 
-<div>
+        <p>
+          Simple YouTube video tools for a clean
+          and easy web experience.
+        </p>
 
-<h3>
-VidFetch Tools
-</h3>
-
-<p>
-
-Simple and responsive YouTube utility tools.
-
-</p>
-
-</div>
+      </div>
 
 
-<div>
+      <div class="footer-links">
 
-<h4>
-Quick Links
-</h4>
+        <a href="#home">Home</a>
+        <a href="#tools">Tools</a>
+        <a href="#about">About</a>
+        <a href="#faq">FAQ</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#terms">Terms</a>
 
+      </div>
 
-<div class="footer-links">
-
-<a href="#home">
-Home
-</a>
-
-<a href="#tools">
-Tools
-</a>
-
-<a href="#how-it-works">
-How It Works
-</a>
-
-<a href="#faq">
-FAQ
-</a>
-
-</div>
-
-</div>
+    </div>
 
 
-<div>
+    <div class="copyright">
 
-<h4>
-Information
-</h4>
+      © <span id="year"></span>
+      VidFetch Tools. All rights reserved.
+      Created by Amar Kumar Yadav.
 
+    </div>
 
-<div class="footer-links">
-
-<a href="#about">
-About
-</a>
-
-<a href="#privacy">
-Privacy Policy
-</a>
-
-<a href="#terms">
-Terms of Use
-</a>
-
-<a href="#contact">
-Contact
-</a>
-
-</div>
-
-</div>
-
-
-</div>
-
-
-<div class="copyright">
-
-© <span id="year"></span>
-VidFetch Tools.
-All rights reserved.
-
-</div>
-
-
-</div>
+  </div>
 
 </footer>
 
 
 <script>
 
-/* =========================================================
-   ELEMENTS
-========================================================= */
+/* ================= ELEMENTS ================= */
 
 const urlInput =
-    document.getElementById("urlInput");
+  document.getElementById("urlInput");
 
 const pasteBtn =
-    document.getElementById("pasteBtn");
+  document.getElementById("pasteBtn");
 
 const analyzeBtn =
-    document.getElementById("analyzeBtn");
+  document.getElementById("analyzeBtn");
 
 const result =
-    document.getElementById("result");
+  document.getElementById("result");
 
 const thumbnail =
-    document.getElementById("thumbnail");
+  document.getElementById("thumbnail");
 
 const videoTitle =
-    document.getElementById("videoTitle");
+  document.getElementById("videoTitle");
 
 const videoIdElement =
-    document.getElementById("videoId");
+  document.getElementById("videoId");
 
 const statusBox =
-    document.getElementById("status");
+  document.getElementById("status");
 
 const thumbnailBtn =
-    document.getElementById("thumbnailBtn");
+  document.getElementById("thumbnailBtn");
 
 const watchBtn =
-    document.getElementById("watchBtn");
+  document.getElementById("watchBtn");
 
 const copyBtn =
-    document.getElementById("copyBtn");
+  document.getElementById("copyBtn");
 
 const shareBtn =
-    document.getElementById("shareBtn");
+  document.getElementById("shareBtn");
 
 const menuBtn =
-    document.getElementById("menuBtn");
+  document.getElementById("menuBtn");
 
 const navLinks =
-    document.getElementById("navLinks");
+  document.getElementById("navLinks");
 
 const backTop =
-    document.getElementById("backTop");
+  document.getElementById("backTop");
 
-
-/* =========================================================
-   STATE
-========================================================= */
 
 let currentVideoId = null;
-
 let currentVideoUrl = null;
 
 
-/* =========================================================
-   MOBILE MENU
-========================================================= */
+/* ================= STATUS ================= */
 
-menuBtn.addEventListener(
-    "click",
-    function(){
+function showStatus(message,type){
 
-        const open =
-            navLinks.classList.toggle("show");
+  statusBox.textContent = message;
 
-        menuBtn.setAttribute(
-            "aria-expanded",
-            open ? "true" : "false"
-        );
-
-    }
-);
-
-
-document.addEventListener(
-    "click",
-    function(event){
-
-        if(
-            !navLinks.contains(event.target) &&
-            !menuBtn.contains(event.target)
-        ){
-
-            navLinks.classList.remove("show");
-
-            menuBtn.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-        }
-
-    }
-);
-
-
-navLinks.querySelectorAll("a").forEach(
-    function(link){
-
-        link.addEventListener(
-            "click",
-            function(){
-
-                navLinks.classList.remove("show");
-
-                menuBtn.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-            }
-        );
-
-    }
-);
-
-
-/* =========================================================
-   STATUS
-========================================================= */
-
-function showStatus(
-    message,
-    type = ""
-){
-
-    statusBox.textContent =
-        message;
-
-    statusBox.className =
-        "status show";
-
-    if(type){
-
-        statusBox.classList.add(
-            type
-        );
-
-    }
-
+  statusBox.className =
+    "status show " + type;
 }
 
 
 function clearStatus(){
 
-    statusBox.className =
-        "status";
+  statusBox.className = "status";
 
+  statusBox.textContent = "";
 }
 
 
-/* =========================================================
-   YOUTUBE VIDEO ID
-========================================================= */
+/* ================= YOUTUBE ID ================= */
 
-function getYouTubeVideoId(
-    value
-){
+function getYouTubeVideoId(value){
 
-    try{
+  try{
 
-        let input =
-            value.trim();
+    let input = value.trim();
 
-
-        /*
-         * If user pastes only the ID,
-         * accept normal 11-character YouTube IDs.
-         */
-
-        if(
-            /^[A-Za-z0-9_-]{11}$/.test(input)
-        ){
-
-            return input;
-
-        }
-
-
-        /*
-         * Add https:// when the user
-         * enters youtube.com/... without protocol.
-         */
-
-        if(
-            !/^https?:\/\//i.test(input)
-        ){
-
-            input =
-                "https://" + input;
-
-        }
-
-
-        const parsed =
-            new URL(input);
-
-
-        const host =
-            parsed.hostname
-                .toLowerCase()
-                .replace(/^www\./,"");
-
-
-        /* youtube.com */
-
-        if(
-            host === "youtube.com" ||
-            host === "m.youtube.com"
-        ){
-
-            const videoParam =
-                parsed.searchParams.get("v");
-
-
-            if(
-                videoParam &&
-                /^[A-Za-z0-9_-]{11}$/.test(videoParam)
-            ){
-
-                return videoParam;
-
-            }
-
-
-            const parts =
-                parsed.pathname
-                    .split("/")
-                    .filter(Boolean);
-
-
-            if(
-                parts.length >= 2 &&
-                (
-                    parts[0] === "shorts" ||
-                    parts[0] === "embed" ||
-                    parts[0] === "live"
-                )
-            ){
-
-                const id =
-                    parts[1];
-
-                if(
-                    /^[A-Za-z0-9_-]{11}$/.test(id)
-                ){
-
-                    return id;
-
-                }
-
-            }
-
-        }
-
-
-        /* youtu.be */
-
-        if(
-            host === "youtu.be"
-        ){
-
-            const parts =
-                parsed.pathname
-                    .split("/")
-                    .filter(Boolean);
-
-
-            if(parts.length){
-
-                const id =
-                    parts[0];
-
-                if(
-                    /^[A-Za-z0-9_-]{11}$/.test(id)
-                ){
-
-                    return id;
-
-                }
-
-            }
-
-        }
-
-
-        return null;
-
-    }catch(error){
-
-        return null;
-
+    if(!input){
+      return null;
     }
 
-}
-
-
-/* =========================================================
-   YOUTUBE TITLE
-========================================================= */
-
-async function getVideoTitle(
-    videoId
-){
 
     /*
-     * YouTube oEmbed gives the public title
-     * without requiring an API key.
-     */
+      Direct 11-character YouTube video ID
+    */
 
-    try{
-
-        const oembedUrl =
-            "https://www.youtube.com/oembed" +
-            "?url=" +
-            encodeURIComponent(
-                "https://www.youtube.com/watch?v=" +
-                videoId
-            ) +
-            "&format=json";
+    if(
+      /^[A-Za-z0-9_-]{11}$/.test(input)
+    ){
+      return input;
+    }
 
 
-        const response =
-            await fetch(
-                oembedUrl
-            );
+    /*
+      Add protocol if missing
+    */
+
+    if(
+      !/^https?:\/\//i.test(input)
+    ){
+
+      input =
+        "https://" + input;
+
+    }
 
 
-        if(!response.ok){
+    const parsed =
+      new URL(input);
 
-            return "YouTube Video";
+
+    const host =
+      parsed.hostname
+      .toLowerCase()
+      .replace(/^www\./,"");
+
+
+    /*
+      Standard YouTube watch URL
+    */
+
+    if(
+      host === "youtube.com" ||
+      host === "m.youtube.com"
+    ){
+
+      const videoParam =
+        parsed.searchParams.get("v");
+
+
+      if(
+        videoParam &&
+        /^[A-Za-z0-9_-]{11}$/.test(videoParam)
+      ){
+
+        return videoParam;
+
+      }
+
+
+      /*
+        Shorts / Embed / Live
+      */
+
+      const parts =
+        parsed.pathname
+        .split("/")
+        .filter(Boolean);
+
+
+      if(
+        parts.length >= 2 &&
+        (
+          parts[0] === "shorts" ||
+          parts[0] === "embed" ||
+          parts[0] === "live"
+        )
+      ){
+
+        const id =
+          parts[1];
+
+        if(
+          /^[A-Za-z0-9_-]{11}$/.test(id)
+        ){
+
+          return id;
 
         }
 
-
-        const data =
-            await response.json();
-
-
-        return (
-            data.title ||
-            "YouTube Video"
-        );
-
-    }catch(error){
-
-        return "YouTube Video";
+      }
 
     }
+
+
+    /*
+      youtu.be
+    */
+
+    if(
+      host === "youtu.be"
+    ){
+
+      const parts =
+        parsed.pathname
+        .split("/")
+        .filter(Boolean);
+
+
+      if(parts.length){
+
+        const id =
+          parts[0];
+
+        if(
+          /^[A-Za-z0-9_-]{11}$/.test(id)
+        ){
+
+          return id;
+
+        }
+
+      }
+
+    }
+
+
+    return null;
+
+  }catch(error){
+
+    return null;
+
+  }
 
 }
 
 
-/* =========================================================
-   ANALYZE
-========================================================= */
+/* ================= VIDEO TITLE ================= */
+
+async function getVideoTitle(videoId){
+
+  try{
+
+    const oembedUrl =
+      "https://www.youtube.com/oembed" +
+      "?url=" +
+      encodeURIComponent(
+        "https://www.youtube.com/watch?v=" +
+        videoId
+      ) +
+      "&format=json";
+
+
+    const response =
+      await fetch(oembedUrl);
+
+
+    if(!response.ok){
+
+      return "YouTube Video";
+
+    }
+
+
+    const data =
+      await response.json();
+
+
+    return (
+      data.title ||
+      "YouTube Video"
+    );
+
+  }catch(error){
+
+    return "YouTube Video";
+
+  }
+
+}
+
+
+/* ================= GET VIDEO ================= */
 
 async function analyzeVideo(){
 
-    const raw =
-        urlInput.value.trim();
+  const raw =
+    urlInput.value.trim();
 
 
-    if(!raw){
+  if(!raw){
 
-        result.classList.remove("show");
+    result.classList.remove("show");
 
-        showStatus(
-            "Please paste a YouTube video URL.",
-            "warning"
-        );
+    showStatus(
+      "Please paste a YouTube video URL.",
+      "warning"
+    );
 
-        urlInput.focus();
+    urlInput.focus();
 
-        return;
+    return;
 
-    }
-
-
-    const id =
-        getYouTubeVideoId(
-            raw
-        );
+  }
 
 
-    if(!id){
-
-        result.classList.remove("show");
-
-        showStatus(
-            "Invalid or unsupported YouTube URL.",
-            "error"
-        );
-
-        urlInput.focus();
-
-        return;
-
-    }
+  const id =
+    getYouTubeVideoId(raw);
 
 
-    currentVideoId =
-        id;
+  if(!id){
+
+    result.classList.remove("show");
+
+    showStatus(
+      "Invalid or unsupported YouTube URL.",
+      "error"
+    );
+
+    urlInput.focus();
+
+    return;
+
+  }
 
 
-    currentVideoUrl =
-        "https://www.youtube.com/watch?v=" +
-        id;
+  currentVideoId =
+    id;
 
 
-    const imageUrl =
-        "https://img.youtube.com/vi/" +
-        encodeURIComponent(id) +
-        "/maxresdefault.jpg";
+  currentVideoUrl =
+    "https://www.youtube.com/watch?v=" +
+    id;
 
 
-    thumbnail.src =
-        imageUrl;
+  /*
+    Thumbnail
+  */
+
+  const maxThumbnail =
+    "https://img.youtube.com/vi/" +
+    encodeURIComponent(id) +
+    "/maxresdefault.jpg";
 
 
-    thumbnail.onerror =
+  const highThumbnail =
+    "https://img.youtube.com/vi/" +
+    encodeURIComponent(id) +
+    "/hqdefault.jpg";
+
+
+  thumbnail.src =
+    maxThumbnail;
+
+
+  thumbnail.onerror =
+    function(){
+
+      thumbnail.onerror =
         function(){
 
-            thumbnail.onerror =
-                function(){
-
-                    thumbnail.src =
-                        "https://img.youtube.com/vi/" +
-                        encodeURIComponent(id) +
-                        "/hqdefault.jpg";
-
-                };
-
-
-            thumbnail.src =
-                "https://img.youtube.com/vi/" +
-                encodeURIComponent(id) +
-                "/hqdefault.jpg";
+          thumbnail.src =
+            highThumbnail;
 
         };
 
 
-    videoTitle.textContent =
-        "Loading video title...";
+      thumbnail.src =
+        highThumbnail;
+
+    };
 
 
-    videoIdElement.textContent =
-        "Video ID: " + id;
+  /*
+    Loading title
+  */
+
+  videoTitle.textContent =
+    "Loading video title...";
 
 
-    result.classList.add(
-        "show"
-    );
+  videoIdElement.textContent =
+    "Video ID: " + id;
 
 
-    showStatus(
-        "YouTube video found. Loading video information...",
-        "success"
-    );
+  result.classList.add("show");
 
 
-    const title =
-        await getVideoTitle(
-            id
-        );
+  showStatus(
+    "YouTube video found. Loading video information...",
+    "success"
+  );
 
 
-    /*
-     * Make sure the user has not analyzed
-     * another video while the request was running.
-     */
+  /*
+    Get title
+  */
 
-    if(
-        currentVideoId !== id
-    ){
-
-        return;
-
-    }
+  const title =
+    await getVideoTitle(id);
 
 
-    videoTitle.textContent =
-        title;
+  if(currentVideoId !== id){
+
+    return;
+
+  }
 
 
-    showStatus(
-        "Video analyzed successfully.",
-        "success"
-    );
+  videoTitle.textContent =
+    title;
 
 
-    setTimeout(
-        function(){
+  showStatus(
+    "Video loaded successfully.",
+    "success"
+  );
 
-            result.scrollIntoView({
-                behavior:"smooth",
-                block:"start"
-            });
 
-        },
-        100
-    );
+  setTimeout(
+    function(){
+
+      result.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
+
+    },
+    100
+  );
 
 }
 
 
+/* ================= GET VIDEO BUTTON ================= */
+
 analyzeBtn.addEventListener(
-    "click",
-    analyzeVideo
+  "click",
+  analyzeVideo
 );
 
 
-/* =========================================================
-   ENTER KEY
-========================================================= */
+/* ================= ENTER KEY ================= */
 
 urlInput.addEventListener(
-    "keydown",
-    function(event){
+  "keydown",
+  function(event){
 
-        if(
-            event.key === "Enter"
-        ){
+    if(event.key === "Enter"){
 
-            event.preventDefault();
+      event.preventDefault();
 
-            analyzeVideo();
-
-        }
+      analyzeVideo();
 
     }
+
+  }
 );
 
+
+/* ================= INPUT ================= */
 
 urlInput.addEventListener(
-    "input",
-    clearStatus
+  "input",
+  clearStatus
 );
 
 
-/* =========================================================
-   PASTE BUTTON
-========================================================= */
+/* ================= PASTE ================= */
 
 pasteBtn.addEventListener(
-    "click",
-    async function(){
+  "click",
+  async function(){
 
-        try{
+    try{
 
-            if(
-                navigator.clipboard &&
-                window.isSecureContext
-            ){
+      if(
+        navigator.clipboard &&
+        window.isSecureContext
+      ){
 
-                const text =
-                    await navigator.clipboard.readText();
-
-
-                if(
-                    !text.trim()
-                ){
-
-                    showStatus(
-                        "Clipboard is empty.",
-                        "warning"
-                    );
-
-                    return;
-
-                }
+        const text =
+          await navigator.clipboard.readText();
 
 
-                urlInput.value =
-                    text.trim();
+        if(!text.trim()){
 
+          showStatus(
+            "Clipboard is empty.",
+            "warning"
+          );
 
-                analyzeVideo();
-
-            }else{
-
-                showStatus(
-                    "Press Ctrl + V inside the URL box.",
-                    "warning"
-                );
-
-                urlInput.focus();
-
-            }
-
-        }catch(error){
-
-            showStatus(
-                "Clipboard permission was blocked. Press Ctrl + V to paste.",
-                "warning"
-            );
-
-            urlInput.focus();
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   DOWNLOAD THUMBNAIL
-========================================================= */
-
-thumbnailBtn.addEventListener(
-    "click",
-    async function(){
-
-        if(!currentVideoId){
-
-            showStatus(
-                "Please analyze a YouTube URL first.",
-                "warning"
-            );
-
-            return;
+          return;
 
         }
 
 
-        const imageUrl =
-            "https://img.youtube.com/vi/" +
-            encodeURIComponent(
-                currentVideoId
-            ) +
-            "/hqdefault.jpg";
+        urlInput.value =
+          text.trim();
 
 
-        thumbnailBtn.disabled =
-            true;
+        analyzeVideo();
 
+      }else{
 
-        thumbnailBtn.textContent =
-            "⏳ Preparing...";
-
-
-        try{
-
-            /*
-             * Try downloading the image directly.
-             */
-
-            const response =
-                await fetch(
-                    imageUrl
-                );
-
-
-            if(!response.ok){
-
-                throw new Error(
-                    "Thumbnail could not be downloaded."
-                );
-
-            }
-
-
-            const blob =
-                await response.blob();
-
-
-            const objectUrl =
-                URL.createObjectURL(
-                    blob
-                );
-
-
-            const link =
-                document.createElement("a");
-
-
-            link.href =
-                objectUrl;
-
-
-            link.download =
-                "youtube-thumbnail-" +
-                currentVideoId +
-                ".jpg";
-
-
-            document.body.appendChild(
-                link
-            );
-
-
-            link.click();
-
-
-            link.remove();
-
-
-            setTimeout(
-                function(){
-
-                    URL.revokeObjectURL(
-                        objectUrl
-                    );
-
-                },
-                1000
-            );
-
-
-            showStatus(
-                "Thumbnail download started.",
-                "success"
-            );
-
-        }catch(error){
-
-            /*
-             * Some browsers can block cross-origin
-             * image fetching. Open the actual image
-             * as a fallback.
-             */
-
-            window.open(
-                imageUrl,
-                "_blank",
-                "noopener,noreferrer"
-            );
-
-
-            showStatus(
-                "Thumbnail opened in a new tab. Use Save Image if automatic download is blocked.",
-                "warning"
-            );
-
-        }finally{
-
-            thumbnailBtn.disabled =
-                false;
-
-            thumbnailBtn.textContent =
-                "🖼️ Download Thumbnail";
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   WATCH VIDEO
-========================================================= */
-
-watchBtn.addEventListener(
-    "click",
-    function(){
-
-        if(!currentVideoId){
-
-            showStatus(
-                "Please analyze a YouTube URL first.",
-                "warning"
-            );
-
-            return;
-
-        }
-
-
-        window.open(
-            currentVideoUrl,
-            "_blank",
-            "noopener,noreferrer"
+        showStatus(
+          "Press Ctrl + V inside the URL box.",
+          "warning"
         );
 
+        urlInput.focus();
+
+      }
+
+    }catch(error){
+
+      showStatus(
+        "Clipboard permission was blocked. Press Ctrl + V to paste.",
+        "warning"
+      );
+
+      urlInput.focus();
+
     }
+
+  }
 );
 
 
-/* =========================================================
-   COPY URL
-========================================================= */
+/* ================= THUMBNAIL DOWNLOAD ================= */
+
+thumbnailBtn.addEventListener(
+  "click",
+  async function(){
+
+    if(!currentVideoId){
+
+      showStatus(
+        "Please get a YouTube video first.",
+        "warning"
+      );
+
+      return;
+
+    }
+
+
+    const imageUrl =
+      "https://img.youtube.com/vi/" +
+      encodeURIComponent(currentVideoId) +
+      "/hqdefault.jpg";
+
+
+    thumbnailBtn.disabled =
+      true;
+
+
+    thumbnailBtn.textContent =
+      "⏳ Preparing...";
+
+
+    try{
+
+      const response =
+        await fetch(imageUrl);
+
+
+      if(!response.ok){
+
+        throw new Error(
+          "Thumbnail could not be downloaded."
+        );
+
+      }
+
+
+      const blob =
+        await response.blob();
+
+
+      const objectUrl =
+        URL.createObjectURL(blob);
+
+
+      const link =
+        document.createElement("a");
+
+
+      link.href =
+        objectUrl;
+
+
+      link.download =
+        "youtube-thumbnail-" +
+        currentVideoId +
+        ".jpg";
+
+
+      document.body.appendChild(link);
+
+
+      link.click();
+
+
+      link.remove();
+
+
+      setTimeout(
+        function(){
+
+          URL.revokeObjectURL(
+            objectUrl
+          );
+
+        },
+        1000
+      );
+
+
+      showStatus(
+        "Thumbnail download started.",
+        "success"
+      );
+
+
+    }catch(error){
+
+      /*
+        Browser CORS fallback
+      */
+
+      window.open(
+        imageUrl,
+        "_blank",
+        "noopener,noreferrer"
+      );
+
+
+      showStatus(
+        "Thumbnail opened in a new tab. Use Save Image if automatic download is blocked.",
+        "warning"
+      );
+
+
+    }finally{
+
+      thumbnailBtn.disabled =
+        false;
+
+
+      thumbnailBtn.textContent =
+        "🖼️ Download Thumbnail";
+
+    }
+
+  }
+);
+
+
+/* ================= WATCH VIDEO ================= */
+
+watchBtn.addEventListener(
+  "click",
+  function(){
+
+    if(!currentVideoId){
+
+      showStatus(
+        "Please get a YouTube video first.",
+        "warning"
+      );
+
+      return;
+
+    }
+
+
+    window.open(
+      currentVideoUrl,
+      "_blank",
+      "noopener,noreferrer"
+    );
+
+  }
+);
+
+
+/* ================= COPY URL ================= */
 
 copyBtn.addEventListener(
-    "click",
-    async function(){
+  "click",
+  async function(){
 
-        if(!currentVideoId){
+    if(!currentVideoId){
 
-            showStatus(
-                "Please analyze a YouTube URL first.",
-                "warning"
-            );
+      showStatus(
+        "Please get a YouTube video first.",
+        "warning"
+      );
 
-            return;
-
-        }
-
-
-        try{
-
-            await navigator.clipboard.writeText(
-                currentVideoUrl
-            );
-
-
-            showStatus(
-                "YouTube URL copied successfully.",
-                "success"
-            );
-
-        }catch(error){
-
-            showStatus(
-                "Could not copy automatically.",
-                "error"
-            );
-
-        }
+      return;
 
     }
+
+
+    try{
+
+      await navigator.clipboard.writeText(
+        currentVideoUrl
+      );
+
+
+      showStatus(
+        "YouTube URL copied successfully.",
+        "success"
+      );
+
+
+    }catch(error){
+
+      showStatus(
+        "Could not copy automatically.",
+        "error"
+      );
+
+    }
+
+  }
 );
 
 
-/* =========================================================
-   SHARE
-========================================================= */
+/* ================= SHARE ================= */
 
 shareBtn.addEventListener(
-    "click",
-    async function(){
+  "click",
+  async function(){
 
-        if(!currentVideoId){
+    if(!currentVideoId){
 
-            showStatus(
-                "Please analyze a YouTube URL first.",
-                "warning"
-            );
+      showStatus(
+        "Please get a YouTube video first.",
+        "warning"
+      );
 
-            return;
-
-        }
-
-
-        const shareData = {
-
-            title:
-                videoTitle.textContent ||
-                "YouTube Video",
-
-            text:
-                "Check this YouTube video",
-
-            url:
-                currentVideoUrl
-
-        };
-
-
-        if(
-            navigator.share
-        ){
-
-            try{
-
-                await navigator.share(
-                    shareData
-                );
-
-
-                showStatus(
-                    "Share menu opened.",
-                    "success"
-                );
-
-            }catch(error){
-
-                /*
-                 * User cancelled share.
-                 */
-
-            }
-
-            return;
-
-        }
-
-
-        try{
-
-            await navigator.clipboard.writeText(
-                currentVideoUrl
-            );
-
-
-            showStatus(
-                "Video URL copied to clipboard.",
-                "success"
-            );
-
-        }catch(error){
-
-            showStatus(
-                "Sharing is not available in this browser.",
-                "warning"
-            );
-
-        }
+      return;
 
     }
+
+
+    const shareData = {
+
+      title:
+        videoTitle.textContent ||
+        "YouTube Video",
+
+      text:
+        "Check this YouTube video",
+
+      url:
+        currentVideoUrl
+
+    };
+
+
+    /*
+      Mobile/browser native share
+    */
+
+    if(navigator.share){
+
+      try{
+
+        await navigator.share(
+          shareData
+        );
+
+        showStatus(
+          "Share menu opened.",
+          "success"
+        );
+
+      }catch(error){
+
+        /*
+          User cancelled share.
+        */
+
+      }
+
+      return;
+
+    }
+
+
+    /*
+      Desktop fallback
+    */
+
+    try{
+
+      await navigator.clipboard.writeText(
+        currentVideoUrl
+      );
+
+
+      showStatus(
+        "Video URL copied to clipboard.",
+        "success"
+      );
+
+    }catch(error){
+
+      showStatus(
+        "Sharing is not available in this browser.",
+        "warning"
+      );
+
+    }
+
+  }
 );
 
 
-/* =========================================================
-   BACK TO TOP
-========================================================= */
+/* ================= MOBILE MENU ================= */
+
+menuBtn.addEventListener(
+  "click",
+  function(){
+
+    navLinks.classList.toggle(
+      "open"
+    );
+
+  }
+);
+
+
+/*
+  Close mobile menu after clicking a link
+*/
+
+navLinks.querySelectorAll("a").forEach(
+  function(link){
+
+    link.addEventListener(
+      "click",
+      function(){
+
+        navLinks.classList.remove(
+          "open"
+        );
+
+      }
+    );
+
+  }
+);
+
+
+/* ================= BACK TO TOP ================= */
 
 window.addEventListener(
-    "scroll",
-    function(){
+  "scroll",
+  function(){
 
-        if(
-            window.scrollY > 500
-        ){
+    if(window.scrollY > 500){
 
-            backTop.classList.add(
-                "show"
-            );
+      backTop.classList.add(
+        "show"
+      );
 
-        }else{
+    }else{
 
-            backTop.classList.remove(
-                "show"
-            );
-
-        }
+      backTop.classList.remove(
+        "show"
+      );
 
     }
+
+  }
 );
 
 
 backTop.addEventListener(
-    "click",
-    function(){
+  "click",
+  function(){
 
-        window.scrollTo({
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
 
-            top:0,
-
-            behavior:"smooth"
-
-        });
-
-    }
+  }
 );
 
 
-/* =========================================================
-   YEAR
-========================================================= */
+/* ================= YEAR ================= */
 
 document.getElementById(
-    "year"
+  "year"
 ).textContent =
-    new Date().getFullYear();
-
+  new Date().getFullYear();
 
 </script>
 
