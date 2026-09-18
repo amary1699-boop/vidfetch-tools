@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+      content="VidFetch Tools - Fast and simple online YouTube video tools. Analyze URLs, preview thumbnails, copy links and more.">
+
+<meta name="keywords"
+      content="YouTube tools, video tools, thumbnail downloader, YouTube URL analyzer">
+
+<meta name="author"
+      content="Amar Kumar Yadav">
+
+<meta name="robots"
+      content="index, follow">
 
 <title>VidFetch Tools - YouTube Video Tools Online</title>
-
-<meta name="description" content="VidFetch Tools is a fast and simple online video utility website for analyzing YouTube URLs, previewing thumbnails and viewing basic video information.">
-
-<meta name="keywords" content="YouTube tools, video preview, YouTube thumbnail, video information, online video tools">
-
-<meta name="author" content="Amar Kumar Yadav">
-
-<meta name="robots" content="index, follow">
-
-<meta property="og:title" content="VidFetch Tools - Online Video Tools">
-<meta property="og:description" content="Simple and fast online video utility tools.">
-<meta property="og:type" content="website">
 
 <style>
 
@@ -30,13 +31,21 @@
     --primary-dark:#1d4ed8;
     --accent:#06b6d4;
     --green:#16a34a;
+
     --text:#0f172a;
     --muted:#64748b;
+
     --bg:#f1f5f9;
     --card:#ffffff;
+
     --border:#dbe3ee;
+
     --danger:#dc2626;
-    --shadow:0 14px 40px rgba(15,23,42,.09);
+
+    --shadow:
+        0 14px 40px rgba(15,23,42,.09);
+
+    --radius:18px;
 }
 
 
@@ -55,14 +64,26 @@ html{
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     background:var(--bg);
     color:var(--text);
+
     line-height:1.6;
+
+    overflow-x:hidden;
 }
 
-body.modal-open{
-    overflow:hidden;
+button,
+input{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
 }
 
 a{
@@ -70,18 +91,13 @@ a{
     text-decoration:none;
 }
 
-button,
-input,
-select{
-    font-family:inherit;
-}
 
-button{
-    -webkit-tap-highlight-color:transparent;
-}
+/* =========================================================
+   CONTAINER
+========================================================= */
 
 .container{
-    width:min(1120px,92%);
+    width:min(1180px, calc(100% - 32px));
     margin:auto;
 }
 
@@ -91,42 +107,52 @@ button{
 ========================================================= */
 
 .navbar{
-    background:#fff;
-    border-bottom:1px solid var(--border);
     position:sticky;
     top:0;
     z-index:1000;
+
+    background:rgba(255,255,255,.96);
+
+    border-bottom:1px solid var(--border);
+
+    backdrop-filter:blur(12px);
 }
 
 .nav-inner{
-    min-height:70px;
+    min-height:72px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     gap:20px;
 }
 
 .logo{
-    font-size:24px;
+    font-size:23px;
     font-weight:800;
+
     color:var(--primary);
-    letter-spacing:-.5px;
+
+    white-space:nowrap;
 }
 
 .logo span{
-    color:#111;
+    color:var(--text);
 }
 
 .nav-links{
     display:flex;
     align-items:center;
-    gap:25px;
+    gap:24px;
 }
 
 .nav-links a{
+    color:#334155;
     font-size:15px;
     font-weight:600;
-    color:#333;
+
+    transition:.2s;
 }
 
 .nav-links a:hover{
@@ -135,10 +161,16 @@ button{
 
 .menu-btn{
     display:none;
-    border:0;
-    background:none;
-    font-size:28px;
-    cursor:pointer;
+
+    width:44px;
+    height:44px;
+
+    border:1px solid var(--border);
+    background:white;
+
+    border-radius:10px;
+
+    font-size:22px;
 }
 
 
@@ -147,7 +179,8 @@ button{
 ========================================================= */
 
 .hero{
-    padding:75px 0 65px;
+    padding:82px 0 58px;
+
     background:
         radial-gradient(
             circle at top left,
@@ -156,34 +189,44 @@ button{
         ),
         linear-gradient(
             180deg,
-            #fff 0%,
-            #f7f8fc 100%
+            #ffffff 0%,
+            #f8fafc 100%
         );
 }
 
 .hero-content{
-    max-width:900px;
-    margin:auto;
     text-align:center;
+    max-width:850px;
+    margin:auto;
 }
 
 .badge{
-    display:inline-block;
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
     background:#eff6ff;
     color:var(--primary);
-    border:1px solid #bfdbfe;
-    padding:7px 15px;
-    border-radius:50px;
+
     font-size:13px;
     font-weight:700;
+
+    border:1px solid #dbeafe;
+
     margin-bottom:20px;
 }
 
 .hero h1{
-    font-size:clamp(36px,6vw,64px);
+    font-size:clamp(34px, 6vw, 60px);
     line-height:1.08;
+
+    letter-spacing:-1.8px;
+
     margin-bottom:20px;
-    letter-spacing:-2px;
 }
 
 .hero h1 span{
@@ -191,110 +234,194 @@ button{
 }
 
 .hero p{
-    max-width:700px;
-    margin:0 auto 32px;
     color:var(--muted);
-    font-size:18px;
+
+    max-width:720px;
+    margin:auto;
+
+    font-size:17px;
 }
 
 
 /* =========================================================
-   TOOL CARD
+   MAIN TOOL CARD
 ========================================================= */
 
-.tool-card{
-    max-width:900px;
-    margin:0 auto;
-    background:#fff;
-    padding:25px;
-    border-radius:20px;
-    box-shadow:var(--shadow);
-    border:1px solid var(--border);
+.tool-section{
+    margin-top:-10px;
+    padding-bottom:70px;
 }
 
+.tool-card{
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+    padding:28px;
+}
+
+.tool-card h2{
+    font-size:24px;
+    margin-bottom:8px;
+}
+
+.tool-description{
+    color:var(--muted);
+    margin-bottom:22px;
+}
+
+
+/* =========================================================
+   URL ROW
+========================================================= */
+
 .url-row{
-    display:flex;
+    display:grid;
+
+    grid-template-columns:
+        minmax(0,1fr)
+        auto
+        auto;
+
     gap:10px;
+
+    align-items:stretch;
 }
 
 .url-input{
-    flex:1;
-    min-width:0;
-    height:54px;
-    padding:0 17px;
-    border:1px solid #d7d9df;
+    width:100%;
+
+    min-height:54px;
+
+    border:1px solid var(--border);
+
     border-radius:12px;
+
+    padding:0 16px;
+
     outline:none;
-    font-size:16px;
+
+    color:var(--text);
+
+    background:#fff;
+
+    transition:.2s;
 }
 
 .url-input:focus{
     border-color:var(--primary);
-    box-shadow:0 0 0 3px rgba(37,99,235,.10);
+
+    box-shadow:
+        0 0 0 4px rgba(37,99,235,.10);
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.primary-btn,
+.secondary-btn,
+.green-btn,
+.danger-btn{
+    min-height:54px;
+
+    border-radius:12px;
+
+    padding:0 18px;
+
+    border:1px solid transparent;
+
+    font-weight:700;
+
+    transition:
+        transform .15s,
+        background .2s,
+        border .2s,
+        box-shadow .2s;
 }
 
 .primary-btn{
-    height:54px;
-    border:0;
-    border-radius:12px;
-    padding:0 25px;
     background:var(--primary);
-    color:#fff;
-    font-size:16px;
-    font-weight:700;
-    cursor:pointer;
-    transition:.2s;
-    white-space:nowrap;
+    color:white;
 }
 
 .primary-btn:hover{
     background:var(--primary-dark);
-    transform:translateY(-1px);
-}
 
-.primary-btn:active{
-    transform:translateY(0);
+    transform:translateY(-1px);
 }
 
 .secondary-btn{
-    min-height:45px;
-    border:1px solid var(--border);
-    border-radius:10px;
-    padding:0 17px;
     background:#fff;
-    cursor:pointer;
-    font-weight:600;
-    transition:.2s;
-    white-space:nowrap;
+    color:#334155;
+
+    border-color:var(--border);
 }
 
 .secondary-btn:hover{
-    border-color:var(--primary);
-    color:var(--primary);
-    transform:translateY(-1px);
+    border-color:#94a3b8;
+    background:#f8fafc;
 }
 
-.secondary-btn:active{
-    transform:translateY(0);
+.green-btn{
+    background:var(--green);
+    color:white;
 }
 
-.download-main-btn{
-    background:var(--primary);
-    border-color:var(--primary);
-    color:#fff;
+.green-btn:hover{
+    background:#15803d;
 }
 
-.download-main-btn:hover{
-    background:var(--primary-dark);
-    border-color:var(--primary-dark);
-    color:#fff;
+.danger-btn{
+    background:#fff;
+    color:var(--danger);
+    border-color:#fecaca;
+}
+
+.danger-btn:hover{
+    background:#fef2f2;
+}
+
+.paste-url-btn{
+    min-width:125px;
 }
 
 .help-text{
-    margin-top:12px;
+    color:var(--muted);
     font-size:13px;
-    color:#777;
-    text-align:left;
+    margin-top:10px;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.status{
+    display:none;
+
+    margin-top:18px;
+
+    padding:13px 15px;
+
+    border-radius:12px;
+
+    background:#eff6ff;
+
+    color:#1e40af;
+
+    border:1px solid #bfdbfe;
+
+    font-size:14px;
+}
+
+.status.show{
+    display:block;
 }
 
 
@@ -304,377 +431,119 @@ button{
 
 .result{
     display:none;
-    margin-top:22px;
+
+    margin-top:26px;
+
     border-top:1px solid var(--border);
-    padding-top:22px;
-    scroll-margin-top:95px;
+
+    padding-top:26px;
+}
+
+.result.show{
+    display:block;
 }
 
 .result-grid{
     display:grid;
-    grid-template-columns:280px 1fr;
-    gap:22px;
+
+    grid-template-columns:
+        minmax(260px, 380px)
+        minmax(0,1fr);
+
+    gap:28px;
+
     align-items:start;
 }
 
-.thumbnail{
-    width:100%;
+.thumbnail-wrap{
+    overflow:hidden;
+
+    border-radius:14px;
+
+    border:1px solid var(--border);
+
+    background:#e2e8f0;
+
     aspect-ratio:16/9;
+}
+
+.thumbnail-wrap img{
+    width:100%;
+    height:100%;
+
     object-fit:cover;
-    border-radius:12px;
-    background:#eee;
+
     display:block;
 }
 
 .video-info h3{
-    font-size:21px;
-    margin-bottom:10px;
+    font-size:24px;
+
+    line-height:1.3;
+
+    margin-bottom:12px;
+
+    overflow-wrap:anywhere;
 }
 
-.info-line{
-    color:#666;
-    font-size:14px;
-    margin-bottom:6px;
-}
+.video-id{
+    display:inline-block;
 
-.info-label{
-    font-weight:700;
-    color:#333;
-}
+    padding:6px 10px;
 
-.action-row{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-top:18px;
-}
+    background:#f1f5f9;
 
-.status{
-    margin-top:15px;
-    padding:11px 13px;
-    border-radius:9px;
-    background:#f5f5f5;
-    font-size:14px;
-    display:none;
-}
+    border:1px solid var(--border);
 
-.status.show{
-    display:block;
-}
+    border-radius:8px;
 
+    color:#475569;
 
-/* =========================================================
-   DOWNLOAD MODAL
-========================================================= */
-
-.download-overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(15,23,42,.62);
-    backdrop-filter:blur(4px);
-    -webkit-backdrop-filter:blur(4px);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-    z-index:5000;
-}
-
-.download-overlay.show{
-    display:flex;
-}
-
-.download-modal{
-    width:min(680px,100%);
-    max-height:calc(100vh - 40px);
-    overflow:auto;
-    background:#fff;
-    border-radius:22px;
-    box-shadow:0 25px 70px rgba(0,0,0,.25);
-    animation:modalIn .2s ease;
-}
-
-@keyframes modalIn{
-    from{
-        opacity:0;
-        transform:translateY(12px) scale(.98);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0) scale(1);
-    }
-}
-
-.download-header{
-    padding:22px 24px;
-    border-bottom:1px solid var(--border);
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:15px;
-}
-
-.download-header-left{
-    display:flex;
-    align-items:center;
-    gap:13px;
-}
-
-.download-header-icon{
-    width:45px;
-    height:45px;
-    border-radius:12px;
-    background:#eff6ff;
-    color:var(--primary);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:22px;
-}
-
-.download-header h2{
-    font-size:22px;
-    margin-bottom:2px;
-}
-
-.download-header p{
-    color:var(--muted);
     font-size:13px;
-}
 
-.close-download{
-    width:40px;
-    height:40px;
-    border-radius:10px;
-    border:1px solid var(--border);
-    background:#fff;
-    cursor:pointer;
-    font-size:22px;
-    line-height:1;
-}
-
-.close-download:hover{
-    background:#f8fafc;
-    border-color:#94a3b8;
-}
-
-.download-body{
-    padding:24px;
-}
-
-.download-video-preview{
-    display:flex;
-    gap:15px;
-    padding:13px;
-    border:1px solid var(--border);
-    border-radius:14px;
-    background:#f8fafc;
     margin-bottom:20px;
-}
 
-.download-video-preview img{
-    width:135px;
-    height:76px;
-    object-fit:cover;
-    border-radius:9px;
-    flex-shrink:0;
-}
-
-.download-video-info{
-    min-width:0;
-}
-
-.download-video-info strong{
-    display:block;
-    margin-bottom:4px;
-}
-
-.download-video-info span{
-    display:block;
-    color:var(--muted);
-    font-size:13px;
     word-break:break-all;
 }
 
-
-/* DOWNLOAD TYPE */
-
-.download-type-tabs{
+.action-grid{
     display:grid;
-    grid-template-columns:1fr 1fr;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
     gap:10px;
-    margin-bottom:20px;
 }
 
-.download-tab{
-    border:1px solid var(--border);
-    background:#fff;
-    border-radius:12px;
-    padding:14px;
-    cursor:pointer;
-    text-align:left;
-    transition:.2s;
-}
-
-.download-tab strong{
-    display:block;
-    font-size:16px;
-    margin-bottom:3px;
-}
-
-.download-tab span{
-    color:var(--muted);
-    font-size:12px;
-}
-
-.download-tab.active{
-    border-color:var(--primary);
-    background:#eff6ff;
-    box-shadow:0 0 0 2px rgba(37,99,235,.08);
-}
-
-.download-tab.active strong{
-    color:var(--primary);
-}
-
-
-/* DOWNLOAD OPTIONS */
-
-.option-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:14px;
-}
-
-.option-box{
-    border:1px solid var(--border);
-    border-radius:13px;
-    padding:15px;
-    background:#fff;
-}
-
-.option-box label{
-    display:block;
-    font-size:13px;
-    font-weight:700;
-    margin-bottom:8px;
-    color:#334155;
-}
-
-.option-select{
+.action-grid button{
     width:100%;
-    height:45px;
-    border:1px solid #cbd5e1;
-    border-radius:9px;
-    padding:0 11px;
-    background:#fff;
-    outline:none;
-    font-size:14px;
-}
-
-.option-select:focus{
-    border-color:var(--primary);
-    box-shadow:0 0 0 3px rgba(37,99,235,.10);
-}
-
-.size-box{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
-}
-
-.size-value{
-    font-size:14px;
-    font-weight:700;
-    color:#475569;
-}
-
-.download-note{
-    margin-top:17px;
-    padding:13px 14px;
-    background:#f8fafc;
-    border:1px solid var(--border);
-    border-radius:11px;
-    color:#64748b;
-    font-size:12px;
-    line-height:1.5;
-}
-
-.download-footer{
-    padding:18px 24px 24px;
-    display:flex;
-    gap:10px;
-    justify-content:flex-end;
-    border-top:1px solid var(--border);
-}
-
-.cancel-btn{
-    min-height:48px;
-    border:1px solid var(--border);
-    background:#fff;
-    border-radius:11px;
-    padding:0 20px;
-    font-weight:700;
-    cursor:pointer;
-}
-
-.confirm-download-btn{
-    min-height:48px;
-    border:0;
-    background:var(--primary);
-    color:#fff;
-    border-radius:11px;
-    padding:0 22px;
-    font-weight:700;
-    cursor:pointer;
-}
-
-.confirm-download-btn:hover{
-    background:var(--primary-dark);
-}
-
-.backend-message{
-    display:none;
-    margin-top:15px;
-    padding:13px 14px;
-    background:#fff7ed;
-    border:1px solid #fed7aa;
-    color:#9a3412;
-    border-radius:11px;
-    font-size:13px;
-}
-
-.backend-message.show{
-    display:block;
 }
 
 
 /* =========================================================
-   SECTIONS
+   SECTION COMMON
 ========================================================= */
 
 .section{
-    padding:80px 0;
-}
-
-.section.white{
-    background:#fff;
+    padding:72px 0;
 }
 
 .section-title{
     text-align:center;
-    max-width:720px;
-    margin:0 auto 45px;
+
+    font-size:34px;
+
+    margin-bottom:12px;
 }
 
-.section-title h2{
-    font-size:36px;
-    margin-bottom:10px;
-}
+.section-subtitle{
+    text-align:center;
 
-.section-title p{
-    color:#666;
+    max-width:680px;
+
+    margin:0 auto 38px;
+
+    color:var(--muted);
 }
 
 
@@ -682,70 +551,102 @@ button{
    FEATURES
 ========================================================= */
 
-.features{
+.features-grid{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:22px;
+
+    grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+    gap:20px;
 }
 
 .feature-card{
-    background:#fff;
+    background:white;
+
     border:1px solid var(--border);
+
     border-radius:16px;
-    padding:28px;
-    box-shadow:0 5px 20px rgba(0,0,0,.04);
+
+    padding:24px;
+
+    box-shadow:
+        0 8px 24px rgba(15,23,42,.05);
 }
 
 .feature-icon{
     width:48px;
     height:48px;
-    border-radius:12px;
+
+    display:grid;
+    place-items:center;
+
     background:#eff6ff;
+
     color:var(--primary);
-    display:flex;
-    align-items:center;
-    justify-content:center;
+
+    border-radius:12px;
+
     font-size:23px;
-    margin-bottom:18px;
+
+    margin-bottom:16px;
 }
 
 .feature-card h3{
-    margin-bottom:8px;
+    margin-bottom:7px;
 }
 
 .feature-card p{
-    color:#666;
-    font-size:15px;
+    color:var(--muted);
+    font-size:14px;
 }
 
 
 /* =========================================================
-   HOW TO USE
+   HOW IT WORKS
 ========================================================= */
 
 .steps{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:22px;
+
+    grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+    gap:20px;
 }
 
 .step{
-    text-align:center;
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
     padding:25px;
+
+    text-align:center;
 }
 
 .step-number{
-    width:55px;
-    height:55px;
+    width:46px;
+    height:46px;
+
+    display:grid;
+    place-items:center;
+
     margin:0 auto 15px;
+
     border-radius:50%;
+
     background:var(--primary);
-    color:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:20px;
+    color:white;
+
     font-weight:800;
+}
+
+.step p{
+    color:var(--muted);
+
+    font-size:14px;
 }
 
 
@@ -753,19 +654,36 @@ button{
    ABOUT
 ========================================================= */
 
-.about-box{
-    max-width:850px;
-    margin:auto;
-    background:#fff;
+.about-card{
+    background:white;
+
     border:1px solid var(--border);
+
     border-radius:18px;
-    padding:35px;
+
+    padding:34px;
+
     box-shadow:var(--shadow);
+
+    max-width:850px;
+
+    margin:auto;
+
+    text-align:center;
 }
 
-.about-box p{
-    color:#555;
-    margin-bottom:15px;
+.about-card p{
+    color:var(--muted);
+
+    margin-top:12px;
+}
+
+.owner{
+    margin-top:20px;
+
+    font-weight:800;
+
+    color:var(--primary);
 }
 
 
@@ -773,27 +691,405 @@ button{
    FAQ
 ========================================================= */
 
-.faq{
+.faq-list{
     max-width:850px;
+
+    margin:auto;
+
+    display:grid;
+
+    gap:12px;
+}
+
+.faq-item{
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    overflow:hidden;
+}
+
+.faq-item summary{
+    cursor:pointer;
+
+    padding:18px 20px;
+
+    font-weight:700;
+
+    list-style:none;
+}
+
+.faq-item summary::-webkit-details-marker{
+    display:none;
+}
+
+.faq-item p{
+    padding:0 20px 18px;
+
+    color:var(--muted);
+
+    font-size:14px;
+}
+
+
+/* =========================================================
+   CONTACT / INFO
+========================================================= */
+
+.info-card{
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:30px;
+
+    text-align:center;
+
+    max-width:850px;
+
     margin:auto;
 }
 
-details{
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:12px;
-    margin-bottom:12px;
-    padding:18px 20px;
+.info-card p{
+    color:var(--muted);
+    margin-bottom:8px;
 }
 
-summary{
+
+/* =========================================================
+   DOWNLOAD MODAL
+========================================================= */
+
+.modal-overlay{
+    position:fixed;
+
+    inset:0;
+
+    z-index:3000;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:18px;
+
+    background:
+        rgba(15,23,42,.65);
+
+    backdrop-filter:blur(5px);
+}
+
+.modal-overlay.show{
+    display:flex;
+}
+
+.download-modal{
+    width:min(680px,100%);
+
+    max-height:
+        min(90vh,820px);
+
+    overflow:auto;
+
+    background:white;
+
+    border-radius:20px;
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.25);
+
+    border:1px solid var(--border);
+}
+
+.modal-header{
+    position:sticky;
+
+    top:0;
+
+    z-index:2;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    padding:20px 22px;
+
+    background:white;
+
+    border-bottom:1px solid var(--border);
+}
+
+.modal-header h2{
+    font-size:22px;
+}
+
+.close-modal{
+    width:40px;
+    height:40px;
+
+    border-radius:10px;
+
+    border:1px solid var(--border);
+
+    background:white;
+
+    font-size:20px;
+}
+
+.close-modal:hover{
+    background:#f8fafc;
+}
+
+.modal-body{
+    padding:22px;
+}
+
+.download-preview{
+    display:flex;
+
+    gap:14px;
+
+    align-items:center;
+
+    padding:14px;
+
+    border:1px solid var(--border);
+
+    background:#f8fafc;
+
+    border-radius:14px;
+
+    margin-bottom:20px;
+}
+
+.download-preview img{
+    width:120px;
+    height:68px;
+
+    object-fit:cover;
+
+    border-radius:9px;
+
+    flex-shrink:0;
+}
+
+.download-preview h3{
+    font-size:16px;
+
+    line-height:1.35;
+
+    margin-bottom:4px;
+}
+
+.download-preview p{
+    color:var(--muted);
+
+    font-size:12px;
+
+    word-break:break-all;
+}
+
+
+/* =========================================================
+   FORMAT TABS
+========================================================= */
+
+.format-tabs{
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:8px;
+
+    margin-bottom:20px;
+
+    padding:5px;
+
+    background:#f1f5f9;
+
+    border-radius:12px;
+}
+
+.format-tab{
+    min-height:46px;
+
+    border:0;
+
+    border-radius:9px;
+
+    background:transparent;
+
+    font-weight:800;
+
+    color:#64748b;
+}
+
+.format-tab.active{
+    background:white;
+
+    color:var(--primary);
+
+    box-shadow:
+        0 2px 8px rgba(15,23,42,.08);
+}
+
+
+/* =========================================================
+   DOWNLOAD OPTIONS
+========================================================= */
+
+.download-panel{
+    display:none;
+}
+
+.download-panel.active{
+    display:block;
+}
+
+.option-title{
+    font-size:14px;
+
+    font-weight:800;
+
+    margin-bottom:9px;
+}
+
+.quality-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:10px;
+
+    margin-bottom:18px;
+}
+
+.quality-option{
+    position:relative;
+}
+
+.quality-option input{
+    position:absolute;
+
+    opacity:0;
+
+    pointer-events:none;
+}
+
+.quality-option label{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    min-height:58px;
+
+    padding:12px 14px;
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    background:white;
+
     cursor:pointer;
+
+    transition:.2s;
+}
+
+.quality-option label:hover{
+    border-color:#93c5fd;
+
+    background:#f8fbff;
+}
+
+.quality-option input:checked + label{
+    border-color:var(--primary);
+
+    background:#eff6ff;
+
+    box-shadow:
+        0 0 0 2px rgba(37,99,235,.08);
+}
+
+.quality-main{
+    font-weight:800;
+}
+
+.quality-sub{
+    color:var(--muted);
+
+    font-size:12px;
+}
+
+.size-box{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    padding:14px;
+
+    margin-bottom:18px;
+
+    border:1px dashed #cbd5e1;
+
+    background:#f8fafc;
+
+    border-radius:12px;
+}
+
+.size-label{
     font-weight:700;
 }
 
-details p{
-    color:#666;
-    margin-top:12px;
+.size-value{
+    color:var(--muted);
+
+    font-size:13px;
+
+    text-align:right;
+}
+
+.backend-message{
+    padding:14px;
+
+    border-radius:12px;
+
+    background:#fffbeb;
+
+    border:1px solid #fde68a;
+
+    color:#92400e;
+
+    font-size:13px;
+
+    margin-bottom:18px;
+}
+
+.modal-actions{
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:10px;
 }
 
 
@@ -801,54 +1097,63 @@ details p{
    FOOTER
 ========================================================= */
 
-footer{
-    background:#111;
-    color:#fff;
-    padding:50px 0 25px;
+.footer{
+    background:#0f172a;
+
+    color:#cbd5e1;
+
+    padding:48px 0 25px;
 }
 
 .footer-grid{
     display:grid;
-    grid-template-columns:2fr 1fr 1fr;
+
+    grid-template-columns:
+        1.5fr 1fr 1fr;
+
     gap:35px;
+
+    margin-bottom:35px;
 }
 
-.footer-brand h3{
-    color:#fff;
-    font-size:23px;
-    margin-bottom:10px;
-}
+.footer h3,
+.footer h4{
+    color:white;
 
-.footer-brand h3 span{
-    color:var(--primary);
-}
-
-.footer-brand p{
-    color:#aaa;
-    max-width:430px;
-}
-
-.footer-col h4{
     margin-bottom:12px;
 }
 
-.footer-col a{
-    display:block;
-    color:#aaa;
-    margin-bottom:7px;
+.footer p{
+    color:#94a3b8;
+
     font-size:14px;
 }
 
-.footer-col a:hover{
-    color:#fff;
+.footer-links{
+    display:grid;
+
+    gap:8px;
+}
+
+.footer-links a{
+    color:#94a3b8;
+
+    font-size:14px;
+}
+
+.footer-links a:hover{
+    color:white;
 }
 
 .copyright{
-    border-top:1px solid #292929;
-    margin-top:35px;
+    border-top:1px solid rgba(255,255,255,.1);
+
     padding-top:20px;
+
     text-align:center;
-    color:#888;
+
+    color:#94a3b8;
+
     font-size:13px;
 }
 
@@ -857,81 +1162,151 @@ footer{
    BACK TO TOP
 ========================================================= */
 
-.top-btn{
+.back-top{
     position:fixed;
+
     right:20px;
     bottom:20px;
-    width:45px;
-    height:45px;
-    border-radius:50%;
+
+    z-index:1500;
+
+    width:46px;
+    height:46px;
+
     border:0;
+
+    border-radius:50%;
+
     background:var(--primary);
-    color:#fff;
+
+    color:white;
+
     font-size:20px;
-    cursor:pointer;
+
+    box-shadow:
+        0 10px 25px rgba(37,99,235,.3);
+
     display:none;
-    z-index:999;
 }
 
-.top-btn.show{
+.back-top.show{
     display:block;
 }
 
 
 /* =========================================================
-   TABLET
+   RESPONSIVE - TABLET
 ========================================================= */
 
 @media(max-width:900px){
 
-    .result-grid{
-        grid-template-columns:240px 1fr;
+    .nav-links{
+        gap:14px;
     }
 
-    .features,
+    .result-grid{
+        grid-template-columns:1fr;
+    }
+
+    .features-grid,
     .steps{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
     }
 
     .footer-grid{
-        grid-template-columns:1fr 1fr;
+        grid-template-columns:
+            1fr 1fr;
     }
-
 }
 
 
 /* =========================================================
-   MOBILE
+   RESPONSIVE - MOBILE
 ========================================================= */
 
-@media(max-width:800px){
+@media(max-width:700px){
 
-    .nav-links{
-        display:none;
-        position:absolute;
-        left:0;
-        right:0;
-        top:70px;
-        background:#fff;
-        padding:20px;
-        flex-direction:column;
-        border-bottom:1px solid var(--border);
-        box-shadow:0 10px 20px rgba(0,0,0,.06);
+    .container{
+        width:min(100% - 22px,1180px);
     }
 
-    .nav-links.open{
-        display:flex;
+    .nav-inner{
+        min-height:64px;
     }
 
     .menu-btn{
         display:block;
     }
 
-    .url-row{
+    .nav-links{
+        position:absolute;
+
+        left:11px;
+        right:11px;
+
+        top:70px;
+
+        display:none;
+
         flex-direction:column;
+
+        align-items:stretch;
+
+        gap:0;
+
+        background:white;
+
+        border:1px solid var(--border);
+
+        border-radius:14px;
+
+        box-shadow:var(--shadow);
+
+        overflow:hidden;
     }
 
-    .primary-btn{
+    .nav-links.show{
+        display:flex;
+    }
+
+    .nav-links a{
+        padding:13px 16px;
+
+        border-bottom:1px solid #eef2f7;
+    }
+
+    .nav-links a:last-child{
+        border-bottom:0;
+    }
+
+    .hero{
+        padding:58px 0 45px;
+    }
+
+    .hero h1{
+        font-size:39px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    .tool-card{
+        padding:19px;
+    }
+
+    .url-row{
+        display:flex;
+
+        flex-direction:column;
+
+        gap:10px;
+    }
+
+    .url-input,
+    .paste-url-btn,
+    .url-row .primary-btn{
         width:100%;
     }
 
@@ -939,135 +1314,62 @@ footer{
         grid-template-columns:1fr;
     }
 
-    .result-grid > div:first-child{
-        max-width:500px;
-        width:100%;
-        margin:auto;
+    .action-grid{
+        grid-template-columns:1fr;
     }
 
-    .features,
+    .features-grid,
     .steps{
         grid-template-columns:1fr;
+    }
+
+    .section{
+        padding:55px 0;
+    }
+
+    .section-title{
+        font-size:29px;
+    }
+
+    .about-card,
+    .info-card{
+        padding:22px;
     }
 
     .footer-grid{
         grid-template-columns:1fr;
     }
 
-    .hero{
-        padding:60px 0;
+    .download-preview{
+        align-items:flex-start;
     }
 
-    .hero h1{
-        letter-spacing:-1px;
+    .download-preview img{
+        width:100px;
+        height:57px;
     }
 
-    .section{
-        padding:60px 0;
+    .quality-grid{
+        grid-template-columns:1fr;
     }
 
-    .about-box{
-        padding:25px;
-    }
-
-    .action-row{
-        display:grid;
-        grid-template-columns:1fr 1fr;
-    }
-
-    .secondary-btn{
-        width:100%;
-    }
-
-    .download-overlay{
+    .modal-overlay{
         padding:10px;
     }
 
     .download-modal{
-        border-radius:17px;
-        max-height:calc(100vh - 20px);
-    }
+        max-height:94vh;
 
-    .download-header{
-        padding:18px;
-    }
-
-    .download-body{
-        padding:18px;
-    }
-
-    .download-footer{
-        padding:15px 18px 18px;
-    }
-
-}
-
-
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
-
-@media(max-width:520px){
-
-    .container{
-        width:94%;
-    }
-
-    .tool-card{
-        padding:17px;
         border-radius:16px;
     }
 
-    .hero h1{
-        font-size:38px;
+    .modal-header,
+    .modal-body{
+        padding:16px;
     }
 
-    .hero p{
-        font-size:16px;
-    }
-
-    .section-title h2{
-        font-size:30px;
-    }
-
-    .action-row{
+    .modal-actions{
         grid-template-columns:1fr;
-    }
-
-    .download-video-preview{
-        align-items:flex-start;
-    }
-
-    .download-video-preview img{
-        width:105px;
-        height:59px;
-    }
-
-    .download-header h2{
-        font-size:19px;
-    }
-
-    .download-header-icon{
-        width:40px;
-        height:40px;
-        font-size:19px;
-    }
-
-    .option-grid{
-        grid-template-columns:1fr;
-    }
-
-    .download-type-tabs{
-        grid-template-columns:1fr;
-    }
-
-    .download-footer{
-        flex-direction:column-reverse;
-    }
-
-    .cancel-btn,
-    .confirm-download-btn{
-        width:100%;
     }
 
 }
@@ -1077,82 +1379,98 @@ footer{
    VERY SMALL MOBILE
 ========================================================= */
 
-@media(max-width:360px){
+@media(max-width:400px){
 
     .hero h1{
         font-size:34px;
     }
 
-    .download-header-left{
-        gap:9px;
-    }
-
-    .download-header{
+    .tool-card{
         padding:15px;
     }
 
-    .download-body{
-        padding:15px;
+    .download-preview{
+        flex-direction:column;
+    }
+
+    .download-preview img{
+        width:100%;
+        height:auto;
+
+        aspect-ratio:16/9;
     }
 
 }
 
 
 /* =========================================================
-   REDUCED MOTION
+   ACCESSIBILITY
 ========================================================= */
 
-@media(prefers-reduced-motion:reduce){
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+summary:focus-visible{
+    outline:3px solid rgba(37,99,235,.3);
 
-    html{
-        scroll-behavior:auto;
-    }
+    outline-offset:2px;
+}
 
-    *,
-    *::before,
-    *::after{
-        animation-duration:.01ms !important;
-        animation-iteration-count:1 !important;
-        transition-duration:.01ms !important;
-    }
-
+[hidden]{
+    display:none !important;
 }
 
 </style>
-
 </head>
+
 
 <body>
 
 
 <!-- =======================================================
      NAVBAR
-======================================================= -->
+======================================================== -->
 
 <header class="navbar">
 
     <div class="container nav-inner">
 
-        <a href="#home" class="logo">
+        <a href="#home"
+           class="logo"
+           aria-label="VidFetch Tools Home">
+
             VidFetch <span>Tools</span>
+
         </a>
+
 
         <button
             class="menu-btn"
             id="menuBtn"
-            aria-label="Open menu"
             type="button"
+            aria-label="Open navigation"
+            aria-expanded="false"
         >
             ☰
         </button>
 
-        <nav class="nav-links" id="navLinks">
+
+        <nav
+            class="nav-links"
+            id="navLinks"
+            aria-label="Main navigation"
+        >
 
             <a href="#home">Home</a>
+
             <a href="#tools">Tools</a>
-            <a href="#how">How It Works</a>
+
+            <a href="#how-it-works">How It Works</a>
+
             <a href="#about">About</a>
+
             <a href="#faq">FAQ</a>
+
             <a href="#contact">Contact</a>
 
         </nav>
@@ -1162,181 +1480,196 @@ footer{
 </header>
 
 
+
 <!-- =======================================================
      HERO
-======================================================= -->
+======================================================== -->
 
-<section class="hero" id="home">
+<main id="home">
 
-    <div class="container">
+<section class="hero">
 
-        <div class="hero-content">
+    <div class="container hero-content">
 
-            <div class="badge">
-                ⚡ Fast & Simple Online Video Tools
-            </div>
+        <div class="badge">
+            ⚡ Fast &amp; Simple Online Video Tools
+        </div>
 
-            <h1>
-                Your Simple <span>Video Utility</span> Website
-            </h1>
+        <h1>
+            Powerful
+            <span>YouTube Tools</span>
+            Online
+        </h1>
 
-            <p>
-                Paste a YouTube video URL to preview the video,
-                view its thumbnail and explore available video
-                and audio options.
-            </p>
+        <p>
+            Analyze YouTube video URLs, preview thumbnails,
+            copy video links and access useful video tools
+            from one simple interface.
+        </p>
+
+    </div>
+
+</section>
 
 
-            <div class="tool-card" id="tools">
 
-                <div class="url-row">
+<!-- =======================================================
+     MAIN TOOL
+======================================================== -->
 
-                    <input
-                        type="text"
-                        id="urlInput"
-                        class="url-input"
-                        placeholder="Paste YouTube video URL here..."
-                        autocomplete="off"
-                        aria-label="YouTube video URL"
+<section
+    class="tool-section"
+    id="tools"
+>
+
+<div class="container">
+
+    <div class="tool-card">
+
+        <h2>
+            YouTube Video Analyzer
+        </h2>
+
+        <p class="tool-description">
+            Paste a YouTube video URL below to analyze
+            and preview the video.
+        </p>
+
+
+        <!-- URL INPUT -->
+
+        <div class="url-row">
+
+            <input
+                type="text"
+                id="urlInput"
+                class="url-input"
+                placeholder="Paste YouTube video URL here..."
+                autocomplete="off"
+                aria-label="YouTube video URL"
+            >
+
+
+            <button
+                class="secondary-btn paste-url-btn"
+                id="pasteBtn"
+                type="button"
+            >
+                📋 Paste URL
+            </button>
+
+
+            <button
+                class="primary-btn"
+                id="analyzeBtn"
+                type="button"
+            >
+                🔍 Analyze
+            </button>
+
+        </div>
+
+
+        <div class="help-text">
+            Supported links: youtube.com/watch, youtu.be,
+            YouTube Shorts, Embed and Live URLs.
+        </div>
+
+
+        <!-- STATUS -->
+
+        <div
+            class="status"
+            id="status"
+            role="status"
+            aria-live="polite"
+        ></div>
+
+
+        <!-- RESULT -->
+
+        <div
+            class="result"
+            id="result"
+        >
+
+            <div class="result-grid">
+
+
+                <!-- THUMBNAIL -->
+
+                <div class="thumbnail-wrap">
+
+                    <img
+                        id="thumbnail"
+                        src=""
+                        alt="YouTube video thumbnail"
                     >
-
-                    <button
-                        class="primary-btn"
-                        id="analyzeBtn"
-                        type="button"
-                    >
-                        Analyze
-                    </button>
 
                 </div>
 
 
-                <div class="help-text">
+                <!-- VIDEO INFO -->
 
-                    Example:
-                    https://www.youtube.com/watch?v=XXXXXXXXXXX
+                <div class="video-info">
 
-                </div>
+                    <h3 id="videoTitle">
+                        YouTube Video
+                    </h3>
 
-
-                <!-- RESULT -->
-
-                <div class="result" id="result">
-
-                    <div class="result-grid">
-
-                        <div>
-
-                            <img
-                                id="thumbnail"
-                                class="thumbnail"
-                                alt="YouTube video thumbnail"
-                            >
-
-                        </div>
+                    <div
+                        class="video-id"
+                        id="videoId"
+                    >
+                        Video ID
+                    </div>
 
 
-                        <div class="video-info">
+                    <div class="action-grid">
 
-                            <h3 id="videoTitle">
-                                YouTube Video
-                            </h3>
-
-
-                            <div class="info-line">
-
-                                <span class="info-label">
-                                    Video ID:
-                                </span>
-
-                                <span id="videoId">
-                                    -
-                                </span>
-
-                            </div>
+                        <button
+                            class="secondary-btn"
+                            id="copyBtn"
+                            type="button"
+                        >
+                            📋 Copy URL
+                        </button>
 
 
-                            <div class="info-line">
-
-                                <span class="info-label">
-                                    Platform:
-                                </span>
-
-                                YouTube
-
-                            </div>
+                        <button
+                            class="secondary-btn"
+                            id="thumbnailBtn"
+                            type="button"
+                        >
+                            🖼️ Download Thumbnail
+                        </button>
 
 
-                            <div class="info-line">
-
-                                <span class="info-label">
-                                    Status:
-                                </span>
-
-                                URL detected successfully
-
-                            </div>
+                        <button
+                            class="green-btn"
+                            id="downloadBtn"
+                            type="button"
+                        >
+                            ⬇️ Download
+                        </button>
 
 
-                            <div class="action-row">
-
-                                <button
-                                    class="secondary-btn"
-                                    id="copyBtn"
-                                    type="button"
-                                >
-                                    📋 Copy URL
-                                </button>
+                        <button
+                            class="primary-btn"
+                            id="watchBtn"
+                            type="button"
+                        >
+                            ▶ Watch on YouTube
+                        </button>
 
 
-                                <button
-                                    class="secondary-btn"
-                                    id="thumbnailBtn"
-                                    type="button"
-                                >
-                                    🖼️ Download Thumbnail
-                                </button>
-
-
-                                <!-- MAIN DOWNLOAD BUTTON -->
-
-                                <button
-                                    class="secondary-btn download-main-btn"
-                                    id="downloadBtn"
-                                    type="button"
-                                >
-                                    ⬇️ Download
-                                </button>
-
-
-                                <button
-                                    class="secondary-btn"
-                                    id="watchBtn"
-                                    type="button"
-                                >
-                                    ▶ Watch on YouTube
-                                </button>
-
-
-                                <button
-                                    class="secondary-btn"
-                                    id="shareBtn"
-                                    type="button"
-                                >
-                                    ↗ Share
-                                </button>
-
-                            </div>
-
-
-                            <div
-                                class="status"
-                                id="status"
-                                role="status"
-                                aria-live="polite"
-                            ></div>
-
-                        </div>
+                        <button
+                            class="secondary-btn"
+                            id="shareBtn"
+                            type="button"
+                        >
+                            ↗ Share
+                        </button>
 
                     </div>
 
@@ -1348,15 +1681,444 @@ footer{
 
     </div>
 
+</div>
+
 </section>
+
+
+
+<!-- =======================================================
+     FEATURES
+======================================================== -->
+
+<section class="section">
+
+<div class="container">
+
+    <h2 class="section-title">
+        Useful Video Tools
+    </h2>
+
+    <p class="section-subtitle">
+        Simple tools designed for a clean and easy
+        video utility experience.
+    </p>
+
+
+    <div class="features-grid">
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🔗
+            </div>
+
+            <h3>
+                URL Analyzer
+            </h3>
+
+            <p>
+                Detect supported YouTube video URLs
+                and extract the video ID.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🖼️
+            </div>
+
+            <h3>
+                Thumbnail Preview
+            </h3>
+
+            <p>
+                Preview the available YouTube
+                thumbnail directly in the tool.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📱
+            </div>
+
+            <h3>
+                Responsive Design
+            </h3>
+
+            <p>
+                Works with a responsive layout across
+                desktop, tablet and mobile screens.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+
+<!-- =======================================================
+     HOW IT WORKS
+======================================================== -->
+
+<section
+    class="section"
+    id="how-it-works"
+>
+
+<div class="container">
+
+    <h2 class="section-title">
+        How It Works
+    </h2>
+
+    <p class="section-subtitle">
+        Three simple steps to use VidFetch Tools.
+    </p>
+
+
+    <div class="steps">
+
+
+        <div class="step">
+
+            <div class="step-number">
+                1
+            </div>
+
+            <h3>
+                Paste URL
+            </h3>
+
+            <p>
+                Paste a supported YouTube video URL
+                into the input box.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                2
+            </div>
+
+            <h3>
+                Analyze
+            </h3>
+
+            <p>
+                Click Analyze to detect the video
+                and display its preview.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                3
+            </div>
+
+            <h3>
+                Choose Tool
+            </h3>
+
+            <p>
+                Copy, share, watch, preview the
+                thumbnail or open the download options.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+
+<!-- =======================================================
+     ABOUT
+======================================================== -->
+
+<section
+    class="section"
+    id="about"
+>
+
+<div class="container">
+
+    <h2 class="section-title">
+        About VidFetch Tools
+    </h2>
+
+    <div class="about-card">
+
+        <p>
+            VidFetch Tools is designed to provide a
+            simple, clean and responsive interface for
+            useful online video utilities.
+        </p>
+
+        <p>
+            The website focuses on easy URL analysis,
+            video preview and convenient utility features.
+        </p>
+
+        <div class="owner">
+            Owner: Amar Kumar Yadav
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+
+<!-- =======================================================
+     FAQ
+======================================================== -->
+
+<section
+    class="section"
+    id="faq"
+>
+
+<div class="container">
+
+    <h2 class="section-title">
+        Frequently Asked Questions
+    </h2>
+
+    <p class="section-subtitle">
+        Common questions about VidFetch Tools.
+    </p>
+
+
+    <div class="faq-list">
+
+
+        <details class="faq-item">
+
+            <summary>
+                What YouTube URLs are supported?
+            </summary>
+
+            <p>
+                The analyzer supports standard YouTube
+                watch links, youtu.be links, Shorts,
+                Embed and Live URLs.
+            </p>
+
+        </details>
+
+
+        <details class="faq-item">
+
+            <summary>
+                Is the website mobile friendly?
+            </summary>
+
+            <p>
+                Yes. The interface is responsive and
+                adapts to desktop, tablet and mobile
+                screen sizes.
+            </p>
+
+        </details>
+
+
+        <details class="faq-item">
+
+            <summary>
+                Can I preview a video thumbnail?
+            </summary>
+
+            <p>
+                Yes. After analyzing a supported URL,
+                the available thumbnail preview is shown.
+            </p>
+
+        </details>
+
+
+        <details class="faq-item">
+
+            <summary>
+                Why does the download option show
+                server analysis?
+            </summary>
+
+            <p>
+                The current GitHub Pages frontend does
+                not generate or download video/audio files.
+                A compatible authorized backend or service
+                is required for actual file generation.
+            </p>
+
+        </details>
+
+
+        <details class="faq-item">
+
+            <summary>
+                Are file sizes real?
+            </summary>
+
+            <p>
+                File sizes are not fabricated. Until a
+                compatible backend analyzes the selected
+                format and quality, the size is shown as
+                unavailable.
+            </p>
+
+        </details>
+
+    </div>
+
+</div>
+
+</section>
+
+
+
+<!-- =======================================================
+     CONTACT
+======================================================== -->
+
+<section
+    class="section"
+    id="contact"
+>
+
+<div class="container">
+
+    <h2 class="section-title">
+        Contact
+    </h2>
+
+    <div class="info-card">
+
+        <p>
+            For website feedback, suggestions or
+            technical questions, please use the contact
+            method you provide on your website.
+        </p>
+
+        <p>
+            VidFetch Tools is continuously being improved
+            with new utility features.
+        </p>
+
+    </div>
+
+</div>
+
+</section>
+
+
+
+<!-- =======================================================
+     PRIVACY
+======================================================== -->
+
+<section
+    class="section"
+    id="privacy"
+>
+
+<div class="container">
+
+    <h2 class="section-title">
+        Privacy Policy
+    </h2>
+
+    <div class="info-card">
+
+        <p>
+            VidFetch Tools is designed to minimize
+            unnecessary data collection.
+        </p>
+
+        <p>
+            URL analysis performed by the current frontend
+            is handled in the browser. Any future backend
+            services should clearly disclose their own
+            data handling practices.
+        </p>
+
+    </div>
+
+</div>
+
+</section>
+
+
+
+<!-- =======================================================
+     TERMS
+======================================================== -->
+
+<section
+    class="section"
+    id="terms"
+>
+
+<div class="container">
+
+    <h2 class="section-title">
+        Terms of Use
+    </h2>
+
+    <div class="info-card">
+
+        <p>
+            Use VidFetch Tools only for lawful purposes
+            and only with content you have permission
+            to access, use or download.
+        </p>
+
+        <p>
+            Users are responsible for complying with
+            applicable laws and the terms of the
+            platforms whose content they access.
+        </p>
+
+    </div>
+
+</div>
+
+</section>
+
+
+</main>
+
 
 
 <!-- =======================================================
      DOWNLOAD MODAL
-======================================================= -->
+======================================================== -->
 
 <div
-    class="download-overlay"
+    class="modal-overlay"
     id="downloadOverlay"
     aria-hidden="true"
 >
@@ -1368,46 +2130,35 @@ footer{
         aria-labelledby="downloadModalTitle"
     >
 
-        <div class="download-header">
 
-            <div class="download-header-left">
+        <!-- HEADER -->
 
-                <div class="download-header-icon">
-                    ⬇
-                </div>
+        <div class="modal-header">
 
-                <div>
-
-                    <h2 id="downloadModalTitle">
-                        Download Options
-                    </h2>
-
-                    <p>
-                        Select your preferred format and quality
-                    </p>
-
-                </div>
-
-            </div>
-
+            <h2 id="downloadModalTitle">
+                Download Options
+            </h2>
 
             <button
-                class="close-download"
+                class="close-modal"
                 id="closeDownloadBtn"
                 type="button"
                 aria-label="Close download options"
             >
-                ×
+                ✕
             </button>
 
         </div>
 
 
-        <div class="download-body">
+        <!-- BODY -->
 
-            <!-- VIDEO PREVIEW -->
+        <div class="modal-body">
 
-            <div class="download-video-preview">
+
+            <!-- PREVIEW -->
+
+            <div class="download-preview">
 
                 <img
                     id="downloadPreviewImage"
@@ -1415,15 +2166,15 @@ footer{
                     alt="Video preview"
                 >
 
-                <div class="download-video-info">
+                <div>
 
-                    <strong id="downloadPreviewTitle">
+                    <h3 id="downloadPreviewTitle">
                         YouTube Video
-                    </strong>
+                    </h3>
 
-                    <span id="downloadPreviewId">
-                        Video ID: -
-                    </span>
+                    <p id="downloadPreviewId">
+                        Video ID
+                    </p>
 
                 </div>
 
@@ -1432,206 +2183,378 @@ footer{
 
             <!-- FORMAT TABS -->
 
-            <div class="download-type-tabs">
+            <div
+                class="format-tabs"
+                role="tablist"
+                aria-label="Download format"
+            >
 
                 <button
-                    class="download-tab active"
+                    class="format-tab active"
                     id="videoTab"
                     type="button"
+                    role="tab"
+                    aria-selected="true"
                 >
-
-                    <strong>
-                        🎬 MP4 Video
-                    </strong>
-
-                    <span>
-                        Choose video quality
-                    </span>
-
+                    🎬 MP4 Video
                 </button>
-
 
                 <button
-                    class="download-tab"
+                    class="format-tab"
                     id="audioTab"
                     type="button"
+                    role="tab"
+                    aria-selected="false"
                 >
-
-                    <strong>
-                        🎵 MP3 Audio
-                    </strong>
-
-                    <span>
-                        Choose audio quality
-                    </span>
-
+                    🎵 MP3 Audio
                 </button>
 
             </div>
 
 
-            <!-- VIDEO OPTIONS -->
+            <!-- =================================================
+                 VIDEO PANEL
+            ================================================== -->
 
             <div
+                class="download-panel active"
                 id="videoOptions"
-                class="option-grid"
             >
 
-                <div class="option-box">
+                <div class="option-title">
+                    Select Video Quality
+                </div>
 
-                    <label for="videoQuality">
-                        Video Quality
-                    </label>
 
-                    <select
-                        id="videoQuality"
-                        class="option-select"
-                    >
+                <div class="quality-grid">
 
-                        <option value="360p">
-                            360p
-                        </option>
 
-                        <option value="480p">
-                            480p
-                        </option>
+                    <div class="quality-option">
 
-                        <option value="720p">
-                            720p HD
-                        </option>
+                        <input
+                            type="radio"
+                            name="videoQuality"
+                            id="video360"
+                            value="360p"
+                        >
 
-                        <option value="1080p">
-                            1080p Full HD
-                        </option>
+                        <label for="video360">
 
-                    </select>
+                            <span>
+                                <span class="quality-main">
+                                    360p
+                                </span>
+
+                                <br>
+
+                                <span class="quality-sub">
+                                    Standard
+                                </span>
+                            </span>
+
+                            <span>
+                                📱
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="quality-option">
+
+                        <input
+                            type="radio"
+                            name="videoQuality"
+                            id="video480"
+                            value="480p"
+                        >
+
+                        <label for="video480">
+
+                            <span>
+                                <span class="quality-main">
+                                    480p
+                                </span>
+
+                                <br>
+
+                                <span class="quality-sub">
+                                    SD
+                                </span>
+                            </span>
+
+                            <span>
+                                ▶
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="quality-option">
+
+                        <input
+                            type="radio"
+                            name="videoQuality"
+                            id="video720"
+                            value="720p"
+                            checked
+                        >
+
+                        <label for="video720">
+
+                            <span>
+                                <span class="quality-main">
+                                    720p HD
+                                </span>
+
+                                <br>
+
+                                <span class="quality-sub">
+                                    HD
+                                </span>
+                            </span>
+
+                            <span>
+                                ⭐
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="quality-option">
+
+                        <input
+                            type="radio"
+                            name="videoQuality"
+                            id="video1080"
+                            value="1080p"
+                        >
+
+                        <label for="video1080">
+
+                            <span>
+                                <span class="quality-main">
+                                    1080p Full HD
+                                </span>
+
+                                <br>
+
+                                <span class="quality-sub">
+                                    Full HD
+                                </span>
+                            </span>
+
+                            <span>
+                                💎
+                            </span>
+
+                        </label>
+
+                    </div>
 
                 </div>
 
 
-                <div class="option-box">
+                <div class="size-box">
 
-                    <label>
-                        File Size
-                    </label>
+                    <span class="size-label">
+                        Estimated file size
+                    </span>
 
-                    <div class="size-box">
-
-                        <span
-                            class="size-value"
-                            id="videoSize"
-                        >
-                            Available after server analysis
-                        </span>
-
-                    </div>
+                    <span
+                        class="size-value"
+                        id="videoSize"
+                    >
+                        Available after server analysis
+                    </span>
 
                 </div>
 
             </div>
 
 
-            <!-- AUDIO OPTIONS -->
+
+            <!-- =================================================
+                 AUDIO PANEL
+            ================================================== -->
 
             <div
+                class="download-panel"
                 id="audioOptions"
-                class="option-grid"
-                style="display:none;"
             >
 
-                <div class="option-box">
-
-                    <label for="audioQuality">
-                        Audio Quality
-                    </label>
-
-                    <select
-                        id="audioQuality"
-                        class="option-select"
-                    >
-
-                        <option value="128">
-                            128 kbps
-                        </option>
-
-                        <option value="192">
-                            192 kbps
-                        </option>
-
-                        <option value="320">
-                            320 kbps
-                        </option>
-
-                    </select>
-
+                <div class="option-title">
+                    Select Audio Quality
                 </div>
 
 
-                <div class="option-box">
+                <div class="quality-grid">
 
-                    <label>
-                        File Size
-                    </label>
 
-                    <div class="size-box">
+                    <div class="quality-option">
 
-                        <span
-                            class="size-value"
-                            id="audioSize"
+                        <input
+                            type="radio"
+                            name="audioQuality"
+                            id="audio128"
+                            value="128 kbps"
                         >
-                            Available after server analysis
-                        </span>
+
+                        <label for="audio128">
+
+                            <span>
+
+                                <span class="quality-main">
+                                    128 kbps
+                                </span>
+
+                                <br>
+
+                                <span class="quality-sub">
+                                    Standard
+                                </span>
+
+                            </span>
+
+                            <span>
+                                🎧
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="quality-option">
+
+                        <input
+                            type="radio"
+                            name="audioQuality"
+                            id="audio192"
+                            value="192 kbps"
+                            checked
+                        >
+
+                        <label for="audio192">
+
+                            <span>
+
+                                <span class="quality-main">
+                                    192 kbps
+                                </span>
+
+                                <br>
+
+                                <span class="quality-sub">
+                                    High Quality
+                                </span>
+
+                            </span>
+
+                            <span>
+                                ⭐
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="quality-option">
+
+                        <input
+                            type="radio"
+                            name="audioQuality"
+                            id="audio320"
+                            value="320 kbps"
+                        >
+
+                        <label for="audio320">
+
+                            <span>
+
+                                <span class="quality-main">
+                                    320 kbps
+                                </span>
+
+                                <br>
+
+                                <span class="quality-sub">
+                                    Highest
+                                </span>
+
+                            </span>
+
+                            <span>
+                                💎
+                            </span>
+
+                        </label>
 
                     </div>
 
                 </div>
 
+
+                <div class="size-box">
+
+                    <span class="size-label">
+                        Estimated file size
+                    </span>
+
+                    <span
+                        class="size-value"
+                        id="audioSize"
+                    >
+                        Available after server analysis
+                    </span>
+
+                </div>
+
             </div>
 
 
-            <div class="download-note">
 
-                ℹ️ File size and final download availability
-                will be provided by the authorized download
-                service/backend when it is connected.
-
-            </div>
-
+            <!-- BACKEND MESSAGE -->
 
             <div
                 class="backend-message"
                 id="backendMessage"
             >
-
-                The professional download interface is ready.
-                Actual MP3/MP4 file generation requires an
-                authorized backend/API. This GitHub Pages
-                frontend does not falsely generate or download
-                a file.
-
+                ℹ️ The download interface is ready.
+                Actual MP3/MP4 file generation requires
+                a compatible authorized backend/service.
+                This frontend does not fake file sizes or
+                pretend that a file has been generated.
             </div>
 
-        </div>
 
+            <!-- MODAL ACTIONS -->
 
-        <div class="download-footer">
+            <div class="modal-actions">
 
-            <button
-                class="cancel-btn"
-                id="cancelDownloadBtn"
-                type="button"
-            >
-                Cancel
-            </button>
+                <button
+                    class="secondary-btn"
+                    id="cancelDownloadBtn"
+                    type="button"
+                >
+                    Cancel
+                </button>
 
+                <button
+                    class="green-btn"
+                    id="confirmDownloadBtn"
+                    type="button"
+                >
+                    ⬇️ Continue
+                </button>
 
-            <button
-                class="confirm-download-btn"
-                id="confirmDownloadBtn"
-                type="button"
-            >
-                ⬇ Continue
-            </button>
+            </div>
 
         </div>
 
@@ -1640,732 +2563,88 @@ footer{
 </div>
 
 
-<!-- =======================================================
-     FEATURES
-======================================================= -->
-
-<section class="section white">
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <h2>
-                Useful Video Tools
-            </h2>
-
-            <p>
-                Simple tools designed to make common video tasks
-                easier and faster.
-            </p>
-
-        </div>
-
-
-        <div class="features">
-
-            <div class="feature-card">
-
-                <div class="feature-icon">
-                    🔗
-                </div>
-
-                <h3>
-                    URL Analyzer
-                </h3>
-
-                <p>
-                    Detect a valid YouTube video URL and extract
-                    the video ID instantly.
-                </p>
-
-            </div>
-
-
-            <div class="feature-card">
-
-                <div class="feature-icon">
-                    🖼️
-                </div>
-
-                <h3>
-                    Thumbnail Preview
-                </h3>
-
-                <p>
-                    Preview the available YouTube thumbnail
-                    associated with a video URL.
-                </p>
-
-            </div>
-
-
-            <div class="feature-card">
-
-                <div class="feature-icon">
-                    ▶️
-                </div>
-
-                <h3>
-                    Video Preview
-                </h3>
-
-                <p>
-                    Quickly open the detected video on YouTube
-                    from your browser.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
 
 <!-- =======================================================
-     HOW IT WORKS
-======================================================= -->
+     BACK TO TOP
+======================================================== -->
+
+<button
+    class="back-top"
+    id="backTop"
+    type="button"
+    aria-label="Back to top"
+>
+    ↑
+</button>
 
-<section class="section" id="how">
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <h2>
-                How It Works
-            </h2>
-
-            <p>
-                Using VidFetch Tools is simple.
-            </p>
-
-        </div>
-
-
-        <div class="steps">
-
-            <div class="step">
-
-                <div class="step-number">
-                    1
-                </div>
-
-                <h3>
-                    Copy URL
-                </h3>
-
-                <p>
-                    Copy the YouTube video URL from your browser
-                    or YouTube application.
-                </p>
-
-            </div>
-
-
-            <div class="step">
-
-                <div class="step-number">
-                    2
-                </div>
-
-                <h3>
-                    Paste URL
-                </h3>
-
-                <p>
-                    Paste the URL into the input box and click
-                    the Analyze button.
-                </p>
-
-            </div>
-
-
-            <div class="step">
-
-                <div class="step-number">
-                    3
-                </div>
-
-                <h3>
-                    Choose Options
-                </h3>
-
-                <p>
-                    Preview the detected video and select the
-                    required download format and quality.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =======================================================
-     ABOUT
-======================================================= -->
-
-<section class="section white" id="about">
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <h2>
-                About VidFetch Tools
-            </h2>
-
-            <p>
-                Simple, fast and user-friendly online video utility tools.
-            </p>
-
-        </div>
-
-
-        <div class="about-box">
-
-            <h3 style="font-size:24px;margin-bottom:15px;">
-                Welcome to VidFetch Tools
-            </h3>
-
-            <p>
-                VidFetch Tools is an online utility platform created
-                to provide simple and convenient tools for working
-                with video URLs and related information.
-            </p>
-
-            <p>
-                Our goal is to build useful, fast and easy-to-use
-                online tools with a clean interface that works well
-                on computers, tablets and mobile devices.
-            </p>
-
-            <p>
-                We aim to keep the website simple, transparent and
-                easy to understand for everyone.
-            </p>
-
-
-            <div style="
-                margin-top:25px;
-                padding:20px;
-                background:#f8f8f8;
-                border-radius:12px;
-                border-left:4px solid #2563eb;
-            ">
-
-                <strong>
-                    Website Owner
-                </strong>
-
-                <div style="
-                    font-size:20px;
-                    font-weight:700;
-                    margin-top:5px;
-                ">
-                    Amar Kumar Yadav
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =======================================================
-     FAQ
-======================================================= -->
-
-<section class="section" id="faq">
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <h2>
-                Frequently Asked Questions
-            </h2>
-
-            <p>
-                Common questions about VidFetch Tools.
-            </p>
-
-        </div>
-
-
-        <div class="faq">
-
-            <details>
-
-                <summary>
-                    What is VidFetch Tools?
-                </summary>
-
-                <p>
-                    VidFetch Tools is an online video utility website
-                    for analyzing supported video URLs and displaying
-                    related information.
-                </p>
-
-            </details>
-
-
-            <details>
-
-                <summary>
-                    Is VidFetch Tools free?
-                </summary>
-
-                <p>
-                    The basic website interface and available utility
-                    features are designed to be free to use.
-                </p>
-
-            </details>
-
-
-            <details>
-
-                <summary>
-                    Can I use it on mobile?
-                </summary>
-
-                <p>
-                    Yes. The website is responsive and designed to
-                    work on phones, tablets and computers.
-                </p>
-
-            </details>
-
-
-            <details>
-
-                <summary>
-                    What download options are available?
-                </summary>
-
-                <p>
-                    The interface supports MP4 video and MP3 audio
-                    selection, including quality options. Actual
-                    file availability and size require an authorized
-                    backend/download service.
-                </p>
-
-            </details>
-
-
-            <details>
-
-                <summary>
-                    Can every YouTube video be downloaded?
-                </summary>
-
-                <p>
-                    Availability of downloading depends on the rights
-                    and permissions applicable to the content and the
-                    platform's rules. VidFetch Tools does not bypass
-                    access controls or content restrictions.
-                </p>
-
-            </details>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =======================================================
-     CONTACT
-======================================================= -->
-
-<section class="section" id="contact">
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <h2>
-                Contact Us
-            </h2>
-
-            <p>
-                Have a question, suggestion or feedback?
-                We would be happy to hear from you.
-            </p>
-
-        </div>
-
-
-        <div class="about-box">
-
-            <h3 style="font-size:24px;margin-bottom:12px;">
-                Get in Touch
-            </h3>
-
-            <p>
-                If you have any questions, suggestions or feedback
-                about VidFetch Tools, you can contact us.
-            </p>
-
-
-            <div style="
-                margin-top:22px;
-                padding:20px;
-                background:#f8f8f8;
-                border-radius:12px;
-            ">
-
-                <p style="margin-bottom:8px;">
-
-                    <strong>
-                        Website:
-                    </strong>
-
-                    VidFetch Tools
-
-                </p>
-
-
-                <p style="margin-bottom:8px;">
-
-                    <strong>
-                        Owner:
-                    </strong>
-
-                    Amar Kumar Yadav
-
-                </p>
-
-
-                <p style="margin-bottom:0;">
-
-                    <strong>
-                        Email:
-                    </strong>
-
-                    <span style="color:#666;">
-                        Email address will be added soon.
-                    </span>
-
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =======================================================
-     PRIVACY
-======================================================= -->
-
-<section class="section white" id="privacy">
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <h2>
-                Privacy Policy
-            </h2>
-
-            <p>
-                Information about how VidFetch Tools handles visitor information.
-            </p>
-
-        </div>
-
-
-        <div class="about-box">
-
-            <h3>
-                1. Introduction
-            </h3>
-
-            <p>
-                VidFetch Tools respects your privacy. This Privacy Policy
-                explains the general way this website handles information
-                when you use our online tools.
-            </p>
-
-
-            <h3 style="margin-top:25px;">
-                2. Information We Collect
-            </h3>
-
-            <p>
-                VidFetch Tools does not require you to create an account
-                to use the basic website features.
-            </p>
-
-            <p>
-                Information entered into the website may be processed
-                by your browser to provide the requested functionality.
-            </p>
-
-
-            <h3 style="margin-top:25px;">
-                3. YouTube URLs
-            </h3>
-
-            <p>
-                When you enter a YouTube URL, the website may process
-                the URL locally in your browser to identify the video
-                ID and display available information such as a thumbnail.
-            </p>
-
-
-            <h3 style="margin-top:25px;">
-                4. Cookies
-            </h3>
-
-            <p>
-                VidFetch Tools does not intentionally use cookies for
-                the basic functionality of this website. Third-party
-                services, advertising providers or analytics services,
-                if added in the future, may use their own technologies
-                according to their respective policies.
-            </p>
-
-
-            <h3 style="margin-top:25px;">
-                5. Third-Party Services
-            </h3>
-
-            <p>
-                This website may use third-party services or resources
-                to provide certain features. Such services may have
-                their own privacy policies and terms.
-            </p>
-
-
-            <h3 style="margin-top:25px;">
-                6. Children's Privacy
-            </h3>
-
-            <p>
-                VidFetch Tools is not intentionally designed to collect
-                personal information from children.
-            </p>
-
-
-            <h3 style="margin-top:25px;">
-                7. Changes to This Policy
-            </h3>
-
-            <p>
-                We may update this Privacy Policy when website features
-                or services change. Any updated version will be published
-                on this page.
-            </p>
-
-
-            <h3 style="margin-top:25px;">
-                8. Contact
-            </h3>
-
-            <p>
-                If you have questions about this Privacy Policy, please
-                contact VidFetch Tools through the contact information
-                provided on the website.
-            </p>
-
-
-            <p style="
-                margin-top:30px;
-                font-size:13px;
-                color:#888;
-            ">
-                Last updated: September 2026
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =======================================================
-     TERMS
-======================================================= -->
-
-<section class="section" id="terms">
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <h2>
-                Terms of Use
-            </h2>
-
-            <p>
-                Please read these terms before using VidFetch Tools.
-            </p>
-
-        </div>
-
-
-        <div class="about-box">
-
-            <h3>
-                1. Acceptance of Terms
-            </h3>
-
-            <p>
-                By accessing and using VidFetch Tools, you agree to
-                use the website responsibly and in accordance with
-                applicable laws and platform rules.
-            </p>
-
-
-            <h3 style="margin-top:25px;">
-                2. Website Usage
-            </h3>
-
-            <p>
-                VidFetch Tools is provided as an online utility service.
-                You agree not to misuse the website, attempt to disrupt
-                its operation, or use it for unlawful activities.
-            </p>
-
-
-            <h3 style="margin-top:25px;">
-                3. Content and Copyright
-            </h3>
-
-            <p>
-                Users are responsible for ensuring that they have the
-                necessary rights, permission or authorization to access,
-                reproduce, save or otherwise use any content.
-            </p>
-
-            <p>
-                VidFetch Tools does not claim ownership of third-party
-                content and does not authorize users to violate copyright
-                or other intellectual-property rights.
-            </p>
-
-
-            <h3 style="margin-top:25px;">
-                4. Third-Party Platforms
-            </h3>
-
-            <p>
-                VidFetch Tools may work with or reference third-party
-                platforms. Those platforms have their own terms,
-                policies and restrictions. Users should review and
-                follow the applicable rules of those platforms.
-            </p>
-
-
-            <h3 style="margin-top:25px;">
-                5. No Guarantee
-            </h3>
-
-            <p>
-                We aim to keep the website available and functional,
-                but we do not guarantee that every feature will always
-                be available, uninterrupted or error-free.
-            </p>
-
-
-            <h3 style="margin-top:25px;">
-                6. Changes to the Website
-            </h3>
-
-            <p>
-                We may modify, add or remove website features at any
-                time as the service develops.
-            </p>
-
-
-            <h3 style="margin-top:25px;">
-                7. Contact
-            </h3>
-
-            <p>
-                If you have questions regarding these Terms of Use,
-                please contact VidFetch Tools through the contact
-                information provided on the website.
-            </p>
-
-
-            <p style="
-                margin-top:30px;
-                font-size:13px;
-                color:#888;
-            ">
-                Last updated: September 2026
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
 
 
 <!-- =======================================================
      FOOTER
-======================================================= -->
+======================================================== -->
 
-<footer>
+<footer class="footer">
 
-    <div class="container">
+<div class="container">
 
-        <div class="footer-grid">
 
-            <div class="footer-brand">
+    <div class="footer-grid">
 
-                <h3>
-                    VidFetch <span>Tools</span>
-                </h3>
 
-                <p>
-                    Simple, fast and user-friendly online video
-                    utility tools.
-                </p>
+        <div>
+
+            <h3>
+                VidFetch Tools
+            </h3>
+
+            <p>
+                Simple and responsive online video
+                utility tools.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h4>
+                Quick Links
+            </h4>
+
+            <div class="footer-links">
+
+                <a href="#home">
+                    Home
+                </a>
+
+                <a href="#tools">
+                    Tools
+                </a>
+
+                <a href="#how-it-works">
+                    How It Works
+                </a>
+
+                <a href="#faq">
+                    FAQ
+                </a>
 
             </div>
 
-
-            <div class="footer-col">
-
-                <h4>
-                    Quick Links
-                </h4>
-
-                <a href="#home">Home</a>
-                <a href="#tools">Tools</a>
-                <a href="#how">How It Works</a>
-                <a href="#about">About Us</a>
-                <a href="#faq">FAQ</a>
-                <a href="#contact">Contact</a>
-
-            </div>
+        </div>
 
 
-            <div class="footer-col">
+        <div>
 
-                <h4>
-                    Information
-                </h4>
+            <h4>
+                Information
+            </h4>
+
+            <div class="footer-links">
+
+                <a href="#about">
+                    About
+                </a>
 
                 <a href="#privacy">
                     Privacy Policy
@@ -2376,39 +2655,28 @@ footer{
                 </a>
 
                 <a href="#contact">
-                    Contact Us
+                    Contact
                 </a>
 
             </div>
 
         </div>
 
+    </div>
 
-        <div class="copyright">
 
-            © <span id="year"></span>
-            VidFetch Tools.
-            All rights reserved.
+    <div class="copyright">
 
-        </div>
+        © <span id="year"></span>
+        VidFetch Tools.
+        All rights reserved.
 
     </div>
 
+</div>
+
 </footer>
 
-
-<!-- =======================================================
-     BACK TO TOP
-======================================================= -->
-
-<button
-    class="top-btn"
-    id="topBtn"
-    aria-label="Back to top"
-    type="button"
->
-    ↑
-</button>
 
 
 <script>
@@ -2417,14 +2685,11 @@ footer{
    ELEMENTS
 ========================================================= */
 
-const menuBtn =
-    document.getElementById("menuBtn");
-
-const navLinks =
-    document.getElementById("navLinks");
-
 const urlInput =
     document.getElementById("urlInput");
+
+const pasteBtn =
+    document.getElementById("pasteBtn");
 
 const analyzeBtn =
     document.getElementById("analyzeBtn");
@@ -2435,11 +2700,14 @@ const result =
 const thumbnail =
     document.getElementById("thumbnail");
 
+const videoTitle =
+    document.getElementById("videoTitle");
+
 const videoIdElement =
     document.getElementById("videoId");
 
-const videoTitle =
-    document.getElementById("videoTitle");
+const statusBox =
+    document.getElementById("status");
 
 const copyBtn =
     document.getElementById("copyBtn");
@@ -2456,218 +2724,75 @@ const watchBtn =
 const shareBtn =
     document.getElementById("shareBtn");
 
-const statusBox =
-    document.getElementById("status");
-
-const topBtn =
-    document.getElementById("topBtn");
-
-
-/* DOWNLOAD ELEMENTS */
-
-const downloadOverlay =
-    document.getElementById("downloadOverlay");
-
-const closeDownloadBtn =
-    document.getElementById("closeDownloadBtn");
-
-const cancelDownloadBtn =
-    document.getElementById("cancelDownloadBtn");
-
-const confirmDownloadBtn =
-    document.getElementById("confirmDownloadBtn");
-
-const videoTab =
-    document.getElementById("videoTab");
-
-const audioTab =
-    document.getElementById("audioTab");
-
-const videoOptions =
-    document.getElementById("videoOptions");
-
-const audioOptions =
-    document.getElementById("audioOptions");
-
-const videoQuality =
-    document.getElementById("videoQuality");
-
-const audioQuality =
-    document.getElementById("audioQuality");
-
-const videoSize =
-    document.getElementById("videoSize");
-
-const audioSize =
-    document.getElementById("audioSize");
-
-const downloadPreviewImage =
-    document.getElementById("downloadPreviewImage");
-
-const downloadPreviewTitle =
-    document.getElementById("downloadPreviewTitle");
-
-const downloadPreviewId =
-    document.getElementById("downloadPreviewId");
-
-const backendMessage =
-    document.getElementById("backendMessage");
-
-
-let selectedDownloadType = "video";
-
 
 /* =========================================================
-   MOBILE MENU
+   NAVIGATION
 ========================================================= */
+
+const menuBtn =
+    document.getElementById("menuBtn");
+
+const navLinks =
+    document.getElementById("navLinks");
+
 
 menuBtn.addEventListener(
     "click",
     function(){
 
-        navLinks.classList.toggle("open");
-
         const isOpen =
-            navLinks.classList.contains("open");
+            navLinks.classList.toggle("show");
 
         menuBtn.setAttribute(
-            "aria-label",
-            isOpen ? "Close menu" : "Open menu"
+            "aria-expanded",
+            isOpen ? "true" : "false"
         );
 
     }
 );
 
 
-document.querySelectorAll(".nav-links a")
-.forEach(function(link){
+document.addEventListener(
+    "click",
+    function(event){
 
-    link.addEventListener(
-        "click",
-        function(){
+        if(
+            !navLinks.contains(event.target) &&
+            !menuBtn.contains(event.target)
+        ){
 
-            navLinks.classList.remove("open");
+            navLinks.classList.remove("show");
 
             menuBtn.setAttribute(
-                "aria-label",
-                "Open menu"
+                "aria-expanded",
+                "false"
             );
 
         }
-    );
-
-});
-
-
-/* =========================================================
-   YOUTUBE ID EXTRACTOR
-========================================================= */
-
-function getYouTubeVideoId(url){
-
-    if(!url){
-        return null;
-    }
-
-    try{
-
-        const parsed =
-            new URL(url.trim());
-
-        const hostname =
-            parsed.hostname.toLowerCase();
-
-
-        /* youtu.be */
-
-        if(
-            hostname === "youtu.be" ||
-            hostname.endsWith(".youtu.be")
-        ){
-
-            const id =
-                parsed.pathname
-                .replace(/^\/+/,"")
-                .split("/")[0];
-
-            if(
-                /^[a-zA-Z0-9_-]{6,20}$/.test(id)
-            ){
-
-                return id;
-
-            }
-
-        }
-
-
-        /* youtube.com */
-
-        if(
-            hostname === "youtube.com" ||
-            hostname === "www.youtube.com" ||
-            hostname === "m.youtube.com" ||
-            hostname.endsWith(".youtube.com")
-        ){
-
-            const watchId =
-                parsed.searchParams.get("v");
-
-
-            if(
-                watchId &&
-                /^[a-zA-Z0-9_-]{6,20}$/.test(watchId)
-            ){
-
-                return watchId;
-
-            }
-
-
-            const pathParts =
-                parsed.pathname
-                .split("/")
-                .filter(Boolean);
-
-
-            const supportedPaths = [
-                "shorts",
-                "embed",
-                "live"
-            ];
-
-
-            if(
-                pathParts.length >= 2 &&
-                supportedPaths.includes(
-                    pathParts[0].toLowerCase()
-                )
-            ){
-
-                const id =
-                    pathParts[1];
-
-                if(
-                    /^[a-zA-Z0-9_-]{6,20}$/.test(id)
-                ){
-
-                    return id;
-
-                }
-
-            }
-
-        }
-
-    }catch(error){
-
-        return null;
 
     }
+);
 
-    return null;
 
-}
+navLinks.querySelectorAll("a").forEach(
+    function(link){
+
+        link.addEventListener(
+            "click",
+            function(){
+
+                navLinks.classList.remove("show");
+
+                menuBtn.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+            }
+        );
+
+    }
+);
 
 
 /* =========================================================
@@ -2679,30 +2804,116 @@ function showStatus(message){
     statusBox.textContent =
         message;
 
-    statusBox.classList.add(
-        "show"
-    );
+    statusBox.classList.add("show");
 
 }
 
 
 /* =========================================================
-   ANALYZE
+   YOUTUBE VIDEO ID
 ========================================================= */
+
+function getYouTubeVideoId(url){
+
+    try{
+
+        const parsed =
+            new URL(url);
+
+        const host =
+            parsed.hostname
+                .toLowerCase()
+                .replace(/^www\./,"");
+
+
+        /* youtube.com/watch?v= */
+
+        if(
+            host === "youtube.com" ||
+            host === "m.youtube.com"
+        ){
+
+            const videoParam =
+                parsed.searchParams.get("v");
+
+            if(videoParam){
+
+                return videoParam;
+
+            }
+
+
+            const parts =
+                parsed.pathname
+                    .split("/")
+                    .filter(Boolean);
+
+
+            if(
+                parts.length >= 2 &&
+                (
+                    parts[0] === "shorts" ||
+                    parts[0] === "embed" ||
+                    parts[0] === "live"
+                )
+            ){
+
+                return parts[1];
+
+            }
+
+        }
+
+
+        /* youtu.be/VIDEO_ID */
+
+        if(host === "youtu.be"){
+
+            const parts =
+                parsed.pathname
+                    .split("/")
+                    .filter(Boolean);
+
+            if(parts.length){
+
+                return parts[0];
+
+            }
+
+        }
+
+
+        return null;
+
+    }catch(error){
+
+        return null;
+
+    }
+
+}
+
+
+/* =========================================================
+   ANALYZE VIDEO
+========================================================= */
+
+let currentVideoId = null;
+let currentVideoUrl = null;
+
 
 function analyzeVideo(){
 
-    const url =
+    const raw =
         urlInput.value.trim();
 
 
-    if(!url){
+    if(!raw){
 
-        result.style.display =
-            "none";
+        result.classList.remove("show");
 
         showStatus(
-            "Please paste a YouTube video URL."
+            "Please enter or paste a YouTube video URL."
         );
 
         urlInput.focus();
@@ -2712,17 +2923,16 @@ function analyzeVideo(){
     }
 
 
-    const videoId =
-        getYouTubeVideoId(url);
+    const id =
+        getYouTubeVideoId(raw);
 
 
-    if(!videoId){
+    if(!id){
 
-        result.style.display =
-            "none";
+        result.classList.remove("show");
 
         showStatus(
-            "Invalid YouTube URL. Please check the URL and try again."
+            "Invalid or unsupported YouTube URL. Please check the URL and try again."
         );
 
         urlInput.focus();
@@ -2732,59 +2942,51 @@ function analyzeVideo(){
     }
 
 
-    const thumbnailUrl =
+    currentVideoId = id;
+
+
+    currentVideoUrl =
+        "https://www.youtube.com/watch?v=" + id;
+
+
+    const imageUrl =
         "https://img.youtube.com/vi/" +
-        videoId +
+        encodeURIComponent(id) +
         "/hqdefault.jpg";
 
 
-    videoIdElement.textContent =
-        videoId;
+    thumbnail.src =
+        imageUrl;
+
+
+    thumbnail.onerror =
+        function(){
+
+            thumbnail.src =
+                "https://img.youtube.com/vi/" +
+                encodeURIComponent(id) +
+                "/mqdefault.jpg";
+
+        };
 
 
     videoTitle.textContent =
         "YouTube Video";
 
 
-    thumbnail.dataset.fallbackUsed =
-        "false";
+    videoIdElement.textContent =
+        "Video ID: " + id;
 
 
-    thumbnail.src =
-        thumbnailUrl;
-
-
-    thumbnail.onerror =
-        function(){
-
-            if(
-                this.dataset.fallbackUsed === "true"
-            ){
-
-                return;
-
-            }
-
-
-            this.dataset.fallbackUsed =
-                "true";
-
-
-            this.src =
-                "https://img.youtube.com/vi/" +
-                videoId +
-                "/0.jpg";
-
-        };
-
-
-    result.style.display =
-        "block";
+    result.classList.add("show");
 
 
     showStatus(
-        "YouTube video URL detected successfully."
+        "Video URL analyzed successfully."
     );
+
+
+    updateDownloadPreview();
 
 
     setTimeout(
@@ -2792,18 +2994,18 @@ function analyzeVideo(){
 
             result.scrollIntoView({
                 behavior:"smooth",
-                block:"center"
+                block:"start"
             });
 
         },
-        100
+        50
     );
 
 }
 
 
 /* =========================================================
-   ANALYZE BUTTON
+   ANALYZE CLICK
 ========================================================= */
 
 analyzeBtn.addEventListener(
@@ -2833,27 +3035,12 @@ urlInput.addEventListener(
 
 
 /* =========================================================
-   COPY URL
+   PASTE BUTTON
 ========================================================= */
 
-copyBtn.addEventListener(
+pasteBtn.addEventListener(
     "click",
     async function(){
-
-        const url =
-            urlInput.value.trim();
-
-
-        if(!url){
-
-            showStatus(
-                "There is no URL to copy."
-            );
-
-            return;
-
-        }
-
 
         try{
 
@@ -2862,52 +3049,56 @@ copyBtn.addEventListener(
                 window.isSecureContext
             ){
 
-                await navigator.clipboard.writeText(
-                    url
+                const text =
+                    await navigator.clipboard.readText();
+
+
+                if(!text.trim()){
+
+                    showStatus(
+                        "Clipboard is empty. Please copy a YouTube URL first."
+                    );
+
+                    urlInput.focus();
+
+                    return;
+
+                }
+
+
+                urlInput.value =
+                    text.trim();
+
+
+                urlInput.focus();
+
+
+                showStatus(
+                    "YouTube URL pasted successfully."
                 );
+
+
+                /* Automatically analyze */
+
+                analyzeVideo();
 
             }else{
 
-                const temporaryInput =
-                    document.createElement(
-                        "textarea"
-                    );
-
-                temporaryInput.value =
-                    url;
-
-                temporaryInput.style.position =
-                    "fixed";
-
-                temporaryInput.style.left =
-                    "-9999px";
-
-                document.body.appendChild(
-                    temporaryInput
+                showStatus(
+                    "Automatic paste is not available. Please click the URL box and press Ctrl + V."
                 );
 
-                temporaryInput.focus();
-
-                temporaryInput.select();
-
-                document.execCommand(
-                    "copy"
-                );
-
-                temporaryInput.remove();
+                urlInput.focus();
 
             }
-
-
-            showStatus(
-                "URL copied successfully."
-            );
 
         }catch(error){
 
             showStatus(
-                "Unable to copy the URL. Please copy it manually."
+                "Clipboard access was blocked. Please press Ctrl + V to paste the URL."
             );
+
+            urlInput.focus();
 
         }
 
@@ -2916,24 +3107,94 @@ copyBtn.addEventListener(
 
 
 /* =========================================================
-   DOWNLOAD THUMBNAIL
+   COPY URL
+========================================================= */
+
+copyBtn.addEventListener(
+    "click",
+    async function(){
+
+        if(!currentVideoId){
+
+            showStatus(
+                "Please analyze a YouTube URL first."
+            );
+
+            return;
+
+        }
+
+
+        const text =
+            currentVideoUrl;
+
+
+        try{
+
+            await navigator.clipboard.writeText(text);
+
+            showStatus(
+                "YouTube URL copied to clipboard."
+            );
+
+        }catch(error){
+
+            const textarea =
+                document.createElement("textarea");
+
+            textarea.value =
+                text;
+
+            textarea.style.position =
+                "fixed";
+
+            textarea.style.left =
+                "-9999px";
+
+            document.body.appendChild(
+                textarea
+            );
+
+            textarea.select();
+
+            try{
+
+                document.execCommand(
+                    "copy"
+                );
+
+                showStatus(
+                    "YouTube URL copied to clipboard."
+                );
+
+            }catch(copyError){
+
+                showStatus(
+                    "Could not copy automatically. Please copy the URL manually."
+                );
+
+            }
+
+            textarea.remove();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   THUMBNAIL
 ========================================================= */
 
 thumbnailBtn.addEventListener(
     "click",
     function(){
 
-        const videoId =
-            videoIdElement.textContent.trim();
-
-
-        if(
-            !videoId ||
-            videoId === "-"
-        ){
+        if(!currentVideoId){
 
             showStatus(
-                "Analyze a valid YouTube URL first."
+                "Please analyze a YouTube URL first."
             );
 
             return;
@@ -2943,28 +3204,126 @@ thumbnailBtn.addEventListener(
 
         const imageUrl =
             "https://img.youtube.com/vi/" +
-            videoId +
+            encodeURIComponent(currentVideoId) +
             "/hqdefault.jpg";
 
 
-        const newTab =
-            window.open(
-                imageUrl,
-                "_blank",
-                "noopener,noreferrer"
-            );
+        window.open(
+            imageUrl,
+            "_blank",
+            "noopener,noreferrer"
+        );
 
 
-        if(newTab){
+        showStatus(
+            "Thumbnail opened in a new tab. You can save it from the browser."
+        );
+
+    }
+);
+
+
+/* =========================================================
+   WATCH ON YOUTUBE
+========================================================= */
+
+watchBtn.addEventListener(
+    "click",
+    function(){
+
+        if(!currentVideoId){
 
             showStatus(
-                "Thumbnail opened in a new tab. Right-click the image and choose Save image as."
+                "Please analyze a YouTube URL first."
             );
 
-        }else{
+            return;
+
+        }
+
+
+        window.open(
+            currentVideoUrl,
+            "_blank",
+            "noopener,noreferrer"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   SHARE
+========================================================= */
+
+shareBtn.addEventListener(
+    "click",
+    async function(){
+
+        if(!currentVideoId){
 
             showStatus(
-                "Please allow pop-ups for VidFetch Tools to open the thumbnail."
+                "Please analyze a YouTube URL first."
+            );
+
+            return;
+
+        }
+
+
+        const shareData = {
+
+            title:
+                "YouTube Video",
+
+            text:
+                "Check this YouTube video",
+
+            url:
+                currentVideoUrl
+
+        };
+
+
+        if(
+            navigator.share
+        ){
+
+            try{
+
+                await navigator.share(
+                    shareData
+                );
+
+                showStatus(
+                    "Share menu opened."
+                );
+
+            }catch(error){
+
+                /* User cancelled share */
+
+            }
+
+            return;
+
+        }
+
+
+        try{
+
+            await navigator.clipboard.writeText(
+                currentVideoUrl
+            );
+
+            showStatus(
+                "Sharing is not available here. Video URL copied instead."
+            );
+
+        }catch(error){
+
+            showStatus(
+                "Sharing is not available in this browser."
             );
 
         }
@@ -2974,23 +3333,80 @@ thumbnailBtn.addEventListener(
 
 
 /* =========================================================
-   OPEN DOWNLOAD MODAL
+   DOWNLOAD MODAL ELEMENTS
 ========================================================= */
 
-function openDownloadModal(){
+const downloadOverlay =
+    document.getElementById(
+        "downloadOverlay"
+    );
 
-    const currentVideoId =
-        videoIdElement.textContent.trim();
+const closeDownloadBtn =
+    document.getElementById(
+        "closeDownloadBtn"
+    );
+
+const cancelDownloadBtn =
+    document.getElementById(
+        "cancelDownloadBtn"
+    );
+
+const confirmDownloadBtn =
+    document.getElementById(
+        "confirmDownloadBtn"
+    );
+
+const videoTab =
+    document.getElementById(
+        "videoTab"
+    );
+
+const audioTab =
+    document.getElementById(
+        "audioTab"
+    );
+
+const videoOptions =
+    document.getElementById(
+        "videoOptions"
+    );
+
+const audioOptions =
+    document.getElementById(
+        "audioOptions"
+    );
+
+const downloadPreviewImage =
+    document.getElementById(
+        "downloadPreviewImage"
+    );
+
+const downloadPreviewTitle =
+    document.getElementById(
+        "downloadPreviewTitle"
+    );
+
+const downloadPreviewId =
+    document.getElementById(
+        "downloadPreviewId"
+    );
+
+const backendMessage =
+    document.getElementById(
+        "backendMessage"
+    );
 
 
-    if(
-        !currentVideoId ||
-        currentVideoId === "-"
-    ){
+let lastFocusedElement = null;
 
-        showStatus(
-            "Analyze a valid YouTube URL first."
-        );
+
+/* =========================================================
+   UPDATE DOWNLOAD PREVIEW
+========================================================= */
+
+function updateDownloadPreview(){
+
+    if(!currentVideoId){
 
         return;
 
@@ -2999,7 +3415,7 @@ function openDownloadModal(){
 
     downloadPreviewImage.src =
         "https://img.youtube.com/vi/" +
-        currentVideoId +
+        encodeURIComponent(currentVideoId) +
         "/hqdefault.jpg";
 
 
@@ -3012,23 +3428,55 @@ function openDownloadModal(){
         "Video ID: " +
         currentVideoId;
 
+}
 
-    backendMessage.classList.remove(
-        "show"
-    );
+
+/* =========================================================
+   OPEN DOWNLOAD MODAL
+========================================================= */
+
+function openDownloadModal(){
+
+    if(!currentVideoId){
+
+        showStatus(
+            "Please analyze a YouTube URL before opening download options."
+        );
+
+        return;
+
+    }
+
+
+    updateDownloadPreview();
+
+
+    lastFocusedElement =
+        document.activeElement;
 
 
     downloadOverlay.classList.add(
         "show"
     );
 
+
     downloadOverlay.setAttribute(
         "aria-hidden",
         "false"
     );
 
-    document.body.classList.add(
-        "modal-open"
+
+    document.body.style.overflow =
+        "hidden";
+
+
+    setTimeout(
+        function(){
+
+            closeDownloadBtn.focus();
+
+        },
+        50
     );
 
 }
@@ -3044,14 +3492,25 @@ function closeDownloadModal(){
         "show"
     );
 
+
     downloadOverlay.setAttribute(
         "aria-hidden",
         "true"
     );
 
-    document.body.classList.remove(
-        "modal-open"
-    );
+
+    document.body.style.overflow =
+        "";
+
+
+    if(
+        lastFocusedElement &&
+        typeof lastFocusedElement.focus === "function"
+    ){
+
+        lastFocusedElement.focus();
+
+    }
 
 }
 
@@ -3066,6 +3525,10 @@ downloadBtn.addEventListener(
 );
 
 
+/* =========================================================
+   CLOSE BUTTONS
+========================================================= */
+
 closeDownloadBtn.addEventListener(
     "click",
     closeDownloadModal
@@ -3079,7 +3542,7 @@ cancelDownloadBtn.addEventListener(
 
 
 /* =========================================================
-   CLICK OUTSIDE MODAL
+   BACKDROP CLICK
 ========================================================= */
 
 downloadOverlay.addEventListener(
@@ -3087,7 +3550,8 @@ downloadOverlay.addEventListener(
     function(event){
 
         if(
-            event.target === downloadOverlay
+            event.target ===
+            downloadOverlay
         ){
 
             closeDownloadModal();
@@ -3120,16 +3584,12 @@ document.addEventListener(
 
 
 /* =========================================================
-   VIDEO TAB
+   FORMAT TABS
 ========================================================= */
 
 videoTab.addEventListener(
     "click",
     function(){
-
-        selectedDownloadType =
-            "video";
-
 
         videoTab.classList.add(
             "active"
@@ -3140,32 +3600,36 @@ videoTab.addEventListener(
         );
 
 
-        videoOptions.style.display =
-            "grid";
-
-        audioOptions.style.display =
-            "none";
-
-
-        backendMessage.classList.remove(
-            "show"
+        videoTab.setAttribute(
+            "aria-selected",
+            "true"
         );
+
+        audioTab.setAttribute(
+            "aria-selected",
+            "false"
+        );
+
+
+        videoOptions.classList.add(
+            "active"
+        );
+
+        audioOptions.classList.remove(
+            "active"
+        );
+
+
+        backendMessage.textContent =
+            "ℹ️ MP4 video options are ready. Actual file generation and accurate file size require a compatible authorized backend/service.";
 
     }
 );
 
 
-/* =========================================================
-   AUDIO TAB
-========================================================= */
-
 audioTab.addEventListener(
     "click",
     function(){
-
-        selectedDownloadType =
-            "audio";
-
 
         audioTab.classList.add(
             "active"
@@ -3176,46 +3640,74 @@ audioTab.addEventListener(
         );
 
 
-        audioOptions.style.display =
-            "grid";
+        audioTab.setAttribute(
+            "aria-selected",
+            "true"
+        );
 
-        videoOptions.style.display =
-            "none";
+        videoTab.setAttribute(
+            "aria-selected",
+            "false"
+        );
 
 
-        backendMessage.classList.remove(
-            "show"
+        audioOptions.classList.add(
+            "active"
+        );
+
+        videoOptions.classList.remove(
+            "active"
+        );
+
+
+        backendMessage.textContent =
+            "ℹ️ MP3 audio options are ready. Actual file generation and accurate file size require a compatible authorized backend/service.";
+
+    }
+);
+
+
+/* =========================================================
+   QUALITY SELECTION
+========================================================= */
+
+document.querySelectorAll(
+    'input[name="videoQuality"]'
+).forEach(
+    function(input){
+
+        input.addEventListener(
+            "change",
+            function(){
+
+                document.getElementById(
+                    "videoSize"
+                ).textContent =
+                    "Available after server analysis";
+
+            }
         );
 
     }
 );
 
 
-/* =========================================================
-   VIDEO QUALITY
-========================================================= */
+document.querySelectorAll(
+    'input[name="audioQuality"]'
+).forEach(
+    function(input){
 
-videoQuality.addEventListener(
-    "change",
-    function(){
+        input.addEventListener(
+            "change",
+            function(){
 
-        videoSize.textContent =
-            "Available after server analysis";
+                document.getElementById(
+                    "audioSize"
+                ).textContent =
+                    "Available after server analysis";
 
-    }
-);
-
-
-/* =========================================================
-   AUDIO QUALITY
-========================================================= */
-
-audioQuality.addEventListener(
-    "change",
-    function(){
-
-        audioSize.textContent =
-            "Available after server analysis";
+            }
+        );
 
     }
 );
@@ -3229,60 +3721,12 @@ confirmDownloadBtn.addEventListener(
     "click",
     function(){
 
-        /*
-           IMPORTANT:
-           No fake download is performed here.
+        if(!currentVideoId){
 
-           GitHub Pages frontend cannot safely provide
-           arbitrary YouTube MP3/MP4 downloading by itself.
-        */
-
-        backendMessage.classList.add(
-            "show"
-        );
-
-
-        if(selectedDownloadType === "video"){
+            closeDownloadModal();
 
             showStatus(
-                "MP4 " +
-                videoQuality.value +
-                " selected. Connect the authorized download backend to generate the file."
-            );
-
-        }else{
-
-            showStatus(
-                "MP3 " +
-                audioQuality.value +
-                " kbps selected. Connect the authorized download backend to generate the file."
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   WATCH ON YOUTUBE
-========================================================= */
-
-watchBtn.addEventListener(
-    "click",
-    function(){
-
-        const currentVideoId =
-            videoIdElement.textContent.trim();
-
-
-        if(
-            !currentVideoId ||
-            currentVideoId === "-"
-        ){
-
-            showStatus(
-                "Analyze a valid URL first."
+                "Please analyze a YouTube URL first."
             );
 
             return;
@@ -3290,309 +3734,48 @@ watchBtn.addEventListener(
         }
 
 
-        const youtubeUrl =
-            "https://www.youtube.com/watch?v=" +
-            encodeURIComponent(
-                currentVideoId
+        let selectedFormat =
+            "MP4";
+
+        let selectedQuality =
+            document.querySelector(
+                'input[name="videoQuality"]:checked'
             );
-
-
-        const newTab =
-            window.open(
-                youtubeUrl,
-                "_blank",
-                "noopener,noreferrer"
-            );
-
-
-        if(!newTab){
-
-            showStatus(
-                "Please allow pop-ups for VidFetch Tools."
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   SHARE
-========================================================= */
-
-shareBtn.addEventListener(
-    "click",
-    async function(){
-
-        const url =
-            urlInput.value.trim();
-
-
-        if(!url){
-
-            showStatus(
-                "There is no URL to share."
-            );
-
-            return;
-
-        }
 
 
         if(
-            typeof navigator.share ===
-            "function"
+            audioOptions.classList.contains("active")
         ){
 
-            try{
+            selectedFormat =
+                "MP3";
 
-                await navigator.share({
-
-                    title:
-                        "VidFetch Tools",
-
-                    text:
-                        "Check this YouTube video",
-
-                    url:
-                        url
-
-                });
-
-
-                showStatus(
-                    "Share completed."
+            selectedQuality =
+                document.querySelector(
+                    'input[name="audioQuality"]:checked'
                 );
 
-                return;
-
-            }catch(error){
-
-                if(
-                    error &&
-                    error.name === "AbortError"
-                ){
-
-                    showStatus(
-                        "Share cancelled."
-                    );
-
-                    return;
-
-                }
-
-            }
-
         }
 
 
-        const encodedUrl =
-            encodeURIComponent(url);
-
-        const shareWindow =
-            window.open(
-                "",
-                "_blank",
-                "width=600,height=500"
-            );
+        const quality =
+            selectedQuality
+                ? selectedQuality.value
+                : "Default";
 
 
-        if(!shareWindow){
-
-            showStatus(
-                "Please allow pop-ups for the Share button."
-            );
-
-            return;
-
-        }
-
-
-        const safeUrl =
-            url
-            .replace(/&/g,"&amp;")
-            .replace(/</g,"&lt;")
-            .replace(/>/g,"&gt;")
-            .replace(/"/g,"&quot;")
-            .replace(/'/g,"&#039;");
-
-
-        shareWindow.document.write(`
-
-            <!DOCTYPE html>
-
-            <html>
-
-            <head>
-
-                <title>
-                    Share - VidFetch Tools
-                </title>
-
-                <meta
-                    name="viewport"
-                    content="width=device-width,initial-scale=1"
-                >
-
-                <style>
-
-                    *{
-                        box-sizing:border-box;
-                    }
-
-                    body{
-                        font-family:Arial,sans-serif;
-                        padding:20px;
-                        text-align:center;
-                        background:#f1f5f9;
-                        color:#0f172a;
-                    }
-
-                    .box{
-                        max-width:500px;
-                        margin:30px auto;
-                        background:#fff;
-                        padding:30px;
-                        border-radius:16px;
-                        box-shadow:0 10px 30px rgba(0,0,0,.1);
-                    }
-
-                    h2{
-                        margin-bottom:20px;
-                    }
-
-                    .url{
-                        word-break:break-all;
-                        background:#f1f5f9;
-                        padding:12px;
-                        border-radius:8px;
-                        margin:15px 0 20px;
-                        font-size:14px;
-                    }
-
-                    button,
-                    a{
-                        display:block;
-                        width:100%;
-                        margin:10px 0;
-                        padding:13px;
-                        border-radius:8px;
-                        border:1px solid #dbe3ee;
-                        background:#fff;
-                        text-decoration:none;
-                        color:#0f172a;
-                        font-weight:600;
-                        cursor:pointer;
-                    }
-
-                    button:hover,
-                    a:hover{
-                        border-color:#2563eb;
-                        color:#2563eb;
-                    }
-
-                </style>
-
-            </head>
-
-            <body>
-
-                <div class="box">
-
-                    <h2>
-                        Share YouTube Video
-                    </h2>
-
-                    <div class="url">
-                        ${safeUrl}
-                    </div>
-
-                    <a
-                        href="https://wa.me/?text=${encodedUrl}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Share on WhatsApp
-                    </a>
-
-                    <a
-                        href="https://t.me/share/url?url=${encodedUrl}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Share on Telegram
-                    </a>
-
-                    <button
-                        onclick="copyShareUrl()"
-                    >
-                        Copy Link
-                    </button>
-
-                    <button
-                        onclick="window.close()"
-                    >
-                        Close
-                    </button>
-
-                </div>
-
-
-                <script>
-
-                    function copyShareUrl(){
-
-                        const text =
-                            ${JSON.stringify(url)};
-
-
-                        if(
-                            navigator.clipboard &&
-                            window.isSecureContext
-                        ){
-
-                            navigator.clipboard
-                                .writeText(text)
-                                .then(function(){
-
-                                    alert(
-                                        "Link copied successfully."
-                                    );
-
-                                })
-                                .catch(function(){
-
-                                    alert(
-                                        "Please copy the link manually."
-                                    );
-
-                                });
-
-                        }else{
-
-                            alert(
-                                "Please copy the link manually."
-                            );
-
-                        }
-
-                    }
-
-                <\/script>
-
-            </body>
-
-            </html>
-
-        `);
-
-
-        shareWindow.document.close();
-
+        backendMessage.textContent =
+            "ℹ️ Selected " +
+            selectedFormat +
+            " • " +
+            quality +
+            ". A compatible authorized backend/service is required to generate the actual file.";
 
         showStatus(
-            "Share options opened in a new tab."
+            selectedFormat +
+            " " +
+            quality +
+            " selected. Backend connection is required for actual file generation."
         );
 
     }
@@ -3603,21 +3786,25 @@ shareBtn.addEventListener(
    BACK TO TOP
 ========================================================= */
 
+const backTop =
+    document.getElementById(
+        "backTop"
+    );
+
+
 window.addEventListener(
     "scroll",
     function(){
 
-        if(
-            window.scrollY > 400
-        ){
+        if(window.scrollY > 500){
 
-            topBtn.classList.add(
+            backTop.classList.add(
                 "show"
             );
 
         }else{
 
-            topBtn.classList.remove(
+            backTop.classList.remove(
                 "show"
             );
 
@@ -3627,30 +3814,17 @@ window.addEventListener(
 );
 
 
-topBtn.addEventListener(
+backTop.addEventListener(
     "click",
     function(){
 
         window.scrollTo({
-
             top:0,
-
             behavior:"smooth"
-
         });
 
     }
 );
-
-
-/* =========================================================
-   YEAR
-========================================================= */
-
-document.getElementById(
-    "year"
-).textContent =
-    new Date().getFullYear();
 
 
 /* =========================================================
@@ -3670,30 +3844,41 @@ urlInput.addEventListener(
 
 
 /* =========================================================
-   CLOSE MOBILE MENU
+   CURRENT YEAR
 ========================================================= */
 
-document.addEventListener(
-    "click",
-    function(event){
+document.getElementById(
+    "year"
+).textContent =
+    new Date().getFullYear();
 
-        if(
-            !navLinks.contains(event.target) &&
-            !menuBtn.contains(event.target)
-        ){
 
-            navLinks.classList.remove(
-                "open"
-            );
+/* =========================================================
+   IMAGE PREVIEW FALLBACK
+========================================================= */
 
-            menuBtn.setAttribute(
-                "aria-label",
-                "Open menu"
-            );
+thumbnail.addEventListener(
+    "load",
+    function(){
 
-        }
+        thumbnail.style.display =
+            "block";
 
     }
+);
+
+
+/* =========================================================
+   INITIAL STATE
+========================================================= */
+
+result.classList.remove(
+    "show"
+);
+
+downloadOverlay.setAttribute(
+    "aria-hidden",
+    "true"
 );
 
 </script>
