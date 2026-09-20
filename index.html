@@ -1084,26 +1084,19 @@ footer{
 </footer>
 
 
+```html
 <script>
 
 /* =========================
    ELEMENTS
 ========================= */
 
-const urlInput =
-    document.getElementById("urlInput");
+const urlInput = document.getElementById("urlInput");
+const pasteBtn = document.getElementById("pasteBtn");
+const clearBtn = document.getElementById("clearBtn");
+const fetchBtn = document.getElementById("fetchBtn");
 
-const pasteBtn =
-    document.getElementById("pasteBtn");
-
-const clearBtn =
-    document.getElementById("clearBtn");
-
-const fetchBtn =
-    document.getElementById("fetchBtn");
-
-const resultSection =
-    document.getElementById("resultSection");
+const resultSection = document.getElementById("resultSection");
 
 const thumbnailPreview =
     document.getElementById("thumbnailPreview");
@@ -1131,6 +1124,14 @@ const messageBox =
 
 
 /* =========================
+   BACKEND URL
+========================= */
+
+const BACKEND_URL =
+    "http://localhost:3000";
+
+
+/* =========================
    YOUTUBE ID
 ========================= */
 
@@ -1138,8 +1139,7 @@ function getYouTubeId(url){
 
     try{
 
-        const parsed =
-            new URL(url);
+        const parsed = new URL(url);
 
         const host =
             parsed.hostname.toLowerCase();
@@ -1147,9 +1147,7 @@ function getYouTubeId(url){
         let id = "";
 
 
-        /*
-         * youtu.be
-         */
+        /* youtu.be */
 
         if(
             host === "youtu.be" ||
@@ -1164,19 +1162,13 @@ function getYouTubeId(url){
         }
 
 
-        /*
-         * youtube.com
-         */
+        /* youtube.com */
 
         else if(
             host === "youtube.com" ||
             host === "www.youtube.com" ||
             host === "m.youtube.com"
         ){
-
-            /*
-             * /watch?v=
-             */
 
             if(
                 parsed.pathname === "/watch"
@@ -1186,11 +1178,6 @@ function getYouTubeId(url){
                     parsed.searchParams.get("v") || "";
 
             }
-
-
-            /*
-             * /shorts/
-             */
 
             else if(
                 parsed.pathname.startsWith("/shorts/")
@@ -1202,11 +1189,6 @@ function getYouTubeId(url){
                     .filter(Boolean)[1] || "";
 
             }
-
-
-            /*
-             * /embed/
-             */
 
             else if(
                 parsed.pathname.startsWith("/embed/")
@@ -1221,10 +1203,6 @@ function getYouTubeId(url){
 
         }
 
-
-        /*
-         * Validate ID
-         */
 
         if(
             /^[A-Za-z0-9_-]{11}$/.test(id)
@@ -1242,6 +1220,26 @@ function getYouTubeId(url){
         return null;
 
     }
+
+}
+
+
+/* =========================
+   MESSAGE HELPER
+========================= */
+
+function showMessage(text){
+
+    messageBox.style.display = "block";
+    messageBox.textContent = text;
+
+}
+
+
+function hideMessage(){
+
+    messageBox.style.display = "none";
+    messageBox.textContent = "";
 
 }
 
@@ -1347,30 +1345,27 @@ clearBtn.addEventListener(
 
         urlInput.value = "";
 
-        resultSection.style.display =
-            "none";
+        resultSection.style.display = "none";
 
         resetPreview();
 
         thumbnailPreview.src = "";
 
-        videoIdText.textContent =
-            "-";
+        thumbnailPreview.alt = "Video Thumbnail";
 
-        mediaSource.textContent =
-            "YouTube";
+        videoIdText.textContent = "-";
 
-        statusText.textContent =
-            "Ready";
+        mediaSource.textContent = "YouTube";
 
-        messageBox.style.display =
-            "none";
+        statusText.textContent = "Ready";
 
-        videoDownload.dataset.videoId =
-            "";
+        hideMessage();
 
-        videoDownload.dataset.sourceUrl =
-            "";
+        videoDownload.dataset.videoId = "";
+
+        videoDownload.dataset.sourceUrl = "";
+
+        videoDownload.dataset.directVideo = "";
 
     }
 );
@@ -1403,9 +1398,9 @@ fetchBtn.addEventListener(
             getYouTubeId(url);
 
 
-        /*
-         * YOUTUBE
-         */
+        /* =====================
+           YOUTUBE
+        ===================== */
 
         if(youtubeId){
 
@@ -1419,9 +1414,9 @@ fetchBtn.addEventListener(
         }
 
 
-        /*
-         * DIRECT MEDIA
-         */
+        /* =====================
+           DIRECT MEDIA
+        ===================== */
 
         try{
 
@@ -1432,9 +1427,7 @@ fetchBtn.addEventListener(
                 parsed.pathname.toLowerCase();
 
 
-            /*
-             * IMAGE
-             */
+            /* IMAGE */
 
             if(
                 pathname.endsWith(".jpg") ||
@@ -1451,15 +1444,14 @@ fetchBtn.addEventListener(
             }
 
 
-            /*
-             * VIDEO
-             */
+            /* VIDEO */
 
             if(
                 pathname.endsWith(".mp4") ||
                 pathname.endsWith(".webm") ||
                 pathname.endsWith(".ogg") ||
-                pathname.endsWith(".mov")
+                pathname.endsWith(".mov") ||
+                pathname.endsWith(".avi")
             ){
 
                 showDirectVideo(url);
@@ -1474,21 +1466,14 @@ fetchBtn.addEventListener(
         }
 
 
-        /*
-         * UNSUPPORTED
-         */
-
-        resultSection.style.display =
-            "block";
+        resultSection.style.display = "block";
 
         statusText.textContent =
             "Unsupported URL";
 
-        messageBox.style.display =
-            "block";
-
-        messageBox.textContent =
-            "This URL format is not supported yet. YouTube and direct image/video URLs are currently supported.";
+        showMessage(
+            "This URL format is not supported yet. YouTube and direct image/video URLs are currently supported."
+        );
 
     }
 );
@@ -1503,59 +1488,39 @@ function showYouTubeMedia(
     originalUrl
 ){
 
-    resultSection.style.display =
-        "block";
-
+    resultSection.style.display = "block";
 
     statusText.textContent =
         "YouTube Detected";
 
-
     mediaSource.textContent =
         "YouTube";
-
 
     videoIdText.textContent =
         videoId;
 
 
-    /*
-     * IMPORTANT:
-     * Restore iframe every time.
-     */
-
     resetPreview();
 
 
     const player =
-        document.getElementById(
-            "youtubePlayer"
-        );
+        document.getElementById("youtubePlayer");
 
     const loading =
-        document.getElementById(
-            "previewLoading"
-        );
+        document.getElementById("previewLoading");
 
     const errorBox =
-        document.getElementById(
-            "previewError"
-        );
+        document.getElementById("previewError");
 
 
-    player.style.display =
-        "none";
+    player.style.display = "none";
 
-    loading.style.display =
-        "flex";
+    loading.style.display = "flex";
 
-    errorBox.style.display =
-        "none";
+    errorBox.style.display = "none";
 
 
-    /*
-     * Official YouTube embed.
-     */
+    /* Official YouTube embed */
 
     const embedUrl =
         "https://www.youtube.com/embed/" +
@@ -1563,59 +1528,62 @@ function showYouTubeMedia(
         "?rel=0&playsinline=1";
 
 
-    player.src =
-        embedUrl;
+    let previewLoaded = false;
+
+
+    player.addEventListener(
+        "load",
+        function(){
+
+            previewLoaded = true;
+
+            loading.style.display = "none";
+
+            player.style.display = "block";
+
+            errorBox.style.display = "none";
+
+            showMessage(
+                "YouTube preview loaded through the official YouTube player."
+            );
+
+        },
+        {
+            once: true
+        }
+    );
+
+
+    player.src = embedUrl;
 
 
     /*
-     * Iframe loaded.
+     * Prevent infinite loading.
      */
 
-   let previewLoaded = false;
+    setTimeout(
+        function(){
 
-player.addEventListener(
-    "load",
-    function(){
+            if(!previewLoaded){
 
-        previewLoaded = true;
+                loading.style.display = "none";
 
-        loading.style.display = "none";
-        player.style.display = "block";
-        errorBox.style.display = "none";
+                player.style.display = "none";
 
-    },
-    {
-        once:true
-    }
-);
+                errorBox.style.display = "flex";
+
+                showMessage(
+                    "YouTube preview could not be loaded in this browser. Please use Watch on YouTube."
+                );
+
+            }
+
+        },
+        8000
+    );
 
 
-/*
- * Never keep the loading spinner forever.
- */
-
-setTimeout(function(){
-
-    if(!previewLoaded){
-
-        loading.style.display = "none";
-
-        player.style.display = "none";
-
-        errorBox.style.display = "flex";
-
-        messageBox.style.display = "block";
-
-        messageBox.textContent =
-            "YouTube preview could not be loaded in this browser. You can use Watch on YouTube below.";
-
-    }
-
-}, 8000);
-
-    /*
-     * Thumbnail
-     */
+    /* Thumbnail */
 
     const thumbnailUrl =
         "https://i.ytimg.com/vi/" +
@@ -1626,10 +1594,6 @@ setTimeout(function(){
     thumbnailPreview.src =
         thumbnailUrl;
 
-
-    /*
-     * Thumbnail fallback
-     */
 
     thumbnailPreview.onerror =
         function(){
@@ -1644,17 +1608,13 @@ setTimeout(function(){
         };
 
 
-    /*
-     * Thumbnail button
-     */
+    /* Thumbnail Download */
 
     thumbnailDownload.href =
         thumbnailUrl;
 
 
-    /*
-     * Watch button
-     */
+    /* Watch */
 
     watchVideo.href =
         "https://www.youtube.com/watch?v=" +
@@ -1662,7 +1622,7 @@ setTimeout(function(){
 
 
     /*
-     * Keep Video Download button.
+     * Store information.
      */
 
     videoDownload.dataset.videoId =
@@ -1671,33 +1631,28 @@ setTimeout(function(){
     videoDownload.dataset.sourceUrl =
         originalUrl;
 
+    videoDownload.dataset.directVideo =
+        "";
+
 
     /*
-     * Video download currently needs
-     * the authorized backend.
+     * YouTube is NOT sent to the
+     * authorized direct-file downloader.
      */
 
     videoDownload.onclick =
         function(){
 
-            messageBox.style.display =
-                "block";
-
-            messageBox.textContent =
-                "Video Download is ready for the authorized backend connection. The YouTube preview itself is working through the official player.";
+            showMessage(
+                "YouTube video download is not available through the current authorized direct-file backend. Video Download will work with an authorized direct video file URL."
+            );
 
         };
 
 
-    /*
-     * Message
-     */
-
-    messageBox.style.display =
-        "block";
-
-    messageBox.textContent =
-        "YouTube preview is loading through the official YouTube player.";
+    showMessage(
+        "YouTube preview is loading through the official YouTube player."
+    );
 
 }
 
@@ -1708,17 +1663,13 @@ setTimeout(function(){
 
 function showDirectImage(url){
 
-    resultSection.style.display =
-        "block";
-
+    resultSection.style.display = "block";
 
     statusText.textContent =
         "Image Detected";
 
-
     mediaSource.textContent =
         "Direct Image";
-
 
     videoIdText.textContent =
         "Not applicable";
@@ -1728,22 +1679,25 @@ function showDirectImage(url){
 
 
     const player =
-        document.getElementById(
-            "youtubePlayer"
-        );
+        document.getElementById("youtubePlayer");
 
-    player.style.display =
-        "none";
+    player.style.display = "none";
 
 
     document.getElementById(
         "previewLoading"
-    ).style.display =
-        "none";
+    ).style.display = "none";
 
 
-    thumbnailPreview.src =
-        url;
+    document.getElementById(
+        "previewError"
+    ).style.display = "none";
+
+
+    thumbnailPreview.src = url;
+
+    thumbnailPreview.alt =
+        "Direct Image";
 
 
     thumbnailDownload.href =
@@ -1754,23 +1708,26 @@ function showDirectImage(url){
         url;
 
 
+    videoDownload.dataset.videoId = "";
+
+    videoDownload.dataset.sourceUrl = "";
+
+    videoDownload.dataset.directVideo = "";
+
+
     videoDownload.onclick =
         function(){
 
-            messageBox.style.display =
-                "block";
-
-            messageBox.textContent =
-                "Video Download is available when a supported video URL or authorized backend is connected.";
+            showMessage(
+                "This is an image URL. Please fetch a supported direct video URL for Video Download."
+            );
 
         };
 
 
-    messageBox.style.display =
-        "block";
-
-    messageBox.textContent =
-        "Direct image URL detected.";
+    showMessage(
+        "Direct image URL detected."
+    );
 
 }
 
@@ -1781,26 +1738,20 @@ function showDirectImage(url){
 
 function showDirectVideo(url){
 
-    resultSection.style.display =
-        "block";
-
+    resultSection.style.display = "block";
 
     statusText.textContent =
         "Video Detected";
 
-
     mediaSource.textContent =
         "Direct Video";
-
 
     videoIdText.textContent =
         "Not applicable";
 
 
     const wrapper =
-        document.getElementById(
-            "videoWrapper"
-        );
+        document.getElementById("videoWrapper");
 
 
     wrapper.innerHTML = `
@@ -1827,13 +1778,10 @@ function showDirectVideo(url){
         );
 
 
-    video.src =
-        url;
+    video.src = url;
 
 
-    thumbnailPreview.src =
-        "";
-
+    thumbnailPreview.src = "";
 
     thumbnailPreview.alt =
         "No thumbnail available";
@@ -1848,34 +1796,214 @@ function showDirectVideo(url){
 
 
     /*
-     * Keep Video Download button.
+     * Save direct video URL.
+     */
+
+    videoDownload.dataset.videoId = "";
+
+    videoDownload.dataset.sourceUrl = url;
+
+    videoDownload.dataset.directVideo = "true";
+
+
+    /*
+     * REAL BACKEND DOWNLOAD
      */
 
     videoDownload.onclick =
         function(){
 
-            const a =
-                document.createElement("a");
-
-            a.href =
-                url;
-
-            a.target =
-                "_blank";
-
-            a.rel =
-                "noopener";
-
-            a.click();
+            downloadThroughBackend(url);
 
         };
 
 
-    messageBox.style.display =
-        "block";
+    showMessage(
+        "Direct video URL detected. Video Download will use the authorized VidFetch backend."
+    );
 
-    messageBox.textContent =
-        "Direct video URL detected. Playback depends on the server allowing browser access.";
+}
+
+
+/* =========================
+   BACKEND VIDEO DOWNLOAD
+========================= */
+
+async function downloadThroughBackend(
+    videoUrl
+){
+
+    if(!videoUrl){
+
+        showMessage(
+            "No video URL found. Please fetch a supported direct video URL first."
+        );
+
+        return;
+
+    }
+
+
+    const originalText =
+        videoDownload.textContent;
+
+
+    try{
+
+        videoDownload.disabled = true;
+
+        videoDownload.style.opacity = "0.7";
+
+        videoDownload.textContent =
+            "⏳ Preparing Download...";
+
+
+        showMessage(
+            "Connecting to VidFetch backend..."
+        );
+
+
+        const response =
+            await fetch(
+                BACKEND_URL + "/api/download",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        url: videoUrl
+                    })
+                }
+            );
+
+
+        /*
+         * Backend error.
+         */
+
+        if(!response.ok){
+
+            let errorMessage =
+                "Video download failed.";
+
+            try{
+
+                const data =
+                    await response.json();
+
+                if(data.message){
+
+                    errorMessage =
+                        data.message;
+
+                }
+
+            }
+            catch(error){
+
+            }
+
+
+            throw new Error(
+                errorMessage
+            );
+
+        }
+
+
+        /*
+         * Receive downloaded file.
+         */
+
+        const blob =
+            await response.blob();
+
+
+        if(
+            !blob ||
+            blob.size === 0
+        ){
+
+            throw new Error(
+                "The backend returned an empty video file."
+            );
+
+        }
+
+
+        /*
+         * Create browser download.
+         */
+
+        const blobUrl =
+            URL.createObjectURL(blob);
+
+
+        const link =
+            document.createElement("a");
+
+
+        link.href =
+            blobUrl;
+
+
+        link.download =
+            "vidfetch-video.mp4";
+
+
+        document.body.appendChild(link);
+
+        link.click();
+
+        link.remove();
+
+
+        setTimeout(
+            function(){
+
+                URL.revokeObjectURL(
+                    blobUrl
+                );
+
+            },
+            1000
+        );
+
+
+        showMessage(
+            "Video download started successfully."
+        );
+
+    }
+    catch(error){
+
+        console.error(
+            "VidFetch download error:",
+            error
+        );
+
+
+        showMessage(
+            "Download failed: " +
+            error.message +
+            " Make sure the VidFetch backend is running."
+        );
+
+    }
+    finally{
+
+        videoDownload.disabled = false;
+
+        videoDownload.style.opacity = "1";
+
+        videoDownload.textContent =
+            originalText;
+
+    }
 
 }
 
@@ -1888,23 +2016,41 @@ videoDownload.addEventListener(
     "click",
     function(){
 
+        /*
+         * If a specific onclick handler
+         * has already been assigned,
+         * that handler will perform the
+         * actual action.
+         */
+
         if(
             !this.dataset.videoId &&
-            !this.dataset.sourceUrl
+            !this.dataset.sourceUrl &&
+            !this.dataset.directVideo
         ){
 
-            messageBox.style.display =
-                "block";
-
-            messageBox.textContent =
-                "Please fetch a supported video URL first.";
+            showMessage(
+                "Please fetch a supported video URL first."
+            );
 
         }
 
     }
 );
 
+
+/* =========================
+   INITIAL STATE
+========================= */
+
+videoDownload.dataset.videoId = "";
+
+videoDownload.dataset.sourceUrl = "";
+
+videoDownload.dataset.directVideo = "";
+
 </script>
+```
 
 </body>
 </html>
