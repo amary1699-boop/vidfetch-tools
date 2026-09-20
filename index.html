@@ -1571,22 +1571,47 @@ function showYouTubeMedia(
      * Iframe loaded.
      */
 
-    player.addEventListener(
-        "load",
-        function(){
+   let previewLoaded = false;
 
-            loading.style.display =
-                "none";
+player.addEventListener(
+    "load",
+    function(){
 
-            player.style.display =
-                "block";
+        previewLoaded = true;
 
-        },
-        {
-            once:true
-        }
-    );
+        loading.style.display = "none";
+        player.style.display = "block";
+        errorBox.style.display = "none";
 
+    },
+    {
+        once:true
+    }
+);
+
+
+/*
+ * Never keep the loading spinner forever.
+ */
+
+setTimeout(function(){
+
+    if(!previewLoaded){
+
+        loading.style.display = "none";
+
+        player.style.display = "none";
+
+        errorBox.style.display = "flex";
+
+        messageBox.style.display = "block";
+
+        messageBox.textContent =
+            "YouTube preview could not be loaded in this browser. You can use Watch on YouTube below.";
+
+    }
+
+}, 8000);
 
     /*
      * Thumbnail
