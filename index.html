@@ -348,6 +348,11 @@ body{
     color:#fff;
 }
 
+.video-download:disabled{
+    cursor:not-allowed;
+    transform:none;
+}
+
 .watch-btn{
     background:#172033;
     color:#fff;
@@ -367,6 +372,64 @@ body{
     color:#7a5a00;
     font-size:13px;
     display:none;
+}
+
+/* =========================
+   DOWNLOAD PROGRESS
+========================= */
+
+.download-progress-box{
+    display:none;
+    margin-top:18px;
+    padding:18px;
+    border:1px solid #eaecf0;
+    border-radius:14px;
+    background:#fafbfc;
+}
+
+.download-progress-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:10px;
+}
+
+.download-progress-title{
+    font-size:14px;
+    font-weight:700;
+    color:#172033;
+}
+
+.download-progress-percent{
+    font-size:14px;
+    font-weight:800;
+    color:#e53232;
+}
+
+.progress-track{
+    width:100%;
+    height:10px;
+    background:#e4e7ec;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    width:0%;
+    height:100%;
+    background:#e53232;
+    border-radius:20px;
+    transition:width .15s ease;
+}
+
+.download-progress-info{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    margin-top:9px;
+    color:#667085;
+    font-size:12px;
 }
 
 .features{
@@ -514,6 +577,11 @@ footer{
 
     .action-btn{
         width:100%;
+    }
+
+    .download-progress-info{
+        flex-direction:column;
+        gap:4px;
     }
 }
 </style>
@@ -702,6 +770,49 @@ footer{
                             rel="noopener">
                             ▶ Watch on YouTube
                         </a>
+
+                    </div>
+
+                    <div
+                        class="download-progress-box"
+                        id="downloadProgressBox">
+
+                        <div class="download-progress-top">
+
+                            <div
+                                class="download-progress-title"
+                                id="downloadProgressTitle">
+                                Downloading video...
+                            </div>
+
+                            <div
+                                class="download-progress-percent"
+                                id="downloadProgressPercent">
+                                0%
+                            </div>
+
+                        </div>
+
+                        <div class="progress-track">
+
+                            <div
+                                class="progress-bar"
+                                id="downloadProgressBar">
+                            </div>
+
+                        </div>
+
+                        <div class="download-progress-info">
+
+                            <span id="downloadedSize">
+                                0 MB
+                            </span>
+
+                            <span id="totalSize">
+                                Preparing...
+                            </span>
+
+                        </div>
 
                     </div>
 
@@ -898,10 +1009,17 @@ footer{
    ELEMENTS
 ========================= */
 
-const urlInput = document.getElementById("urlInput");
-const pasteBtn = document.getElementById("pasteBtn");
-const clearBtn = document.getElementById("clearBtn");
-const fetchBtn = document.getElementById("fetchBtn");
+const urlInput =
+    document.getElementById("urlInput");
+
+const pasteBtn =
+    document.getElementById("pasteBtn");
+
+const clearBtn =
+    document.getElementById("clearBtn");
+
+const fetchBtn =
+    document.getElementById("fetchBtn");
 
 const resultSection =
     document.getElementById("resultSection");
@@ -929,6 +1047,24 @@ const statusText =
 
 const messageBox =
     document.getElementById("messageBox");
+
+const downloadProgressBox =
+    document.getElementById("downloadProgressBox");
+
+const downloadProgressBar =
+    document.getElementById("downloadProgressBar");
+
+const downloadProgressPercent =
+    document.getElementById("downloadProgressPercent");
+
+const downloadProgressTitle =
+    document.getElementById("downloadProgressTitle");
+
+const downloadedSize =
+    document.getElementById("downloadedSize");
+
+const totalSize =
+    document.getElementById("totalSize");
 
 
 /* =========================
@@ -1055,6 +1191,57 @@ function hideMessage(){
 
 
 /* =========================
+   FORMAT SIZE
+========================= */
+
+function formatBytes(bytes){
+
+    if(!bytes || bytes <= 0){
+        return "0 MB";
+    }
+
+    const mb =
+        bytes / (1024 * 1024);
+
+    if(mb < 1024){
+        return mb.toFixed(2) + " MB";
+    }
+
+    return (
+        mb / 1024
+    ).toFixed(2) + " GB";
+
+}
+
+
+/* =========================
+   RESET DOWNLOAD PROGRESS
+========================= */
+
+function resetDownloadProgress(){
+
+    downloadProgressBox.style.display =
+        "none";
+
+    downloadProgressBar.style.width =
+        "0%";
+
+    downloadProgressPercent.textContent =
+        "0%";
+
+    downloadProgressTitle.textContent =
+        "Downloading video...";
+
+    downloadedSize.textContent =
+        "0 MB";
+
+    totalSize.textContent =
+        "Preparing...";
+
+}
+
+
+/* =========================
    RESET PREVIEW
 ========================= */
 
@@ -1157,6 +1344,8 @@ clearBtn.addEventListener(
 
         resetPreview();
 
+        resetDownloadProgress();
+
         thumbnailPreview.src = "";
 
         thumbnailPreview.alt =
@@ -1181,6 +1370,12 @@ clearBtn.addEventListener(
 
         videoDownload.disabled =
             false;
+
+        videoDownload.style.opacity =
+            "1";
+
+        videoDownload.textContent =
+            "⬇ Video Download";
 
     }
 );
@@ -1207,6 +1402,9 @@ fetchBtn.addEventListener(
             return;
 
         }
+
+
+        resetDownloadProgress();
 
 
         const youtubeId =
@@ -1304,6 +1502,8 @@ function showYouTubeMedia(
     videoIdText.textContent =
         videoId;
 
+
+    resetDownloadProgress();
 
     resetPreview();
 
@@ -1476,6 +1676,8 @@ function showDirectImage(url){
         "Not applicable";
 
 
+    resetDownloadProgress();
+
     resetPreview();
 
 
@@ -1558,6 +1760,9 @@ function showDirectVideo(url){
         "Not applicable";
 
 
+    resetDownloadProgress();
+
+
     const wrapper =
         document.getElementById(
             "videoWrapper"
@@ -1632,6 +1837,7 @@ function showDirectVideo(url){
 
 /* =========================
    ONLINE BACKEND DOWNLOAD
+   WITH PROGRESS
 ========================= */
 
 async function downloadThroughBackend(
@@ -1653,6 +1859,9 @@ async function downloadThroughBackend(
         videoDownload.textContent;
 
 
+    let blobUrl = null;
+
+
     try{
 
         videoDownload.disabled =
@@ -1662,7 +1871,30 @@ async function downloadThroughBackend(
             "0.7";
 
         videoDownload.textContent =
-            "⏳ Preparing Download...";
+            "⏳ Downloading...";
+
+
+        downloadProgressBox.style.display =
+            "block";
+
+        downloadProgressTitle.textContent =
+            "Connecting to VidFetch...";
+
+        downloadProgressPercent.textContent =
+            "0%";
+
+        downloadProgressBar.style.width =
+            "0%";
+
+        downloadedSize.textContent =
+            "0 MB";
+
+        totalSize.textContent =
+            "Preparing...";
+
+
+        statusText.textContent =
+            "Downloading";
 
 
         showMessage(
@@ -1719,8 +1951,141 @@ async function downloadThroughBackend(
         }
 
 
+        const contentLength =
+            response.headers.get(
+                "content-length"
+            );
+
+
+        const totalBytes =
+            contentLength ?
+            Number(contentLength) :
+            0;
+
+
+        if(totalBytes > 0){
+
+            totalSize.textContent =
+                formatBytes(totalBytes);
+
+        }
+        else{
+
+            totalSize.textContent =
+                "Size unavailable";
+
+        }
+
+
+        /*
+          Read the response stream chunk by chunk
+          so the progress bar can update.
+        */
+
+        if(!response.body){
+
+            throw new Error(
+                "Download stream is unavailable in this browser."
+            );
+
+        }
+
+
+        const reader =
+            response.body.getReader();
+
+
+        const chunks = [];
+
+        let receivedBytes =
+            0;
+
+
+        downloadProgressTitle.textContent =
+            "Downloading video...";
+
+
+        while(true){
+
+            const result =
+                await reader.read();
+
+
+            if(result.done){
+
+                break;
+
+            }
+
+
+            chunks.push(
+                result.value
+            );
+
+
+            receivedBytes +=
+                result.value.length;
+
+
+            downloadedSize.textContent =
+                formatBytes(receivedBytes);
+
+
+            if(totalBytes > 0){
+
+                const percent =
+                    Math.min(
+                        100,
+                        Math.round(
+                            (
+                                receivedBytes /
+                                totalBytes
+                            ) * 100
+                        )
+                    );
+
+
+                downloadProgressBar.style.width =
+                    percent + "%";
+
+                downloadProgressPercent.textContent =
+                    percent + "%";
+
+            }
+            else{
+
+                /*
+                  If server does not provide
+                  Content-Length, show an
+                  indeterminate-style progress
+                  value based on received data.
+                */
+
+                downloadProgressBar.style.width =
+                    "100%";
+
+                downloadProgressBar.style.opacity =
+                    "0.65";
+
+                downloadProgressPercent.textContent =
+                    "Downloading";
+
+            }
+
+        }
+
+
         const blob =
-            await response.blob();
+            new Blob(
+                chunks,
+                {
+                    type:
+                        response.headers.get(
+                            "content-type"
+                        ) ||
+                        "video/mp4"
+                }
+            );
 
 
         if(
@@ -1765,8 +2130,19 @@ async function downloadThroughBackend(
 
         }
 
+        else if(
+            contentType.includes(
+                "x-msvideo"
+            )
+        ){
 
-        const blobUrl =
+            extension =
+                "avi";
+
+        }
+
+
+        blobUrl =
             URL.createObjectURL(
                 blob
             );
@@ -1791,25 +2167,54 @@ async function downloadThroughBackend(
             link
         );
 
+
         link.click();
 
+
         link.remove();
+
+
+        downloadProgressBar.style.opacity =
+            "1";
+
+        downloadProgressBar.style.width =
+            "100%";
+
+        downloadProgressPercent.textContent =
+            "100%";
+
+        downloadedSize.textContent =
+            formatBytes(blob.size);
+
+        totalSize.textContent =
+            formatBytes(blob.size);
+
+        downloadProgressTitle.textContent =
+            "Download completed";
+
+
+        statusText.textContent =
+            "Download Complete";
+
+
+        showMessage(
+            "Video download completed successfully."
+        );
 
 
         setTimeout(
             function(){
 
-                URL.revokeObjectURL(
-                    blobUrl
-                );
+                if(blobUrl){
+
+                    URL.revokeObjectURL(
+                        blobUrl
+                    );
+
+                }
 
             },
-            1500
-        );
-
-
-        showMessage(
-            "Video download started successfully."
+            3000
         );
 
     }
@@ -1821,10 +2226,34 @@ async function downloadThroughBackend(
         );
 
 
+        downloadProgressBar.style.opacity =
+            "1";
+
+
+        downloadProgressTitle.textContent =
+            "Download failed";
+
+
+        statusText.textContent =
+            "Download Failed";
+
+
         showMessage(
             "Download failed: " +
-            error.message
+            (
+                error.message ||
+                "Unknown error"
+            )
         );
+
+
+        if(blobUrl){
+
+            URL.revokeObjectURL(
+                blobUrl
+            );
+
+        }
 
     }
     finally{
