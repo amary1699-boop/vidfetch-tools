@@ -190,11 +190,6 @@ body{
     padding:25px;
 }
 
-
-/* =========================
-   PREVIEW AREA
-========================= */
-
 .video-wrapper{
     position:relative;
     width:100%;
@@ -276,11 +271,6 @@ body{
     font-size:22px;
 }
 
-
-/* =========================
-   INFO
-========================= */
-
 .info-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -308,11 +298,6 @@ body{
     word-break:break-word;
 }
 
-
-/* =========================
-   THUMBNAIL
-========================= */
-
 .thumbnail-box{
     margin-top:25px;
     border:1px solid #eaecf0;
@@ -333,11 +318,6 @@ body{
     border-radius:10px;
     display:block;
 }
-
-
-/* =========================
-   BUTTONS
-========================= */
 
 .actions{
     display:flex;
@@ -378,11 +358,6 @@ body{
     transform:translateY(-1px);
 }
 
-
-/* =========================
-   MESSAGE
-========================= */
-
 .message{
     margin-top:18px;
     padding:13px 15px;
@@ -393,11 +368,6 @@ body{
     font-size:13px;
     display:none;
 }
-
-
-/* =========================
-   FEATURES
-========================= */
 
 .features{
     padding:65px 0;
@@ -445,11 +415,6 @@ body{
     font-size:14px;
 }
 
-
-/* =========================
-   HOW IT WORKS
-========================= */
-
 .how{
     padding:60px 0;
     background:#ffffff;
@@ -479,11 +444,6 @@ body{
     font-weight:800;
 }
 
-
-/* =========================
-   ABOUT
-========================= */
-
 .about{
     padding:65px 0;
 }
@@ -503,11 +463,6 @@ body{
     line-height:1.7;
 }
 
-
-/* =========================
-   FOOTER
-========================= */
-
 footer{
     background:#101828;
     color:#98a2b3;
@@ -515,11 +470,6 @@ footer{
     padding:25px;
     font-size:13px;
 }
-
-
-/* =========================
-   MOBILE
-========================= */
 
 @media(max-width:800px){
 
@@ -565,17 +515,11 @@ footer{
     .action-btn{
         width:100%;
     }
-
 }
 </style>
 </head>
 
 <body>
-
-
-<!-- =========================
-     NAVBAR
-========================= -->
 
 <nav class="navbar">
 
@@ -584,23 +528,13 @@ footer{
     </div>
 
     <div class="nav-links">
-
         <a href="#home">Home</a>
-
         <a href="#features">Features</a>
-
         <a href="#how">How It Works</a>
-
         <a href="#about">About</a>
-
     </div>
 
 </nav>
-
-
-<!-- =========================
-     HERO
-========================= -->
 
 <section class="hero" id="home">
 
@@ -617,7 +551,6 @@ footer{
         and access available media options.
     </p>
 
-
     <div class="search-box">
 
         <input
@@ -628,50 +561,27 @@ footer{
             autocomplete="off"
         >
 
-
-        <button
-            class="btn paste-btn"
-            id="pasteBtn">
-
+        <button class="btn paste-btn" id="pasteBtn">
             📋 Paste
-
         </button>
 
-
-        <button
-            class="btn clear-btn"
-            id="clearBtn">
-
+        <button class="btn clear-btn" id="clearBtn">
             Clear
-
         </button>
 
-
-        <button
-            class="btn fetch-btn"
-            id="fetchBtn">
-
+        <button class="btn fetch-btn" id="fetchBtn">
             Fetch Media
-
         </button>
 
     </div>
 
 </section>
 
-
-<!-- =========================
-     RESULT
-========================= -->
-
-<section
-    class="result-section"
-    id="resultSection">
+<section class="result-section" id="resultSection">
 
     <div class="container">
 
         <div class="result-card">
-
 
             <div class="result-header">
 
@@ -679,32 +589,17 @@ footer{
                     Media Preview
                 </h2>
 
-                <div
-                    class="status"
-                    id="statusText">
-
+                <div class="status" id="statusText">
                     Ready
-
                 </div>
 
             </div>
 
-
             <div class="preview">
 
+                <div class="video-wrapper" id="videoWrapper">
 
-                <!-- =========================
-                     VIDEO PREVIEW
-                ========================== -->
-
-                <div
-                    class="video-wrapper"
-                    id="videoWrapper">
-
-
-                    <div
-                        class="preview-loading"
-                        id="previewLoading">
+                    <div class="preview-loading" id="previewLoading">
 
                         <div class="loading-spinner"></div>
 
@@ -713,7 +608,6 @@ footer{
                         </div>
 
                     </div>
-
 
                     <iframe
                         id="youtubePlayer"
@@ -724,10 +618,7 @@ footer{
                         allowfullscreen>
                     </iframe>
 
-
-                    <div
-                        class="preview-error"
-                        id="previewError">
+                    <div class="preview-error" id="previewError">
 
                         <div class="error-icon">
                             ▶
@@ -745,13 +636,7 @@ footer{
 
                 </div>
 
-
-                <!-- =========================
-                     INFORMATION
-                ========================== -->
-
                 <div class="info-grid">
-
 
                     <div class="info-box">
 
@@ -759,16 +644,11 @@ footer{
                             Source
                         </div>
 
-                        <div
-                            class="info-value"
-                            id="mediaSource">
-
+                        <div class="info-value" id="mediaSource">
                             YouTube
-
                         </div>
 
                     </div>
-
 
                     <div class="info-box">
 
@@ -776,22 +656,13 @@ footer{
                             Video ID
                         </div>
 
-                        <div
-                            class="info-value"
-                            id="videoIdText">
-
+                        <div class="info-value" id="videoIdText">
                             -
-
                         </div>
 
                     </div>
 
                 </div>
-
-
-                <!-- =========================
-                     THUMBNAIL
-                ========================== -->
 
                 <div class="thumbnail-box">
 
@@ -799,18 +670,13 @@ footer{
                         🖼️ Video Thumbnail
                     </h3>
 
-
                     <img
                         id="thumbnailPreview"
                         class="thumbnail-preview"
                         alt="Video Thumbnail"
                     >
 
-
                     <div class="actions">
-
-
-                        <!-- DOWNLOAD THUMBNAIL -->
 
                         <a
                             id="thumbnailDownload"
@@ -818,25 +684,15 @@ footer{
                             href="#"
                             target="_blank"
                             rel="noopener">
-
                             ⬇ Download Thumbnail
-
                         </a>
-
-
-                        <!-- VIDEO DOWNLOAD -->
 
                         <button
                             id="videoDownload"
                             class="action-btn video-download"
                             type="button">
-
                             ⬇ Video Download
-
                         </button>
-
-
-                        <!-- WATCH -->
 
                         <a
                             id="watchVideo"
@@ -844,19 +700,12 @@ footer{
                             href="#"
                             target="_blank"
                             rel="noopener">
-
                             ▶ Watch on YouTube
-
                         </a>
 
-
                     </div>
 
-
-                    <div
-                        class="message"
-                        id="messageBox">
-                    </div>
+                    <div class="message" id="messageBox"></div>
 
                 </div>
 
@@ -868,17 +717,9 @@ footer{
 
 </section>
 
-
-<!-- =========================
-     FEATURES
-========================= -->
-
-<section
-    class="features"
-    id="features">
+<section class="features" id="features">
 
     <div class="container">
-
 
         <div class="section-title">
 
@@ -892,9 +733,7 @@ footer{
 
         </div>
 
-
         <div class="feature-grid">
-
 
             <div class="feature-card">
 
@@ -913,7 +752,6 @@ footer{
 
             </div>
 
-
             <div class="feature-card">
 
                 <div class="feature-icon">
@@ -930,7 +768,6 @@ footer{
                 </p>
 
             </div>
-
 
             <div class="feature-card">
 
@@ -949,24 +786,15 @@ footer{
 
             </div>
 
-
         </div>
 
     </div>
 
 </section>
 
-
-<!-- =========================
-     HOW IT WORKS
-========================= -->
-
-<section
-    class="how"
-    id="how">
+<section class="how" id="how">
 
     <div class="container">
-
 
         <div class="section-title">
 
@@ -980,9 +808,7 @@ footer{
 
         </div>
 
-
         <div class="steps">
-
 
             <div class="step">
 
@@ -1000,7 +826,6 @@ footer{
 
             </div>
 
-
             <div class="step">
 
                 <div class="step-number">
@@ -1016,7 +841,6 @@ footer{
                 </p>
 
             </div>
-
 
             <div class="step">
 
@@ -1034,21 +858,13 @@ footer{
 
             </div>
 
-
         </div>
 
     </div>
 
 </section>
 
-
-<!-- =========================
-     ABOUT
-========================= -->
-
-<section
-    class="about"
-    id="about">
+<section class="about" id="about">
 
     <div class="container">
 
@@ -1072,19 +888,10 @@ footer{
 
 </section>
 
-
-<!-- =========================
-     FOOTER
-========================= -->
-
 <footer>
-
     © 2026 VidFetch. All rights reserved.
-
 </footer>
 
-
-```html
 <script>
 
 /* =========================
@@ -1096,7 +903,8 @@ const pasteBtn = document.getElementById("pasteBtn");
 const clearBtn = document.getElementById("clearBtn");
 const fetchBtn = document.getElementById("fetchBtn");
 
-const resultSection = document.getElementById("resultSection");
+const resultSection =
+    document.getElementById("resultSection");
 
 const thumbnailPreview =
     document.getElementById("thumbnailPreview");
@@ -1124,11 +932,11 @@ const messageBox =
 
 
 /* =========================
-   BACKEND URL
+   ONLINE BACKEND
 ========================= */
 
 const BACKEND_URL =
-    "http://localhost:3000";
+    "https://vidfetch-backend-0obd.onrender.com";
 
 
 /* =========================
@@ -1139,15 +947,14 @@ function getYouTubeId(url){
 
     try{
 
-        const parsed = new URL(url);
+        const parsed =
+            new URL(url);
 
         const host =
             parsed.hostname.toLowerCase();
 
         let id = "";
 
-
-        /* youtu.be */
 
         if(
             host === "youtu.be" ||
@@ -1160,9 +967,6 @@ function getYouTubeId(url){
                 .filter(Boolean)[0] || "";
 
         }
-
-
-        /* youtube.com */
 
         else if(
             host === "youtube.com" ||
@@ -1225,21 +1029,27 @@ function getYouTubeId(url){
 
 
 /* =========================
-   MESSAGE HELPER
+   MESSAGE
 ========================= */
 
 function showMessage(text){
 
-    messageBox.style.display = "block";
-    messageBox.textContent = text;
+    messageBox.style.display =
+        "block";
+
+    messageBox.textContent =
+        text;
 
 }
 
 
 function hideMessage(){
 
-    messageBox.style.display = "none";
-    messageBox.textContent = "";
+    messageBox.style.display =
+        "none";
+
+    messageBox.textContent =
+        "";
 
 }
 
@@ -1252,7 +1062,6 @@ function resetPreview(){
 
     const wrapper =
         document.getElementById("videoWrapper");
-
 
     wrapper.innerHTML = `
 
@@ -1268,7 +1077,6 @@ function resetPreview(){
 
         </div>
 
-
         <iframe
             id="youtubePlayer"
             title="YouTube Video Preview"
@@ -1277,7 +1085,6 @@ function resetPreview(){
             referrerpolicy="strict-origin-when-cross-origin"
             allowfullscreen>
         </iframe>
-
 
         <div
             class="preview-error"
@@ -1345,27 +1152,35 @@ clearBtn.addEventListener(
 
         urlInput.value = "";
 
-        resultSection.style.display = "none";
+        resultSection.style.display =
+            "none";
 
         resetPreview();
 
         thumbnailPreview.src = "";
 
-        thumbnailPreview.alt = "Video Thumbnail";
+        thumbnailPreview.alt =
+            "Video Thumbnail";
 
-        videoIdText.textContent = "-";
+        videoIdText.textContent =
+            "-";
 
-        mediaSource.textContent = "YouTube";
+        mediaSource.textContent =
+            "YouTube";
 
-        statusText.textContent = "Ready";
+        statusText.textContent =
+            "Ready";
 
         hideMessage();
 
-        videoDownload.dataset.videoId = "";
+        videoDownload.dataset.sourceUrl =
+            "";
 
-        videoDownload.dataset.sourceUrl = "";
+        videoDownload.dataset.directVideo =
+            "";
 
-        videoDownload.dataset.directVideo = "";
+        videoDownload.disabled =
+            false;
 
     }
 );
@@ -1398,10 +1213,6 @@ fetchBtn.addEventListener(
             getYouTubeId(url);
 
 
-        /* =====================
-           YOUTUBE
-        ===================== */
-
         if(youtubeId){
 
             showYouTubeMedia(
@@ -1414,10 +1225,6 @@ fetchBtn.addEventListener(
         }
 
 
-        /* =====================
-           DIRECT MEDIA
-        ===================== */
-
         try{
 
             const parsed =
@@ -1426,8 +1233,6 @@ fetchBtn.addEventListener(
             const pathname =
                 parsed.pathname.toLowerCase();
 
-
-            /* IMAGE */
 
             if(
                 pathname.endsWith(".jpg") ||
@@ -1443,8 +1248,6 @@ fetchBtn.addEventListener(
 
             }
 
-
-            /* VIDEO */
 
             if(
                 pathname.endsWith(".mp4") ||
@@ -1466,7 +1269,8 @@ fetchBtn.addEventListener(
         }
 
 
-        resultSection.style.display = "block";
+        resultSection.style.display =
+            "block";
 
         statusText.textContent =
             "Unsupported URL";
@@ -1480,7 +1284,7 @@ fetchBtn.addEventListener(
 
 
 /* =========================
-   YOUTUBE PREVIEW
+   YOUTUBE
 ========================= */
 
 function showYouTubeMedia(
@@ -1488,7 +1292,8 @@ function showYouTubeMedia(
     originalUrl
 ){
 
-    resultSection.style.display = "block";
+    resultSection.style.display =
+        "block";
 
     statusText.textContent =
         "YouTube Detected";
@@ -1504,23 +1309,30 @@ function showYouTubeMedia(
 
 
     const player =
-        document.getElementById("youtubePlayer");
+        document.getElementById(
+            "youtubePlayer"
+        );
 
     const loading =
-        document.getElementById("previewLoading");
+        document.getElementById(
+            "previewLoading"
+        );
 
     const errorBox =
-        document.getElementById("previewError");
+        document.getElementById(
+            "previewError"
+        );
 
 
-    player.style.display = "none";
+    player.style.display =
+        "none";
 
-    loading.style.display = "flex";
+    loading.style.display =
+        "flex";
 
-    errorBox.style.display = "none";
+    errorBox.style.display =
+        "none";
 
-
-    /* Official YouTube embed */
 
     const embedUrl =
         "https://www.youtube.com/embed/" +
@@ -1528,20 +1340,25 @@ function showYouTubeMedia(
         "?rel=0&playsinline=1";
 
 
-    let previewLoaded = false;
+    let previewLoaded =
+        false;
 
 
     player.addEventListener(
         "load",
         function(){
 
-            previewLoaded = true;
+            previewLoaded =
+                true;
 
-            loading.style.display = "none";
+            loading.style.display =
+                "none";
 
-            player.style.display = "block";
+            player.style.display =
+                "block";
 
-            errorBox.style.display = "none";
+            errorBox.style.display =
+                "none";
 
             showMessage(
                 "YouTube preview loaded through the official YouTube player."
@@ -1549,28 +1366,28 @@ function showYouTubeMedia(
 
         },
         {
-            once: true
+            once:true
         }
     );
 
 
-    player.src = embedUrl;
+    player.src =
+        embedUrl;
 
-
-    /*
-     * Prevent infinite loading.
-     */
 
     setTimeout(
         function(){
 
             if(!previewLoaded){
 
-                loading.style.display = "none";
+                loading.style.display =
+                    "none";
 
-                player.style.display = "none";
+                player.style.display =
+                    "none";
 
-                errorBox.style.display = "flex";
+                errorBox.style.display =
+                    "flex";
 
                 showMessage(
                     "YouTube preview could not be loaded in this browser. Please use Watch on YouTube."
@@ -1582,8 +1399,6 @@ function showYouTubeMedia(
         8000
     );
 
-
-    /* Thumbnail */
 
     const thumbnailUrl =
         "https://i.ytimg.com/vi/" +
@@ -1598,7 +1413,8 @@ function showYouTubeMedia(
     thumbnailPreview.onerror =
         function(){
 
-            this.onerror = null;
+            this.onerror =
+                null;
 
             this.src =
                 "https://i.ytimg.com/vi/" +
@@ -1608,25 +1424,14 @@ function showYouTubeMedia(
         };
 
 
-    /* Thumbnail Download */
-
     thumbnailDownload.href =
         thumbnailUrl;
 
-
-    /* Watch */
 
     watchVideo.href =
         "https://www.youtube.com/watch?v=" +
         encodeURIComponent(videoId);
 
-
-    /*
-     * Store information.
-     */
-
-    videoDownload.dataset.videoId =
-        videoId;
 
     videoDownload.dataset.sourceUrl =
         originalUrl;
@@ -1635,16 +1440,11 @@ function showYouTubeMedia(
         "";
 
 
-    /*
-     * YouTube is NOT sent to the
-     * authorized direct-file downloader.
-     */
-
     videoDownload.onclick =
         function(){
 
             showMessage(
-                "YouTube video download is not available through the current authorized direct-file backend. Video Download will work with an authorized direct video file URL."
+                "YouTube video download is not available through the current authorized direct-file backend. Video Download works with an authorized direct video file URL."
             );
 
         };
@@ -1663,7 +1463,8 @@ function showYouTubeMedia(
 
 function showDirectImage(url){
 
-    resultSection.style.display = "block";
+    resultSection.style.display =
+        "block";
 
     statusText.textContent =
         "Image Detected";
@@ -1679,22 +1480,29 @@ function showDirectImage(url){
 
 
     const player =
-        document.getElementById("youtubePlayer");
+        document.getElementById(
+            "youtubePlayer"
+        );
 
-    player.style.display = "none";
+
+    player.style.display =
+        "none";
 
 
     document.getElementById(
         "previewLoading"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
 
     document.getElementById(
         "previewError"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
 
-    thumbnailPreview.src = url;
+    thumbnailPreview.src =
+        url;
 
     thumbnailPreview.alt =
         "Direct Image";
@@ -1703,16 +1511,15 @@ function showDirectImage(url){
     thumbnailDownload.href =
         url;
 
-
     watchVideo.href =
         url;
 
 
-    videoDownload.dataset.videoId = "";
+    videoDownload.dataset.sourceUrl =
+        "";
 
-    videoDownload.dataset.sourceUrl = "";
-
-    videoDownload.dataset.directVideo = "";
+    videoDownload.dataset.directVideo =
+        "";
 
 
     videoDownload.onclick =
@@ -1738,7 +1545,8 @@ function showDirectImage(url){
 
 function showDirectVideo(url){
 
-    resultSection.style.display = "block";
+    resultSection.style.display =
+        "block";
 
     statusText.textContent =
         "Video Detected";
@@ -1751,7 +1559,9 @@ function showDirectVideo(url){
 
 
     const wrapper =
-        document.getElementById("videoWrapper");
+        document.getElementById(
+            "videoWrapper"
+        );
 
 
     wrapper.innerHTML = `
@@ -1778,10 +1588,12 @@ function showDirectVideo(url){
         );
 
 
-    video.src = url;
+    video.src =
+        url;
 
 
-    thumbnailPreview.src = "";
+    thumbnailPreview.src =
+        "";
 
     thumbnailPreview.alt =
         "No thumbnail available";
@@ -1790,43 +1602,36 @@ function showDirectVideo(url){
     thumbnailDownload.href =
         url;
 
-
     watchVideo.href =
         url;
 
 
-    /*
-     * Save direct video URL.
-     */
+    videoDownload.dataset.sourceUrl =
+        url;
 
-    videoDownload.dataset.videoId = "";
+    videoDownload.dataset.directVideo =
+        "true";
 
-    videoDownload.dataset.sourceUrl = url;
-
-    videoDownload.dataset.directVideo = "true";
-
-
-    /*
-     * REAL BACKEND DOWNLOAD
-     */
 
     videoDownload.onclick =
         function(){
 
-            downloadThroughBackend(url);
+            downloadThroughBackend(
+                url
+            );
 
         };
 
 
     showMessage(
-        "Direct video URL detected. Video Download will use the authorized VidFetch backend."
+        "Direct video URL detected. Video Download will use the online VidFetch backend."
     );
 
 }
 
 
 /* =========================
-   BACKEND VIDEO DOWNLOAD
+   ONLINE BACKEND DOWNLOAD
 ========================= */
 
 async function downloadThroughBackend(
@@ -1850,40 +1655,39 @@ async function downloadThroughBackend(
 
     try{
 
-        videoDownload.disabled = true;
+        videoDownload.disabled =
+            true;
 
-        videoDownload.style.opacity = "0.7";
+        videoDownload.style.opacity =
+            "0.7";
 
         videoDownload.textContent =
             "⏳ Preparing Download...";
 
 
         showMessage(
-            "Connecting to VidFetch backend..."
+            "Connecting to VidFetch online backend..."
         );
 
 
         const response =
             await fetch(
-                BACKEND_URL + "/api/download",
+                BACKEND_URL +
+                "/api/download",
                 {
-                    method: "POST",
+                    method:"POST",
 
-                    headers: {
+                    headers:{
                         "Content-Type":
                             "application/json"
                     },
 
-                    body: JSON.stringify({
-                        url: videoUrl
+                    body:JSON.stringify({
+                        url:videoUrl
                     })
                 }
             );
 
-
-        /*
-         * Backend error.
-         */
 
         if(!response.ok){
 
@@ -1915,10 +1719,6 @@ async function downloadThroughBackend(
         }
 
 
-        /*
-         * Receive downloaded file.
-         */
-
         const blob =
             await response.blob();
 
@@ -1935,16 +1735,47 @@ async function downloadThroughBackend(
         }
 
 
-        /*
-         * Create browser download.
-         */
+        const contentType =
+            blob.type || "video/mp4";
+
+
+        let extension =
+            "mp4";
+
+
+        if(
+            contentType.includes(
+                "webm"
+            )
+        ){
+
+            extension =
+                "webm";
+
+        }
+
+        else if(
+            contentType.includes(
+                "quicktime"
+            )
+        ){
+
+            extension =
+                "mov";
+
+        }
+
 
         const blobUrl =
-            URL.createObjectURL(blob);
+            URL.createObjectURL(
+                blob
+            );
 
 
         const link =
-            document.createElement("a");
+            document.createElement(
+                "a"
+            );
 
 
         link.href =
@@ -1952,10 +1783,13 @@ async function downloadThroughBackend(
 
 
         link.download =
-            "vidfetch-video.mp4";
+            "vidfetch-video." +
+            extension;
 
 
-        document.body.appendChild(link);
+        document.body.appendChild(
+            link
+        );
 
         link.click();
 
@@ -1970,7 +1804,7 @@ async function downloadThroughBackend(
                 );
 
             },
-            1000
+            1500
         );
 
 
@@ -1989,16 +1823,17 @@ async function downloadThroughBackend(
 
         showMessage(
             "Download failed: " +
-            error.message +
-            " Make sure the VidFetch backend is running."
+            error.message
         );
 
     }
     finally{
 
-        videoDownload.disabled = false;
+        videoDownload.disabled =
+            false;
 
-        videoDownload.style.opacity = "1";
+        videoDownload.style.opacity =
+            "1";
 
         videoDownload.textContent =
             originalText;
@@ -2007,50 +1842,7 @@ async function downloadThroughBackend(
 
 }
 
-
-/* =========================
-   VIDEO DOWNLOAD BUTTON
-========================= */
-
-videoDownload.addEventListener(
-    "click",
-    function(){
-
-        /*
-         * If a specific onclick handler
-         * has already been assigned,
-         * that handler will perform the
-         * actual action.
-         */
-
-        if(
-            !this.dataset.videoId &&
-            !this.dataset.sourceUrl &&
-            !this.dataset.directVideo
-        ){
-
-            showMessage(
-                "Please fetch a supported video URL first."
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================
-   INITIAL STATE
-========================= */
-
-videoDownload.dataset.videoId = "";
-
-videoDownload.dataset.sourceUrl = "";
-
-videoDownload.dataset.directVideo = "";
-
 </script>
-```
 
 </body>
 </html>
