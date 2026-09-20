@@ -5,1374 +5,786 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="description" content="VidFetch - Professional authorized media fetching and download tools.">
-<meta name="theme-color" content="#635bff">
-
-<title>VidFetch - Media Downloader</title>
+<title>VidFetch - Video & Thumbnail Downloader</title>
 
 <style>
-:root {
-  --primary: #635bff;
-  --primary-dark: #5148e5;
-  --dark: #111827;
-  --muted: #6b7280;
-  --bg: #f7f8fc;
-  --white: #ffffff;
-  --border: #e5e7eb;
-  --green: #16a34a;
-  --danger: #ef4444;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f5f7fb;
+    color:#172033;
 }
 
-html {
-  scroll-behavior: smooth;
+.navbar{
+    height:70px;
+    background:#ffffff;
+    border-bottom:1px solid #e7eaf0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+    position:sticky;
+    top:0;
+    z-index:100;
 }
 
-body {
-  font-family: Inter, "Segoe UI", Arial, sans-serif;
-  color: var(--dark);
-  background: var(--bg);
-  line-height: 1.6;
+.logo{
+    font-size:25px;
+    font-weight:800;
+    color:#e53232;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
+.logo span{
+    color:#172033;
 }
 
-button,
-input {
-  font: inherit;
+.nav-links{
+    display:flex;
+    gap:28px;
 }
 
-button {
-  cursor: pointer;
+.nav-links a{
+    text-decoration:none;
+    color:#475467;
+    font-size:14px;
+    font-weight:600;
 }
 
-/* =========================
-   CONTAINER
-========================= */
-
-.container {
-  width: min(1120px, 92%);
-  margin: auto;
-}
-
-/* =========================
-   NAVBAR
-========================= */
-
-.navbar {
-  background: rgba(255,255,255,.94);
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  backdrop-filter: blur(12px);
-}
-
-.nav-inner {
-  min-height: 76px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 25px;
-  font-weight: 800;
-  letter-spacing: -.8px;
-}
-
-.logo-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  display: grid;
-  place-items: center;
-  color: white;
-  background: linear-gradient(135deg, #756cff, #5148e5);
-  box-shadow: 0 6px 18px rgba(99,91,255,.25);
-}
-
-.logo span {
-  color: var(--primary);
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #4b5563;
-}
-
-.nav-links a {
-  transition: .2s;
-}
-
-.nav-links a:hover {
-  color: var(--primary);
-}
-
-.nav-cta {
-  background: var(--primary);
-  color: white !important;
-  padding: 11px 18px;
-  border-radius: 9px;
-}
-
-.nav-cta:hover {
-  background: var(--primary-dark);
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero {
-  padding: 90px 0 65px;
-  background:
-    radial-gradient(
-      circle at 15% 15%,
-      rgba(99,91,255,.12),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 90% 20%,
-      rgba(56,189,248,.13),
-      transparent 25%
-    ),
-    var(--bg);
-}
-
-.hero-content {
-  max-width: 820px;
-  margin: auto;
-  text-align: center;
-}
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #eeedff;
-  color: #5148e5;
-  padding: 7px 13px;
-  border-radius: 30px;
-  font-size: 12px;
-  font-weight: 700;
-  margin-bottom: 20px;
-}
-
-.badge-dot {
-  width: 7px;
-  height: 7px;
-  background: #635bff;
-  border-radius: 50%;
-}
-
-.hero h1 {
-  font-size: clamp(38px, 6vw, 66px);
-  line-height: 1.08;
-  letter-spacing: -2.5px;
-  font-weight: 850;
-  margin-bottom: 22px;
-}
-
-.gradient-text {
-  background: linear-gradient(100deg, #635bff, #0891b2);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.hero p {
-  color: var(--muted);
-  max-width: 620px;
-  margin: auto;
-  font-size: 17px;
-}
-
-/* =========================
-   FETCH BOX
-========================= */
-
-.fetch-card {
-  max-width: 900px;
-  margin: 38px auto 0;
-  background: white;
-  padding: 10px;
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  box-shadow: 0 20px 55px rgba(31,41,55,.09);
-}
-
-.fetch-form {
-  display: flex;
-  gap: 10px;
-}
-
-/* URL AREA */
-
-.url-input-wrap {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  align-items: center;
-  border: 1px solid #e5e7eb;
-  border-radius: 11px;
-  background: #fff;
-  padding-right: 7px;
-  transition: .2s;
-}
-
-.url-input-wrap:focus-within {
-  border-color: #635bff;
-  box-shadow: 0 0 0 3px rgba(99,91,255,.10);
+.nav-links a:hover{
+    color:#e53232;
 }
 
-.url-input {
-  min-width: 0;
-  width: 100%;
-  flex: 1;
-  border: none;
-  outline: none;
-  padding: 17px 16px;
-  color: var(--dark);
-  background: transparent;
+.hero{
+    padding:75px 20px 55px;
+    text-align:center;
+    background:
+        radial-gradient(circle at top,#fff1f1 0,#ffffff 45%,#f5f7fb 100%);
 }
 
-.url-input::placeholder {
-  color: #9ca3af;
+.badge{
+    display:inline-block;
+    padding:8px 14px;
+    background:#fff0f0;
+    color:#e53232;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:18px;
 }
 
-/* PASTE BUTTON */
-
-.paste-btn,
-.clear-btn {
-  border: none;
-  height: 38px;
-  border-radius: 8px;
-  padding: 0 11px;
-  font-size: 12px;
-  font-weight: 700;
-  white-space: nowrap;
-  transition: .2s;
-}
-
-.paste-btn {
-  color: #635bff;
-  background: #f1f0ff;
-}
-
-.paste-btn:hover {
-  background: #e7e5ff;
-}
-
-.clear-btn {
-  color: #9ca3af;
-  background: transparent;
-  margin-left: 4px;
-}
-
-.clear-btn:hover {
-  color: var(--danger);
-  background: #fef2f2;
-}
-
-/* FETCH BUTTON */
-
-.primary-btn {
-  border: none;
-  background: var(--primary);
-  color: white;
-  padding: 0 25px;
-  min-height: 52px;
-  border-radius: 11px;
-  font-weight: 700;
-  transition: .2s;
-}
-
-.primary-btn:hover {
-  background: var(--primary-dark);
-  transform: translateY(-1px);
-}
-
-.primary-btn:disabled {
-  opacity: .65;
-  cursor: not-allowed;
-  transform: none;
-}
-
-.fetch-note {
-  margin-top: 13px;
-  font-size: 12px;
-  color: #9ca3af;
-  text-align: center;
-}
-
-/* =========================
-   RESULT
-========================= */
-
-.result-section {
-  display: none;
-  padding: 30px 0 20px;
-}
-
-.result-section.visible {
-  display: block;
+.hero h1{
+    font-size:46px;
+    line-height:1.15;
+    margin-bottom:16px;
 }
 
-.result-card {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 25px;
-  box-shadow: 0 12px 35px rgba(31,41,55,.06);
+.hero h1 span{
+    color:#e53232;
 }
 
-.result-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 22px;
+.hero p{
+    max-width:700px;
+    margin:auto;
+    color:#667085;
+    line-height:1.7;
 }
 
-.result-header h2 {
-  font-size: 21px;
+.search-box{
+    max-width:850px;
+    margin:35px auto 0;
+    background:#ffffff;
+    padding:10px;
+    border-radius:16px;
+    box-shadow:0 12px 35px rgba(16,24,40,.10);
+    display:flex;
+    gap:8px;
 }
 
-.status {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--green);
-  background: #eaf8ee;
-  padding: 6px 11px;
-  border-radius: 20px;
+.url-input{
+    flex:1;
+    height:54px;
+    border:0;
+    outline:none;
+    padding:0 18px;
+    font-size:15px;
+    color:#172033;
+    background:#ffffff;
 }
 
-.preview-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 25px;
-  align-items: center;
+.btn{
+    border:0;
+    border-radius:11px;
+    padding:0 18px;
+    height:54px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.2s;
 }
 
-.preview-box {
-  min-height: 250px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #1e1b4b, #312e81);
-  display: grid;
-  place-items: center;
-  color: white;
-  text-align: center;
-  padding: 25px;
-  overflow: hidden;
+.btn:hover{
+    transform:translateY(-1px);
 }
 
-.preview-box img {
-  width: 100%;
-  max-height: 280px;
-  object-fit: contain;
-  border-radius: 9px;
+.paste-btn{
+    background:#eef2f6;
+    color:#344054;
 }
 
-.preview-icon {
-  font-size: 52px;
-  margin-bottom: 10px;
+.fetch-btn{
+    background:#e53232;
+    color:white;
 }
 
-.preview-box p {
-  color: #d1d5db;
-  font-size: 13px;
+.clear-btn{
+    background:#f2f4f7;
+    color:#344054;
 }
 
-.media-info h3 {
-  font-size: 19px;
-  margin-bottom: 12px;
-  word-break: break-word;
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:auto;
 }
 
-.info-line {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 11px 0;
-  border-bottom: 1px solid #f0f0f0;
-  font-size: 13px;
+.result-section{
+    display:none;
+    padding:45px 0 20px;
 }
 
-.info-line span:first-child {
-  color: var(--muted);
+.result-card{
+    background:#ffffff;
+    border:1px solid #e4e7ec;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(16,24,40,.07);
 }
 
-.info-line span:last-child {
-  font-weight: 600;
-  text-align: right;
-  overflow-wrap: anywhere;
+.result-header{
+    padding:22px 25px;
+    border-bottom:1px solid #eaecf0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
 }
 
-.download-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 22px;
+.result-header h2{
+    font-size:21px;
 }
 
-.download-btn {
-  border: none;
-  padding: 13px 17px;
-  border-radius: 10px;
-  font-size: 13px;
-  font-weight: 700;
-  transition: .2s;
+.status{
+    background:#ecfdf3;
+    color:#027a48;
+    padding:7px 12px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:700;
 }
 
-.download-btn:hover {
-  transform: translateY(-1px);
+.preview{
+    padding:25px;
 }
 
-.thumbnail-btn {
-  background: #ede9fe;
-  color: #5b21b6;
+.video-wrapper{
+    width:100%;
+    aspect-ratio:16/9;
+    background:#111827;
+    border-radius:15px;
+    overflow:hidden;
 }
 
-.video-btn {
-  background: var(--primary);
-  color: white;
+.video-wrapper iframe{
+    width:100%;
+    height:100%;
+    border:0;
+    display:block;
 }
 
-.download-btn:disabled {
-  opacity: .55;
-  cursor: not-allowed;
-  transform: none;
+.info-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-top:25px;
 }
 
-.result-message {
-  margin-top: 15px;
-  font-size: 13px;
-  color: var(--muted);
+.info-box{
+    border:1px solid #eaecf0;
+    border-radius:14px;
+    padding:18px;
 }
 
-/* =========================
-   FEATURES
-========================= */
-
-.section {
-  padding: 80px 0;
-}
-
-.section-heading {
-  text-align: center;
-  max-width: 650px;
-  margin: 0 auto 45px;
+.info-label{
+    color:#667085;
+    font-size:12px;
+    font-weight:700;
+    text-transform:uppercase;
+    margin-bottom:8px;
 }
 
-.small-label {
-  color: var(--primary);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
+.info-value{
+    font-size:15px;
+    font-weight:600;
+    word-break:break-word;
 }
 
-.section-heading h2 {
-  font-size: clamp(28px, 4vw, 40px);
-  letter-spacing: -1px;
-  margin: 10px 0 12px;
+.thumbnail-box{
+    margin-top:25px;
+    border:1px solid #eaecf0;
+    border-radius:15px;
+    padding:18px;
 }
 
-.section-heading p {
-  color: var(--muted);
-  font-size: 15px;
+.thumbnail-box h3{
+    font-size:17px;
+    margin-bottom:15px;
 }
 
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+.thumbnail-preview{
+    width:100%;
+    max-height:420px;
+    object-fit:contain;
+    background:#111827;
+    border-radius:10px;
+    display:block;
 }
 
-.feature-card {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 17px;
-  padding: 28px;
-  transition: .2s;
+.actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:20px;
 }
 
-.feature-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 15px 35px rgba(31,41,55,.07);
+.action-btn{
+    border:0;
+    padding:13px 18px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:700;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
 }
 
-.feature-icon {
-  width: 49px;
-  height: 49px;
-  display: grid;
-  place-items: center;
-  border-radius: 13px;
-  background: #eeedff;
-  font-size: 23px;
-  margin-bottom: 20px;
+.thumbnail-download{
+    background:#e53232;
+    color:#fff;
 }
 
-.feature-card h3 {
-  font-size: 18px;
-  margin-bottom: 9px;
+.watch-btn{
+    background:#172033;
+    color:#fff;
 }
-
-.feature-card p {
-  color: var(--muted);
-  font-size: 14px;
-}
-
-/* =========================
-   HOW IT WORKS
-========================= */
 
-.how-section {
-  background: white;
+.message{
+    margin-top:18px;
+    padding:13px 15px;
+    background:#fff8e6;
+    border:1px solid #ffe08a;
+    border-radius:10px;
+    color:#7a5a00;
+    font-size:13px;
+    display:none;
 }
 
-.steps-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
+.features{
+    padding:65px 0;
 }
 
-.step {
-  text-align: center;
-  padding: 20px;
+.section-title{
+    text-align:center;
+    margin-bottom:35px;
 }
 
-.step-number {
-  width: 54px;
-  height: 54px;
-  margin: 0 auto 18px;
-  display: grid;
-  place-items: center;
-  background: #eeedff;
-  color: var(--primary);
-  font-size: 20px;
-  font-weight: 800;
-  border-radius: 50%;
+.section-title h2{
+    font-size:31px;
+    margin-bottom:10px;
 }
 
-.step h3 {
-  font-size: 18px;
-  margin-bottom: 8px;
+.section-title p{
+    color:#667085;
 }
 
-.step p {
-  color: var(--muted);
-  font-size: 14px;
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
 }
 
-/* =========================
-   ABOUT
-========================= */
-
-.about-box {
-  background: linear-gradient(120deg, #111827, #25215a);
-  color: white;
-  padding: 55px;
-  border-radius: 25px;
-  text-align: center;
+.feature-card{
+    background:white;
+    border:1px solid #eaecf0;
+    border-radius:16px;
+    padding:25px;
 }
 
-.about-box h2 {
-  font-size: 32px;
-  margin-bottom: 15px;
+.feature-icon{
+    font-size:28px;
+    margin-bottom:14px;
 }
 
-.about-box p {
-  max-width: 680px;
-  margin: auto;
-  color: #d1d5db;
-  font-size: 15px;
+.feature-card h3{
+    margin-bottom:9px;
 }
 
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-  background: #111827;
-  color: white;
-  padding: 45px 0 20px;
+.feature-card p{
+    color:#667085;
+    line-height:1.6;
+    font-size:14px;
 }
 
-.footer-top {
-  display: flex;
-  justify-content: space-between;
-  gap: 30px;
-  flex-wrap: wrap;
-  padding-bottom: 30px;
+.how{
+    padding:60px 0;
+    background:#ffffff;
 }
 
-.footer-brand p {
-  color: #9ca3af;
-  font-size: 13px;
-  max-width: 300px;
-  margin-top: 12px;
+.steps{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
 }
 
-.footer-links {
-  display: flex;
-  gap: 25px;
-  flex-wrap: wrap;
-  font-size: 13px;
-  color: #d1d5db;
+.step{
+    text-align:center;
+    padding:25px;
 }
 
-.footer-links a:hover {
-  color: white;
+.step-number{
+    width:45px;
+    height:45px;
+    margin:0 auto 15px;
+    border-radius:50%;
+    background:#fff0f0;
+    color:#e53232;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:800;
 }
 
-.copyright {
-  border-top: 1px solid #374151;
-  padding-top: 20px;
-  text-align: center;
-  color: #9ca3af;
-  font-size: 12px;
+.about{
+    padding:65px 0;
 }
-
-/* =========================
-   TOAST
-========================= */
 
-.toast {
-  position: fixed;
-  right: 22px;
-  bottom: 22px;
-  z-index: 9999;
-  background: #111827;
-  color: white;
-  padding: 13px 17px;
-  border-radius: 10px;
-  font-size: 13px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.18);
-  opacity: 0;
-  transform: translateY(15px);
-  pointer-events: none;
-  transition: .25s;
+.about-card{
+    background:#172033;
+    color:white;
+    border-radius:20px;
+    padding:40px;
+    text-align:center;
 }
 
-.toast.show {
-  opacity: 1;
-  transform: translateY(0);
+.about-card p{
+    max-width:700px;
+    margin:15px auto 0;
+    color:#cbd5e1;
+    line-height:1.7;
 }
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 800px) {
-
-  .nav-links {
-    gap: 12px;
-  }
 
-  .nav-links a:not(.nav-cta) {
-    display: none;
-  }
-
-  .hero {
-    padding: 65px 0 45px;
-  }
-
-  .hero h1 {
-    letter-spacing: -1.5px;
-  }
-
-  .fetch-form {
-    flex-direction: column;
-  }
-
-  .url-input {
-    padding: 15px;
-  }
-
-  .primary-btn {
-    width: 100%;
-    min-height: 50px;
-  }
-
-  .preview-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .features-grid,
-  .steps-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .section {
-    padding: 55px 0;
-  }
-
-  .about-box {
-    padding: 35px 22px;
-  }
+footer{
+    background:#101828;
+    color:#98a2b3;
+    text-align:center;
+    padding:25px;
+    font-size:13px;
 }
-
-@media (max-width: 520px) {
-
-  .logo {
-    font-size: 21px;
-  }
-
-  .logo-icon {
-    width: 35px;
-    height: 35px;
-  }
 
-  .fetch-card {
-    padding: 8px;
-  }
+@media(max-width:800px){
 
-  .url-input-wrap {
-    width: 100%;
-  }
+    .nav-links{
+        display:none;
+    }
 
-  .paste-btn {
-    padding: 0 9px;
-  }
+    .hero h1{
+        font-size:34px;
+    }
 
-  .clear-btn {
-    padding: 0 9px;
-  }
+    .search-box{
+        flex-direction:column;
+        padding:12px;
+    }
 
-  .result-card {
-    padding: 17px;
-  }
+    .url-input{
+        width:100%;
+    }
 
-  .result-header {
-    align-items: flex-start;
-    flex-direction: column;
-  }
+    .btn{
+        width:100%;
+    }
 
-  .download-actions {
-    flex-direction: column;
-  }
+    .info-grid{
+        grid-template-columns:1fr;
+    }
 
-  .download-btn {
-    width: 100%;
-  }
+    .feature-grid,
+    .steps{
+        grid-template-columns:1fr;
+    }
 
-  .toast {
-    left: 15px;
-    right: 15px;
-    bottom: 15px;
-    text-align: center;
-  }
+    .result-header{
+        flex-direction:column;
+        align-items:flex-start;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- =========================
-     NAVBAR
-========================= -->
+<!-- NAVBAR -->
+<nav class="navbar">
 
-<header class="navbar">
-
-  <div class="container nav-inner">
-
-    <a href="#" class="logo">
-      <div class="logo-icon">▶</div>
-      Vid<span>Fetch</span>
-    </a>
-
-    <nav class="nav-links">
-      <a href="#features">Features</a>
-      <a href="#how-it-works">How It Works</a>
-      <a href="#about">About</a>
-      <a href="#fetch" class="nav-cta">Get Started</a>
-    </nav>
-
-  </div>
-
-</header>
-
-
-<!-- =========================
-     HERO
-========================= -->
-
-<section class="hero" id="fetch">
-
-  <div class="container">
-
-    <div class="hero-content">
-
-      <div class="badge">
-        <span class="badge-dot"></span>
-        SIMPLE • FAST • MEDIA TOOLS
-      </div>
-
-      <h1>
-        Your Media.<br>
-        <span class="gradient-text">Your Way.</span>
-      </h1>
-
-      <p>
-        Fetch media information and access authorized video
-        and thumbnail downloads through one simple workspace.
-      </p>
-
+    <div class="logo">
+        Vid<span>Fetch</span>
     </div>
 
+    <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#how">How It Works</a>
+        <a href="#about">About</a>
+    </div>
 
-    <!-- FETCH CARD -->
+</nav>
 
-    <div class="fetch-card">
 
-      <form class="fetch-form" id="fetchForm">
+<!-- HERO -->
+<section class="hero" id="home">
 
-        <div class="url-input-wrap">
+    <div class="badge">
+        ⚡ Fast & Simple Media Tool
+    </div>
 
-          <input
+    <h1>
+        Fetch Your <span>Media</span>
+    </h1>
+
+    <p>
+        Paste a supported media URL below to preview the content
+        and access available media options.
+    </p>
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="urlInput"
             class="url-input"
-            id="mediaUrl"
-            type="url"
-            placeholder="Paste your authorized media URL here..."
-            aria-label="Media URL"
+            placeholder="Paste YouTube or supported media URL here..."
             autocomplete="off"
-            required
-          >
-
-          <button
-            class="paste-btn"
-            id="pasteBtn"
-            type="button"
-            title="Paste URL from clipboard"
-          >
-            📋 Paste
-          </button>
-
-          <button
-            class="clear-btn"
-            id="clearBtn"
-            type="button"
-            title="Clear URL"
-            aria-label="Clear URL"
-          >
-            ✕
-          </button>
-
-        </div>
-
-        <button
-          class="primary-btn"
-          id="fetchBtn"
-          type="submit"
         >
-          Fetch Media →
+
+        <button class="btn paste-btn" id="pasteBtn">
+            📋 Paste
         </button>
 
-      </form>
+        <button class="btn clear-btn" id="clearBtn">
+            Clear
+        </button>
 
-      <div class="fetch-note">
-        🔒 Use only media you own or have permission to download.
-      </div>
+        <button class="btn fetch-btn" id="fetchBtn">
+            Fetch Media
+        </button>
 
     </div>
-
-  </div>
 
 </section>
 
 
-<!-- =========================
-     RESULT
-========================= -->
+<!-- RESULT -->
+<section class="result-section" id="resultSection">
 
-<section
-  class="result-section"
-  id="resultSection"
->
+    <div class="container">
 
-  <div class="container">
+        <div class="result-card">
 
-    <div class="result-card">
+            <div class="result-header">
 
-      <div class="result-header">
+                <h2>Media Preview</h2>
 
-        <h2>Media Details</h2>
+                <div class="status" id="statusText">
+                    Ready
+                </div>
 
-        <span class="status">
-          ● URL Ready
-        </span>
-
-      </div>
-
-
-      <div class="preview-layout">
-
-        <div
-          class="preview-box"
-          id="previewBox"
-        >
-
-          <div>
-
-            <div class="preview-icon">
-              🎬
             </div>
 
-            <strong>
-              Media Preview
-            </strong>
+            <div class="preview">
+
+                <!-- VIDEO PREVIEW -->
+                <div class="video-wrapper" id="videoWrapper">
+
+                    <iframe
+                        id="youtubePlayer"
+                        title="YouTube Video Preview"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>
+
+                </div>
+
+
+                <!-- INFORMATION -->
+                <div class="info-grid">
+
+                    <div class="info-box">
+
+                        <div class="info-label">
+                            Source
+                        </div>
+
+                        <div
+                            class="info-value"
+                            id="mediaSource">
+                            YouTube
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <div class="info-label">
+                            Video ID
+                        </div>
+
+                        <div
+                            class="info-value"
+                            id="videoIdText">
+                            -
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- THUMBNAIL -->
+                <div class="thumbnail-box">
+
+                    <h3>
+                        🖼️ Video Thumbnail
+                    </h3>
+
+                    <img
+                        id="thumbnailPreview"
+                        class="thumbnail-preview"
+                        alt="Video Thumbnail"
+                    >
+
+                    <div class="actions">
+
+                        <a
+                            id="thumbnailDownload"
+                            class="action-btn thumbnail-download"
+                            href="#"
+                            target="_blank"
+                            rel="noopener">
+                            ⬇ Download Thumbnail
+                        </a>
+
+                        <a
+                            id="watchVideo"
+                            class="action-btn watch-btn"
+                            href="#"
+                            target="_blank"
+                            rel="noopener">
+                            ▶ Watch on YouTube
+                        </a>
+
+                    </div>
+
+                    <div
+                        class="message"
+                        id="messageBox">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURES -->
+<section class="features" id="features">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>VidFetch Features</h2>
 
             <p>
-              Backend connection required for live preview.
+                Simple tools for supported media URLs.
             </p>
 
-          </div>
-
         </div>
 
+        <div class="feature-grid">
 
-        <div class="media-info">
+            <div class="feature-card">
 
-          <h3 id="mediaTitle">
-            Your media URL
-          </h3>
+                <div class="feature-icon">
+                    🎬
+                </div>
 
+                <h3>Media Preview</h3>
 
-          <div class="info-line">
+                <p>
+                    Preview supported video content directly
+                    inside VidFetch.
+                </p>
 
-            <span>
-              Source
-            </span>
-
-            <span id="mediaSource">
-              —
-            </span>
-
-          </div>
+            </div>
 
 
-          <div class="info-line">
+            <div class="feature-card">
 
-            <span>
-              Media Type
-            </span>
+                <div class="feature-icon">
+                    🖼️
+                </div>
 
-            <span>
-              Video / Image
-            </span>
+                <h3>Thumbnail</h3>
 
-          </div>
+                <p>
+                    View and access the available video thumbnail
+                    for supported YouTube URLs.
+                </p>
 
-
-          <div class="info-line">
-
-            <span>
-              Processing
-            </span>
-
-            <span>
-              Backend pending
-            </span>
-
-          </div>
+            </div>
 
 
-          <div class="download-actions">
+            <div class="feature-card">
 
-            <button
-              class="download-btn thumbnail-btn"
-              id="thumbnailBtn"
-              type="button"
-            >
-              🖼️ Download Thumbnail
-            </button>
+                <div class="feature-icon">
+                    ⚡
+                </div>
 
-            <button
-              class="download-btn video-btn"
-              id="videoBtn"
-              type="button"
-            >
-              🎥 Download Video
-            </button>
+                <h3>Fast Interface</h3>
 
-          </div>
+                <p>
+                    Clean and responsive interface designed
+                    for quick media processing.
+                </p>
 
-
-          <div
-            class="result-message"
-            id="resultMessage"
-            aria-live="polite"
-          ></div>
+            </div>
 
         </div>
-
-      </div>
 
     </div>
-
-  </div>
 
 </section>
 
 
-<!-- =========================
-     FEATURES
-========================= -->
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
 
-<section
-  class="section"
-  id="features"
->
+    <div class="container">
 
-  <div class="container">
+        <div class="section-title">
 
-    <div class="section-heading">
+            <h2>How It Works</h2>
 
-      <div class="small-label">
-        Powerful Features
-      </div>
+            <p>
+                Three simple steps.
+            </p>
 
-      <h2>
-        Everything in one place
-      </h2>
+        </div>
 
-      <p>
-        A clean workspace designed for convenient
-        and organized media tools.
-      </p>
+        <div class="steps">
+
+            <div class="step">
+
+                <div class="step-number">
+                    1
+                </div>
+
+                <h3>Paste URL</h3>
+
+                <p>
+                    Paste a supported media URL.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    2
+                </div>
+
+                <h3>Fetch</h3>
+
+                <p>
+                    VidFetch detects the supported URL.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    3
+                </div>
+
+                <h3>Preview</h3>
+
+                <p>
+                    View the available media preview and options.
+                </p>
+
+            </div>
+
+        </div>
 
     </div>
-
-
-    <div class="features-grid">
-
-
-      <div class="feature-card">
-
-        <div class="feature-icon">
-          🔗
-        </div>
-
-        <h3>
-          Easy URL Fetching
-        </h3>
-
-        <p>
-          Paste a media URL and prepare it
-          for authorized processing.
-        </p>
-
-      </div>
-
-
-      <div class="feature-card">
-
-        <div class="feature-icon">
-          🖼️
-        </div>
-
-        <h3>
-          Thumbnail Download
-        </h3>
-
-        <p>
-          Access available thumbnail images
-          when the source provides them.
-        </p>
-
-      </div>
-
-
-      <div class="feature-card">
-
-        <div class="feature-icon">
-          🎥
-        </div>
-
-        <h3>
-          Video Download
-        </h3>
-
-        <p>
-          Download permitted video files
-          through the authorized backend.
-        </p>
-
-      </div>
-
-
-      <div class="feature-card">
-
-        <div class="feature-icon">
-          ⚡
-        </div>
-
-        <h3>
-          Fast Workflow
-        </h3>
-
-        <p>
-          A simple interface designed to
-          reduce unnecessary steps.
-        </p>
-
-      </div>
-
-
-      <div class="feature-card">
-
-        <div class="feature-icon">
-          📱
-        </div>
-
-        <h3>
-          Responsive Design
-        </h3>
-
-        <p>
-          Works across desktop, tablet
-          and mobile screen sizes.
-        </p>
-
-      </div>
-
-
-      <div class="feature-card">
-
-        <div class="feature-icon">
-          🔒
-        </div>
-
-        <h3>
-          Permission First
-        </h3>
-
-        <p>
-          Designed for content that you own
-          or are authorized to use.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
 
 </section>
 
 
-<!-- =========================
-     HOW IT WORKS
-========================= -->
+<!-- ABOUT -->
+<section class="about" id="about">
 
-<section
-  class="section how-section"
-  id="how-it-works"
->
+    <div class="container">
 
-  <div class="container">
+        <div class="about-card">
 
-    <div class="section-heading">
+            <h2>About VidFetch</h2>
 
-      <div class="small-label">
-        Simple Process
-      </div>
+            <p>
+                VidFetch is a simple web-based media utility
+                designed to provide a clean interface for
+                previewing and handling supported media URLs.
+                Use it only with content you are authorized
+                to access, save, or download.
+            </p>
 
-      <h2>
-        How VidFetch works
-      </h2>
-
-      <p>
-        Three simple steps for your media workflow.
-      </p>
+        </div>
 
     </div>
-
-
-    <div class="steps-grid">
-
-
-      <div class="step">
-
-        <div class="step-number">
-          1
-        </div>
-
-        <h3>
-          Paste URL
-        </h3>
-
-        <p>
-          Enter the URL of media you are
-          authorized to use.
-        </p>
-
-      </div>
-
-
-      <div class="step">
-
-        <div class="step-number">
-          2
-        </div>
-
-        <h3>
-          Fetch Media
-        </h3>
-
-        <p>
-          Analyze the URL using the
-          authorized backend.
-        </p>
-
-      </div>
-
-
-      <div class="step">
-
-        <div class="step-number">
-          3
-        </div>
-
-        <h3>
-          Download
-        </h3>
-
-        <p>
-          Choose an available thumbnail
-          or video download option.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
 
 </section>
 
 
-<!-- =========================
-     ABOUT
-========================= -->
-
-<section
-  class="section"
-  id="about"
->
-
-  <div class="container">
-
-    <div class="about-box">
-
-      <h2>
-        About VidFetch
-      </h2>
-
-      <p>
-        VidFetch is being designed as a modern media
-        utility platform for fetching media information
-        and handling authorized downloads. Our goal is
-        to make media tools simple, clean and accessible.
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     FOOTER
-========================= -->
-
+<!-- FOOTER -->
 <footer>
 
-  <div class="container">
-
-    <div class="footer-top">
-
-
-      <div class="footer-brand">
-
-        <div class="logo">
-
-          <div class="logo-icon">
-            ▶
-          </div>
-
-          Vid<span>Fetch</span>
-
-        </div>
-
-        <p>
-          A simple and professional workspace
-          for authorized media tools.
-        </p>
-
-      </div>
-
-
-      <div class="footer-links">
-
-        <a href="#features">
-          Features
-        </a>
-
-        <a href="#how-it-works">
-          How It Works
-        </a>
-
-        <a href="#about">
-          About
-        </a>
-
-      </div>
-
-    </div>
-
-
-    <div class="copyright">
-      © 2026 VidFetch. All rights reserved.
-    </div>
-
-  </div>
+    © 2026 VidFetch. All rights reserved.
 
 </footer>
 
-
-<!-- TOAST -->
-
-<div
-  class="toast"
-  id="toast"
-  role="status"
-  aria-live="polite"
-></div>
-
-
-<!-- =========================
-     JAVASCRIPT
-========================= -->
 
 <script>
 
@@ -1380,322 +792,494 @@ footer {
    ELEMENTS
 ========================= */
 
-const fetchForm =
-  document.getElementById("fetchForm");
+const urlInput = document.getElementById("urlInput");
 
-const mediaUrl =
-  document.getElementById("mediaUrl");
+const pasteBtn = document.getElementById("pasteBtn");
 
-const fetchBtn =
-  document.getElementById("fetchBtn");
+const clearBtn = document.getElementById("clearBtn");
 
-const pasteBtn =
-  document.getElementById("pasteBtn");
+const fetchBtn = document.getElementById("fetchBtn");
 
-const clearBtn =
-  document.getElementById("clearBtn");
+const resultSection = document.getElementById("resultSection");
 
-const resultSection =
-  document.getElementById("resultSection");
+const youtubePlayer = document.getElementById("youtubePlayer");
 
-const mediaTitle =
-  document.getElementById("mediaTitle");
+const thumbnailPreview =
+    document.getElementById("thumbnailPreview");
+
+const thumbnailDownload =
+    document.getElementById("thumbnailDownload");
+
+const watchVideo =
+    document.getElementById("watchVideo");
+
+const videoIdText =
+    document.getElementById("videoIdText");
 
 const mediaSource =
-  document.getElementById("mediaSource");
+    document.getElementById("mediaSource");
 
-const resultMessage =
-  document.getElementById("resultMessage");
+const statusText =
+    document.getElementById("statusText");
 
-const thumbnailBtn =
-  document.getElementById("thumbnailBtn");
-
-const videoBtn =
-  document.getElementById("videoBtn");
-
-const toast =
-  document.getElementById("toast");
+const messageBox =
+    document.getElementById("messageBox");
 
 
 /* =========================
-   TOAST
+   YOUTUBE ID DETECTION
 ========================= */
 
-let toastTimer;
+function getYouTubeId(url){
 
-function showToast(message) {
+    try{
 
-  clearTimeout(toastTimer);
+        const parsed = new URL(url);
 
-  toast.textContent = message;
+        let id = "";
 
-  toast.classList.add("show");
+        /*
+         * youtu.be/VIDEO_ID
+         */
+        if(parsed.hostname === "youtu.be"){
 
-  toastTimer = setTimeout(() => {
+            id = parsed.pathname
+                .replace("/", "")
+                .split("/")[0];
 
-    toast.classList.remove("show");
+        }
 
-  }, 2500);
+        /*
+         * youtube.com/watch?v=VIDEO_ID
+         */
+        else if(
+            parsed.hostname.includes("youtube.com")
+        ){
 
-}
+            if(parsed.pathname === "/watch"){
 
+                id = parsed.searchParams.get("v") || "";
 
-/* =========================
-   HOSTNAME
-========================= */
+            }
 
-function getHostname(url) {
+            /*
+             * youtube.com/shorts/VIDEO_ID
+             */
+            else if(
+                parsed.pathname.startsWith("/shorts/")
+            ){
 
-  try {
+                id = parsed.pathname
+                    .split("/")[2] || "";
 
-    return new URL(url).hostname;
+            }
 
-  } catch {
+            /*
+             * youtube.com/embed/VIDEO_ID
+             */
+            else if(
+                parsed.pathname.startsWith("/embed/")
+            ){
 
-    return "Unknown source";
+                id = parsed.pathname
+                    .split("/")[2] || "";
 
-  }
+            }
 
-}
+        }
 
+        /*
+         * YouTube video IDs are normally 11 characters.
+         */
+        if(
+            /^[A-Za-z0-9_-]{11}$/.test(id)
+        ){
 
-/* =========================
-   PASTE
-========================= */
+            return id;
 
-pasteBtn.addEventListener(
-  "click",
-  async function() {
+        }
 
-    try {
+        return null;
 
-      if (
-        !navigator.clipboard ||
-        !navigator.clipboard.readText
-      ) {
+    }catch(error){
 
-        throw new Error(
-          "Clipboard API unavailable"
-        );
-
-      }
-
-      const text =
-        await navigator.clipboard.readText();
-
-      if (!text.trim()) {
-
-        showToast(
-          "Clipboard is empty."
-        );
-
-        return;
-
-      }
-
-      mediaUrl.value =
-        text.trim();
-
-      mediaUrl.focus();
-
-      showToast(
-        "URL pasted successfully."
-      );
-
-    } catch (error) {
-
-      mediaUrl.focus();
-
-      showToast(
-        "Clipboard permission blocked. Use Ctrl + V."
-      );
+        return null;
 
     }
 
-  }
-);
+}
 
 
 /* =========================
-   CLEAR
+   PASTE BUTTON
 ========================= */
 
-clearBtn.addEventListener(
-  "click",
-  function() {
+pasteBtn.addEventListener("click", async function(){
 
-    mediaUrl.value = "";
+    try{
 
-    mediaUrl.focus();
+        const text =
+            await navigator.clipboard.readText();
 
-    resultMessage.textContent = "";
+        if(text){
 
-    showToast(
-      "URL cleared."
-    );
+            urlInput.value = text.trim();
 
-  }
-);
+        }
+
+    }catch(error){
+
+        alert(
+            "Clipboard permission denied. Please paste the URL manually using Ctrl + V."
+        );
+
+    }
+
+});
+
+
+/* =========================
+   CLEAR BUTTON
+========================= */
+
+clearBtn.addEventListener("click", function(){
+
+    urlInput.value = "";
+
+    resultSection.style.display = "none";
+
+    youtubePlayer.src = "";
+
+    thumbnailPreview.src = "";
+
+    videoIdText.textContent = "-";
+
+    statusText.textContent = "Ready";
+
+    messageBox.style.display = "none";
+
+});
 
 
 /* =========================
    FETCH MEDIA
 ========================= */
 
-fetchForm.addEventListener(
-  "submit",
-  function(event) {
-
-    event.preventDefault();
+fetchBtn.addEventListener("click", function(){
 
     const url =
-      mediaUrl.value.trim();
+        urlInput.value.trim();
 
-    if (!url) {
+    if(!url){
 
-      showToast(
-        "Please enter a media URL."
-      );
+        alert("Please paste a media URL first.");
 
-      return;
+        return;
 
     }
 
 
-    let validUrl;
-
-    try {
-
-      validUrl =
-        new URL(url);
-
-    } catch {
-
-      showToast(
-        "Please enter a valid URL."
-      );
-
-      mediaUrl.focus();
-
-      return;
-
-    }
+    const youtubeId =
+        getYouTubeId(url);
 
 
-    fetchBtn.disabled = true;
+    /*
+     * YOUTUBE
+     */
 
-    fetchBtn.textContent =
-      "Preparing...";
+    if(youtubeId){
 
-
-    resultSection.classList.add(
-      "visible"
-    );
-
-
-    mediaTitle.textContent =
-      "Media URL";
-
-
-    mediaSource.textContent =
-      validUrl.hostname;
-
-
-    resultMessage.textContent =
-      "Frontend ready. Connect the authorized backend to fetch actual media details.";
-
-
-    thumbnailBtn.disabled =
-      false;
-
-    videoBtn.disabled =
-      false;
-
-
-    setTimeout(
-      function() {
-
-        fetchBtn.disabled =
-          false;
-
-        fetchBtn.textContent =
-          "Fetch Media →";
-
-
-        resultSection.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-
-
-        showToast(
-          "Media URL prepared."
+        showYouTubeMedia(
+            youtubeId,
+            url
         );
 
-      },
-      500
-    );
-
-  }
-);
-
-
-/* =========================
-   THUMBNAIL DOWNLOAD
-========================= */
-
-thumbnailBtn.addEventListener(
-  "click",
-  function() {
-
-    if (!mediaUrl.value.trim()) {
-
-      showToast(
-        "Please enter a media URL first."
-      );
-
-      return;
+        return;
 
     }
 
-    resultMessage.textContent =
-      "Thumbnail download will work after connecting the authorized media backend.";
 
-    showToast(
-      "Thumbnail backend is not connected yet."
-    );
+    /*
+     * DIRECT MEDIA URL
+     */
 
-  }
-);
+    try{
+
+        const parsed =
+            new URL(url);
+
+        const pathname =
+            parsed.pathname.toLowerCase();
 
 
-/* =========================
-   VIDEO DOWNLOAD
-========================= */
+        /*
+         * Direct image
+         */
 
-videoBtn.addEventListener(
-  "click",
-  function() {
+        if(
+            pathname.endsWith(".jpg") ||
+            pathname.endsWith(".jpeg") ||
+            pathname.endsWith(".png") ||
+            pathname.endsWith(".webp") ||
+            pathname.endsWith(".gif")
+        ){
 
-    if (!mediaUrl.value.trim()) {
+            showDirectImage(url);
 
-      showToast(
-        "Please enter a media URL first."
-      );
+            return;
 
-      return;
+        }
+
+
+        /*
+         * Direct video
+         */
+
+        if(
+            pathname.endsWith(".mp4") ||
+            pathname.endsWith(".webm") ||
+            pathname.endsWith(".ogg") ||
+            pathname.endsWith(".mov")
+        ){
+
+            showDirectVideo(url);
+
+            return;
+
+        }
+
+    }catch(error){
 
     }
 
-    resultMessage.textContent =
-      "Video download will work after connecting the authorized media backend.";
 
-    showToast(
-      "Video backend is not connected yet."
-    );
+    /*
+     * Unsupported
+     */
 
-  }
-);
+    resultSection.style.display = "block";
+
+    statusText.textContent =
+        "Unsupported URL";
+
+    messageBox.style.display = "block";
+
+    messageBox.textContent =
+        "This URL format is not supported yet. YouTube and direct image/video URLs are currently supported.";
+
+});
+
+
+/* =========================
+   SHOW YOUTUBE
+========================= */
+
+function showYouTubeMedia(
+    videoId,
+    originalUrl
+){
+
+    resultSection.style.display = "block";
+
+    statusText.textContent =
+        "YouTube Detected";
+
+    mediaSource.textContent =
+        "YouTube";
+
+    videoIdText.textContent =
+        videoId;
+
+
+    /*
+     * Official YouTube embed URL.
+     */
+
+    youtubePlayer.src =
+        "https://www.youtube.com/embed/" +
+        encodeURIComponent(videoId) +
+        "?rel=0&playsinline=1";
+
+
+    /*
+     * YouTube thumbnail.
+     */
+
+    const thumbnailUrl =
+        "https://i.ytimg.com/vi/" +
+        videoId +
+        "/maxresdefault.jpg";
+
+
+    thumbnailPreview.src =
+        thumbnailUrl;
+
+
+    /*
+     * Fallback thumbnail if maxresdefault
+     * is not available.
+     */
+
+    thumbnailPreview.onerror =
+        function(){
+
+            this.onerror = null;
+
+            this.src =
+                "https://i.ytimg.com/vi/" +
+                videoId +
+                "/hqdefault.jpg";
+
+        };
+
+
+    /*
+     * Thumbnail link.
+     */
+
+    thumbnailDownload.href =
+        thumbnailUrl;
+
+
+    /*
+     * YouTube watch link.
+     */
+
+    watchVideo.href =
+        "https://www.youtube.com/watch?v=" +
+        encodeURIComponent(videoId);
+
+
+    messageBox.style.display =
+        "block";
+
+    messageBox.textContent =
+        "YouTube preview loaded. The video is played through YouTube's official embedded player.";
+
+}
+
+
+/* =========================
+   DIRECT IMAGE
+========================= */
+
+function showDirectImage(url){
+
+    resultSection.style.display =
+        "block";
+
+    statusText.textContent =
+        "Image Detected";
+
+    mediaSource.textContent =
+        "Direct Image";
+
+    videoIdText.textContent =
+        "Not applicable";
+
+    youtubePlayer.src =
+        "";
+
+    thumbnailPreview.src =
+        url;
+
+    thumbnailDownload.href =
+        url;
+
+    watchVideo.href =
+        url;
+
+    messageBox.style.display =
+        "block";
+
+    messageBox.textContent =
+        "Direct image URL detected.";
+
+}
+
+
+/* =========================
+   DIRECT VIDEO
+========================= */
+
+function showDirectVideo(url){
+
+    resultSection.style.display =
+        "block";
+
+    statusText.textContent =
+        "Video Detected";
+
+    mediaSource.textContent =
+        "Direct Video";
+
+    videoIdText.textContent =
+        "Not applicable";
+
+
+    /*
+     * Replace iframe with video element.
+     */
+
+    youtubePlayer.src =
+        "";
+
+    const wrapper =
+        document.getElementById("videoWrapper");
+
+    wrapper.innerHTML = `
+        <video
+            controls
+            playsinline
+            style="
+                width:100%;
+                height:100%;
+                display:block;
+                background:#000;
+            "
+            src="${escapeHtml(url)}">
+        </video>
+    `;
+
+
+    thumbnailPreview.src =
+        "";
+
+    thumbnailPreview.alt =
+        "No thumbnail available";
+
+
+    thumbnailDownload.href =
+        url;
+
+
+    watchVideo.href =
+        url;
+
+
+    messageBox.style.display =
+        "block";
+
+    messageBox.textContent =
+        "Direct video URL detected. Playback depends on the server allowing browser access.";
+
+}
+
+
+/* =========================
+   BASIC HTML ESCAPE
+========================= */
+
+function escapeHtml(value){
+
+    return value
+        .replace(/&/g,"&amp;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;");
+
+}
 
 </script>
 
